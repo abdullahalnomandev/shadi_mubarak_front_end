@@ -3,6 +3,7 @@ import { store } from "@/redux/store";
 import React from "react";
 import { Provider } from "react-redux";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
+import '@ant-design/v5-patch-for-react-19';
 
 interface IProps {
   children: React.ReactNode;

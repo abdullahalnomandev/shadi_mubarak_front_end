@@ -21,6 +21,20 @@ const LoginPage = () => {
     }
   };
 
+  const loginFormField = [
+    {
+      name: "email",
+      label: "Email",
+      type: "email",
+      placeholder: "Enter your email",
+    },
+    {
+      name: "password",
+      label: "Password",
+      type: "password",
+      placeholder: "Enter your password",
+    },
+  ];
   return (
     <Row
       className="flex flex-col md:flex-row"
@@ -46,27 +60,29 @@ const LoginPage = () => {
           our features and dat
         </h1>
 
-        <h1 className="text-3xl font-bold text-center text-gray-800 mb-6"
+        <h1
+          className="text-3xl font-bold text-center text-gray-800 mb-6"
           style={{ marginTop: "20px 0" }}
         >
           Login / Create Account
         </h1>
         <Form submitHandler={onSubmit}>
-          <div className="!space-y-4 p-4">
-            <FormInput name="email" size="large" id="email" label="Email" />
-            <FormInput
-              name="password"
-              size="large"
-              id="password"
-              type="password"
-              label="Password"
-            />
-          </div>
+          {loginFormField.map(({ name, label, type, placeholder }) => (
+              <div className="mt-3" key={name}>
+                <FormInput
+                  name={name}
+                  id={name}
+                  label={label}
+                  placeholder={placeholder}
+                  type={type}
+                />
+              </div>
+          ))}
 
           <Button
             type="primary"
             htmlType="submit"
-            className="w-full !mt-4 !py-4"
+            className="w-full mt-5 !py-5"
           >
             Login / Register
           </Button>

@@ -15,7 +15,7 @@ interface IInput {
 const FormInput = ({
   name,
   type,
-  size,
+  size = "large",
   value,
   id,
   placeholder,
