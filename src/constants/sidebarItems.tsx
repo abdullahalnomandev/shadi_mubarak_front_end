@@ -13,10 +13,9 @@ import { MenuProps } from 'antd';
 import Link from 'next/link';
 import { USER_ROLE } from './role';
 
-type MenuItem = Required<MenuProps>['items'][number];
 
 export const sidebarItems = (role: USER_ROLE.USER | USER_ROLE.ADMIN | USER_ROLE.SUPER_ADMIN) => {
-  const defaultItems: MenuItem[] = [
+  const defaultItems: MenuProps["items"] = [
     {
       label: <Link href={`/${role}/dashboard`}>Dashboard</Link>,
       key: `/${role}/dashboard`,
@@ -38,17 +37,20 @@ export const sidebarItems = (role: USER_ROLE.USER | USER_ROLE.ADMIN | USER_ROLE.
       icon: <FilterOutlined />,
     },
     {
-      label: <Link href={`/${role}/account-settings`}>Account Settings</Link>,
+      label:"Account Settings",
       key: `/${role}/account-settings`,
       icon: <SettingOutlined />,      
       children: [
         {
           label: <Link href={`/${role}/account-settings/change-password`}>Change Password</Link>,
           key: `/${role}/account-settings/change-password`,
+          icon:<SettingOutlined />
         },
         {
           label: <Link href={`/${role}/account-settings/delete-account`}>Delete Account</Link>,
           key: `/${role}/account-settings/delete-account`,
+          icon:<SettingOutlined />
+
         },
       ],
     },
@@ -59,7 +61,7 @@ export const sidebarItems = (role: USER_ROLE.USER | USER_ROLE.ADMIN | USER_ROLE.
     },
   ];
 
-  const adminItems: MenuItem[] = [
+  const adminItems: MenuProps["items"] = [
     ...defaultItems,
     {
       label: <Link href={`/${role}/manage-users`}>Manage Users</Link>,
@@ -73,7 +75,7 @@ export const sidebarItems = (role: USER_ROLE.USER | USER_ROLE.ADMIN | USER_ROLE.
     },
   ];
 
-  const superAdminItems: MenuItem[] = [
+  const superAdminItems: MenuProps["items"] = [
     ...defaultItems,
     {
       label: <Link href={`/${role}/manage-super-admin`}>Manage Super Admin</Link>,

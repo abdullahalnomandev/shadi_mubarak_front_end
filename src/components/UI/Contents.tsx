@@ -1,16 +1,18 @@
 "use client";
 import React from "react";
-import { Breadcrumb, Layout } from "antd";
+import { Layout } from "antd";
+import UMBreadCrumb from "./UMBreadCrumb";
 const { Content } = Layout;
 const Contents = ({ children }: { children: React.ReactNode }) => {
-
+  const base = "admin";
   return (
-    <Content style={{ margin: "0 16px" ,color:'black' , minHeight:'100vh' }}>
-      <Breadcrumb
-        style={{ margin: "16px 0" }}
-        items={[{ title: "User" }, { title: "Bill" }]}
-      />
-        {children}
+    <Content style={{ margin: "0 09px", color: "black", minHeight: "100vh" }}>
+      <UMBreadCrumb items={[
+        { label: `${base}` , link:`/${base}` }, 
+        { label: `student`, link:`/${base}/student` },
+        { label: `student`, link:"" },
+        ]} />
+      {children}
     </Content>
   );
 };

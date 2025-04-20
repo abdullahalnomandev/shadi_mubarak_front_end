@@ -38,7 +38,7 @@ const Sidebar = () => {
       </div>
       <Menu
         theme="dark"
-        defaultSelectedKeys={["1"]}
+        // defaultSelectedKeys={["1"]}
         mode="inline"
         items={sidebarItems(role)}
       />
