@@ -14,7 +14,7 @@ import Link from 'next/link';
 import { USER_ROLE } from './role';
 
 
-export const sidebarItems = (role: USER_ROLE.USER | USER_ROLE.ADMIN | USER_ROLE.SUPER_ADMIN) => {
+export const sidebarItems = (role: string) => {
   const defaultItems: MenuProps["items"] = [
     {
       label: <Link href={`/${role}/dashboard`}>Dashboard</Link>,

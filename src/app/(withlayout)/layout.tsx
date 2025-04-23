@@ -3,9 +3,12 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Layout } from "antd";
+
 import Sidebar from "@/components/UI/Sidebar";
 import Contents from "@/components/UI/Contents";
 import { isUserLoggedIn } from "@/services/auth.service";
+import Header from "@/components/UI/Header";
+import LoadingPage from "../loading";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
@@ -26,17 +29,26 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   }, [router]);
 
   if (isLoading) {
-    return <div>Loading...</div>; 
+    return (
+      <>
+        <LoadingPage />
+      </>
+    );
   }
 
   if (!isAuthenticated) {
-    return null; 
+    return null;
   }
 
   return (
-    <Layout style={{ minHeight: "100vh" }} hasSider>
-      <Sidebar />
-      <Contents>{children}</Contents>
+    <Layout>
+      <Header />
+      <Layout hasSider style={{ marginTop: '64px' }}>
+        <Sidebar />
+        <Layout>
+          <Contents>{children}</Contents>
+        </Layout>
+      </Layout>
     </Layout>
   );
 };

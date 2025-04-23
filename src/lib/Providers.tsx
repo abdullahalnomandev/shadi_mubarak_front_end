@@ -1,17 +1,16 @@
 "use client";
-import { store } from "@/redux/store";
-import React from "react";
 import { Provider } from "react-redux";
-import { AntdRegistry } from "@ant-design/nextjs-registry";
+import { store } from "@/redux/store";
+import { ConfigProvider } from "antd";
 import '@ant-design/v5-patch-for-react-19';
 
-interface IProps {
-  children: React.ReactNode;
-}
-const Providers = ({ children }: IProps) => {
+
+const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
     <Provider store={store}>
-      <AntdRegistry>{children}</AntdRegistry>
+        <ConfigProvider>
+          {children}
+        </ConfigProvider>
     </Provider>
   );
 };

@@ -12,7 +12,10 @@ export const getUserInfo = ( ) => {
   }
 };
 
-
 export const isUserLoggedIn = () => {
   return !!getFromLocalStorage(authKey);
+}
+
+export const removedUserInfo = (key:string) => {
+    return localStorage.removeItem(key);
 }
