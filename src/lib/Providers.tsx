@@ -1,16 +1,12 @@
 "use client";
 import { Provider } from "react-redux";
 import { store } from "@/redux/store";
-import { ConfigProvider } from "antd";
-import '@ant-design/v5-patch-for-react-19';
-
+import { AntdRegistry } from "@ant-design/nextjs-registry";
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
     <Provider store={store}>
-        <ConfigProvider>
-          {children}
-        </ConfigProvider>
+        <AntdRegistry>{children}</AntdRegistry>
     </Provider>
   );
 };
