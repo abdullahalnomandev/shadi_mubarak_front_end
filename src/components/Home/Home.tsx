@@ -4,7 +4,6 @@ import { Typography, Card, Row, Col, Button, Select, Form } from "antd";
 import Header from "@/components/UI/Header";
 import Footer from "@/components/UI/Footer";
 import { districts } from "@/constants/districts";
-import FormSelectField from "../Forms/FormSelectField";
 import { genderOptions, maritalStatusOptions } from "@/constants/global";
 
 const { Title, Paragraph } = Typography;
@@ -51,19 +50,31 @@ const Home = () => {
                 className="grid grid-cols-1 md:grid-cols-3 gap-4"
               >
                 <Form.Item name="gender" label="Looking for">
-                  <FormSelectField
-                    options={genderOptions}
-                    name="gender"
-                    label="Gender"
-                  />
+                  <Select
+                    size="large"
+                    placeholder="Select Gender"
+                    optionFilterProp="children"
+                  >
+                    {genderOptions.map((option) => (
+                      <Option key={option.value} value={option.value}>
+                        {option.label}
+                      </Option>
+                    ))}
+                  </Select>
                 </Form.Item>
 
                 <Form.Item name="maritalStatus" label="Marital Status">
-                  <FormSelectField
-                    options={maritalStatusOptions}
-                    name="maritalStatus"
-                    label="Marital Status"
-                  />
+                  <Select
+                    size="large"
+                    placeholder="Select Marital Status"
+                    optionFilterProp="children"
+                  >
+                    {maritalStatusOptions.map((option) => (
+                      <Option key={option.value} value={option.value}>
+                        {option.label}
+                      </Option>
+                    ))}
+                  </Select>
                 </Form.Item>
 
                 <Form.Item name="district" label="District">
