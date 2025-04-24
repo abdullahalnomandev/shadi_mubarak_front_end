@@ -1,4 +1,5 @@
 "use client";
+
 import { Select } from "antd";
 import { Controller, useFormContext } from "react-hook-form";
 
@@ -10,7 +11,10 @@ type ISelectFieldProps = {
   options?: { value: string; label: string }[];
   defaultValue?: string | string[] | undefined;
   placeholder?: string;
+  disabled?: boolean;
   required?: boolean;
+  showSearch?: boolean;
+  filterOption?: (input: string, option: unknown) => boolean;
 }
 const FormSelectField = ({
   name,
@@ -19,7 +23,8 @@ const FormSelectField = ({
   defaultValue,
   size = "large",
   placeholder,
-  required
+  required,
+  showSearch=false,
 }: ISelectFieldProps) => {
   const { control } = useFormContext();
   
@@ -42,6 +47,7 @@ const FormSelectField = ({
             defaultValue={defaultValue}
             value={value}
             placeholder={placeholder}
+            showSearch={showSearch}
             className="w-full"
           />
         )}
