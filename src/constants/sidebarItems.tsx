@@ -17,24 +17,9 @@ import { USER_ROLE } from './role';
 export const sidebarItems = (role: string) => {
   const defaultItems: MenuProps["items"] = [
     {
-      label: <Link href={`/${role}/dashboard`}>Dashboard</Link>,
-      key: `/${role}/dashboard`,
-      icon: <DashboardOutlined />,
-    },
-    {
-      label: <Link href={`/${role}/profile`}>Profile</Link>,
-      key: `/${role}/profile`,
+      label: <Link href={`/${role}`}>Profile</Link>,
+      key: `/${role}`,
       icon: <UserOutlined />,
-    },
-    {
-      label: <Link href={`/${role}/edit-bio-data`}>Edit BioData</Link>,
-      key: `/${role}/edit-bio-data`,
-      icon: <IdcardOutlined />,
-    },
-    {
-      label: <Link href={`/${role}/short-list`}>Short List</Link>,
-      key: `/${role}/short-list`,
-      icon: <FilterOutlined />,
     },
     {
       label:"Account Settings",
@@ -42,8 +27,8 @@ export const sidebarItems = (role: string) => {
       icon: <SettingOutlined />,      
       children: [
         {
-          label: <Link href={`/${role}/account-settings/change-password`}>Change Password</Link>,
-          key: `/${role}/account-settings/change-password`,
+          label: <Link href={`/${role}/change-password`}>Change Password</Link>,
+          key: `/${role}/change-password`,
           icon:<SettingOutlined />
         },
         {
@@ -76,15 +61,39 @@ export const sidebarItems = (role: string) => {
   ];
 
   const superAdminItems: MenuProps["items"] = [
-    ...defaultItems,
     {
-      label: <Link href={`/${role}/manage-super-admin`}>Manage Super Admin</Link>,
-      key: `/${role}/manage-super-admin`,
+      label: <Link href={`/${role}/admin`}>Manage Admin</Link>,
+      key: `/${role}/admin`,
       icon: <CrownOutlined />,
     },
+    {
+      label: <Link href={`/${role}/user`}>Manage User</Link>,
+      key: `/${role}/user`,
+      icon: <CrownOutlined />,
+    },
+    ...defaultItems,
+  ];
+  const userItems: MenuProps["items"] = [
+    {
+      label: <Link href={`/${role}/dashboard`}>Dashboard</Link>,
+      key: `/${role}/dashboard`,
+      icon: <DashboardOutlined />,
+      ...defaultItems,
+    },
+    {
+      label: <Link href={`/${role}/edit-bio-data`}>Edit BioData</Link>,
+      key: `/${role}/edit-bio-data`,
+      icon: <IdcardOutlined />,
+    },
+    {
+      label: <Link href={`/${role}/short-list`}>Short List</Link>,
+      key: `/${role}/short-list`,
+      icon: <FilterOutlined />,
+    },
+
   ];
 
-  if (role === USER_ROLE.USER) return defaultItems;
+  if (role === USER_ROLE.USER) return userItems;
   if (role === USER_ROLE.ADMIN) return adminItems;
   if (role === USER_ROLE.SUPER_ADMIN) return superAdminItems;
 };
