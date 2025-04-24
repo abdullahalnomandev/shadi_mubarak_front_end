@@ -1,17 +1,17 @@
 "use client";
 import React from "react";
-import { Typography, Card, Row, Col, Button, Select, Form } from "antd";
+import { Typography, Card, Row, Col, Button } from "antd";
 import Header from "@/components/UI/Header";
 import Footer from "@/components/UI/Footer";
 import { districts } from "@/constants/districts";
 import { genderOptions, maritalStatusOptions } from "@/constants/global";
+import Form from "../Forms/Form";
+import FormSelectField from "../Forms/FormSelectField";
 
 const { Title, Paragraph } = Typography;
-const { Option } = Select;
 
 const Home = () => {
-
-  const onSearch = (values: unknown) => {
+  const onSubmit = (values: unknown) => {
     console.log("Search values:", values);
   };
 
@@ -43,87 +43,69 @@ const Home = () => {
 
             {/* Search Form */}
             <div className="w-full max-w-4xl bg-white/95 backdrop-blur-sm rounded-lg shadow-xl p-8">
-              <Form
-                name="partner_search"
-                onFinish={onSearch}
-                layout="vertical"
-                className="grid grid-cols-1 md:grid-cols-3 gap-4"
+              <Form 
+                submitHandler={onSubmit}
               >
-                <Form.Item name="gender" label="Looking for">
-                  <Select
-                    size="large"
-                    placeholder="Select Gender"
-                    optionFilterProp="children"
-                  >
-                    {genderOptions.map((option) => (
-                      <Option key={option.value} value={option.value}>
-                        {option.label}
-                      </Option>
-                    ))}
-                  </Select>
-                </Form.Item>
+                <Row gutter={[16, 16]}>
+                  <Col xs={24} sm={12} md={8}>
+                    <FormSelectField
+                      options={genderOptions}
+                      name="gender"
+                      label="Looking for"
+                      placeholder="Select Gender"
+                      size="large"
+                    />
+                  </Col>
 
-                <Form.Item name="maritalStatus" label="Marital Status">
-                  <Select
-                    size="large"
-                    placeholder="Select Marital Status"
-                    optionFilterProp="children"
-                  >
-                    {maritalStatusOptions.map((option) => (
-                      <Option key={option.value} value={option.value}>
-                        {option.label}
-                      </Option>
-                    ))}
-                  </Select>
-                </Form.Item>
+                  <Col xs={24} sm={12} md={8}>
+                    <FormSelectField
+                      options={maritalStatusOptions}
+                      name="maritalStatus"
+                      label="Marital Status"
+                      placeholder="Select Marital Status"
+                      size="large"
+                    />
+                  </Col>
 
-                <Form.Item name="district" label="District">
-                  <Select
-                    size="large"
-                    showSearch
-                    placeholder="Select District"
-                    optionFilterProp="children"
-                    filterOption={(input, option) => {
-                      const value = option?.value?.toString() || "";
-                      const label = option?.label?.toString() || "";
-                      const searchInput = input.toLowerCase();
+                  <Col xs={24} sm={12} md={8}>
+                    <FormSelectField
+                      options={Object.entries(districts).flatMap(([district, areas]) => [
+                        { value: district.toLowerCase(), label: `All ${district}` },
+                        ...areas.map((area) => ({
+                          value: `${district.toLowerCase()}-${area.toLowerCase()}`,
+                          label: `${area} (${district})`
+                        }))
+                      ])}
+                      name="district"
+                      label="District"
+                      placeholder="Select District"
+                      size="large"
+                      showSearch={true}
+                      filterOption={(input: string, option: unknown) => {
+                        if (!option || typeof option !== 'object') return false;
+                        const opt = option as { value?: string; label?: string };
+                        const value = opt.value || "";
+                        const label = opt.label || "";
+                        const searchInput = input.toLowerCase();
+                        return (
+                          value.toLowerCase().includes(searchInput) ||
+                          label.toLowerCase().includes(searchInput)
+                        );
+                      }}
+                    />
+                  </Col>
 
-                      // Check if the input matches the district or area name
-                      return (
-                        value.toLowerCase().includes(searchInput) ||
-                        label.toLowerCase().includes(searchInput)
-                      );
-                    }}
-                  >
-                    {Object.entries(districts).map(([district, areas]) => (
-                      <Select.OptGroup key={district} label={district}>
-                        <Option value={district.toLowerCase()}>
-                          All {district}
-                        </Option>
-                        {areas.map((area) => (
-                          <Option
-                            key={`${district}-${area}`}
-                            value={`${district.toLowerCase()}-${area.toLowerCase()}`}
-                            label={`${area} (${district})`}
-                          >
-                            {area}
-                          </Option>
-                        ))}
-                      </Select.OptGroup>
-                    ))}
-                  </Select>
-                </Form.Item>
-
-                <Form.Item className="md:col-span-3">
-                  <Button
-                    type="primary"
-                    htmlType="submit"
-                    size="large"
-                    className="w-full bg-rose-600 hover:bg-rose-700"
-                  >
-                    Search Partners
-                  </Button>
-                </Form.Item>
+                  <Col xs={24}>
+                    <Button
+                      type="primary"
+                      htmlType="submit"
+                      size="large"
+                      className="w-full bg-rose-600 hover:bg-rose-700"
+                    >
+                      Search Partners
+                    </Button>
+                  </Col>
+                </Row>
               </Form>
             </div>
           </div>
