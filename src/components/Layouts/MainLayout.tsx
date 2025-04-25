@@ -9,14 +9,13 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const isProtectedRoute =
     pathname?.startsWith("/user") ||
     pathname?.startsWith("/admin") ||
-    pathname?.startsWith("/login") ||
-    pathname?.startsWith("/register");
+    pathname?.startsWith("/super_admin") 
 
   return (
     <div className="min-h-screen flex flex-col">
       {isProtectedRoute && <Header />}
       <main className="flex-grow">{children}</main>
-      {isProtectedRoute && <Footer />}
+      {!isProtectedRoute && <Footer />}
     </div>
   );
 };

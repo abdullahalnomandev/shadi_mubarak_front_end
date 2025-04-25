@@ -32,9 +32,10 @@ export const axiosBaseQuery =
         data,
         params,
         headers: finalHeaders,
+        withCredentials: true,
       });
 
-      return { data: result.data };
+      return result;
     } catch (axiosError) {
       const err = axiosError as AxiosError;
 
