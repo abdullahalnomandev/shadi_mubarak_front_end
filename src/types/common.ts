@@ -23,3 +23,14 @@ export type IUserPayload =  {
   email?: string;
   id?: string;
 } & JwtPayload;
+
+export type IUser = {
+  _id: string;
+  email: string;
+  role: string;
+  bioDataNo: unknown;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}

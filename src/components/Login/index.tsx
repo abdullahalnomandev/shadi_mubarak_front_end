@@ -1,14 +1,16 @@
 "use client";
 
-import { Button, Col, Row } from "antd";
+import { Button, Col, message, Row } from "antd";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { SubmitHandler } from "react-hook-form";
 import loginImage from "@/assets/login.png";
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
-import { useUserLoginMutation } from "@/redux/api/authApi";
+import { useUserLoginMutation } from "@/redux/api/auth";
 import { storeUserInfo } from "@/services/auth.service";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { loginSchema } from "@/schemas/userSchema";
 
 interface FormValues {
   email: string;
@@ -35,6 +37,7 @@ const Login = () => {
   const [userLogin] = useUserLoginMutation();
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    message.loading("Logging in...");
     try {
       const res = await userLogin(data).unwrap();
       const accessToken = res?.accessToken;
@@ -42,6 +45,7 @@ const Login = () => {
       if (accessToken) {
         storeUserInfo({ accessToken });
         router.push("/");
+        message.success("Login successful!");
       }
     } catch (error) {
       console.error("Login error:", error);
@@ -77,7 +81,7 @@ const Login = () => {
           </h1>
         </div>
 
-        <Form submitHandler={onSubmit}>
+        <Form submitHandler={onSubmit} resolver={yupResolver(loginSchema)}>
           {loginFields.map((field) => (
             <div key={field.name} className="mt-3">
               <FormInput {...field} id={field.name} />

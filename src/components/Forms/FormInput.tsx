@@ -1,5 +1,6 @@
 "use client";
 
+import { getErrorMessageBuPropertyName } from "@/utils/schema-validator";
 import { Input } from "antd";
 import { Controller, useFormContext } from "react-hook-form";
 
@@ -22,7 +23,12 @@ const FormInput = ({
   placeholder,
   label,
 }: IInput) => {
-  const { control } = useFormContext();
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
+
+  const errorMessage = getErrorMessageBuPropertyName(errors, name);
   return (
     <>
       {label && <label htmlFor={id}>{label}</label>}
@@ -49,6 +55,7 @@ const FormInput = ({
           )
         }
       />
+      {errors[name] && <small className="text-red-500">{errorMessage}</small>}
     </>
   );
 };

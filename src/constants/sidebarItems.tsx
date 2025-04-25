@@ -43,7 +43,7 @@ export const sidebarItems = (role: string) => {
       label: <Link href={`/${role}/logout`}>Logout</Link>,
       key: `/${role}/logout`,
       icon: <LogoutOutlined />,
-    },
+    }
   ];
 
   const adminItems: MenuProps["items"] = [
@@ -81,8 +81,8 @@ export const sidebarItems = (role: string) => {
       ...defaultItems,
     },
     {
-      label: <Link href={`/${role}/edit-bio-data`}>Edit BioData</Link>,
-      key: `/${role}/edit-bio-data`,
+      label: <Link href={`/${role}/edit-biodata`}>Edit BioData</Link>,
+      key: `/${role}/edit-biodata`,
       icon: <IdcardOutlined />,
     },
     {
