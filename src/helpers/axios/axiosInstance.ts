@@ -28,6 +28,7 @@ instance.interceptors.request.use(function (config) {
 
 //@ts-ignore
 instance.interceptors.response.use(function (response) {
+   // Do something after request is sent
   const responseObject:ResponseSuccessType = {
     data: response?.data?.data,
     meta:response?.data?.meta
@@ -38,7 +39,9 @@ instance.interceptors.response.use(function (response) {
 
   const  config = error?.config;
 
-  if(error?.response?.statusCode === 403 && !config?.sent) {
+  console.log('get-new-version-out-of-project',error)
+
+  if((error?.response?.status === 403 || error?.response?.status === 401) && !config?.sent) {
     config.sent = true;
     const response = await getNewAccessToken();
     const accessToken  = response?.data?.accessToken;

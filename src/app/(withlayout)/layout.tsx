@@ -7,7 +7,6 @@ import { Layout } from "antd";
 import Sidebar from "@/components/UI/Sidebar";
 import Contents from "@/components/UI/Contents";
 import { isUserLoggedIn } from "@/services/auth.service";
-import Header from "@/components/UI/Header";
 import LoadingPage from "../loading";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
@@ -42,8 +41,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <Layout>
-      <Header />
-      <Layout hasSider style={{ marginTop: '64px' }}>
+      <Layout hasSider >
         <Sidebar />
         <Layout>
           <Contents>{children}</Contents>
