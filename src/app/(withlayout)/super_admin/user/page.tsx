@@ -153,6 +153,7 @@ const UserPage = () => {
         onChange={onTableChange}
         onPageSizeChange={onPageSizeChange}
         showPagination={true}
+        rowKey="id"
       />
     </>
   );

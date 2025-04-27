@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Col, message, Row } from "antd";
+import { Col, message, Row } from "antd";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { SubmitHandler } from "react-hook-form";
@@ -88,13 +88,14 @@ const Login = () => {
             </div>
           ))}
 
-          <Button
-            type="primary"
-            htmlType="submit"
-            className="w-full mt-5 !py-5"
+          <button
+            type="submit"
+            className="w-full mt-6 py-3 text-white rounded-md  transition duration-400 
+              cursor-pointer bg-linear-to-r from-cyan-500 to-blue-500 hover:to-cyan-500 hover:from-blue-500
+             "
           >
             Login / Register
-          </Button>
+          </button>
         </Form>
       </Col>
     </Row>
@@ -102,6 +103,5 @@ const Login = () => {
 };
 
 export default Login;
-
 
 // Image from: https://storyset.com/
