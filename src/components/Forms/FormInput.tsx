@@ -51,11 +51,12 @@ const FormInput = ({
               size={size}
               placeholder={placeholder}
               value={value ? value : field.value}
+              autoComplete="off"
             />
           )
         }
       />
-      {errors[name] && <small className="text-red-500">{errorMessage}</small>}
+      {errors && <small className="text-red-500">{errorMessage}</small>}
     </>
   );
 };

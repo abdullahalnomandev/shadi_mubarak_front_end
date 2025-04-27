@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Layout, Row, Dropdown, Avatar, Button, Space, Menu } from "antd";
 import Link from "next/link";
@@ -53,7 +54,7 @@ const Header = () => {
     <AntHeader
       className="!bg-[#fff]"
       style={{
-        position: "fixed",
+        position: "sticky",
         top: 0,
         zIndex: 999,
         width: "100%",
