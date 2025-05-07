@@ -5,7 +5,7 @@ export interface IMeta {
     total: number;
   }
   
-  export type ResponseSuccessType<T = unknown> = {
+  export type ResponseSuccessType<T = any> = {
     data: T;
     meta?: IMeta;
   };
@@ -28,7 +28,7 @@ export type IUser = {
   _id: string;
   email: string;
   role: string;
-  bioDataNo: unknown;
+  bioDataNo: any;
   id: string;
   createdAt: string;
   updatedAt: string;

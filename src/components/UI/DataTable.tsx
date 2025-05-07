@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Table } from 'antd';
 import type { TablePaginationConfig } from 'antd/es/table';
 import React from 'react';

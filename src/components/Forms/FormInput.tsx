@@ -2,26 +2,31 @@
 
 import { getErrorMessageBuPropertyName } from "@/utils/schema-validator";
 import { Input } from "antd";
+import { ReactNode } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 
 interface IInput {
   name: string;
   label?: string;
-  id: string;
   size?: "large" | "small" | "middle";
   type?: string;
   value?: string | string[] | undefined;
   placeholder?: string;
   validation?: object;
+  disabled?: boolean;
+  prefixSelector?: ReactNode;
+  className?: string;
 }
 const FormInput = ({
   name,
   type,
   size = "large",
   value,
-  id,
   placeholder,
   label,
+  prefixSelector,
+  disabled = false,
+  className = "!py-2",
 }: IInput) => {
   const {
     control,
@@ -31,7 +36,7 @@ const FormInput = ({
   const errorMessage = getErrorMessageBuPropertyName(errors, name);
   return (
     <>
-      {label && <label htmlFor={id}>{label}</label>}
+      {label && <p className="text-gray-900 mb-0.5">{label}</p>}
       <Controller
         control={control}
         name={name}
@@ -43,6 +48,7 @@ const FormInput = ({
               size={size}
               placeholder={placeholder}
               value={value ? value : field.value}
+              className={className}
             />
           ) : (
             <Input
@@ -51,7 +57,10 @@ const FormInput = ({
               size={size}
               placeholder={placeholder}
               value={value ? value : field.value}
+              addonBefore={prefixSelector ?? null}
               autoComplete="off"
+              className={className}
+              disabled={disabled}
             />
           )
         }

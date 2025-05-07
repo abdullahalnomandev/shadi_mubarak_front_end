@@ -1,0 +1,43 @@
+{
+  "Welcome to React": "Bangladesh is the International Cricket Council",
+  "forgot-password": {
+    "title": "Forgot Password",
+    "description": "Enter your email and we will send you a password reset link"
+  },
+  "biodata": {
+    "general": {
+      "biodata_no": "Biodata No",
+      "age": "Age",
+      "height": "Height",
+      "weight": "Weight",
+      "occupation": "Occupation",
+      "gender": "Gender",
+      "marital_status": "Marital Status",
+      "nationality": "Nationality",
+      "dateOfBirth": "Date of Birth",
+      "skin": "Skin",
+      "maritalStatus": "Marital Status"
+    },
+    "actions": {
+      "copy_bio_link": "Copy Bio Link",
+      "add_to_shortlist": "Add to Shortlist"
+    },
+    "sections": {
+      "general_information": "General Information",
+      "address": "Address",
+      "educational_qualifications": "Educational Qualifications",
+      "family_information": "Family Information",
+      "personal_information": "Personal Information",
+      "occupation_info": "Occupation",
+      "marriage_related": "Marriage Related Information",
+      "expected_partner": "Expected Partner",
+      "agreement": "Agreement",
+      "contact": "Contact"
+    },
+    "address": {
+      "present_address": "Present Address",
+      "permanent_address": "Permanent Address",
+      "grow_up": "Grow Up"
+    }
+  }
+}

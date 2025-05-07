@@ -1,6 +1,6 @@
 'use server'
 
-export async function handleBiodataSubmit(data: unknown): Promise<void> {
+export async function handleBiodataSubmit(data: any): Promise<void> {
   try {
     console.log("Server action processing data:", data);
     // Add your server-side logic here

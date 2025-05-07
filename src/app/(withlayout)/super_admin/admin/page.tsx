@@ -4,7 +4,7 @@ import { getUserInfo } from "@/services/auth.service";
 import { IUserPayload } from "@/types";
 import React from "react";
 
-const AdminPage = () => {
+const SuperAdminPage = () => {
     const {role} = getUserInfo() as IUserPayload;
   return (
     <div>
@@ -19,4 +19,4 @@ const AdminPage = () => {
   );
 };
 
-export default AdminPage;
+export default SuperAdminPage;

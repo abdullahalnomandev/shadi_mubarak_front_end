@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 export const getErrorMessageBuPropertyName = (
-    errorObject: Record<string, unknown>,
+    errorObject: Record<string, any>,
     propertyPath: string
   ) => {
     const properties = propertyPath.split('.');
@@ -8,7 +7,7 @@ export const getErrorMessageBuPropertyName = (
   
     for (const prop of properties) {
       if (value[prop]) {
-        value = value[prop] as Record<string, unknown>;
+        value = value[prop] as Record<string, any>;
       } else {
         return undefined;
       }
