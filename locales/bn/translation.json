@@ -1,0 +1,43 @@
+{
+    "Welcome to React": "বাংলাদেশ ইন্যারন্যাশনাল ক্রিকেট কলকে স্বাগতম বিশ্ব",
+    "forgot-password": {
+        "title": "পাসওয়ার্ড ভুলে গেছেন",
+        "description": "আপনার ইমেইল দিন এবং আমরা আপনার পাসওয়ার্ড পুনরুদ্ধার লিংক পাঠিয়ে দেবো"
+    },
+    "biodata": {
+        "general": {
+            "biodata_no": "বায়োডাটা নং",
+            "age": "বয়স",
+            "height": "উচ্চতা",
+            "weight": "ওজন",
+            "occupation": "পেশা",
+            "gender": "লিঙ্গ",
+            "marital_status": "বৈবাহিক অবস্থা",
+            "nationality": "জাতীয়তা",
+            "dateOfBirth": "জন্ম তারিখ",
+            "skin": "স্কিন",
+            "maritalStatus": "বৈবাহিক অবস্থা"
+        },
+        "actions": {
+            "copy_bio_link": "বায়োডাটা লিংক কপি করুন",
+            "add_to_shortlist": "শর্টলিস্টে যোগ করুন"
+        },
+        "sections": {
+            "general_information": "সাধারণ তথ্য",
+            "address": "ঠিকানা",
+            "educational_qualifications": "শিক্ষাগত যোগ্যতা",
+            "family_information": "পারিবারিক তথ্য",
+            "personal_information": "ব্যক্তিগত তথ্য",
+            "occupation_info": "পেশা",
+            "marriage_related": "বিবাহ সংক্রান্ত তথ্য",
+            "expected_partner": "প্রত্যাশিত জীবনসঙ্গী",
+            "agreement": "চুক্তি",
+            "contact": "যোগাযোগ"
+        },
+        "address": {
+            "present_address": "বর্তমান ঠিকানা",
+            "permanent_address": "স্থায়ী ঠিকানা",
+            "grow_up": "বেড়ে ওঠা"
+        }
+    }
+}

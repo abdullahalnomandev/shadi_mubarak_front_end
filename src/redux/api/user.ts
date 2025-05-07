@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { IMeta, IUser } from '@/types';
 import { TagTypes } from '../tag-types';
 import { baseApi } from './baseApi';

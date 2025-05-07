@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { Button, message, Steps } from "antd";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -13,14 +12,14 @@ interface ISteps {
 
 interface IStepsProps {
   steps: ISteps[];
-  handleUserSubmit: (data: unknown) => Promise<unknown>;
+  handleUserSubmit: (data: any) => Promise<any>;
 }
 
 const StepperForm = ({ steps, handleUserSubmit }: IStepsProps) => {
-  const [current, setCurrent] = useState<number>( 0);
+  const [current, setCurrent] = useState<number>(0);
 
-  const methods = useForm({resolver:zodResolver(generalInformationSchema)});
-  const { handleSubmit, reset } = methods;
+  const methods = useForm({ resolver: zodResolver(generalInformationSchema) });
+  const { handleSubmit, reset , watch } = methods;
 
   const next = () => {
     setCurrent(current + 1);
@@ -31,7 +30,7 @@ const StepperForm = ({ steps, handleUserSubmit }: IStepsProps) => {
   };
 
   const items = steps.map((item, index) => ({
-    key: `step-${index}`,
+    key: index,
     title: item.title,
   }));
 
@@ -40,33 +39,50 @@ const StepperForm = ({ steps, handleUserSubmit }: IStepsProps) => {
       await handleUserSubmit(data);
       reset();
       message.success("Form submitted successfully!");
-    } catch (error:any) {
-      message.error("Failed to submit form",error);
+    } catch (error: any) {
+      message.error("Failed to submit form", error);
     }
   };
 
+  console.log('watch',watch())
+
   return (
     <div className="p-4">
-      <Steps current={current} items={items} />
+      <Steps
+        current={current}
+        items={items}
+        direction="horizontal"
+        status="process"
+        percent={60}
+        labelPlacement="vertical"
+        size="small"
+      />
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(handleOnSubmit)}>
           <div>{steps[current]?.content}</div>
-          <div style={{ marginTop: 24 }}>
-            {current < steps.length - 1 && (
-              <Button type="primary" onClick={next}>
-                Save & Next
-              </Button>
-            )}
-            {current === steps.length - 1 && (
-              <Button type="primary" htmlType="submit">
-                Submit
-              </Button>
-            )}
-            {current > 0 && (
-              <Button style={{ margin: "0 8px" }} onClick={prev}>
-                Previous
-              </Button>
-            )}
+          <div
+            style={{ marginTop: 24 }}
+            className="flex justify-between items-center"
+          >
+            <div>
+              {current > 0 && (
+                <Button style={{ margin: "0 8px" }} onClick={prev}>
+                  Previous
+                </Button>
+              )}
+            </div>
+            <div>
+              {current < steps.length - 1 && (
+                <Button type="primary" onClick={next}>
+                  Save & Next
+                </Button>
+              )}
+              {current === steps.length - 1 && (
+                <Button type="primary" htmlType="submit">
+                  Submit
+                </Button>
+              )}
+            </div>
           </div>
         </form>
       </FormProvider>

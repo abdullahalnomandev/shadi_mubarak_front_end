@@ -1,6 +1,4 @@
-import React from 'react';
-
-const createAdminPage = () => {
+const CreateAdminPage = () => {
     return (
         <div>
             <h1>Create Admin Page</h1>
@@ -8,4 +6,4 @@ const createAdminPage = () => {
     );
 };
 
-export default createAdminPage;
+export default CreateAdminPage;

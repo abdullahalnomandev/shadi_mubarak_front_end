@@ -14,24 +14,27 @@ type ISelectFieldProps = {
   disabled?: boolean;
   required?: boolean;
   showSearch?: boolean;
-  filterOption?: (input: string, option: unknown) => boolean;
-}
+  mode?: "multiple" | "tags";
+  filterOption?: (input: string, option: any) => boolean;
+};
 const FormSelectField = ({
   name,
   label,
   options,
   defaultValue,
   size = "large",
+  mode,
   placeholder,
   required,
-  showSearch=false,
+  showSearch = false,
 }: ISelectFieldProps) => {
   const { control } = useFormContext();
-  
+
+  console.log({ mode });
   return (
     <div className="w-full">
       {label && (
-        <label className="block text-sm font-medium mb-1">
+        <label className="block text-sm font-medium text-black mb-1">
           {label}
           {required && <span className="text-red-500"> *</span>}
         </label>
@@ -44,6 +47,7 @@ const FormSelectField = ({
             size={size}
             onChange={onChange}
             options={options}
+            {...(!!mode ? { mode } : {})}
             defaultValue={defaultValue}
             value={value}
             placeholder={placeholder}

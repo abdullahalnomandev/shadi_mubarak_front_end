@@ -1,10 +1,10 @@
 "use client";
-
 import React, { useState } from "react";
 import { Layout, Menu } from "antd";
 import { sidebarItems } from "@/constants/sidebarItems";
 import { getUserInfo } from "@/services/auth.service";
 import { IUserPayload } from "@/types";
+import SidebarProfile from "./SidebarProfile";
 
 const { Sider } = Layout;
 
@@ -15,10 +15,11 @@ const Sidebar = () => {
 
   return (
     <Sider
-      collapsible
+      // collapsible
       collapsed={collapsed}
       onCollapse={(value) => setCollapsed(value)}
-      width={280}
+      width={265}
+      theme="light"
       style={{
         overflow: "auto",
         height: "100vh",
@@ -28,17 +29,8 @@ const Sidebar = () => {
         bottom: 0,
       }}
     >
-      <div className="text-white text-center text-2xl font-bold mb-4">
-        {
-          collapsed ? "SM" : "Shadi Mubarak"
-        }
-      </div>
-
-      <Menu
-        theme="dark"
-        mode="inline"
-        items={sidebarItems(role)}
-      />
+      <SidebarProfile />
+      <Menu theme="light" mode="inline" items={sidebarItems(role)} />
     </Sider>
   );
 };

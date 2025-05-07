@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React, { ReactElement } from 'react';
 import { useForm, FormProvider, SubmitHandler } from 'react-hook-form';
