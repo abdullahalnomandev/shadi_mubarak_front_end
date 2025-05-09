@@ -10,7 +10,7 @@ import {
 import { MenuProps } from "antd";
 import Link from "next/link";
 import { USER_ROLE } from "./role";
-import { FaHeart, FaRegEdit } from "react-icons/fa";
+import { FaRegEdit, FaRegHeart } from "react-icons/fa";
 import { ImProfile } from "react-icons/im";
 import { CiLogout } from "react-icons/ci";
 import { IoCartOutline } from "react-icons/io5";
@@ -95,9 +95,9 @@ export const sidebarItems = (role: string) => {
       icon: <FaRegEdit />,
     },
     {
-      label: <Link href={`/${role}/short-list`}>Short List</Link>,
-      key: `/${role}/short-list`,
-      icon: <FaHeart />,
+      label: <Link href={`/${role}/favorite-list`}>Favorites List</Link>,
+      key: `/${role}/favorite-list`,
+      icon: <FaRegHeart />,
     },
     {
       label: <Link href={`/${role}/my-purchased`}>My purchased</Link>,

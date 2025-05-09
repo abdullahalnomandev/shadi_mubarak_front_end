@@ -5,6 +5,7 @@ import { sidebarItems } from "@/constants/sidebarItems";
 import { getUserInfo } from "@/services/auth.service";
 import { IUserPayload } from "@/types";
 import SidebarProfile from "./SidebarProfile";
+import { usePathname } from "next/navigation";
 
 const { Sider } = Layout;
 
@@ -30,7 +31,12 @@ const Sidebar = () => {
       }}
     >
       <SidebarProfile />
-      <Menu theme="light" mode="inline" items={sidebarItems(role)} />
+      <Menu
+        theme="light"
+        mode="inline"
+        defaultSelectedKeys={[usePathname()]}
+        items={sidebarItems(role)}
+      />
     </Sider>
   );
 };

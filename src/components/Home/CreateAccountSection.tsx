@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { IoPlayCircleOutline } from "react-icons/io5";
 import VideoModal from "../UI/VideoModal";
+import { FaPlus } from "react-icons/fa";
 
 const CreateAccountSection = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -44,17 +45,19 @@ const CreateAccountSection = () => {
             placeholder="blur"
             priority
           />
-          <div className="absolute top-4 left-0 md:left-6 bg-white/90 backdrop-blur-sm rounded-full shadow-lg px-4 py-1 flex items-center space-x-3 max-w-[260px]">
-            <Image
-              src={niqab}
-              alt="Niqab"
-              width={44}
-              height={44}
-              className="rounded-full border border-gray-200"
-              quality={90}
-              placeholder="blur"
-              priority
-            />
+          <div className="absolute top-2 left-0 md:left-2.5 bg-white/90 backdrop-blur-sm rounded-full shadow-lg px-2 py-1 flex items-center space-x-3 max-w-[260px]">
+            <div className="w-10 h-10 rounded-full border border-white-200 overflow-hidden">
+              <Image
+                src={niqab}
+                alt="Niqab"
+                width={40}
+                height={40}
+                quality={90}
+                placeholder="blur"
+                priority
+              />
+            </div>
+
             <div className="flex flex-col">
               <div className="font-semibold text-gray-900 text-sm leading-tight">
                 Fatema Binte Malek
@@ -77,12 +80,12 @@ const CreateAccountSection = () => {
             profession, and education.
           </p>
           <div className="flex flex-col md:flex-row gap-4 items-center justify-center mt-6">
-            <button className="bg-violet-700 hover:bg-violet-800 text-white font-semibold hover:scale-110 cursor-pointer rounded-full px-8 py-3 delay-100 transition duration-300  shadow-md">
-              Create Your Biodata
+            <button className="bg-violet-700 hover:bg-violet-800 text-white font-semibold hover:scale-110 cursor-pointer rounded-sm px-4 py-3 delay-100 transition duration-300 w-full  shadow-md flex items-center gap-2 justify-center">
+              <FaPlus /> <span> Create Your Biodata</span>
             </button>
             <button
               onClick={() => setIsOpen(true)}
-              className="bg-white border border-rose-700 text-rose-700 font-semibold rounded-full px-6 py-3  hover:scale-110 shadow-md flex items-center gap-2 cursor-pointer transition delay-100 duration-300"
+              className="bg-white border border-rose-700 text-rose-700 font-semibold rounded-sm px-6 py-3  hover:scale-110 shadow-md flex w-full items-center gap-2 cursor-pointer transition delay-100 duration-300"
             >
               <IoPlayCircleOutline className="text-rose-600 text-xl md:text-xl animate-scale-loop" />
 
