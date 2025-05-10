@@ -1,36 +1,44 @@
 "use client";
-import { Card, Row, Col, Button, Badge } from "antd";
+import { useGetPackagesQuery } from "@/redux/api/package";
+import { IPackage } from "@/types";
+import { Card, Row, Col, Button, Badge, Skeleton } from "antd";
+
 const UserConnectionDetails = () => {
-  const packages = [
-    {
-      _id: "68037d5b2bd531ccb726c73f",
-      name: "popular",
-      connections: 1,
-      description:
-        "Most popular package with extended features and higher limits.",
-      isSelected: true,
-      price: 100,
-      effectivePrice: 100,
-    },
-    {
-      _id: "68037d712bd531ccb726c741",
-      name: "basic",
-      connections: 4,
-      description: "Basic package ideal for individuals or small-scale use.",
-      isSelected: false,
-      price: 700,
-      effectivePrice: 400,
-    },
-    {
-      _id: "68037d982bd531ccb726c743",
-      name: "standard",
-      connections: 5,
-      description: "Standard package suitable for small teams.",
-      isSelected: true,
-      price: 1000,
-      effectivePrice: 900,
-    },
-  ];
+  const { data, isLoading } = useGetPackagesQuery({});
+
+  const packages: IPackage[] = Array.isArray(data?.packages)
+    ? data?.packages
+    : [];
+
+  if (isLoading) {
+    return (
+      <div className="p-6 bg-gray-50 min-h-screen">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <Skeleton.Input active size="large" className="mb-4" />
+            <Skeleton active paragraph={{ rows: 2 }} />
+          </div>
+
+          <Row gutter={[24, 24]} justify="center">
+            {[1, 2, 3].map((key) => (
+              <Col xs={24} sm={12} lg={8} key={key}>
+                <Card className="h-full" style={{ padding: "2rem" }}>
+                  <Skeleton active>
+                    <div className="text-center">
+                      <Skeleton.Input active size="large" className="mb-4" />
+                      <Skeleton.Input active size="large" className="mb-6" />
+                      <Skeleton active paragraph={{ rows: 2 }} />
+                      <Skeleton.Button active size="large" className="w-full" />
+                    </div>
+                  </Skeleton>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
@@ -47,7 +55,7 @@ const UserConnectionDetails = () => {
         </div>
 
         <Row gutter={[24, 24]} justify="center">
-          {packages.map((pkg) => (
+          {packages?.map((pkg: IPackage) => (
             <Col xs={24} sm={12} lg={8} key={pkg._id}>
               <Card
                 className={`h-full hover:shadow-lg transition-all duration-300 ${

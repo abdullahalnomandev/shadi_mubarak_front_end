@@ -13,7 +13,8 @@ import { USER_ROLE } from "./role";
 import { FaRegEdit, FaRegHeart } from "react-icons/fa";
 import { ImProfile } from "react-icons/im";
 import { CiLogout } from "react-icons/ci";
-import { IoCartOutline } from "react-icons/io5";
+import { IoCartOutline, IoKeyOutline } from "react-icons/io5";
+import { MdDeleteOutline } from "react-icons/md";
 
 export const sidebarItems = (role: string) => {
   const defaultItems: MenuProps["items"] = [
@@ -112,7 +113,7 @@ export const sidebarItems = (role: string) => {
         {
           label: <Link href={`/${role}/change-password`}>Change Password</Link>,
           key: `/${role}/change-password`,
-          icon: <SettingOutlined />,
+          icon: <IoKeyOutline />,
         },
         {
           label: (
@@ -121,14 +122,18 @@ export const sidebarItems = (role: string) => {
             </Link>
           ),
           key: `/${role}/account-settings/delete-account`,
-          icon: <SettingOutlined />,
+          icon: <MdDeleteOutline />,
         },
       ],
     },
     {
-      label: <Link href={`/${role}/log-out`}>Log out</Link>,
+      label: (
+        <Link className="!text-red-500" href={`/${role}/log-out`}>
+          Log out
+        </Link>
+      ),
       key: `/${role}/log-out`,
-      icon: <CiLogout />,
+      icon: <CiLogout className="!text-red-500" />,
     },
   ];
 

@@ -5,48 +5,53 @@ import { FaRegEdit } from "react-icons/fa";
 
 const SidebarProfile = () => {
   return (
-    <div className="max-w-xs mx-auto  shadow-md p-2 text-center border-b border-gray-200">
+    <div className="max-w-xs mx-auto mb-1 border-b border-gray-300  p-4 bg-white">
       {/* Profile Image */}
-      <div className="flex justify-center mb-1">
-        <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-purple-500">
+      <div className="flex justify-center mb-4">
+        <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-purple-600 shadow">
           <Image
             src={profileImage}
             alt="Profile"
             className="object-cover w-full h-full"
-            width={96}
-            height={96}
+            width={80}
+            height={80}
           />
         </div>
       </div>
 
+      {/* Progress & Tip */}
+      <div className="mb-2">
+        <Tooltip title="Biodata completion: 50%" placement="bottomRight">
+          <Progress
+            percent={50}
+            status="active"
+            strokeColor={{
+              from: "#06b6d4",
+              to: "#3b82f6",
+            }}
+            percentPosition={{
+              align: "end",
+              type: "outer",
+            }}
+          />
+        </Tooltip>
+        <p className="text-sm text-gray-500 mt-1">Complete your profile</p>
+      </div>
+
       {/* Status */}
-      <Tooltip title="Biodata completion: 50%" placement="bottomRight">
-        <Progress
-          percent={50}
-          status="active"
-          // strokeColor={{
-          //   from: "#13ce66",
-          //   to: "#a2f28d",
-          // }}
-          percentPosition={{
-            align: "end",
-            type: "outer",
-          }}
-        />
-      </Tooltip>
-      {/* Status */}
-      <div className="flex mt-4 justify-center items-center gap-2 pb-4">
-        <span className="text-sm text-black  font-medium">Biodata Status:</span>
-        <span className="text-sm font-semibold text-yellow-800 bg-yellow-100 px-3 py-1 rounded-full border border-yellow-300">
+      <div className="flex justify-between items-center mt-4">
+        <span className="text-sm font-medium text-gray-700">
+          Biodata Status:
+        </span>
+        <span className="text-xs font-semibold text-yellow-800 bg-yellow-100 px-3 py-0.5 rounded-full border border-yellow-300">
           Not Completed
         </span>
       </div>
 
       {/* Edit Button */}
-      <button className=" cursor-pointer p-2 px-3 text-sm font-semibold text-white rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 transition duration-300 shadow-md">
-        <div className="flex items-center justify-center gap-1">
-          <FaRegEdit /> <p> Edit Biodata</p>
-        </div>
+      <button className="w-full mt-4 flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 transition duration-300 shadow cursor-pointer ">
+        <FaRegEdit size={16} />
+        Edit Biodata
       </button>
     </div>
   );

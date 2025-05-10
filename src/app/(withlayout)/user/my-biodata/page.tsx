@@ -1,11 +1,8 @@
+import MyBiodata from "@/components/user/MyBiodata";
 import React from "react";
 
 const MyBioDatapage = () => {
-  return (
-    <div>
-      <h1>My BioData</h1>
-    </div>
-  );
+  return <MyBiodata />;
 };
 
 export default MyBioDatapage;

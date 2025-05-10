@@ -44,3 +44,15 @@ export type IFavorite = {
     address: string;
   };
 };
+export type IPackage = {
+  _id: string;
+  name: string;
+  connections: number;
+  description: string;
+  isSelected: boolean;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+  price: number;
+  effectivePrice: number;
+};

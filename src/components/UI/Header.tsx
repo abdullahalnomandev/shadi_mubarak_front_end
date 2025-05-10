@@ -5,7 +5,7 @@ import Link from "next/link";
 import logo from "@/assets/logo.png";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-
+import HeaderUserActions from "./HeaderUserActions";
 const { Header: AntHeader } = Layout;
 
 const Header = () => {
@@ -15,19 +15,10 @@ const Header = () => {
 
   // Handle initial theme setup
   useEffect(() => {
-    // Check system preference
     const systemPrefersDark = window.matchMedia(
       "(prefers-color-scheme: dark)"
     ).matches;
     const savedTheme = localStorage.getItem("theme");
-    document.documentElement.classList.toggle(
-      "dark",
-      localStorage.theme === "dark" ||
-        (!("theme" in localStorage) &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
-    );
-
-    // Set initial theme based on saved preference or system preference
     const initialTheme = savedTheme || (systemPrefersDark ? "dark" : "light");
     setIsDarkMode(initialTheme === "dark");
     applyTheme(initialTheme as "light" | "dark");
@@ -35,6 +26,7 @@ const Header = () => {
 
   // Apply theme changes
   const applyTheme = (theme: "light" | "dark") => {
+    if (typeof window === "undefined") return;
     document.documentElement.classList.toggle("dark", theme === "dark");
     localStorage.setItem("theme", theme);
   };
@@ -98,26 +90,7 @@ const Header = () => {
           }
         />
 
-        {/* Desktop Buttons */}
-        <div className="hidden md:flex items-center gap-3">
-          <Link href="/login">
-            <Button
-              type="default"
-              className="!h-10 !rounded-md border border-[#6208d4] dark:border-purple-400 dark:text-white"
-            >
-              Sign In
-            </Button>
-          </Link>
-          <Link href="/register">
-            <Button
-              type="primary"
-              className="!bg-[#6208d4] !h-10 !rounded-md !hover:bg-[#2708d4] dark:!bg-purple-600 dark:hover:!bg-purple-700"
-            >
-              Create Account
-            </Button>
-          </Link>
-        </div>
-
+        <HeaderUserActions />
         {/* Mobile Menu Toggle */}
         <div className="md:hidden">
           <Button

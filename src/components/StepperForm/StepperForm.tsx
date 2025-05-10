@@ -19,7 +19,7 @@ const StepperForm = ({ steps, handleUserSubmit }: IStepsProps) => {
   const [current, setCurrent] = useState<number>(0);
 
   const methods = useForm({ resolver: zodResolver(generalInformationSchema) });
-  const { handleSubmit, reset , watch } = methods;
+  const { handleSubmit, reset, watch } = methods;
 
   const next = () => {
     setCurrent(current + 1);
@@ -44,7 +44,7 @@ const StepperForm = ({ steps, handleUserSubmit }: IStepsProps) => {
     }
   };
 
-  console.log('watch',watch())
+  console.log("watch", watch());
 
   return (
     <div className="p-4">
@@ -55,7 +55,7 @@ const StepperForm = ({ steps, handleUserSubmit }: IStepsProps) => {
         status="process"
         percent={60}
         labelPlacement="vertical"
-        size="small"
+        size="default"
       />
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(handleOnSubmit)}>

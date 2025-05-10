@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Layout, Menu } from "antd";
 import { sidebarItems } from "@/constants/sidebarItems";
 import { getUserInfo } from "@/services/auth.service";
@@ -10,10 +10,15 @@ import { usePathname } from "next/navigation";
 const { Sider } = Layout;
 
 const Sidebar = () => {
+  const pathname = usePathname();
   const [collapsed, setCollapsed] = useState(false);
+  const [selectedKey, setSelectedKey] = useState(pathname);
 
   const { role } = getUserInfo() as IUserPayload;
 
+  useEffect(() => {
+    setSelectedKey(pathname);
+  }, [pathname]);
   return (
     <Sider
       // collapsible
@@ -35,6 +40,8 @@ const Sidebar = () => {
         theme="light"
         mode="inline"
         defaultSelectedKeys={[usePathname()]}
+        activeKey={usePathname()}
+        selectedKeys={[selectedKey]}
         items={sidebarItems(role)}
       />
     </Sider>

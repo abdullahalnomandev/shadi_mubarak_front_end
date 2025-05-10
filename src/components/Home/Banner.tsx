@@ -5,6 +5,7 @@ import { SearchOutlined } from "@ant-design/icons";
 import { Col, Row } from "antd";
 import Form from "../Forms/Form";
 import FormSelectField from "../Forms/FormSelectField";
+import Link from "next/link";
 
 const Banner = () => {
   const onSubmit = (values: any) => {
@@ -90,13 +91,15 @@ const Banner = () => {
               </Col>
 
               <Col xs={24} sm={12} md={6}>
-                <button
-                  type="submit"
-                  className="w-full flex items-center justify-center gap-2 bg-rose-400 py-2.5 transition duration-300 rounded-md cursor-pointer !mt-6 hover:bg-rose-500"
-                >
-                  <SearchOutlined />
-                  Search Partners
-                </button>
+                <Link className="!text-white" href="/biodatas">
+                  <button
+                    type="submit"
+                    className="w-full flex items-center justify-center gap-2 bg-rose-400 py-2.5 transition duration-300 rounded-md cursor-pointer !mt-6 hover:bg-rose-500"
+                  >
+                    <SearchOutlined />
+                    Search Partners
+                  </button>
+                </Link>
               </Col>
             </Row>
           </Form>
