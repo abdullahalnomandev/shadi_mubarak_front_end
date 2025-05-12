@@ -57,7 +57,7 @@ const Header = () => {
 
   return (
     <AntHeader
-      className={`!bg-white dark:!bg-gray-900 sticky top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`!bg-white dark:!bg-slate-900 dark:!text-slate-300 sticky top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled ? "shadow-md" : ""
       }`}
     >
@@ -68,14 +68,14 @@ const Header = () => {
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex flex-1 justify-center">
+        <div className="hidden md:flex flex-1 items-center justify-center">
           <Menu
             mode="horizontal"
             items={navItems}
-            className="!border-none dark:!bg-gray-900 dark:text-white"
+            className="!bg-transparent !border-none "
+            theme={isDarkMode ? "dark" : "light"}
           />
         </div>
-
         {/* Theme Toggle Button */}
         <Button
           type="text"
@@ -83,9 +83,9 @@ const Header = () => {
           className="flex items-center justify-center mr-4 !border-none"
           icon={
             isDarkMode ? (
-              <SunOutlined className="text-xl text-yellow-400" />
+              <SunOutlined className="!text-base !text-yellow-400" />
             ) : (
-              <MoonOutlined className="text-xl text-gray-600" />
+              <MoonOutlined className="!text-base !text-slate-700" />
             )
           }
         />
@@ -95,7 +95,7 @@ const Header = () => {
         <div className="md:hidden">
           <Button
             type="text"
-            icon={<MenuOutlined className="dark:text-white" />}
+            icon={<MenuOutlined className="dark:!text-slate-50 " />}
             onClick={() => setDrawerVisible(true)}
           />
         </div>
@@ -113,7 +113,7 @@ const Header = () => {
           <Menu
             mode="vertical"
             items={navItems}
-            className="border-none dark:!bg-gray-900 dark:text-white"
+            className="border-none  dark:text-white"
           />
           <div className="mt-6 flex flex-col gap-3">
             <Button

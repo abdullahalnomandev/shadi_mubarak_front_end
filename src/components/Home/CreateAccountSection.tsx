@@ -1,18 +1,10 @@
 import profileMan from "@/assets/boy-create-1.jpg";
 import niqab from "@/assets/girl.jpg";
 import Image from "next/image";
-import { useState } from "react";
-import { IoPlayCircleOutline } from "react-icons/io5";
-import VideoModal from "../UI/VideoModal";
-import { FaPlus } from "react-icons/fa";
-
+import VideoPlayerButton from "../UI/VideoPlayerButton";
 const CreateAccountSection = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <>
-      <VideoModal isOpen={isOpen} setIsOpen={setIsOpen} videoId="RHuVlgjwOHA" />
-
       {/* Quote Section */}
       <div className="relative py-16 px-6 md:px-12 mx-4 max-w-4xl md:mx-auto text-center overflow-hidden">
         <span className="absolute top-4 left-4 text-3xl animate-pulse select-none">
@@ -21,7 +13,7 @@ const CreateAccountSection = () => {
         <span className="absolute bottom-4 right-4 text-3xl animate-pulse select-none">
           🌺
         </span>
-        <p className="italic text-2xl md:text-3xl text-gray-800 font-serif leading-relaxed">
+        <p className="italic text-2xl md:text-3xl text-gray-800 dark:text-slate-100 font-serif leading-relaxed">
           &quot;Marry the single people from among you and the righteous slaves
           and slave-girls. If you are poor, Allah (SwT) will make you rich
           through His favour; and Allah (SwT) is Bountiful, All-Knowing.&quot;
@@ -79,21 +71,10 @@ const CreateAccountSection = () => {
             and explore thousands of profiles using filters like age,
             profession, and education.
           </p>
-          <div className="flex flex-col md:flex-row gap-4 items-center justify-center mt-6">
-            <button className="bg-violet-700 hover:bg-violet-800 text-white font-semibold hover:scale-110 cursor-pointer rounded-sm px-4 py-3 delay-100 transition duration-300 w-full  shadow-md flex items-center gap-2 justify-center">
-              <FaPlus /> <span> Create Your Biodata</span>
-            </button>
-            <button
-              onClick={() => setIsOpen(true)}
-              className="bg-white border border-rose-700 text-rose-700 font-semibold rounded-sm px-6 py-3  hover:scale-110 shadow-md flex w-full items-center gap-2 cursor-pointer transition delay-100 duration-300"
-            >
-              <IoPlayCircleOutline className="text-rose-600 text-xl md:text-xl animate-scale-loop" />
-
-              <span className="text-sm md:text-base font-medium">
-                Watch How It Works
-              </span>
-            </button>
-          </div>
+          <VideoPlayerButton
+            title="Not understand how to Create biodata "
+            videoId="RHuVlgjwOHA"
+          />
         </div>
       </div>
     </>

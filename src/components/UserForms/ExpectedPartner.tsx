@@ -12,15 +12,25 @@ const ExpectedPartner = () => {
 
   console.log("expected_partner", expected_partner);
   return (
-    <div className="p-6">
+    <div>
       <h1 className="text-2xl font-semibold mb-6">Expected Partner </h1>
       <Row gutter={[16, 16]}>
         {expected_partner.map(
-          ({ name, type, placeholder, label, options,tipFormatter,min,max,defaultValue , mode }) => (
+          ({
+            name,
+            type,
+            placeholder,
+            label,
+            options,
+            tipFormatter,
+            min,
+            max,
+            defaultValue,
+            mode,
+          }) => (
             <Col key={name} xs={24} sm={12}>
               {(type === "text" && (
                 <FormInput
-                  id={name}
                   name={name}
                   label={label}
                   type={type}
@@ -29,12 +39,10 @@ const ExpectedPartner = () => {
               )) ||
                 (type === "number" && (
                   <FormInput
-                    id={name}
                     name={name}
                     label={label}
                     type={type}
                     placeholder={placeholder}
-                    
                   />
                 )) ||
                 (type === "slider" && (

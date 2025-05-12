@@ -1,11 +1,7 @@
-import React from "react";
+import ChangePassword from "@/components/user/ChangePassword";
 
 const ChangePasswordPage = () => {
-  return (
-    <div>
-      <h1>Change Password</h1>
-    </div>
-  );
+  return <ChangePassword />;
 };
 
 export default ChangePasswordPage;

@@ -5,6 +5,7 @@ import image from "@/assets/girl.jpg";
 import dayjs from "dayjs";
 import { FiBookmark, FiCopy } from "react-icons/fi";
 import { useTranslations } from "next-intl";
+import ViewContact from "./ViewContact";
 
 interface IProps {
   bioDataNo: number;
@@ -166,8 +167,12 @@ const BioData = ({}: IProps) => {
     {
       title: t("biodata.sections.address"),
       data: {
-        [t("biodata.address.present_address")]: `${bioData.address.present_address.full}\n${bioData.address.present_address.area}`,
-        [t("biodata.address.permanent_address")]: `${bioData.address.permanent_address.full}\n${bioData.address.permanent_address.area}`,
+        [t(
+          "biodata.address.present_address"
+        )]: `${bioData.address.present_address.full}\n${bioData.address.present_address.area}`,
+        [t(
+          "biodata.address.permanent_address"
+        )]: `${bioData.address.permanent_address.full}\n${bioData.address.permanent_address.area}`,
         [t("biodata.address.grow_up")]: bioData.address.grow_up,
       },
     },
@@ -287,10 +292,7 @@ const BioData = ({}: IProps) => {
   const renderTable = (title: string, data: any, key: number) => {
     return (
       <div className="relative mb-8" key={key}>
-        <div
-          className="absolute inset-0 z-0"
-
-        />
+        <div className="absolute inset-0 z-0" />
         <table className="w-full border-t-3 border-gray-300 border-separate border-spacing-x-0 border-spacing-0.5 border rounded-sm border-t-gray-800 border-b-0 relative z-10">
           <thead>
             <tr>
@@ -328,11 +330,13 @@ const BioData = ({}: IProps) => {
   return (
     <div className="m-auto mt-16 mb-8 relative sm:px-14 px-1">
       <div className="sm:flex sm:flex-wrap sm:gap-4">
-        <div className="sm:w-[400px]">{renderGeneralInfo()}</div>
+        <div className="sm:w-[350px]">{renderGeneralInfo()}</div>
         <div className="sm:flex-1 min-w-0">
           {filteredSections.map((section, index) =>
             renderTable(section.title, section.data, index)
           )}
+          {/* Conditionally Render  */}
+          <ViewContact />
         </div>
       </div>
     </div>

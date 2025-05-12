@@ -35,11 +35,11 @@ export const sidebarItems = (role: string) => {
         },
         {
           label: (
-            <Link href={`/${role}/account-settings/delete-account`}>
+            <Link href={`/${role}/settings/delete-account`}>
               Delete Account
             </Link>
           ),
-          key: `/${role}/account-settings/delete-account`,
+          key: `/${role}/settings/delete-account`,
           icon: <SettingOutlined />,
         },
       ],
@@ -111,17 +111,21 @@ export const sidebarItems = (role: string) => {
       icon: <SettingOutlined />,
       children: [
         {
-          label: <Link href={`/${role}/change-password`}>Change Password</Link>,
-          key: `/${role}/change-password`,
+          label: (
+            <Link href={`/${role}/settings/change-password`}>
+              Change Password
+            </Link>
+          ),
+          key: `/${role}/settings/change-password`,
           icon: <IoKeyOutline />,
         },
         {
           label: (
-            <Link href={`/${role}/account-settings/delete-account`}>
+            <Link href={`/${role}/settings/delete-biodata`}>
               Delete Biodata
             </Link>
           ),
-          key: `/${role}/account-settings/delete-account`,
+          key: `/${role}/settings/delete-biodata`,
           icon: <MdDeleteOutline />,
         },
       ],

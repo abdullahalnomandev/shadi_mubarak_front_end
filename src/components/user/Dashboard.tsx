@@ -60,24 +60,14 @@ const UserDashboard = () => {
   ];
 
   return (
-    <div className="p-6 bg-gray-100 min-h-screen">
-      {/* <Link href="/user/edit">
-        <Button
-          type="primary"
-          size="large"
-          className="flex items-center gap-2!bg-blue-600 hover:!bg-blue-700 transition-all duration-300 dark:!bg-blue-500 dark:hover:!bg-blue-600 my-2 w-full sm:w-3xs  "
-          icon={<GoPlus className="text-lg" />}
-        >
-          Create Biodata
-        </Button>
-      </Link> */}
+    <div className=" min-h-screen">
       <Row gutter={[16, 16]}>
         {stats.map((stat, i) => (
           <Col xs={24} sm={12} lg={6} key={i}>
             {stat.href ? (
               <Link href={stat.href} className="block">
                 <Card
-                  className={`text-center hover:shadow-lg transition-shadow duration-300 !m-h-60 flex flex-col justify-between bg-white rounded-lg 
+                  className={`text-center hover:shadow-lg  dark:!border-transparent shadow duration-300 !m-h-60 flex flex-col justify-between dark:!text-slate-300 bg-white dark:!bg-slate-800 rounded-lg 
                     ${
                       stat.isClickable || stat.isConnection
                         ? "cursor-pointer hover:scale-[1.02] transition-transform"
@@ -88,7 +78,7 @@ const UserDashboard = () => {
                 </Card>
               </Link>
             ) : (
-              <Card className="text-center !m-h-60 hover:shadow-lg transition-shadow duration-300 flex flex-col justify-between bg-white rounded-lg">
+              <Card className="text-center !m-h-60 hover:shadow-lg transition duration-300 flex flex-col justify-between bg-white dark:!text-slate-300 shadow dark:!border-transparent dark:!bg-slate-800  rounded-lg">
                 <CardContent stat={stat} />
               </Card>
             )}

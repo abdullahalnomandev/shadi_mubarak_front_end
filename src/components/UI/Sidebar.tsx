@@ -28,10 +28,10 @@ const Sidebar = () => {
       theme="light"
       style={{
         overflow: "auto",
-        height: "100vh",
+        height: "calc(100vh - 64px)",
         position: "sticky",
         left: 0,
-        top: 0,
+        top: "64px",
         bottom: 0,
       }}
     >

@@ -9,9 +9,8 @@ import useGetUserFromField from "@/hooks/useGetUserFromField";
 const GeneralInfo = () => {
   const { general_information } = useGetUserFromField();
 
-  console.log("general_information", general_information);
   return (
-    <div className="p-6">
+    <div>
       <h1 className="text-2xl font-semibold mb-6">General Information</h1>
       <Row gutter={[16, 16]}>
         {general_information.map(
@@ -19,7 +18,6 @@ const GeneralInfo = () => {
             <Col key={name} xs={24} sm={12}>
               {(type === "text" && (
                 <FormInput
-                  id={name}
                   name={name}
                   label={label}
                   type={type}
@@ -28,7 +26,6 @@ const GeneralInfo = () => {
               )) ||
                 (type === "number" && (
                   <FormInput
-                    id={name}
                     name={name}
                     label={label}
                     type={type}

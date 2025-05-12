@@ -1,5 +1,4 @@
-
-'use client';
+"use client";
 
 import StepperFrom from "@/components/StepperForm/StepperForm";
 import GeneralInfo from "@/components/UserForms/GeneralInfo";
@@ -29,7 +28,7 @@ const steps = [
   },
   {
     title: "Personal Information",
-    content: <PersonalInformation/>
+    content: <PersonalInformation />,
   },
   {
     title: "Expected Partner",
@@ -41,7 +40,7 @@ const steps = [
   },
   {
     title: "Education",
-    content: <Education />
+    content: <Education />,
   },
   {
     title: "Occupation",
@@ -49,13 +48,12 @@ const steps = [
   },
   {
     title: "Agreement",
-    content: <Agreement />
+    content: <Agreement />,
   },
   {
     title: "Contact",
-    content: <Contact />
+    content: <Contact />,
   },
-
 ];
 
 const EditBioDataPage = () => {

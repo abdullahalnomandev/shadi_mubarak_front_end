@@ -1,11 +1,11 @@
-import profileImage from "@/assets/girl.jpg";
+import profileImage from "@/assets/boy.jpg";
 import { Progress, Tooltip } from "antd";
 import Image from "next/image";
 import { FaRegEdit } from "react-icons/fa";
 
 const SidebarProfile = () => {
   return (
-    <div className="max-w-xs mx-auto mb-1 border-b border-gray-300  p-4 bg-white">
+    <div className="max-w-xs mx-auto mb-1 border-b border-gray-300  p-4 pt-1 bg-white">
       {/* Profile Image */}
       <div className="flex justify-center mb-4">
         <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-purple-600 shadow">

@@ -15,8 +15,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
-import VideoModal from "../UI/VideoModal";
-import { FaPlay } from "react-icons/fa";
+import VideoPlayerButton from "../UI/VideoPlayerButton";
 
 const { Option } = Select;
 
@@ -61,8 +60,6 @@ const Register = () => {
   const [registrationType, setRegistrationType] = useState<
     "email" | "google" | null
   >(null);
-  const [isOpen, setIsOpen] = useState(false);
-
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     message.loading("Creating account...");
     try {
@@ -213,26 +210,8 @@ const Register = () => {
                 </Form>
               )}
 
-              <div className="mt-10 text-center">
-                <p className=" text-gray-700 text-md font-bold mb-4">
-                  Not understand how to create a Biodata?
-                </p>
-                <div className="flex justify-center">
-                  <button
-                    onClick={() => setIsOpen(true)}
-                    className="inline-flex items-center gap-2 px-6 py-3 border border-rose-700 text-rose-700 
-        bg-white rounded-full hover:bg-rose-50 transition-all duration-300 shadow-sm group focus:outline-none focus:ring-2 focus:ring-rose-500 cursor-pointer"
-                  >
-                    <FaPlay className="w-4 h-4 text-rose-700 transition-transform duration-300 group-hover:scale-110" />
-                    <span className="text-sm font-semibold">
-                      Watch: How to create a Biodata
-                    </span>
-                  </button>
-                </div>
-              </div>
-              <VideoModal
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
+              <VideoPlayerButton
+                title=" Watch: How to create a Biodata"
                 videoId="RHuVlgjwOHA"
               />
             </div>

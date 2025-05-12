@@ -36,7 +36,9 @@ const FormInput = ({
   const errorMessage = getErrorMessageBuPropertyName(errors, name);
   return (
     <>
-      {label && <p className="text-gray-900 mb-0.5">{label}</p>}
+      {label && (
+        <p className="text-gray-900 dark:text-slate-200 mb-0.5">{label}</p>
+      )}
       <Controller
         control={control}
         name={name}

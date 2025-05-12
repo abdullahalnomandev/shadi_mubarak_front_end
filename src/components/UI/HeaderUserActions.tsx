@@ -154,7 +154,7 @@ const HeaderUserActions = () => {
         <Avatar
           size="large"
           icon={<UserOutlined />}
-          style={{ backgroundColor: "#87d068" }}
+          style={{ backgroundColor: "#3051F2" }}
           className="cursor-pointer"
         />
       </Popover>

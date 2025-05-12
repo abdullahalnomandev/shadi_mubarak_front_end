@@ -18,7 +18,10 @@ export default async function RootLayout({
 
   return (
     <Providers>
-      <html lang={locale} className="dark:bg-blue-950 dark:text-white">
+      <html
+        lang={locale}
+        className="dark:bg-slate-900 text-slate-500 bg-white dark:text-slate-400 antialiased "
+      >
         <body>
           <NextIntlClientProvider>
             <MainLayout>{children}</MainLayout>
