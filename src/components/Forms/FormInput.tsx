@@ -50,7 +50,15 @@ const FormInput = ({
               size={size}
               placeholder={placeholder}
               value={value ? value : field.value}
-              className={className}
+              className={`
+                ${className}
+                dark:!bg-slate-800 
+                dark:!text-white 
+                dark:!placeholder-slate-500 
+                dark:!border-slate-700
+                dark:focus:!border-blue-500 
+                dark:!focus:border-blue-900
+              `}
             />
           ) : (
             <Input
@@ -61,13 +69,27 @@ const FormInput = ({
               value={value ? value : field.value}
               addonBefore={prefixSelector ?? null}
               autoComplete="off"
-              className={className}
+              className={`
+                ${className}
+                dark:!bg-slate-800 
+                dark:!text-white 
+                dark:!placeholder-slate-500 
+                dark:!border-slate-700
+                dark:focus:!border-blue-500 
+                dark:!focus:border-blue-900
+              `}
               disabled={disabled}
             />
           )
         }
       />
-      {errors && <small className="text-red-500">{errorMessage}</small>}
+      <small className="text-red-500 dark:!text-amber-600">
+        {typeof errorMessage === "string"
+          ? errorMessage
+          : typeof errors[name]?.message === "string"
+          ? errors[name]?.message
+          : ""}
+      </small>
     </>
   );
 };

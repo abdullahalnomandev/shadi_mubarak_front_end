@@ -52,7 +52,14 @@ const FormSelectField = ({
             value={value}
             placeholder={placeholder}
             showSearch={showSearch}
-            className="w-full"
+            className={`
+              w-full
+              dark:bg-slate-800 
+              dark:text-white 
+              dark:placeholder-slate-500 
+              dark:border-slate-700
+              dark:focus:!border-blue-500 
+            `}
           />
         )}
       />

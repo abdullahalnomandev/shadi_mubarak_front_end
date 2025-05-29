@@ -9,6 +9,8 @@ interface IAntModalProps extends Omit<ModalProps, "onOk" | "onCancel"> {
   onClose: () => void;
   content?: React.ReactNode;
   danger?: boolean;
+  children?: React.ReactNode;
+  confirmLoading?: boolean;
 }
 
 const AntModal = ({
@@ -18,8 +20,9 @@ const AntModal = ({
   onConfirm,
   isOpen,
   onClose,
-  content,
   danger = false,
+  children,
+  confirmLoading = false,
   ...rest
 }: IAntModalProps) => {
   return (
@@ -29,11 +32,11 @@ const AntModal = ({
       onOk={onConfirm}
       onCancel={onClose}
       okText={okText}
+      confirmLoading={confirmLoading}
       cancelText={cancelText}
       okButtonProps={{ danger }}
-      {...rest}
-    >
-      {content}
+      {...rest}>
+      {children}
     </Modal>
   );
 };

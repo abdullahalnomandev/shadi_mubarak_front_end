@@ -4,6 +4,8 @@ import MainLayout from "@/components/Layouts/MainLayout";
 import Providers from "@/lib/Providers";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale } from "next-intl/server";
+import WhatsAppButton from '@/components/UI/WhatsAppButton';
+
 export const metadata: Metadata = {
   title: "Shadi Mubarak",
   description: "Shadi Mubarak",
@@ -26,6 +28,7 @@ export default async function RootLayout({
           <NextIntlClientProvider>
             <MainLayout>{children}</MainLayout>
           </NextIntlClientProvider>
+          <WhatsAppButton />
         </body>
       </html>
     </Providers>

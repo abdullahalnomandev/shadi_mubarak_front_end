@@ -27,9 +27,14 @@ const steps = [
     content: <FamilyInformation />,
   },
   {
+    title: "Education",
+    content: <Education />,
+  },
+  {
     title: "Personal Information",
     content: <PersonalInformation />,
   },
+
   {
     title: "Expected Partner",
     content: <ExpectedPartner />,
@@ -37,10 +42,6 @@ const steps = [
   {
     title: "Marriage Related Information",
     content: <MarriageRelatedInformation />,
-  },
-  {
-    title: "Education",
-    content: <Education />,
   },
   {
     title: "Occupation",

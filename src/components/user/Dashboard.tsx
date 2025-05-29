@@ -74,7 +74,7 @@ const UserDashboard = () => {
                         : ""
                     }`}
                 >
-                  <CardContent stat={stat} />
+                  <CardContent stat={{...stat, isClickable: false}} />
                 </Card>
               </Link>
             ) : (
@@ -89,7 +89,6 @@ const UserDashboard = () => {
   );
 };
 
-// Separate component for card content to avoid duplication
 const CardContent = ({ stat }: { stat: any }) => (
   <>
     <div>
@@ -104,7 +103,7 @@ const CardContent = ({ stat }: { stat: any }) => (
     </div>
 
     {stat.isConnection && (
-      <Link href="/user/connection/details" className="block mt-2">
+      <div className="block mt-2">
         <Button
           type="primary"
           size="middle"
@@ -112,7 +111,7 @@ const CardContent = ({ stat }: { stat: any }) => (
         >
           Buy Connections
         </Button>
-      </Link>
+      </div>
     )}
 
     {stat.isBiodata && (
@@ -130,12 +129,10 @@ const CardContent = ({ stat }: { stat: any }) => (
       </div>
     )}
 
-    {stat.isClickable && stat.value !== null && (
-      <Link href={stat.href} className="block mt-3">
-        <span className="text-blue-500 hover:text-blue-700">
-          View {stat.title}
-        </span>
-      </Link>
+    {stat.isClickable && stat.value !== null && !stat.href && (
+      <span className="text-blue-500 hover:text-blue-700 cursor-pointer">
+        View {stat.title}
+      </span>
     )}
   </>
 );

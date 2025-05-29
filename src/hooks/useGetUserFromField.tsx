@@ -39,7 +39,7 @@ const useGetUserFromField = () => {
         grow_up: "নিজ বাড়িতেই",
         _id: "67fe35d2291beb5fc8fa7a6f",
       },
-      educationalQualifications: {
+      education: {
         ssc_passing_year: 2018,
         ssc_group: "Science",
         ssc_result: "A+",
@@ -71,7 +71,7 @@ const useGetUserFromField = () => {
           "Practicing Muslims, regular in prayers and religious values.",
         _id: "67fe5d839b77eb4e7517d9c7",
       },
-      personalInformation: {
+      personal_information: {
         clothingOutside:
           "শার্ট, প্যান্ট, পাঞ্জাবি এবং টুপি প্রায় সবসময় পড়া হয়। শার্ট, প্যান্ট, পাঞ্জাবি এবং টুপি প্রায় সবসময় পড়া হয়।শার্ট, প্যান্ট, পাঞ্জাবি এবং টুপি প্রায় সবসময় পড়া হয়",
         wearingNiqabSince: "2019",
@@ -104,7 +104,7 @@ const useGetUserFromField = () => {
           "Responsible for developing and maintaining web applications.",
         _id: "67fe7e41f229fbcf35d301c7",
       },
-      marriageRelatedInformation: {
+      marriage_related_information: {
         doYouAgreeWithParents: "Yes",
         willingToWorkAfterMarriage: "Yes, if circumstances allow",
         wantToContinueStudyAfterMarriage:
@@ -112,11 +112,11 @@ const useGetUserFromField = () => {
         whyAreYouGettingMarried: "To build a supportive and loving partnership",
         _id: "67fe85d8cad8379f1ccec848",
       },
-      expectedPartner: {
+      expected_partner: {
         age: "22-28",
         complexion: ["fair", "bright_brown"],
         height: "5'4\" - 5'8\"",
-        educationalQualification: "Bachelor's degree or higher",
+        education: "Bachelor's degree or higher",
         district: "Dhaka",
         maritalStatus: ["never_married"],
         profession: "Software Engineer",
@@ -149,8 +149,8 @@ const useGetUserFromField = () => {
     personal_information,
     expected_partner,
     contact,
-    marriageRelatedInformation,
-    educationalQualifications
+    marriage_related_information,
+    education,
   } = userFormFields;
 
   console.log("General Information:", general_information);
@@ -163,8 +163,8 @@ const useGetUserFromField = () => {
     personal_information,
     expected_partner,
     contact,
-    marriageRelatedInformation,
-    educationalQualifications
+    marriage_related_information,
+    education,
   };
 };
 

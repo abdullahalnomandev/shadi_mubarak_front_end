@@ -7,18 +7,18 @@ import FormTextArea from "../Forms/FormTextArea";
 import FormSelectField from "../Forms/FormSelectField";
 
 const MarriageRelatedInformation = () => {
-  const { marriageRelatedInformation } = useGetUserFromField();
+  const { marriage_related_information } = useGetUserFromField();
 
-  console.log("marriageRelatedInformation", marriageRelatedInformation);
+  console.log("marriageRelatedInformation", marriage_related_information);
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold mb-6">
+      <h1 className='text-2xl font-semibold mb-6'>
         {" "}
         Marriage Related Information{" "}
       </h1>
       <Row gutter={[16, 16]}>
-        {marriageRelatedInformation.map(
+        {marriage_related_information.map(
           ({ name, type, placeholder, label, options }) => (
             <Col key={name} xs={24} sm={12}>
               {(type === "text" && (

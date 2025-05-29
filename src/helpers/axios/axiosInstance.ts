@@ -45,8 +45,8 @@ instance.interceptors.response.use(function (response) {
     config.sent = true;
     const response = await getNewAccessToken();
     const accessToken  = response?.data?.accessToken;
+    console.log('get-new-version-access-token',accessToken)
     if(response?.data?.accessToken) {
-      console.log('get-new-version-access-token',accessToken)
       config.headers["Authorization"] = `Bearer ${accessToken}`;
       setToLocalStorage(authKey,accessToken);
       return instance(config);

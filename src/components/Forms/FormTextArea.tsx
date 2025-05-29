@@ -17,7 +17,6 @@ const FormTextArea = ({
   name,
   size = "large",
   value,
-  id,
   placeholder,
   label,
 }: ITextArea) => {
@@ -29,7 +28,10 @@ const FormTextArea = ({
   const errorMessage = getErrorMessageBuPropertyName(errors, name);
   return (
     <>
-      {label && <label htmlFor={id}>{label}</label>}
+      {label && (
+        <p className="text-gray-500 dark:text-slate-400 mb-0.5">{label}</p>
+      )}
+
       <Controller
         control={control}
         name={name}
@@ -41,6 +43,14 @@ const FormTextArea = ({
             value={value ? value : field.value}
             placeholder={placeholder}
             allowClear
+            className={`
+              dark:!bg-slate-800 
+              dark:!text-white 
+              dark:!placeholder-slate-500 
+              dark:!border-slate-700
+              dark:focus:!border-blue-500 
+              dark:!focus:border-blue-900
+            `}
           />
         )}
       />

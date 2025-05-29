@@ -20,9 +20,29 @@ const favoriteListApi = baseApi.injectEndpoints({
       },
       providesTags: [TagTypes.favorite],
     }),
+    getFavoriteOneById: build.query({
+      query: (arg: Record<string, any>) => ({
+        url: `${USER_API}/get-all-liked-list/${arg.likedPersonId}`,
+        method: "GET"
+      }),
+      transformResponse: (response: IFavorite) => {
+        return {
+          favorite: response,
+        };
+      },
+      providesTags: [TagTypes.favorite],
+    }),
+    addFavoriteList: build.mutation({
+      query: (data) => ({
+        url: USER_API,
+        method: "POST",
+        data,
+      }),
+      invalidatesTags: [TagTypes.favorite],
+     }),
     deleteFavoriteList: build.mutation({
-      query: (id) => ({
-        url: `${USER_API}/delete-liked-list/${id}`,
+      query: ({likedPersonBioNo}) => ({
+        url: `${USER_API}/delete-liked-list/${likedPersonBioNo}`,
         method: "DELETE",
       }),
       invalidatesTags: [TagTypes.favorite],
@@ -31,5 +51,5 @@ const favoriteListApi = baseApi.injectEndpoints({
   overrideExisting: false,
 });
 
-export const { useGetFavoriteListQuery, useDeleteFavoriteListMutation } =
+export const { useGetFavoriteOneByIdQuery, useAddFavoriteListMutation, useGetFavoriteListQuery, useDeleteFavoriteListMutation } =
   favoriteListApi;

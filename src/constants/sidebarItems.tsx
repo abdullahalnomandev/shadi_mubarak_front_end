@@ -3,7 +3,6 @@ import {
   DashboardOutlined,
   UserOutlined,
   SettingOutlined,
-  LogoutOutlined,
   TeamOutlined,
   CrownOutlined,
 } from "@ant-design/icons";
@@ -24,30 +23,29 @@ export const sidebarItems = (role: string) => {
       icon: <UserOutlined />,
     },
     {
-      label: "Account Settings",
+      label: "Settings",
       key: `/${role}/account-settings`,
       icon: <SettingOutlined />,
       children: [
         {
-          label: <Link href={`/${role}/change-password`}>Change Password</Link>,
-          key: `/${role}/change-password`,
-          icon: <SettingOutlined />,
+          label: (
+            <Link href={`/${role}/settings/change-password`}>
+              Change Password
+            </Link>
+          ),
+          key: `/${role}/settings/change-password`,
+          icon: <IoKeyOutline />,
         },
         {
           label: (
-            <Link href={`/${role}/settings/delete-account`}>
-              Delete Account
+            <Link href={`/${role}/settings/delete-biodata`}>
+              Delete Biodata
             </Link>
           ),
-          key: `/${role}/settings/delete-account`,
-          icon: <SettingOutlined />,
+          key: `/${role}/settings/delete-biodata`,
+          icon: <MdDeleteOutline />,
         },
       ],
-    },
-    {
-      label: <Link href={`/${role}/logout`}>Logout</Link>,
-      key: `/${role}/logout`,
-      icon: <LogoutOutlined />,
     },
   ];
 
@@ -83,8 +81,8 @@ export const sidebarItems = (role: string) => {
       label: <Link href={`/${role}/dashboard`}>Dashboard</Link>,
       key: `/${role}/dashboard`,
       icon: <DashboardOutlined />,
-      ...defaultItems,
     },
+    ...defaultItems,
     {
       label: <Link href={`/${role}/my-biodata`}>My Biodata</Link>,
       key: `/${role}/my-biodata`,
@@ -106,38 +104,13 @@ export const sidebarItems = (role: string) => {
       icon: <IoCartOutline />,
     },
     {
-      label: "Settings",
-      key: `/${role}/account-settings`,
-      icon: <SettingOutlined />,
-      children: [
-        {
-          label: (
-            <Link href={`/${role}/settings/change-password`}>
-              Change Password
-            </Link>
-          ),
-          key: `/${role}/settings/change-password`,
-          icon: <IoKeyOutline />,
-        },
-        {
-          label: (
-            <Link href={`/${role}/settings/delete-biodata`}>
-              Delete Biodata
-            </Link>
-          ),
-          key: `/${role}/settings/delete-biodata`,
-          icon: <MdDeleteOutline />,
-        },
-      ],
-    },
-    {
       label: (
-        <Link className="!text-red-500" href={`/${role}/log-out`}>
+        <Link className='!text-red-500' href={`/${role}/log-out`}>
           Log out
         </Link>
       ),
       key: `/${role}/log-out`,
-      icon: <CiLogout className="!text-red-500" />,
+      icon: <CiLogout className='!text-red-500' />,
     },
   ];
 

@@ -625,7 +625,7 @@
             "required": true
         },
         {
-            "name": "expected_partner.educationalQualification",
+            "name": "expected_partner.education",
             "label": "Educational Qualification",
             "type": "text",
             "placeholder": "Enter minimum educational qualification",
@@ -642,6 +642,7 @@
             "name": "expected_partner.maritalStatus",
             "label": "Acceptable Marital Status",
             "type": "multiSelect",
+            "mode": "multiple",
             "options": [
                 {
                     "value": "never_married",
@@ -736,9 +737,9 @@
             }
         }
     ],
-    "marriageRelatedInformation": [
+    "marriage_related_information": [
         {
-            "name": "marriageRelatedInformation.doYouAgreeWithParents",
+            "name": "marriage_related_information.doYouAgreeWithParents",
             "label": "Do you agree with your parents regarding marriage?",
             "type": "select",
             "options": [
@@ -755,7 +756,7 @@
             "required": true
         },
         {
-            "name": "marriageRelatedInformation.willingToWorkAfterMarriage",
+            "name": "marriage_related_information.willingToWorkAfterMarriage",
             "label": "Are you willing to work after marriage?",
             "type": "select",
             "options": [
@@ -776,7 +777,7 @@
             "required": true
         },
         {
-            "name": "marriageRelatedInformation.wantToContinueStudyAfterMarriage",
+            "name": "marriage_related_information.wantToContinueStudyAfterMarriage",
             "label": "Do you want to continue studies after marriage?",
             "type": "select",
             "options": [
@@ -797,23 +798,23 @@
             "required": true
         },
         {
-            "name": "marriageRelatedInformation.whyAreYouGettingMarried",
+            "name": "marriage_related_information.whyAreYouGettingMarried",
             "label": "Why are you getting married?",
             "type": "textArea",
             "placeholder": "Describe your reasons for getting married",
             "required": true
         }
     ],
-    "educationalQualifications": [
+    "education": [
         {
-            "name": "educationalQualifications.ssc_passing_year",
+            "name": "education.ssc_passing_year",
             "label": "SSC Passing Year",
             "type": "number",
             "placeholder": "Enter your SSC passing year",
             "required": true
         },
         {
-            "name": "educationalQualifications.ssc_group",
+            "name": "education.ssc_group",
             "label": "SSC Group",
             "type": "select",
             "options": [
@@ -834,21 +835,21 @@
             "required": true
         },
         {
-            "name": "educationalQualifications.ssc_result",
+            "name": "education.ssc_result",
             "label": "SSC Result",
             "type": "text",
             "placeholder": "Enter your SSC result (e.g., A+)",
             "required": true
         },
         {
-            "name": "educationalQualifications.hsc_passing_year",
+            "name": "education.hsc_passing_year",
             "label": "HSC Passing Year",
             "type": "number",
             "placeholder": "Enter your HSC passing year",
             "required": true
         },
         {
-            "name": "educationalQualifications.hsc_group",
+            "name": "education.hsc_group",
             "label": "HSC Group",
             "type": "select",
             "options": [
@@ -869,49 +870,49 @@
             "required": true
         },
         {
-            "name": "educationalQualifications.hsc_result",
+            "name": "education.hsc_result",
             "label": "HSC Result",
             "type": "text",
             "placeholder": "Enter your HSC result (e.g., A)",
             "required": true
         },
         {
-            "name": "educationalQualifications.diploma_subject",
+            "name": "education.diploma_subject",
             "label": "Diploma Subject",
             "type": "text",
             "placeholder": "Enter your diploma subject",
             "required": false
         },
         {
-            "name": "educationalQualifications.diploma_institution",
+            "name": "education.diploma_institution",
             "label": "Diploma Institution",
             "type": "text",
             "placeholder": "Enter your diploma institution",
             "required": false
         },
         {
-            "name": "educationalQualifications.diploma_passing_year",
+            "name": "education.diploma_passing_year",
             "label": "Diploma Passing Year",
             "type": "number",
             "placeholder": "Enter your diploma passing year",
             "required": false
         },
         {
-            "name": "educationalQualifications.graduation_subject",
+            "name": "education.graduation_subject",
             "label": "Graduation Subject",
             "type": "text",
             "placeholder": "Enter your graduation subject",
             "required": false
         },
         {
-            "name": "educationalQualifications.graduation_institution",
+            "name": "education.graduation_institution",
             "label": "Graduation Institution",
             "type": "text",
             "placeholder": "Enter your graduation institution",
             "required": false
         },
         {
-            "name": "educationalQualifications.graduation_year",
+            "name": "education.graduation_year",
             "label": "Graduation Year",
             "type": "text",
             "placeholder": "Enter your graduation year",

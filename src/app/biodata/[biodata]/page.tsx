@@ -7,7 +7,9 @@ export default async function Page({
 }) {
   const { biodata } = await params;
 
-  return <div className="min-h-screen">
-    <BioData bioDataNo={Number(biodata)} />
-  </div>;
+  return (
+    <div className='min-h-screen'>
+      <BioData bioDataNo={biodata} />
+    </div>
+  );
 }

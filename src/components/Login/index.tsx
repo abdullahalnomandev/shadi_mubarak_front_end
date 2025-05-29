@@ -41,7 +41,6 @@ const Login = () => {
   const [rememberMe, setRememberMe] = useState(false);
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    message.loading("Logging in...");
     try {
       const res = await userLogin(data).unwrap();
       if (res?.accessToken) {
@@ -59,11 +58,14 @@ const Login = () => {
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
       try {
-        const { access_token } = tokenResponse;
-        const {
-          data: { email, name },
-        } = await getUserInfoWithToken(access_token);
-        await userLogin({ email }).unwrap();
+        const res = await userLogin({
+          token: tokenResponse?.access_token,
+        }).unwrap();
+        if (res?.accessToken) {
+          storeUserInfo({ accessToken: res.accessToken });
+          router.push("/");
+          message.success("Login successful!");
+        }
       } catch (error: any) {
         message.error(
           error?.data || "Something went wrong please try again later"
@@ -78,26 +80,24 @@ const Login = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br dark:bg-blue-950 dark:text-white flex items-center justify-center">
-      <div className="container mx-auto px-4">
+    <div className='min-h-screen bg-gradient-to-br dark:bg-blue-950 dark:text-white flex items-center justify-center'>
+      <div className='container mx-auto px-4'>
         <Row
-          justify="center"
-          align="middle"
-          className="flex gap-14 flex-col md:flex-row"
-        >
+          justify='center'
+          align='middle'
+          className='flex gap-14 flex-col md:flex-row'>
           {/* Image Section */}
           <Col
             sm={12}
             md={16}
             lg={10}
-            className="justify-center items-center p-8 hidden md:block"
-          >
+            className='justify-center items-center p-8 hidden md:block'>
             <Image
               src={loginImage}
-              alt="Login Illustration"
+              alt='Login Illustration'
               width={500}
               height={500}
-              className="object-contain max-w-full"
+              className='object-contain max-w-full'
               priority
             />
           </Col>
@@ -107,75 +107,68 @@ const Login = () => {
             sm={12}
             md={8}
             lg={8}
-            className="bg-white dark:bg-blue-950 dark:text-white w-full p-6 rounded-xl "
-          >
-            <div className=" md:max-w-md mx-auto">
-              <h2 className="text-3xl font-bold dark:text-white text-gray-800 text-center">
+            className='bg-white dark:bg-blue-950 dark:text-white w-full p-6 rounded-xl '>
+            <div className=' md:max-w-md mx-auto'>
+              <h2 className='text-3xl font-bold dark:text-white text-gray-800 text-center'>
                 Welcome Back!
               </h2>
-              <p className="text-gray-600 dark:text-white text-center pt-2 py-4">
+              <p className='text-gray-600 dark:text-white text-center pt-2 py-4'>
                 Please sign in to continue
               </p>
 
               <Form
                 submitHandler={onSubmit}
-                resolver={yupResolver(loginSchema)}
-              >
+                resolver={yupResolver(loginSchema)}>
                 {loginFields.map((field) => (
-                  <div key={field.name} className="mb-4">
+                  <div key={field.name} className='mb-4'>
                     <FormInput {...field} />
                   </div>
                 ))}
-                <div className="flex dark:text-white items-center justify-between mb-4">
+                <div className='flex dark:text-white items-center justify-between mb-4'>
                   <Checkbox
                     checked={rememberMe}
                     onChange={(e) => setRememberMe(e.target.checked)}
-                    className="text-sm text-gray-600 dark:text-white hover:text-gray-800"
-                  >
+                    className='text-sm text-gray-600 dark:text-white hover:text-gray-800'>
                     Remember me
                   </Checkbox>
                   <Link
-                    href="/forgot-password"
-                    className="text-sm text-blue-600 hover:text-blue-800 !underline"
-                  >
+                    href='/forgot-password'
+                    className='text-sm text-blue-600 hover:text-blue-800 !underline'>
                     Forgot Password?
                   </Link>
                 </div>
                 <button
-                  type="submit"
-                  className="w-full mt-3 py-3 text-white rounded-md transition duration-400 
-                cursor-pointer bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500"
-                >
+                  type='submit'
+                  className='w-full mt-3 py-3 text-white rounded-md transition duration-400 
+                cursor-pointer bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500'>
                   Log In
                 </button>
-                <div className="relative my-6">
-                  <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-gray-300 dark:bg-blue-900"></div>
+                <div className='relative my-6'>
+                  <div className='absolute inset-0 flex items-center'>
+                    <div className='w-full border-t border-gray-300 dark:bg-blue-900'></div>
                   </div>
-                  <div className="relative flex justify-center text-sm">
-                    <span className="px-4 dark:bg-blue-950 dark:text-white bg-white text-gray-500">
+                  <div className='relative flex justify-center text-sm'>
+                    <span className='px-4 dark:bg-blue-950 dark:text-white bg-white text-gray-500'>
                       Or continue with
                     </span>
                   </div>
                 </div>
                 <button
-                  type="button"
-                  className="w-full py-3 px-4 flex items-center justify-center gap-3 bg-white border-2 border-gray-200 
+                  type='button'
+                  className='w-full py-3 px-4 flex items-center justify-center gap-3 bg-white border-2 border-gray-200 
                     rounded-lg font-medium text-gray-700 hover:bg-gray-50 transition-all duration-300 
-                    focus:outline-none focus:ring-2 cursor-pointer focus:ring-gray-500"
-                  onClick={() => googleLogin()}
-                >
-                  <FcGoogle className="w-5 h-5" />
+                    focus:outline-none focus:ring-2 cursor-pointer focus:ring-gray-500'
+                  onClick={() => googleLogin()}>
+                  <FcGoogle className='w-5 h-5' />
                   Log in with Google
                 </button>
               </Form>
 
-              <p className="mt-4 font-medium text-center dark:text-white text-gray-600">
+              <p className='mt-4 font-medium text-center dark:text-white text-gray-600'>
                 Dont have an account?{" "}
                 <Link
-                  href="/register"
-                  className="text-blue-600 hover:text-blue-800 !underline font-medium"
-                >
+                  href='/register'
+                  className='text-blue-600 hover:text-blue-800 !underline font-medium'>
                   Create account
                 </Link>
               </p>

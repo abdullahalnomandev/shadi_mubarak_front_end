@@ -36,35 +36,34 @@ const FormSlider = ({
 
   const errorMessage = getErrorMessageBuPropertyName(errors, name);
 
-  const marks: SliderSingleProps['marks'] = {
+  const marks: SliderSingleProps["marks"] = {
     [min]: {
       style: {
-        color: 'blue',
+        color: "blue",
       },
-      label: <b >{`${min}`}</b>,
+      label: <b>{`${min}`}</b>,
     },
     [max]: {
       style: {
-        color: 'blue',
+        color: "blue",
       },
       label: <b>{`${max}`}</b>,
     },
   };
 
-
   useEffect(() => {
-      setTimeout(() => {
-        setShowTooltip(false);
-      }, 3000);
-  },[])
+    setTimeout(() => {
+      setShowTooltip(false);
+    }, 3000);
+  }, []);
 
   const tooltipConfig = {
     placement: "top" as TooltipPlacement,
     color: "blue",
     formatter: (value: any) => {
-        return `${value} ${formatter}`;
+      return `${value} ${formatter}`;
     },
-    ...(showTooltip && { open: true })
+    ...(showTooltip && { open: true }),
   };
 
   return (
@@ -83,10 +82,13 @@ const FormSlider = ({
             marks={marks}
             defaultValue={defaultValue}
             tooltip={tooltipConfig}
-          />          
+            onChange={(val) =>
+              field.onChange(Array.isArray(val) ? val.join("-") : val)
+            }
+          />
         )}
       />
-      {errors && <small className="text-red-500">{errorMessage}</small>}
+      {errors && <small className='text-red-500'>{errorMessage}</small>}
     </>
   );
 };

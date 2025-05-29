@@ -25,7 +25,7 @@ const Sidebar = () => {
       collapsed={collapsed}
       onCollapse={(value) => setCollapsed(value)}
       width={265}
-      theme="light"
+      theme='light'
       style={{
         overflow: "auto",
         height: "calc(100vh - 64px)",
@@ -33,12 +33,11 @@ const Sidebar = () => {
         left: 0,
         top: "64px",
         bottom: 0,
-      }}
-    >
+      }}>
       <SidebarProfile />
       <Menu
-        theme="light"
-        mode="inline"
+        theme='light'
+        mode='inline'
         defaultSelectedKeys={[usePathname()]}
         activeKey={usePathname()}
         selectedKeys={[selectedKey]}

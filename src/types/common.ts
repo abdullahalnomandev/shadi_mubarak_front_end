@@ -56,3 +56,8 @@ export type IPackage = {
   price: number;
   effectivePrice: number;
 };
+
+export type IConnection = {
+  _id: string;
+  total_connections: number;
+}
