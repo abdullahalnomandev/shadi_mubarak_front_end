@@ -5,3 +5,7 @@ export const getBaseUrl = (): string => {
 export const getGoogleClientId = (): string => {
   return process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || "";
 };
+
+export const getFingerprintJsApiKey = (): string => {
+  return process.env.NEXT_PUBLIC_FINGERPRINTJS_API_KEY || "";
+}

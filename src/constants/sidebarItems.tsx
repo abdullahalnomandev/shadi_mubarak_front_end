@@ -6,7 +6,7 @@ import {
   TeamOutlined,
   CrownOutlined,
 } from "@ant-design/icons";
-import { MenuProps } from "antd";
+import { Button, MenuProps } from "antd";
 import Link from "next/link";
 import { USER_ROLE } from "./role";
 import { FaRegEdit, FaRegHeart } from "react-icons/fa";
@@ -14,8 +14,14 @@ import { ImProfile } from "react-icons/im";
 import { CiLogout } from "react-icons/ci";
 import { IoCartOutline, IoKeyOutline } from "react-icons/io5";
 import { MdDeleteOutline } from "react-icons/md";
+import { removedUserInfo } from "@/services/auth.service";
+import { authKey } from "./storageKey";
 
 export const sidebarItems = (role: string) => {
+  const handleLogout = () => {
+    removedUserInfo(authKey);
+  };
+
   const defaultItems: MenuProps["items"] = [
     {
       label: <Link href={`/${role}`}>Profile</Link>,
@@ -105,9 +111,13 @@ export const sidebarItems = (role: string) => {
     },
     {
       label: (
-        <Link className='!text-red-500' href={`/${role}/log-out`}>
+        <Button
+          type='link'
+          className='!text-red-500'
+          onClick={handleLogout}
+          href='/'>
           Log out
-        </Link>
+        </Button>
       ),
       key: `/${role}/log-out`,
       icon: <CiLogout className='!text-red-500' />,

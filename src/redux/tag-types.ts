@@ -4,6 +4,7 @@ export enum TagTypes {
   favorite = "favorite",
   biodata = "biodata",
   purchase_biodata = "purchase-biodata",
+  dashboard = "dashboard",
 }
 
 export const TagTypesList = [
@@ -12,4 +13,5 @@ export const TagTypesList = [
   TagTypes.favorite,
   TagTypes.biodata,
   TagTypes.purchase_biodata,
+  TagTypes.dashboard,
 ];

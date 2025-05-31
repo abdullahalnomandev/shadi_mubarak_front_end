@@ -16,6 +16,7 @@ import {
   useDeleteFavoriteListMutation,
   useGetFavoriteOneByIdQuery,
 } from "@/redux/api/favoriteList";
+import { useVisitorData } from "@fingerprintjs/fingerprintjs-pro-react";
 
 interface IProps {
   bioDataNo: string;
@@ -180,6 +181,10 @@ const BioData = ({ bioDataNo }: IProps) => {
   });
   const [addFavoriteList, { isLoading: isFavoriteListLoading }] =
     useAddFavoriteListMutation();
+  const { data: visitedData } = useVisitorData(
+    { extendedResult: true },
+    { immediate: true }
+  );
   const { data } = useGetFavoriteOneByIdQuery({ likedPersonId: bioDataNo });
   const [deleteFavoriteList, { isLoading: isRemoveFavoriteListLoading }] =
     useDeleteFavoriteListMutation();
@@ -305,6 +310,8 @@ const BioData = ({ bioDataNo }: IProps) => {
         message.error((error as any)?.message || "Something went wrong");
       }
     };
+
+    console.log({ visitedData });
 
     return (
       <div className='w-full mx-auto mb-8'>

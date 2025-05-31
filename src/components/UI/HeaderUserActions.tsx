@@ -67,7 +67,9 @@ const Content = ({ role, hide }: { role: string; hide: () => void }) => {
         </div>
 
         {/* Edit Button */}
-        <button className='w-full mt-4 flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 transition duration-300 shadow cursor-pointer '>
+        <button
+          className='w-full mt-4 flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 transition duration-300 shadow cursor-pointer '
+          onClick={() => router.push(`/${role}/edit-biodata`)}>
           <FaRegEdit size={16} />
           Edit Biodata
         </button>
