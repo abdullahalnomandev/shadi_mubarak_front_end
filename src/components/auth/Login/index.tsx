@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import loginImage from "@/assets/login.png";
@@ -6,7 +5,7 @@ import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import { useUserLoginMutation } from "@/redux/api/auth";
 import { loginSchema } from "@/schemas/userSchema";
-import { getUserInfoWithToken, storeUserInfo } from "@/services/auth.service";
+import { storeUserInfo } from "@/services/auth.service";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useGoogleLogin } from "@react-oauth/google";
 import { Checkbox, Col, message, Row } from "antd";
@@ -37,7 +36,7 @@ const loginFields = [
 
 const Login = () => {
   const router = useRouter();
-  const [userLogin] = useUserLoginMutation();
+  const [userLogin, { isLoading }] = useUserLoginMutation();
   const [rememberMe, setRememberMe] = useState(false);
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
@@ -138,10 +137,37 @@ const Login = () => {
                   </Link>
                 </div>
                 <button
+                  disabled={isLoading}
                   type='submit'
                   className='w-full mt-3 py-3 text-white rounded-md transition duration-400 
-                cursor-pointer bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500'>
-                  Log In
+                    cursor-pointer bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 
+                    hover:to-cyan-500 flex items-center justify-center gap-2'>
+                  {isLoading ? (
+                    <>
+                      <svg
+                        className='animate-spin h-5 w-5 text-white'
+                        xmlns='http://www.w3.org/2000/svg'
+                        fill='none'
+                        viewBox='0 0 24 24'>
+                        <circle
+                          className='opacity-25'
+                          cx='12'
+                          cy='12'
+                          r='10'
+                          stroke='currentColor'
+                          strokeWidth='4'
+                        />
+                        <path
+                          className='opacity-75'
+                          fill='currentColor'
+                          d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
+                        />
+                      </svg>
+                      <span>Logging in...</span>
+                    </>
+                  ) : (
+                    "Log In"
+                  )}
                 </button>
                 <div className='relative my-6'>
                   <div className='absolute inset-0 flex items-center'>
@@ -149,7 +175,7 @@ const Login = () => {
                   </div>
                   <div className='relative flex justify-center text-sm'>
                     <span className='px-4 dark:bg-blue-950 dark:text-white bg-white text-gray-500'>
-                      Or continue with
+                      Or
                     </span>
                   </div>
                 </div>

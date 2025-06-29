@@ -3,26 +3,25 @@
 import sign_up from "@/assets/Sign up-amico.png";
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
+import VideoPlayerButton from "@/components/UI/VideoPlayerButton";
 import { useUserRegisterMutation } from "@/redux/api/auth";
-import { loginSchema } from "@/schemas/userSchema";
+import { regiserSchema } from "@/schemas/userSchema";
 import { getUserInfoWithToken, storeUserInfo } from "@/services/auth.service";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useGoogleLogin } from "@react-oauth/google";
-import { Col, message, Row, Select } from "antd";
+import { Col, message, Row } from "antd";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
-import VideoPlayerButton from "../../UI/VideoPlayerButton";
-
-const { Option } = Select;
-
+import BangladeshFlag from "../../../assets/Flag_of_Bangladesh.svg.png";
+import mail from "../../../assets/Mail sent-rafiki.png";
 interface FormValues {
   email: string;
   password: string;
-  phoneNumber: string;
+  phone: string;
 }
 
 const registerFields = [
@@ -34,14 +33,21 @@ const registerFields = [
   },
   {
     name: "phone",
-    type: "tel",
-    placeholder: "1*******",
+    type: "text",
+    placeholder: "1xxxxxxxxx",
     label: "Mobile",
     classNames: "p-0",
     prefixSelector: (
-      <Select style={{ width: 80, marginBottom: 0 }} defaultValue='880'>
-        <Option value='880'>+880</Option>
-      </Select>
+      <div className='flex items-center gap-1 py-1' style={{ width: 60 }}>
+        <Image
+          src={BangladeshFlag}
+          alt='BD'
+          width={20}
+          height={14}
+          className='inline-block'
+        />
+        <span className='text-gray-700'>+880</span>
+      </div>
     ),
   },
   {
@@ -54,24 +60,32 @@ const registerFields = [
 
 const Register = () => {
   const router = useRouter();
-  const [userRegister] = useUserRegisterMutation();
+  const [userRegister, { isLoading }] = useUserRegisterMutation();
   const [formValues, setFormValues] = useState<Partial<FormValues>>({});
   const [showForm, setShowForm] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
   const [registrationType, setRegistrationType] = useState<
     "email" | "google" | null
   >(null);
+
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     try {
-      const res = await userRegister(data).unwrap();
-      console.log(data);
-      if (res?.accessToken) {
+      const userInfo = { ...data, provider: registrationType };
+      const res = await userRegister(userInfo).unwrap();
+
+      if (res?.accessToken && registrationType === "google") {
         storeUserInfo({ accessToken: res.accessToken });
-        router.push("/");
+        router.push("/user/dashboard");
         message.success("Account created successfully!");
+      }
+
+      if (!res?.accessToken && registrationType === "email") {
+        setSuccessMessage("Check your email — to verify your account.");
+        setShowForm(false);
       }
     } catch (error) {
       message.error(
-        (error as any)?.data || "Something went wrong please try again later."
+        (error as any)?.data || "Something went wrong. Please try again later."
       );
     }
   };
@@ -86,16 +100,13 @@ const Register = () => {
         setFormValues({ email });
         setShowForm(true);
         setRegistrationType("google");
-        message.success("Email retrieved from Google successfully!");
       } catch (error: any) {
-        message.error(
-          error?.data || "Something went wrong please try again later"
-        );
+        message.error(error?.data || "Failed to retrieve Google account info.");
       }
     },
     onError: (error) => {
       console.error("Google login error:", error);
-      message.error("Failed to get Google account info. Please try again.");
+      message.error("Google sign-in failed. Please try again.");
     },
     flow: "implicit",
   });
@@ -131,16 +142,38 @@ const Register = () => {
           {/* Form Section */}
           <Col sm={12} md={8} lg={8} className='bg-white w-full p-6 rounded-xl'>
             <div className='md:max-w-md mx-auto'>
-              <h2 className='text-3xl font-bold text-gray-800 text-center'>
-                Create Account
-              </h2>
-              <p className='text-gray-600 text-center pt-2 py-4'>
-                {!showForm
-                  ? "Choose how you'd like to create your account"
-                  : "Please fill in your details to register"}
-              </p>
+              {successMessage ? (
+                <div className=' mx-auto bg-white shadow-md rounded-md p-8 text-center flex flex-col items-center space-y-6'>
+                  <Image
+                    src={mail}
+                    alt='Email sent illustration'
+                    width={200}
+                    height={200}
+                    className='rounded-xl'
+                  />
 
-              {!showForm ? (
+                  <h2 className='text-2xl  font-semibold text-green-700'>
+                    Check Your Email - Inbox
+                  </h2>
+
+                  <p className='text-gray-600 text-base md:text-lg'>
+                    We&apos;ve sent a confirmation link to your inbox.
+                  </p>
+                </div>
+              ) : (
+                <>
+                  <h2 className='text-3xl font-bold text-gray-800 text-center'>
+                    Create Account
+                  </h2>
+                  <p className='text-gray-600 text-center pt-2 py-4'>
+                    {!showForm
+                      ? "Choose how you'd like to create your account"
+                      : "Please fill in your details to register"}
+                  </p>
+                </>
+              )}
+
+              {!showForm && !successMessage ? (
                 <div>
                   <button
                     type='button'
@@ -160,6 +193,7 @@ const Register = () => {
                       <span className='px-4 bg-white text-gray-500'>Or</span>
                     </div>
                   </div>
+
                   <button
                     type='button'
                     onClick={handleEmailRegistration}
@@ -168,10 +202,12 @@ const Register = () => {
                     Create with Email
                   </button>
                 </div>
-              ) : (
+              ) : null}
+
+              {showForm && !successMessage && (
                 <Form
                   submitHandler={onSubmit}
-                  resolver={yupResolver(loginSchema)}
+                  resolver={yupResolver(regiserSchema)}
                   defaultValues={formValues}>
                   {registerFields.map((field) => (
                     <div key={field.name} className='mb-2'>
@@ -186,28 +222,58 @@ const Register = () => {
                       />
                     </div>
                   ))}
+
                   <button
                     type='submit'
+                    disabled={isLoading}
                     className='w-full mt-6 py-3 text-white rounded-md transition duration-400 
-                    cursor-pointer bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500'>
-                    Create Account
+    cursor-pointer bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 
+    disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2'>
+                    {isLoading ? (
+                      <>
+                        <svg
+                          className='animate-spin h-5 w-5 text-white'
+                          xmlns='http://www.w3.org/2000/svg'
+                          fill='none'
+                          viewBox='0 0 24 24'>
+                          <circle
+                            className='opacity-25'
+                            cx='12'
+                            cy='12'
+                            r='10'
+                            stroke='currentColor'
+                            strokeWidth='4'
+                          />
+                          <path
+                            className='opacity-75'
+                            fill='currentColor'
+                            d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
+                          />
+                        </svg>
+                        <span>Creating...</span>
+                      </>
+                    ) : (
+                      "Create Account"
+                    )}
                   </button>
 
                   <p className='mt-4 font-medium text-center text-gray-600'>
                     Already have an account?{" "}
                     <Link
                       href='/login'
-                      className='text-blue-600 hover:text-blue-800 !underline font-medium'>
+                      className='text-blue-600 hover:text-blue-800 underline font-medium'>
                       Login here
                     </Link>
                   </p>
                 </Form>
               )}
 
-              <VideoPlayerButton
-                title=' Watch: How to create a Biodata'
-                videoId='RHuVlgjwOHA'
-              />
+              <div className='mt-4'>
+                <VideoPlayerButton
+                  title='How to Create Your Account ?'
+                  videoId='RHuVlgjwOHA'
+                />
+              </div>
             </div>
           </Col>
         </Row>

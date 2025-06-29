@@ -22,7 +22,7 @@ const UserDashboard = () => {
       id: 1,
       icon: (
         <span className='text-4xl text-emerald-500 font-bold leading-none'>
-          {dashboardInfo?.totalProfileConnections}
+          {dashboardInfo?.totalProfileConnections ?? 0}
         </span>
       ),
       title: "Connections Available",
@@ -35,7 +35,7 @@ const UserDashboard = () => {
       id: 2,
       icon: <HeartOutlined className='text-3xl text-pink-500' />,
       title: "Favorite List",
-      value: Number(dashboardInfo?.totalBioDataFavorite),
+      value: Number(dashboardInfo?.totalBioDataFavorite ?? 0),
       desc: "All your favorited biodatas",
       isClickable: true,
       href: "/user/favorite-list",
@@ -44,7 +44,7 @@ const UserDashboard = () => {
       id: 3,
       icon: <TeamOutlined className='text-3xl text-purple-500' />,
       title: "Your biodata shortlisted",
-      value: Number(dashboardInfo?.totalUsersWhoFavoriteYou),
+      value: Number(dashboardInfo?.totalUsersWhoFavoriteYou ?? 0),
       desc: "People who shortlisted your biodata",
       href: "/user/shortlisted-list",
     },
@@ -52,7 +52,7 @@ const UserDashboard = () => {
       id: 4,
       icon: <ShoppingOutlined className='text-3xl text-blue-500' />,
       title: "My Purchased",
-      value: Number(dashboardInfo?.totalBioDataPurchased),
+      value: Number(dashboardInfo?.totalBioDataPurchased ?? 0),
       desc: "Your entire purchase history",
       isClickable: true,
       href: "/purchases",
@@ -66,13 +66,13 @@ const UserDashboard = () => {
       isBiodata: true,
       visits: {
         "Last 7 Days": Number(
-          dashboardInfo?.profileVisitStats?.visitsLast7Days
+          dashboardInfo?.profileVisitStats?.visitsLast7Days ?? 0
         ),
         "Last 30 Days": Number(
-          dashboardInfo?.profileVisitStats?.visitsLast30Days
+          dashboardInfo?.profileVisitStats?.visitsLast30Days ?? 0 
         ),
         "Last 90 Days": Number(
-          dashboardInfo?.profileVisitStats?.visitsLast90Days
+          dashboardInfo?.profileVisitStats?.visitsLast90Days ??0
         ),
       },
     },
@@ -81,7 +81,7 @@ const UserDashboard = () => {
   return (
     <div className=' min-h-screen'>
       <Row gutter={[16, 16]}>
-        {stats.map((stat) => (
+        {(stats || []).map((stat) => (
           <Col xs={24} sm={12} md={8} key={stat.id}>
             <div className={stat.href ? "block h-full" : "h-full"}>
               <Link href={stat.href || "#"} passHref>
@@ -114,7 +114,7 @@ const CardContent = ({ stat }: { stat: any }) => (
     <div>
       <div className='mb-2'>{stat.icon}</div>
       <h3 className='text-lg font-medium mb-2'>{stat.title}</h3>
-      {stat.value !== null && (
+      {stat?.value && (
         <p className='text-4xl font-bold text-gray-800 mt-1 mb-2'>
           {stat.value}
         </p>
