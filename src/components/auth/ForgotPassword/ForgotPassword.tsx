@@ -1,12 +1,18 @@
 "use client";
 
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Col, message, Row } from "antd";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+
+import resetImage from "@/assets/Forgot password-pana.png";
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
-import { resetPasswordSchema } from "@/schemas/userSchema";
-import { yupResolver } from "@hookform/resolvers/yup";
-import Link from "next/link";
+import { useUserForgetPasswordMutation } from "@/redux/api/auth";
+import { forgotPasswordSchema } from "../../../schemas/userSchema";
 
-const loginFields = [
+const forgotPasswordFields = [
   {
     name: "email",
     type: "email",
@@ -16,69 +22,129 @@ const loginFields = [
 ];
 
 const ForgotPassword = () => {
-  const handleSubmit = (values: any) => {
+  const [userForgetPassword, { isLoading }] = useUserForgetPasswordMutation();
+  const [submitting, setSubmitting] = useState(false);
+  const [emailSent, setEmailSent] = useState(false);
+
+  const handleSubmit = async (values: { email: string }) => {
+    setSubmitting(true);
     try {
-      console.log(values);
-      // Add your server-side logic here
-    } catch (error) {
-      console.error("Error:", error);
+      await userForgetPassword(values).unwrap();
+      setEmailSent(true);
+    } catch (error: any) {
+      console.log("ERROR", error);
+      message.error(error?.data || "Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex items-center justify-center px-4 py-8">
-      <div className="container mx-auto">
-        <div className="flex flex-col md:flex-row items-center justify-center gap-8 lg:gap-14">
+    <div className='min-h-screen bg-gradient-to-br dark:bg-blue-950 dark:text-white flex items-center justify-center'>
+      <div className='container mx-auto px-4'>
+        <Row
+          justify='center'
+          align='middle'
+          className='flex gap-14 flex-col md:flex-row'>
+          {/* Image Section */}
+          <Col
+            sm={12}
+            md={16}
+            lg={10}
+            className='hidden md:flex justify-center items-center p-8'>
+            <Image
+              src={resetImage}
+              alt='Reset Password Illustration'
+              width={500}
+              height={500}
+              className='object-contain max-w-full'
+              priority
+            />
+          </Col>
+
           {/* Form Section */}
-          <div className="w-full md:w-1/2 lg:w-2/5 xl:w-1/3 bg-white p-6 sm:p-8 rounded-xl shadow-md">
-            <div className="max-w-md mx-auto">
-              <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 text-center mb-2">
-                Reset Your Password
-              </h1>
-              <p className="text-gray-600 text-center text-sm sm:text-base mb-8">
-                Enter your email address and well send you instructions to reset
-                your password
+          <Col
+            sm={12}
+            md={8}
+            lg={8}
+            className='bg-white dark:bg-blue-950 w-full p-8 rounded-xl shadow-md'>
+            <div className='md:max-w-md mx-auto'>
+              <h2 className='text-3xl font-bold text-center text-gray-800 dark:text-white'>
+                Forgot Your Password ?
+              </h2>
+              <p className='text-center text-gray-600 dark:text-gray-300 mt-2 mb-6'>
+                Enter your email address and we’ll send you instructions to
+                reset your password.
               </p>
 
-              <Form
-                submitHandler={handleSubmit}
-                resolver={yupResolver(resetPasswordSchema)}
-              >
-                {loginFields.map((field) => (
-                  <div key={field.name} className="mb-6">
-                    <FormInput
-                      name={field.name}
-                      type={field.type}
-                      placeholder={field.placeholder}
-                      label={field.label}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    />
-                  </div>
-                ))}
-                <button
-                  type="submit"
-                  className="w-full py-3 px-4 text-white text-base font-medium rounded-lg transition duration-300 
-                    bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500
-                    focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer"
-                >
-                  Submit
-                </button>
-              </Form>
+              {!emailSent ? (
+                <Form
+                  submitHandler={handleSubmit}
+                  resolver={yupResolver(forgotPasswordSchema)}>
+                  {forgotPasswordFields.map((field) => (
+                    <div key={field.name} className='mb-6'>
+                      <FormInput {...field} />
+                    </div>
+                  ))}
 
-              <div className="mt-6 text-center">
-                <p className="text-gray-600 text-sm sm:text-base">
+                  <button
+                    type='submit'
+                    disabled={submitting || isLoading}
+                    className='w-full py-3 text-white font-semibold rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer'>
+                    {submitting || isLoading ? "Sending..." : "Send Reset Link"}
+                  </button>
+                </Form>
+              ) : (
+                <div className='mt-10 px-6 py-6 text-center rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 shadow-sm'>
+                  <div className='flex justify-center mb-4'>
+                    <svg
+                      className='w-10 h-10 text-green-600 dark:text-green-400'
+                      fill='none'
+                      stroke='currentColor'
+                      strokeWidth={2}
+                      viewBox='0 0 24 24'>
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        d='M5 13l4 4L19 7'
+                      />
+                    </svg>
+                  </div>
+
+                  <h3 className='text-lg font-semibold text-green-700 dark:text-green-400'>
+                    Check Your Email
+                  </h3>
+
+                  <p className='mt-2 text-sm text-gray-700 dark:text-gray-300'>
+                    We’ve sent a link to reset your password.
+                  </p>
+
+                  <p className='mt-2 text-sm text-gray-600 dark:text-gray-400'>
+                    Can’t find it? Look in your <strong>Spam</strong> or{" "}
+                    <strong>Junk</strong> folder.
+                  </p>
+
+                  <Link
+                    href='/login'
+                    className='inline-block mt-6 px-5 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors'>
+                    Back to Login
+                  </Link>
+                </div>
+              )}
+
+              {!emailSent && (
+                <p className='mt-6 text-center text-sm text-gray-600 dark:text-white'>
                   Remember your password?{" "}
                   <Link
-                    href="/login"
-                    className="text-blue-600 hover:text-blue-800 font-medium underline transition duration-200"
-                  >
+                    href='/login'
+                    className='text-blue-600 hover:text-blue-800 underline font-medium'>
                     Back to Login
                   </Link>
                 </p>
-              </div>
+              )}
             </div>
-          </div>
-        </div>
+          </Col>
+        </Row>
       </div>
     </div>
   );
