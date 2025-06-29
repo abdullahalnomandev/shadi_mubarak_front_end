@@ -34,10 +34,11 @@ const FormInput = ({
   } = useFormContext();
 
   const errorMessage = getErrorMessageBuPropertyName(errors, name);
+  console.log("ERRORMESSAGE", errorMessage);
   return (
     <>
       {label && (
-        <p className="text-gray-900 dark:text-slate-200 mb-0.5">{label}</p>
+        <p className='text-gray-900 dark:text-slate-200 mb-0.5'>{label}</p>
       )}
       <Controller
         control={control}
@@ -68,7 +69,7 @@ const FormInput = ({
               placeholder={placeholder}
               value={value ? value : field.value}
               addonBefore={prefixSelector ?? null}
-              autoComplete="off"
+              autoComplete='off'
               className={`
                 ${className}
                 dark:!bg-slate-800 
@@ -83,7 +84,7 @@ const FormInput = ({
           )
         }
       />
-      <small className="text-red-500 dark:!text-amber-600">
+      <small className='text-red-500 dark:!text-amber-600'>
         {typeof errorMessage === "string"
           ? errorMessage
           : typeof errors[name]?.message === "string"
