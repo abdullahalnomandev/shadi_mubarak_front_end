@@ -10,11 +10,35 @@ export const loginSchema = yup.object({
     .min(6, "Password must be at least 6 characters")
     .required("Password is required"),
 });
-export const resetPasswordSchema = yup.object({
+export const regiserSchema = yup.object({
   email: yup
     .string()
     .email("Invalid email address")
     .required("Email is required"),
+  phone: yup
+    .string()
+    .min(10, "Phone number is invalid")
+    .required("Phone number is required"),
+  password: yup
+    .string()
+    .min(6, "Password must be at least 6 characters")
+    .required("Password is required"),
+});
+export const forgotPasswordSchema = yup.object({
+  email: yup
+    .string()
+    .email("Invalid email address")
+    .required("Email is required"),
+});
+export const resetPasswordSchema = yup.object({
+  password: yup
+    .string()
+    .min(6, "Password must be at least 6 characters")
+    .required("Password is required"),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref("password")], "Passwords must match")
+    .required("Please confirm your password"),
 });
 
 export const changePasswordSchema = yup.object({
@@ -149,9 +173,7 @@ export const userBiodataSchema = {
       .of(yup.string().oneOf(["fair", "bright_brown", "brown", "dark"]))
       .required("Required"),
     height: yup.string().required("Height is required"),
-    education: yup
-      .string()
-      .required("Educational qualification is required"),
+    education: yup.string().required("Educational qualification is required"),
     district: yup.string().required("District is required"),
     maritalStatus: yup
       .array()
@@ -160,10 +182,16 @@ export const userBiodataSchema = {
   }),
   education: yup.object().shape({
     ssc_passing_year: yup.number().required("SSC passing year is required"),
-    ssc_group: yup.string().oneOf(["science", "commerce", "arts"]).required("SSC group is required"),
+    ssc_group: yup
+      .string()
+      .oneOf(["science", "commerce", "arts"])
+      .required("SSC group is required"),
     ssc_result: yup.string().required("SSC result is required"),
     hsc_passing_year: yup.number().required("HSC passing year is required"),
-    hsc_group: yup.string().oneOf(["science", "commerce", "arts"]).required("HSC group is required"),
+    hsc_group: yup
+      .string()
+      .oneOf(["science", "commerce", "arts"])
+      .required("HSC group is required"),
     hsc_result: yup.string().required("HSC result is required"),
     diploma_subject: yup.string(),
     diploma_institution: yup.string(),
@@ -172,11 +200,13 @@ export const userBiodataSchema = {
     graduation_institution: yup.string(),
     graduation_year: yup.string(),
   }),
- marriage_related_information: yup.object().shape({
+  marriage_related_information: yup.object().shape({
     doYouAgreeWithParents: yup
       .string()
       .oneOf(["yes", "no"])
-      .required("Please specify if you agree with your parents regarding marriage"),
+      .required(
+        "Please specify if you agree with your parents regarding marriage"
+      ),
     willingToWorkAfterMarriage: yup
       .string()
       .oneOf(["yes", "yes_if_circumstances_allow", "no"])
@@ -184,12 +214,16 @@ export const userBiodataSchema = {
     wantToContinueStudyAfterMarriage: yup
       .string()
       .oneOf(["yes_higher_education", "no", "maybe"])
-      .required("Please specify your study plans after marriage")
+      .required("Please specify your study plans after marriage"),
   }),
   contact: yup.object().shape({
     brideName: yup.string().required("Bride name is required"),
-    guardianPhoneNumber: yup.string().required("Guardian phone number is required"),
-    relationWithGuardian: yup.string().required("Relation with guardian is required"),
+    guardianPhoneNumber: yup
+      .string()
+      .required("Guardian phone number is required"),
+    relationWithGuardian: yup
+      .string()
+      .required("Relation with guardian is required"),
     emailUsedForRegistration: yup
       .string()
       .email("Invalid email address")
@@ -197,6 +231,6 @@ export const userBiodataSchema = {
       .matches(
         /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
         "Invalid email format"
-      )
-  })
+      ),
+  }),
 };
