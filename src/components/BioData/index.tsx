@@ -1,22 +1,22 @@
 "use client";
-import Image from "next/image";
 import image from "@/assets/girl.jpg";
-import dayjs from "dayjs";
-import { FiBookmark, FiCopy } from "react-icons/fi";
-import { useTranslations } from "next-intl";
-import ViewContact from "./ViewContact";
 import { useGetBioDataByNoQuery } from "@/redux/api/biodata";
-import { getUserInfo } from "@/services/auth.service";
-import { IUser } from "@/types";
-import { message } from "antd";
-import AntModal from "../UI/AntModal";
-import { useState } from "react";
 import {
   useAddFavoriteListMutation,
   useDeleteFavoriteListMutation,
   useGetFavoriteOneByIdQuery,
 } from "@/redux/api/favoriteList";
+import { getUserInfo } from "@/services/auth.service";
+import { IUser } from "@/types";
 import { useVisitorData } from "@fingerprintjs/fingerprintjs-pro-react";
+import { message } from "antd";
+import dayjs from "dayjs";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
+import { useState } from "react";
+import { FiBookmark, FiCopy } from "react-icons/fi";
+import AntModal from "../UI/AntModal";
+import ViewContact from "./ViewContact";
 
 interface IProps {
   bioDataNo: string;
@@ -193,7 +193,7 @@ const BioData = ({ bioDataNo }: IProps) => {
   if (isLoading) {
     return <div>Loading...</div>;
   }
-  console.log("biodataInfo", !!bioDataInfo?.biodata?.contact);
+  console.log("biodataInfo", bioDataInfo?.biodata);
 
   if (error) {
     return <div>Error: {(error as any)?.message}</div>;

@@ -1,30 +1,40 @@
-import { IMeta, IUser } from '@/types';
-import { TagTypes } from '../tag-types';
-import { baseApi } from './baseApi';
+import { IMeta, IUser } from "@/types";
+import { TagTypes } from "../tag-types";
+import { baseApi } from "./baseApi";
 
-const USER_API = '/users';
+const USER_API = "/users";
 
 const userApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getUsers: build.query({
-      query: (arg:Record<string,any>) => ({
+      query: (arg: Record<string, any>) => ({
         url: USER_API,
-        method: 'GET',
-        params: arg
+        method: "GET",
+        params: arg,
       }),
-      transformResponse: (response: IUser,meta:IMeta) => {
+      transformResponse: (response: IUser, meta: IMeta) => {
         return {
           users: response,
-          meta:meta,
+          meta: meta,
         };
       },
-      providesTags: [TagTypes.user]
+      providesTags: [TagTypes.user],
     }),
 
+    getUser: build.query({
+      query: () => ({
+        url: `${USER_API}/me`,
+        method: "GET",
+      }),
+      transformResponse: (response: IUser) => {
+        return {
+          user: response,
+        };
+      },
+      providesTags: [TagTypes.user],
+    }),
   }),
   overrideExisting: false,
 });
 
-export const { 
-  useGetUsersQuery
-} = userApi;
+export const { useGetUsersQuery, useGetUserQuery } = userApi;

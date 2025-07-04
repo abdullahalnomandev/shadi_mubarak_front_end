@@ -1,21 +1,22 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
-import { Button, message } from "antd";
-import { FormProvider, useForm } from "react-hook-form";
-import { Stepper, Step } from "react-form-stepper";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Button, message } from "antd";
+import React, { useEffect, useMemo, useState } from "react";
+import { Step, Stepper } from "react-form-stepper";
+import { FormProvider, useForm } from "react-hook-form";
 import * as yup from "yup";
 
+import { BioDataStatus } from "@/constants/bioData";
+import { biodataSteps } from "@/constants/global";
 import {
   useGetBioDataByNoQuery,
   useUpdateBiodataMutation,
 } from "@/redux/api/biodata";
-import { biodataSteps } from "@/constants/global";
-import { SyncOutlined } from "@ant-design/icons";
 import { getUserInfo } from "@/services/auth.service";
-import { getValidationSchema } from "./getValidationSchema";
 import { IUser } from "@/types";
+import { SyncOutlined } from "@ant-design/icons";
+import { getValidationSchema } from "./getValidationSchema";
 
 interface ISteps {
   title: string;
@@ -100,7 +101,7 @@ const StepperForm = ({ steps }: IStepsProps) => {
         }
       } else {
         setCurrent(
-          stepsFromAPI.length === 10 ? 9 : getLastCompletedStep(stepsFromAPI)
+          stepsFromAPI?.length === 10 ? 9 : getLastCompletedStep(stepsFromAPI)
         );
       }
     }
@@ -126,7 +127,7 @@ const StepperForm = ({ steps }: IStepsProps) => {
         setCompletedSteps((prev) => [...prev, current]);
       }
 
-      const isLastStep = current === steps.length - 1;
+      const isLastStep = current === steps?.length - 1;
 
       // Only move to the next step if it’s not the last and it's not a re-edit
       if (!isLastStep && !isAlreadyCompleted && !isFetching) {
@@ -154,6 +155,11 @@ const StepperForm = ({ steps }: IStepsProps) => {
     }),
     []
   );
+
+  if (bioDataInfo?.biodata?.profileStatus === BioDataStatus.NOT_STARTED) {
+    return null;
+  }
+  console.log("bi", bioDataInfo?.biodata?.profileStatus);
 
   return (
     <div className='p-4 sm:p-6'>
@@ -202,7 +208,7 @@ const StepperForm = ({ steps }: IStepsProps) => {
               htmlType='submit'
               icon={isFetching ? <SyncOutlined spin /> : undefined}
               className='!bg-[#091C79] hover:!bg-[#14289b]'>
-              {current === steps.length - 1 ? "Submit" : "Save & Next"}
+              {current === steps?.length - 1 ? "Submit" : "Save & Next"}
             </Button>
           </div>
         </form>

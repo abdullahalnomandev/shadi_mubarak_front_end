@@ -10,14 +10,11 @@
 
 * {
   font-family: var(--font-english), sans-serif;
- 
 }
 
 /* @custom-variant dark (&:where(.dark, .dark *)); */
 
-
-
- /* Scroll style  */
+/* Scroll style  */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -26,7 +23,7 @@
   background: #f9f9f9;
   border-radius: 10px;
 }
- 
+
 ::-webkit-scrollbar-thumb {
   background-color: #c1c1c1;
   border-radius: 10px;

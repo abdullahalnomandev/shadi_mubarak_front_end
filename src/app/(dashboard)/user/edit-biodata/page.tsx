@@ -1,17 +1,20 @@
 "use client";
 
-import StepperFrom from "@/components/Forms/StepperForm/StepperForm";
-import GeneralInfo from "@/components/Forms/UserForms/GeneralInfo";
 import { handleBiodataSubmit } from "@/app/actions/biodata-actions";
+import CreateBiodataCTA from "@/components/dashboard/user/CreateBiodataCTA";
+import StepperFrom from "@/components/Forms/StepperForm/StepperForm";
 import Address from "@/components/Forms/UserForms/Address";
-import Occupation from "@/components/Forms/UserForms/Occupation";
 import Agreement from "@/components/Forms/UserForms/Agreement";
-import FamilyInformation from "@/components/Forms/UserForms/FamilyInformation";
-import PersonalInformation from "@/components/Forms/UserForms/PersonalInformation";
-import ExpectedPartner from "@/components/Forms/UserForms/ExpectedPartner";
 import Contact from "@/components/Forms/UserForms/Contact";
-import MarriageRelatedInformation from "@/components/Forms/UserForms/MarriageRelatedInformatlion";
 import Education from "@/components/Forms/UserForms/Education";
+import ExpectedPartner from "@/components/Forms/UserForms/ExpectedPartner";
+import FamilyInformation from "@/components/Forms/UserForms/FamilyInformation";
+import GeneralInfo from "@/components/Forms/UserForms/GeneralInfo";
+import MarriageRelatedInformation from "@/components/Forms/UserForms/MarriageRelatedInformatlion";
+import Occupation from "@/components/Forms/UserForms/Occupation";
+import PersonalInformation from "@/components/Forms/UserForms/PersonalInformation";
+import { BioDataStatus } from "@/constants/bioData";
+import { useGetUserQuery } from "@/redux/api/user";
 
 const steps = [
   {
@@ -58,10 +61,20 @@ const steps = [
 ];
 
 const EditBioDataPage = () => {
+  const { data: userData } = useGetUserQuery();
+
+  if (userData?.user?.bioData?.profileStatus === BioDataStatus.NOT_STARTED) {
+    return (
+      <div className='flex items-center justify-center min-h-[calc(100vh-200px)]'>
+        <CreateBiodataCTA />
+      </div>
+    );
+  }
+
   return (
-    <div>
+    <>
       <StepperFrom steps={steps} handleUserSubmit={handleBiodataSubmit} />
-    </div>
+    </>
   );
 };
 

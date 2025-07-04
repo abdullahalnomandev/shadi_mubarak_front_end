@@ -1,20 +1,19 @@
-import React from "react";
+import { removedUserInfo } from "@/services/auth.service";
 import {
+  CrownOutlined,
   DashboardOutlined,
-  UserOutlined,
   SettingOutlined,
   TeamOutlined,
-  CrownOutlined,
+  UserOutlined,
 } from "@ant-design/icons";
 import { Button, MenuProps } from "antd";
 import Link from "next/link";
-import { USER_ROLE } from "./role";
+import { CiLogout } from "react-icons/ci";
 import { FaRegEdit, FaRegHeart } from "react-icons/fa";
 import { ImProfile } from "react-icons/im";
-import { CiLogout } from "react-icons/ci";
 import { IoCartOutline, IoKeyOutline } from "react-icons/io5";
 import { MdDeleteOutline } from "react-icons/md";
-import { removedUserInfo } from "@/services/auth.service";
+import { USER_ROLE } from "./role";
 import { authKey } from "./storageKey";
 
 export const sidebarItems = (role: string) => {
@@ -113,9 +112,9 @@ export const sidebarItems = (role: string) => {
       label: (
         <Button
           type='link'
+          href='/login'
           className='!text-red-500'
-          onClick={handleLogout}
-          href='/'>
+          onClick={handleLogout}>
           Log out
         </Button>
       ),

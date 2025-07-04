@@ -1,21 +1,22 @@
 "use client";
 
-import { Card, Row, Col, Button } from "antd";
+import { useGetDashboardInfoQuery } from "@/redux/api/dashboard";
 import {
+  BarChartOutlined,
   HeartOutlined,
   ShoppingOutlined,
   TeamOutlined,
-  BarChartOutlined,
 } from "@ant-design/icons";
+import { Button, Card, Col, Row } from "antd";
 import Link from "next/link";
-import { useGetDashboardInfoQuery } from "@/redux/api/dashboard";
+import CreateBiodataCTA from "./CreateBiodataCTA";
 
 const UserDashboard = () => {
-  const { data } = useGetDashboardInfoQuery({});
+  const { data } = useGetDashboardInfoQuery(undefined, {
+    refetchOnMountOrArgChange: false,
+  });
 
   const dashboardInfo = data?.dashboard;
-
-  console.log("dashboardInfo", dashboardInfo);
 
   const stats = [
     {
@@ -69,35 +70,31 @@ const UserDashboard = () => {
           dashboardInfo?.profileVisitStats?.visitsLast7Days ?? 0
         ),
         "Last 30 Days": Number(
-          dashboardInfo?.profileVisitStats?.visitsLast30Days ?? 0 
+          dashboardInfo?.profileVisitStats?.visitsLast30Days ?? 0
         ),
         "Last 90 Days": Number(
-          dashboardInfo?.profileVisitStats?.visitsLast90Days ??0
+          dashboardInfo?.profileVisitStats?.visitsLast90Days ?? 0
         ),
       },
     },
   ];
 
   return (
-    <div className=' min-h-screen'>
+    <div className='min-h-screen px-4 py-6 bg-gray-50 dark:bg-slate-900'>
+      {/* Create Biodata Button */}
+      <CreateBiodataCTA />
+      {/* Stats Grid */}
       <Row gutter={[16, 16]}>
         {(stats || []).map((stat) => (
           <Col xs={24} sm={12} md={8} key={stat.id}>
             <div className={stat.href ? "block h-full" : "h-full"}>
               <Link href={stat.href || "#"} passHref>
                 <Card
-                  className={`
-                    group h-full transition-all duration-300
-                    rounded-lg shadow-sm hover:shadow-lg
-                    flex flex-col justify-between text-center
-                    bg-white dark:bg-slate-800 dark:text-slate-300 dark:border-transparent
-                    min-h-[220px]
-                    ${
-                      stat.isClickable || stat.isConnection
-                        ? " hover:scale-[1.02]"
-                        : ""
-                    }
-                  `}>
+                  className={`group h-full transition-all duration-300 rounded-lg shadow-sm hover:shadow-lg flex flex-col justify-between text-center bg-white dark:bg-slate-800 dark:text-slate-300 dark:border-transparent min-h-[220px] ${
+                    stat.isClickable || stat.isConnection
+                      ? "hover:scale-[1.02]"
+                      : ""
+                  }`}>
                   <CardContent stat={{ ...stat, isClickable: false }} />
                 </Card>
               </Link>
@@ -121,7 +118,7 @@ const CardContent = ({ stat }: { stat: any }) => (
       )}
       {stat.desc && (
         <p
-          className={` mb-3 ${
+          className={`mb-3 ${
             !!stat.href && !stat.isConnection
               ? " !text-blue-500"
               : "!text-gray-500"
@@ -136,7 +133,7 @@ const CardContent = ({ stat }: { stat: any }) => (
         <Button
           type='primary'
           size='middle'
-          className='!bg-emerald-500 !rounded-full !hover:bg-emerald-600 border-none'>
+          className='!bg-emerald-500 !rounded-md !hover:bg-emerald-600 border-none'>
           Buy Connections
         </Button>
       </div>

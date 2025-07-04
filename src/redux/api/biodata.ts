@@ -7,7 +7,7 @@ const BIO_DATA_API = "/biodata";
 const biodataApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getBioDataByNo: build.query({
-      query: ({arg, bioDataNo}: Record<string, any>) => ({
+      query: ({ arg, bioDataNo }: Record<string, any>) => ({
         url: `${BIO_DATA_API}/${bioDataNo}`,
         method: "GET",
         params: arg,
@@ -31,7 +31,7 @@ const biodataApi = baseApi.injectEndpoints({
           biodatas: response,
           meta: meta,
         };
-      },      
+      },
       providesTags: [TagTypes.biodata],
     }),
 
@@ -59,11 +59,25 @@ const biodataApi = baseApi.injectEndpoints({
           data: biodataStepInfo, // ✅ Use 'data' instead of 'body'
         };
       },
-      invalidatesTags: [TagTypes.biodata],
+      invalidatesTags: [TagTypes.biodata, TagTypes.user],
+    }),
+
+    updateProfile: build.mutation({
+      query: (payload: Partial<any>) => ({
+        url: `${BIO_DATA_API}/me`,
+        method: "PATCH",
+        data: payload,
+      }),
+      invalidatesTags: [TagTypes.biodata, TagTypes.user],
     }),
   }),
   overrideExisting: false,
 });
 
-export const { useGetBiodataByStepQuery, useUpdateBiodataMutation, useGetALlBiodatasQuery , useGetBioDataByNoQuery } =
-  biodataApi;
+export const {
+  useGetBiodataByStepQuery,
+  useUpdateBiodataMutation,
+  useGetALlBiodatasQuery,
+  useGetBioDataByNoQuery,
+  useUpdateProfileMutation,
+} = biodataApi;
