@@ -1,11 +1,14 @@
+import profileImage from "@/assets/boy.jpg";
+import { sidebarItems } from "@/constants/sidebarItems";
 import { getUserInfo, isUserLoggedIn } from "@/services/auth.service";
 import { IUserPayload } from "@/types";
 import { UserOutlined } from "@ant-design/icons";
-import { Avatar, Button, Popover } from "antd";
+import { Avatar, Button, Menu, Popover, Progress, Tooltip } from "antd";
+import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import SidebarProfile from "./SidebarProfile";
+import { FaRegEdit } from "react-icons/fa";
 
 const HeaderUserActions = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
@@ -72,8 +75,8 @@ const HeaderUserActions = () => {
         open={open}
         onOpenChange={handleOpenChange}
         content={
-          // <Content role={role} hide={hide} />
-          <SidebarProfile role={role} />
+          <Content role={role} hide={hide} />
+          // <SidebarProfile role={role} />
         }
         trigger='hover'>
         <Avatar
@@ -89,77 +92,77 @@ const HeaderUserActions = () => {
 
 export default HeaderUserActions;
 
-// const Content = ({ role, hide }: { role: string; hide: () => void }) => {
-//   const router = useRouter();
-//   const pathname = usePathname();
+const Content = ({ role, hide }: { role: string; hide: () => void }) => {
+  const router = useRouter();
+  const pathname = usePathname();
 
-//   const handleMenuClick = ({ key }: { key: string }) => {
-//     router.push(key);
-//     hide(); // Close popover after navigation
-//   };
+  const handleMenuClick = ({ key }: { key: string }) => {
+    router.push(key);
+    hide(); // Close popover after navigation
+  };
 
-//   return (
-//     <>
-//       <div className='max-w-xs mx-auto mb-1 border-b border-gray-300  p-4 bg-white'>
-//         {/* Profile Image */}
-//         <div className='flex justify-center mb-1'>
-//           <div className='w-14 h-14 rounded-full overflow-hidden border-2 border-purple-500'>
-//             <Image
-//               src={profileImage}
-//               alt='Profile'
-//               className='object-cover w-full h-full'
-//               width={96}
-//               height={96}
-//             />
-//           </div>
-//         </div>
+  return (
+    <>
+      <div className='max-w-xs mx-auto mb-1 border-b border-gray-300  p-4 bg-white'>
+        {/* Profile Image */}
+        <div className='flex justify-center mb-1'>
+          <div className='w-14 h-14 rounded-full overflow-hidden border-2 border-purple-500'>
+            <Image
+              src={profileImage}
+              alt='Profile'
+              className='object-cover w-full h-full'
+              width={96}
+              height={96}
+            />
+          </div>
+        </div>
 
-//         {/* Progress & Tip */}
-//         <div className='mb-2'>
-//           <Tooltip title='Biodata completion: 50%' placement='bottomRight'>
-//             <Progress
-//               percent={50}
-//               status='active'
-//               strokeColor={{
-//                 from: "#06b6d4",
-//                 to: "#3b82f6",
-//               }}
-//               percentPosition={{
-//                 align: "end",
-//                 type: "outer",
-//               }}
-//             />
-//           </Tooltip>
-//           <p className='text-sm text-gray-500 mt-1'>Complete your profile</p>
-//         </div>
+        {/* Progress & Tip */}
+        <div className='mb-2'>
+          <Tooltip title='Biodata completion: 50%' placement='bottomRight'>
+            <Progress
+              percent={50}
+              status='active'
+              strokeColor={{
+                from: "#06b6d4",
+                to: "#3b82f6",
+              }}
+              percentPosition={{
+                align: "end",
+                type: "outer",
+              }}
+            />
+          </Tooltip>
+          <p className='text-sm text-gray-500 mt-1'>Complete your profile</p>
+        </div>
 
-//         {/* Status */}
-//         <div className='flex justify-between items-center mt-4'>
-//           <span className='text-sm mr-1 font-medium text-gray-700'>
-//             Biodata Status:
-//           </span>
-//           <span className='text-xs font-semibold text-yellow-800 bg-yellow-100 px-1 py-0.5 rounded-full border border-yellow-300'>
-//             Not Completed
-//           </span>
-//         </div>
+        {/* Status */}
+        <div className='flex justify-between items-center mt-4'>
+          <span className='text-sm mr-1 font-medium text-gray-700'>
+            Biodata Status:
+          </span>
+          <span className='text-xs font-semibold text-yellow-800 bg-yellow-100 px-1 py-0.5 rounded-full border border-yellow-300'>
+            Not Completed
+          </span>
+        </div>
 
-//         {/* Edit Button */}
-//         <button
-//           className='w-full mt-4 flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 transition duration-300 shadow cursor-pointer '
-//           onClick={() => router.push(`/${role}/edit-biodata`)}>
-//           <FaRegEdit size={16} />
-//           Edit Biodata
-//         </button>
-//       </div>
+        {/* Edit Button */}
+        <button
+          className='w-full mt-4 flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 transition duration-300 shadow cursor-pointer '
+          onClick={() => router.push(`/${role}/edit-biodata`)}>
+          <FaRegEdit size={16} />
+          Edit Biodata
+        </button>
+      </div>
 
-//       {/* Sidebar Menu */}
-//       <Menu
-//         onClick={handleMenuClick}
-//         theme='light'
-//         mode='inline'
-//         selectedKeys={[pathname]}
-//         items={sidebarItems(role)}
-//       />
-//     </>
-//   );
-// };
+      {/* Sidebar Menu */}
+      <Menu
+        onClick={handleMenuClick}
+        theme='light'
+        mode='inline'
+        selectedKeys={[pathname]}
+        items={sidebarItems(role)}
+      />
+    </>
+  );
+};

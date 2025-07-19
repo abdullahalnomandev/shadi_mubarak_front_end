@@ -4,7 +4,6 @@ import {
   DashboardOutlined,
   SettingOutlined,
   TeamOutlined,
-  UserOutlined,
 } from "@ant-design/icons";
 import { Button, MenuProps } from "antd";
 import Link from "next/link";
@@ -22,11 +21,6 @@ export const sidebarItems = (role: string) => {
   };
 
   const defaultItems: MenuProps["items"] = [
-    {
-      label: <Link href={`/${role}`}>Profile</Link>,
-      key: `/${role}`,
-      icon: <UserOutlined />,
-    },
     {
       label: "Settings",
       key: `/${role}/account-settings`,
@@ -87,12 +81,12 @@ export const sidebarItems = (role: string) => {
       key: `/${role}/dashboard`,
       icon: <DashboardOutlined />,
     },
-    ...defaultItems,
     {
       label: <Link href={`/${role}/my-biodata`}>My Biodata</Link>,
       key: `/${role}/my-biodata`,
       icon: <ImProfile />,
     },
+
     {
       label: <Link href={`/${role}/edit-biodata`}>Edit BioData</Link>,
       key: `/${role}/edit-biodata`,
@@ -108,6 +102,8 @@ export const sidebarItems = (role: string) => {
       key: `/${role}/my-purchased`,
       icon: <IoCartOutline />,
     },
+    ...defaultItems,
+
     {
       label: (
         <Button

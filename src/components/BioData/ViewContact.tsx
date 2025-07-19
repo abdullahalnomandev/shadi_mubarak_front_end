@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import VideoPlayerButton from "../UI/VideoPlayerButton";
-import AntModal from "../UI/AntModal";
-import { message } from "antd";
 import {
   useGetConnectionQuery,
   usePurchaseBiodataMutation,
 } from "@/redux/api/purchaseBiodata";
-import { FiShoppingCart } from "react-icons/fi";
+import { message } from "antd";
 import Link from "next/link";
+import { useState } from "react";
+import { FiShoppingCart } from "react-icons/fi";
+import AntModal from "../UI/AntModal";
+import VideoPlayerButton from "../UI/VideoPlayerButton";
 
 const ViewContact = ({ bioDataNo }: { bioDataNo: string }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);

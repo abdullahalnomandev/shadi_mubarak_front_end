@@ -1,15 +1,13 @@
 "use client";
 import profileImage from "@/assets/boy.jpg";
-import { sidebarItems } from "@/constants/sidebarItems";
+import { BioDataStatus } from "@/constants/bioData";
 import { useGetUserQuery } from "@/redux/api/user";
 import { getBioDataStatusLabel } from "@/utils/biodata-status";
-import { Menu, Progress, Tooltip } from "antd";
+import { Progress, Tooltip } from "antd";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { FaRegEdit } from "react-icons/fa";
+import ProfileStatusAction from "./ProfileStatusAction";
 
-const SidebarProfile = ({ role, selectedKey, pathname }) => {
-  const router = useRouter();
+const SidebarProfile = () => {
   const { data: userData } = useGetUserQuery();
 
   const completedSteps = userData?.user?.bioData?.completedSteps;
@@ -19,13 +17,14 @@ const SidebarProfile = ({ role, selectedKey, pathname }) => {
   const basePercent = 15;
   const maxPercent = 100;
   const stepIncrement = (maxPercent - basePercent) / totalSteps;
-
   const completedCount = completedSteps?.length;
+  const profileStatus = userData?.user?.bioData?.profileStatus;
 
   const percent = Math.min(
     basePercent + stepIncrement * completedCount,
     maxPercent
   );
+
   return (
     <>
       <div className='max-w-xs mx-auto mb-1 border-b border-gray-300  p-4 pt-1 bg-white'>
@@ -47,8 +46,21 @@ const SidebarProfile = ({ role, selectedKey, pathname }) => {
           <span className='text-sm font-medium text-gray-700'>
             Biodata Status:
           </span>
-          <span className='text-xs font-semibold text-yellow-800 bg-yellow-100 px-3 py-0.5 rounded-full border border-yellow-300'>
-            {getBioDataStatusLabel(userData?.user?.bioData?.profileStatus)}
+          <span
+            className={`text-xs font-semibold px-3 py-0.5 rounded-full border ${
+              profileStatus === BioDataStatus.NOT_STARTED
+                ? "text-gray-800 bg-gray-100 border-gray-300"
+                : profileStatus === BioDataStatus.INCOMPLETE
+                ? "text-orange-800 bg-orange-100 border-orange-300"
+                : profileStatus === BioDataStatus.NOT_SUBMITTED
+                ? "text-blue-800 bg-blue-100 border-blue-300"
+                : profileStatus === BioDataStatus.PENDING
+                ? "text-yellow-800 bg-yellow-100 border-yellow-300"
+                : profileStatus === BioDataStatus.REJECTED
+                ? "text-red-800 bg-red-100 border-red-300"
+                : "text-green-800 bg-green-100 border-green-300" // for verified status
+            }`}>
+            {getBioDataStatusLabel(profileStatus)}
           </span>
         </div>
         {/* Progress & Tip */}
@@ -72,21 +84,8 @@ const SidebarProfile = ({ role, selectedKey, pathname }) => {
         </div>
 
         {/* Edit Button */}
-        <button
-          className='w-full mt-4 flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 transition duration-300 shadow cursor-pointer '
-          onClick={() => router.push("/user/edit-biodata")}>
-          <FaRegEdit size={16} />
-          Edit Biodata
-        </button>
+        <ProfileStatusAction profileStatus={profileStatus} />
       </div>
-      <Menu
-        theme='light'
-        mode='inline'
-        defaultSelectedKeys={[pathname]}
-        activeKey={pathname}
-        selectedKeys={[selectedKey]}
-        items={sidebarItems(role)}
-      />
     </>
   );
 };

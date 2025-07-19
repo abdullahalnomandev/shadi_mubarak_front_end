@@ -32,7 +32,8 @@
             "marriage_related": "বিবাহ সংক্রান্ত তথ্য",
             "expected_partner": "প্রত্যাশিত জীবনসঙ্গী",
             "agreement": "চুক্তি",
-            "contact": "যোগাযোগ"
+            "contact": "যোগাযোগের তথ্য",
+            "your_contact": "আপনার যোগাযোগের তথ্য"
         },
         "address": {
             "present_address": "বর্তমান ঠিকানা",

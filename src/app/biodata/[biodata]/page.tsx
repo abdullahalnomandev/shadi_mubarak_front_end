@@ -9,7 +9,7 @@ export default async function Page({
 
   return (
     <div className='min-h-screen'>
-      <BioData bioDataNo={biodata} />
+      <BioData bioDataNo={biodata} className='sm:px-14' />
     </div>
   );
 }

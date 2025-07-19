@@ -1,99 +1,86 @@
 "use client";
-import React, { useState } from "react";
-import DataTable from "@/components/UI/DataTable";
-import { Button, message } from "antd";
+
 import { DeleteOutlined, EyeOutlined } from "@ant-design/icons";
+import { Button, message } from "antd";
+import Link from "next/link";
+import { useState } from "react";
+
+import ActionBar from "@/components/UI/ActionBar";
+import DataTable from "@/components/UI/DataTable";
+import PopConfirm from "@/components/UI/PopConfirm";
 import { useDebounce } from "@/redux/hooks";
-import ActionBar from "../../UI/ActionBar";
+
 import {
   useDeleteFavoriteListMutation,
   useGetFavoriteListQuery,
 } from "@/redux/api/favoriteList";
-import Link from "next/link";
-import PopConfirm from "../../UI/PopConfirm";
 
 const FavoriteList = () => {
-  const query: Record<string, any> = {};
   const [size, setSize] = useState<number>(10);
   const [page, setPage] = useState<number>(1);
   const [search, setSearch] = useState<string>("");
   const [sortBy, setSortBy] = useState<string>("");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
 
-  query["limit"] = size;
-  query["page"] = page;
-  query["sortBy"] = sortBy;
-  query["sortOrder"] = sortOrder;
+  const debouncedTerm = useDebounce({ searchQuery: search, deley: 600 });
 
-  const debouncedTerm = useDebounce({
-    searchQuery: search,
-    deley: 600,
-  });
+  const query: Record<string, any> = {
+    limit: size,
+    page,
+    sortBy,
+    sortOrder,
+  };
 
   if (debouncedTerm) query["searchTerm"] = debouncedTerm;
-  const { data, isLoading } = useGetFavoriteListQuery({ ...query });
+
+  const { data, isLoading } = useGetFavoriteListQuery(query);
   const [deleteFavoriteList] = useDeleteFavoriteListMutation();
 
   const { meta, favorites } = data || {};
 
   const handleDelete = async (id: string) => {
     try {
-      await deleteFavoriteList(id);
-      message.success("Deleted Successfully");
+      await deleteFavoriteList({ likedPersonBioNo: id });
+      message.success("Deleted successfully.");
     } catch (error: any) {
-      message.error(
-        (error as any)?.data || "Something went wrong please try again later."
-      );
+      message.error(error?.data || "Something went wrong. Please try again.");
     }
   };
 
   const columns = [
     {
+      title: "S/N",
+      key: "serial",
+      render: (_: any, __: any, index: number) => (page - 1) * size + index + 1,
+    },
+    {
       title: "BioData No",
       dataIndex: "likedPerson",
-      key: "likedPerson",
-      sorter: (a: any, b: any) => a.name?.length - b.name?.length,
-      render: (data: any) => {
-        return data?.bioDataNo;
-      },
+      key: "bioDataNo",
+      render: (likedPerson: any) => likedPerson?.bioDataNo || "N/A",
     },
     {
       title: "Address",
       dataIndex: "likedPerson",
       key: "address",
-      sorter: (a: any, b: any) => a.name?.length - b.name?.length,
-      render: (data: any) => {
-        return data?.address;
-      },
+      render: (likedPerson: any) => likedPerson?.address || "N/A",
     },
     {
       title: "Action",
       key: "action",
-      render: (data: any) => (
+      render: (record: any) => (
         <div className='flex items-center gap-2'>
-          <Link href={`/biodata/${data?.likedPerson?.bioDataNo}`}>
-            <Button
-              type='primary'
-              onClick={() => {
-                console.log({ data });
-              }}
-              className='w-4'>
+          <Link href={`/biodata/${record?.likedPerson?.bioDataNo}`}>
+            <Button type='primary' size='small' title='View'>
               <EyeOutlined />
             </Button>
           </Link>
           <PopConfirm
-            handleCancel={() => console.log("cencel")}
-            handleConfirm={() => handleDelete(data?._id)}
-            title='Delete from Favorites!'>
-            <Button
-              type='primary'
-              danger
-              className='w-4'
-              onClick={() => {
-                console.log({ data });
-              }}>
-              {" "}
-              <DeleteOutlined />{" "}
+            title='Remove from favorites?'
+            handleConfirm={() => handleDelete(record?._id)}
+            handleCancel={() => {}}>
+            <Button type='primary' danger size='small' title='Delete'>
+              <DeleteOutlined />
             </Button>
           </PopConfirm>
         </div>
@@ -101,7 +88,7 @@ const FavoriteList = () => {
     },
   ];
 
-  const onTableChange = (pagination: any, filters: any, sorter: any) => {
+  const onTableChange = (_pagination: any, _filters: any, sorter: any) => {
     const { order, field } = sorter;
     setSortBy(field);
     setSortOrder(order === "ascend" ? "asc" : "desc");
@@ -113,36 +100,36 @@ const FavoriteList = () => {
   };
 
   const handleReset = () => {
+    setSearch("");
     setSortBy("");
     setSortOrder("desc");
-    setSearch("");
   };
 
-  console.log({ meta, favorites });
   return (
     <>
       <ActionBar
         title='Favorites List'
         search={search}
+        setSearch={setSearch}
         sortBy={sortBy}
         handleReset={handleReset}
-        setSearch={setSearch}
         isCreate={false}
-        handleCreate={() => {
-          console.log("create");
-        }}
       />
+
       <DataTable
         loading={isLoading}
         columns={columns}
-        dataSource={favorites}
+        dataSource={favorites?.map((item: any) => ({
+          ...item,
+          key: item?._id || item?.likedPerson?.bioDataNo,
+        }))}
+        rowKey='key'
         pageSize={size}
-        total={Number(meta?.total)}
-        showSizeChanger={true}
+        total={Number(meta?.total || 0)}
+        showSizeChanger
+        showPagination={!!(Number(meta?.total) > 10)}
         onChange={onTableChange}
         onPageSizeChange={onPageSizeChange}
-        showPagination={!!(Number(meta?.total) > 10)}
-        rowKey='id'
       />
     </>
   );

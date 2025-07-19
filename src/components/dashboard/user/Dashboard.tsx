@@ -30,7 +30,7 @@ const UserDashboard = () => {
       value: null,
       desc: "You need at least one connection to view biodata contact details",
       isConnection: true,
-      href: "/packages",
+      href: "/user/connection/details",
     },
     {
       id: 2,

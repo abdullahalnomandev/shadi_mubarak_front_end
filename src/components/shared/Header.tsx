@@ -4,16 +4,18 @@ import { MenuOutlined, MoonOutlined, SunOutlined } from "@ant-design/icons";
 import { Button, Drawer, Layout, Menu } from "antd";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import HeaderUserActions from "../UI/HeaderUserActions";
+
 const { Header: AntHeader } = Layout;
 
 const Header = () => {
+  const pathname = usePathname();
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  // Handle initial theme setup
   useEffect(() => {
     const systemPrefersDark = window.matchMedia(
       "(prefers-color-scheme: dark)"
@@ -24,14 +26,11 @@ const Header = () => {
     applyTheme(initialTheme as "light" | "dark");
   }, []);
 
-  // Apply theme changes
   const applyTheme = (theme: "light" | "dark") => {
-    if (typeof window === "undefined") return;
     document.documentElement.classList.toggle("dark", theme === "dark");
     localStorage.setItem("theme", theme);
   };
 
-  // Toggle theme
   const toggleDarkMode = () => {
     const newTheme = isDarkMode ? "light" : "dark";
     setIsDarkMode(!isDarkMode);
@@ -47,13 +46,20 @@ const Header = () => {
   }, []);
 
   const navItems = [
-    { key: "0", label: <Link href='/'>Home</Link> },
-    { key: "1", label: <Link href='/about'>About</Link> },
-    { key: "2", label: <Link href='/how-it-works'>How it Works</Link> },
-    { key: "3", label: <Link href='/pricing'>Pricing</Link> },
-    { key: "4", label: <Link href='/faq'>FAQ</Link> },
-    { key: "5", label: <Link href='/contact'>Contact</Link> },
+    { key: "/", label: <Link href='/'>Home</Link> },
+    { key: "/about", label: <Link href='/about'>About</Link> },
+    {
+      key: "/how-it-works",
+      label: <Link href='/how-it-works'>How it Works</Link>,
+    },
+    { key: "/pricing", label: <Link href='/pricing'>Pricing</Link> },
+    { key: "/faq", label: <Link href='/faq'>FAQ</Link> },
+    { key: "/contact", label: <Link href='/contact'>Contact</Link> },
   ];
+
+  // Match closest route key
+  const currentMenuKey =
+    navItems.find((item) => pathname?.startsWith(item.key))?.key ?? "/";
 
   return (
     <AntHeader
@@ -62,19 +68,26 @@ const Header = () => {
       }`}>
       <div className='flex justify-between items-center px-4 sm:px-8 h-full'>
         {/* Logo */}
-        <Link href='/'>
-          <Image src={logo} alt='Shadi Mubarak' width={40} height={40} />
-        </Link>
+        <div>
+          <Link href='/'>
+            <Image src={logo} alt='Shadi Mubarak' width={40} height={40} />
+          </Link>
+        </div>
 
         {/* Desktop Nav */}
-        <div className='hidden md:flex flex-1 items-center justify-center'>
-          <Menu
-            mode='horizontal'
-            items={navItems}
-            className='!bg-transparent !border-none '
-            theme={isDarkMode ? "dark" : "light"}
-          />
+        <div className='hidden md:flex items-center justify-center flex-1'>
+          <div className='flex justify-center'>
+            <Menu
+              mode='horizontal'
+              defaultSelectedKeys={[currentMenuKey]}
+              items={navItems}
+              disabledOverflow
+              className='!bg-transparent !border-none'
+              theme={isDarkMode ? "dark" : "light"}
+            />
+          </div>
         </div>
+
         {/* Theme Toggle Button */}
         <Button
           type='text'
@@ -90,11 +103,12 @@ const Header = () => {
         />
 
         <HeaderUserActions />
+
         {/* Mobile Menu Toggle */}
         <div className='md:hidden'>
           <Button
             type='text'
-            icon={<MenuOutlined className='dark:!text-slate-50 ' />}
+            icon={<MenuOutlined className='dark:!text-slate-50' />}
             onClick={() => setDrawerVisible(true)}
           />
         </div>
@@ -110,8 +124,9 @@ const Header = () => {
           className='dark:!bg-gray-900'>
           <Menu
             mode='vertical'
+            selectedKeys={[currentMenuKey]}
             items={navItems}
-            className='border-none  dark:text-white'
+            className='border-none dark:text-white'
           />
           <div className='mt-6 flex flex-col gap-3'>
             <Button

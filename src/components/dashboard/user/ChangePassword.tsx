@@ -48,8 +48,9 @@ const ChangePassword = () => {
         newPassword: values.newPassword,
       };
 
-      await userUpdatePassword(payload).unwrap();
+      await userUpdatePassword(payload).unwrap(); // throws if error
       message.success("Password changed successfully");
+      return true;
     } catch (err: any) {
       message.error(err?.data || "Failed to change password");
     }

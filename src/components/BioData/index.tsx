@@ -1,25 +1,18 @@
 "use client";
-import image from "@/assets/girl.jpg";
+import { BioDataStatus } from "@/constants/bioData";
 import { useGetBioDataByNoQuery } from "@/redux/api/biodata";
-import {
-  useAddFavoriteListMutation,
-  useDeleteFavoriteListMutation,
-  useGetFavoriteOneByIdQuery,
-} from "@/redux/api/favoriteList";
 import { getUserInfo } from "@/services/auth.service";
 import { IUser } from "@/types";
-import { useVisitorData } from "@fingerprintjs/fingerprintjs-pro-react";
-import { message } from "antd";
+import { getBioDataStatusLabel } from "@/utils/biodata-status";
 import dayjs from "dayjs";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
-import { useState } from "react";
-import { FiBookmark, FiCopy } from "react-icons/fi";
-import AntModal from "../UI/AntModal";
+import Link from "next/link";
+import GeneralInfoProfile from "./GeneralInfoProfile";
 import ViewContact from "./ViewContact";
 
 interface IProps {
   bioDataNo: string;
+  className?: string;
 }
 
 // const data = {
@@ -164,32 +157,28 @@ interface IProps {
 // };
 // const { data: bioData } = data;
 
-const BioData = ({ bioDataNo }: IProps) => {
+const BioData = ({ bioDataNo, className = "" }: IProps) => {
   // const router = useRouter();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const t = useTranslations();
   const usrInfo = getUserInfo() as IUser;
+  const t = useTranslations();
   const {
     data: bioDataInfo,
     isLoading,
     error,
   } = useGetBioDataByNoQuery({
-    arg: {
-      userId: usrInfo?.id,
-    },
+    // arg: {
+    //   userId: usrInfo?.id,
+    // },
     bioDataNo,
   });
-  const [addFavoriteList, { isLoading: isFavoriteListLoading }] =
-    useAddFavoriteListMutation();
-  const { data: visitedData } = useVisitorData(
-    { extendedResult: true },
-    { immediate: true }
-  );
-  const { data } = useGetFavoriteOneByIdQuery({ likedPersonId: bioDataNo });
-  const [deleteFavoriteList, { isLoading: isRemoveFavoriteListLoading }] =
-    useDeleteFavoriteListMutation();
+
+  // const { data: visitedData } = useVisitorData(
+  //   { extendedResult: true },
+  //   { immediate: true }
+  // );
 
   const bioData = bioDataInfo?.biodata || {};
+  const profileStatus = bioDataInfo?.biodata?.profileStatus;
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -202,7 +191,7 @@ const BioData = ({ bioDataNo }: IProps) => {
   const sections = [
     {
       title: t("biodata.sections.general_information"),
-      data: bioData.general_information || {},
+      data: bioData?.general_information || {},
     },
     {
       title: t("biodata.sections.address"),
@@ -249,7 +238,10 @@ const BioData = ({ bioDataNo }: IProps) => {
       data: bioData.agreement || {},
     },
     {
-      title: t("biodata.sections.contact"),
+      title:
+        bioDataNo === bioData?.bioDataNo
+          ? t("biodata.sections.your_contact")
+          : t("biodata.sections.contact"),
       data: bioData.contact || {},
     },
   ];
@@ -273,134 +265,12 @@ const BioData = ({ bioDataNo }: IProps) => {
     // Handle ISO date strings
     if (
       typeof value === "string" &&
-      value.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/)
+      dayjs(value, dayjs.ISO_8601, true).isValid()
     ) {
-      return dayjs(value).startOf("month").format("D MMMM, YYYY");
+      // Convert date to local time and format as YYYY-MM-DD
+      return dayjs(value).format("YYYY-MM-DD");
     }
     return value.toString();
-  };
-  // console.log("router", window.location.origin + window.location.pathname);
-  const location = window.location;
-  console.log("favorite", data?.favorite?._id);
-  const renderGeneralInfo = () => {
-    if (!bioData.general_information) {
-      return null;
-    }
-
-    const handleAddToFavoriteList = async () => {
-      try {
-        await addFavoriteList({
-          likedPersonBioNo: bioDataNo,
-        });
-        message.success("Added to favorite list");
-        setIsModalOpen(false);
-      } catch (error) {
-        message.error((error as any)?.message || "Something went wrong");
-      }
-    };
-
-    const handleRemoveFromFavoriteList = async () => {
-      try {
-        await deleteFavoriteList({
-          likedPersonBioNo: data?.favorite?._id,
-        });
-        message.success("Removed from favorite list");
-        setIsModalOpen(false);
-      } catch (error) {
-        message.error((error as any)?.message || "Something went wrong");
-      }
-    };
-
-    console.log({ visitedData });
-
-    return (
-      <div className='w-full mx-auto mb-8'>
-        <div className='bg-purple-500 rounded-md relative pt-16'>
-          <div className='absolute -top-10 left-1/2 -translate-x-1/2'>
-            <div className='rounded-full border-4 border-purple-500 bg-white !w-26 !h-26'>
-              <Image
-                src={image}
-                alt='Profile'
-                className='object-cover w-full h-full rounded-full'
-                width={50}
-                height={50}
-                priority
-              />
-            </div>
-          </div>
-
-          <div className='text-center text-white text-xl font-semibold mt-4 mb-6'>
-            {t("biodata.general.biodata_no")} : {bioData.bioDataNo}
-          </div>
-
-          <div className='w-full'>
-            {Object.entries(bioData.general_information)
-              .filter(([key]) => key !== "_id")
-              .map(([key, value], index) => (
-                <div
-                  key={key}
-                  className={`flex border-t border-purple-200 ${
-                    index % 2 === 0 ? "bg-purple-600" : ""
-                  }`}>
-                  <div className='w-1/2 p-3 text-white font-medium capitalize border-r border-purple-400'>
-                    {t(`biodata.general.${key}`)}
-                  </div>
-                  <div className='w-1/2 p-3 text-white capitalize'>
-                    {renderValue(value)}
-                  </div>
-                </div>
-              ))}
-          </div>
-        </div>
-        {/* Action Buttons */}
-        <div className='flex justify-center gap-4 p-4 border-t border-purple-400'>
-          {/* Copy Biodata Button */}
-          <button
-            className='flex flex-1 justify-center items-center gap-2 py-3 text-white font-semibold rounded-md bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-indigo-600 hover:to-purple-500 transition-all duration-300 cursor-pointer'
-            onClick={async () => {
-              await navigator.clipboard.writeText(
-                location.origin + location.pathname
-              );
-              message.success("Biodata link copied!");
-            }}>
-            <FiCopy className='h-5 w-5' />
-            {t("biodata.actions.copy_bio_link")}
-          </button>
-
-          {/* Add to Shortlist Button */}
-          <button
-            className='flex flex-1 justify-center items-center gap-2 py-3 bg-purple-100 text-purple-700 font-semibold rounded-md hover:bg-purple-200 transition-all duration-300 cursor-pointer'
-            onClick={() => setIsModalOpen(true)}>
-            <FiBookmark className='h-5 w-5' />
-            {!!data?.favorite
-              ? "Remove from favorite list"
-              : t("biodata.actions.add_to_shortlist")}
-          </button>
-          <AntModal
-            title={`${
-              !!data?.favorite
-                ? "Would you like to remove from favorite list"
-                : "Would you like to add this biodata to your shortlist"
-            }`}
-            okText='Yes'
-            cancelText='Cancel'
-            isOpen={isModalOpen}
-            onClose={() => setIsModalOpen(false)}
-            onConfirm={
-              !!data?.favorite
-                ? handleRemoveFromFavoriteList
-                : handleAddToFavoriteList
-            }
-            confirmLoading={
-              !!data?.favorite
-                ? isRemoveFavoriteListLoading
-                : isFavoriteListLoading
-            }>
-            <p>Are you sure?</p>
-          </AntModal>
-        </div>
-      </div>
-    );
   };
 
   const renderTable = (title: string, data: any, key: number) => {
@@ -440,20 +310,111 @@ const BioData = ({ bioDataNo }: IProps) => {
     );
   };
 
-  const filteredSections = sections.filter(
-    (section) => section.title !== t("biodata.sections.general_information")
-  );
+  const filteredSections = sections
+    .filter(
+      (section) => section.title !== t("biodata.sections.general_information")
+    )
+    .filter((section) => {
+      const data = section.data;
 
+      if (typeof data === "object" && data !== null) {
+        // Check all keys except _id
+        const meaningfulKeys = Object.keys(data).filter((key) => key !== "_id");
+
+        return meaningfulKeys.some((key) => {
+          const value = data[key];
+          if (Array.isArray(value)) {
+            return value.length > 0;
+          } else if (typeof value === "object" && value !== null) {
+            return Object.keys(value).length > 0;
+          } else {
+            return value !== undefined && value !== null && value !== "";
+          }
+        });
+      }
+
+      return true;
+    });
+
+  console.log({ filteredSections });
   return (
-    <div className='m-auto mt-16 mb-8 relative sm:px-14 px-1'>
-      <div className='sm:flex sm:flex-wrap sm:gap-4'>
-        <div className='sm:w-[350px]'>{renderGeneralInfo()}</div>
-        <div className='sm:flex-1 min-w-0'>
+    <div className={`m-auto mt-16 mb-8  ${className}  px-1`}>
+      <div className='sm:flex sm:flex-wrap sm:gap-4 relative'>
+        <div className='sm:w-[350px] md:sticky md:top-[100px]   h-fit'>
+          <GeneralInfoProfile
+            general_information={bioData?.general_information}
+            profileStatus={profileStatus}
+            bioDataNo={bioData?.bioDataNo}
+            usrInfo={usrInfo}
+          />
+        </div>
+        <div className='sm:flex-1 min-w-0 '>
           {filteredSections.map((section, index) =>
             renderTable(section.title, section.data, index)
           )}
+          <div className='text-center'>
+            {profileStatus !== BioDataStatus.VERIFIED && (
+              <>
+                {usrInfo?.bioDataNo === bioDataNo &&
+                !!filteredSections?.length ? (
+                  <p className='text-sm text-red-600'>
+                    Your biodata is{" "}
+                    <span
+                      className={`text-xs font-medium px-3 py-0.5 rounded-full border ${
+                        profileStatus === BioDataStatus.NOT_STARTED
+                          ? "text-gray-800 bg-gray-100 border-gray-300"
+                          : profileStatus === BioDataStatus.INCOMPLETE
+                          ? "text-orange-800 bg-orange-100 border-orange-300"
+                          : profileStatus === BioDataStatus.NOT_SUBMITTED
+                          ? "text-blue-800 bg-blue-100 border-blue-300"
+                          : profileStatus === BioDataStatus.PENDING
+                          ? "text-yellow-800 bg-yellow-100 border-yellow-300"
+                          : profileStatus === BioDataStatus.REJECTED
+                          ? "text-red-800 bg-red-100 border-red-300"
+                          : "text-green-800 bg-green-100 border-green-300"
+                      }`}>
+                      {getBioDataStatusLabel(profileStatus)}
+                    </span>
+                    <br />
+                    <span className='text-black'>
+                      Please{" "}
+                      <Link
+                        href='/user/edit-biodata'
+                        className='text-blue-600 underline'>
+                        complete your biodata
+                      </Link>{" "}
+                      to proceed.
+                    </span>
+                  </p>
+                ) : (
+                  <p className='text-md text-red-700 mt-2'>
+                    This biodata is currently{" "}
+                    <span
+                      className={`text-xs font-medium px-3 py-0.5 rounded-full border ${
+                        profileStatus === BioDataStatus.NOT_STARTED
+                          ? "text-gray-800 bg-gray-100 border-gray-300"
+                          : profileStatus === BioDataStatus.INCOMPLETE
+                          ? "text-orange-800 bg-orange-100 border-orange-300"
+                          : profileStatus === BioDataStatus.NOT_SUBMITTED
+                          ? "text-blue-800 bg-blue-100 border-blue-300"
+                          : profileStatus === BioDataStatus.PENDING
+                          ? "text-yellow-800 bg-yellow-100 border-yellow-300"
+                          : profileStatus === BioDataStatus.REJECTED
+                          ? "text-red-800 bg-red-100 border-red-300"
+                          : "text-green-800 bg-green-100 border-green-300"
+                      }`}>
+                      {getBioDataStatusLabel(profileStatus)}
+                    </span>
+                    <br />
+                    So you can’t view the contact details.
+                  </p>
+                )}
+              </>
+            )}
+          </div>
+
           {/* Conditionally Render  */}
-          {!bioDataInfo?.biodata?.contact && (
+          {!bioData?.contact && BioDataStatus.VERIFIED === profileStatus && (
             <ViewContact bioDataNo={bioDataNo} />
           )}
         </div>

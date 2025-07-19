@@ -3,9 +3,9 @@ import { districts } from "@/constants/districts";
 import { genderOptions, maritalStatusOptions } from "@/constants/global";
 import { SearchOutlined } from "@ant-design/icons";
 import { Col, Row } from "antd";
+import Link from "next/link";
 import Form from "../Forms/Form";
 import FormSelectField from "../Forms/FormSelectField";
-import Link from "next/link";
 
 const Banner = () => {
   const onSubmit = (values: any) => {
@@ -14,46 +14,51 @@ const Banner = () => {
   //   const t = useTranslations();
   return (
     <div
-      className="relative md:m-8 mt-5 rounded-lg bg-no-repeat bg-cover bg-center h-screen"
+      className='relative md:m-8 mt-5 rounded-lg bg-no-repeat bg-cover bg-center h-screen'
       style={{
         backgroundImage: `
         linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
         url(${banner.src})`,
-      }}
-    >
+      }}>
       {/* Overlay */}
-      <div className="container absolute mx-auto px-4 h-full flex flex-col items-center justify-center  z-10">
-        <div className="text-center max-w-2xl mb-8">
-          <h1 className="text-white text-5xl font-bold mb-4">
-            Find a religious partner <br />
-            of your choice
+      <div className='container absolute mx-auto px-4 h-full flex flex-col items-center justify-center  z-10'>
+        <div className='text-center max-w-2xl mb-8'>
+          <h1 className='!text-white !text-5xl !font-bold !mb-6 !tracking-tight !drop-shadow-xl !animate-fade-in'>
+            <span className='!inline-block !bg-gradient-to-r !from-rose-500 !via-rose-400 !to-pink-500 !bg-clip-text !text-transparent !font-extrabold'>
+              Bangladesh Islamic
+            </span>
+            <br />
+            <span className='!relative !inline-block group'>
+              Matrimony
+              <span className='!absolute !-bottom-2 !left-0 !w-full !h-0.5 !bg-gradient-to-r !from-rose-500 !to-pink-500 !transform !scale-x-0 !transition-transform !duration-500 !ease-in-out group-hover:!scale-x-100'></span>
+            </span>
           </h1>
-          <p className="text-xl text-gray-100">
+          <p className='text-xl text-gray-100'>
             We made it easy for you to get your life partner in your location
           </p>
         </div>
 
         {/* Search Form */}
-        <div className="w-full max-w-4xl bg-white/95 backdrop-blur-sm rounded-lg shadow-xl p-8">
+        <div className='w-full max-w-4xl bg-white/95 backdrop-blur-sm rounded-lg shadow-xl p-8'>
           <Form submitHandler={onSubmit}>
-            <Row gutter={[16, 16]} justify="center" align="middle">
+            <Row gutter={[16, 16]} justify='center' align='middle'>
               <Col xs={24} sm={12} md={6}>
                 <FormSelectField
                   options={genderOptions}
-                  name="gender"
-                  label="Looking for"
-                  placeholder="Select Gender"
-                  size="large"
+                  name='gender'
+                  label='Looking for'
+                  placeholder='Select Gender'
+                  size='large'
                 />
               </Col>
 
               <Col xs={24} sm={12} md={6}>
                 <FormSelectField
                   options={maritalStatusOptions}
-                  name="maritalStatus"
-                  label="Marital Status"
-                  placeholder="Select Marital Status"
-                  size="large"
+                  name='maritalStatus'
+                  label='Marital Status'
+                  placeholder='Select Marital Status'
+                  size='large'
                 />
               </Col>
 
@@ -71,10 +76,10 @@ const Banner = () => {
                       })),
                     ]
                   )}
-                  name="district"
-                  label="District"
-                  placeholder="Select District"
-                  size="large"
+                  name='district'
+                  label='District'
+                  placeholder='Select District'
+                  size='large'
                   showSearch={true}
                   filterOption={(input: string, option: any) => {
                     if (!option || typeof option !== "object") return false;
@@ -91,11 +96,10 @@ const Banner = () => {
               </Col>
 
               <Col xs={24} sm={12} md={6}>
-                <Link className="!text-white" href="/biodatas">
+                <Link className='!text-white' href='/biodatas'>
                   <button
-                    type="submit"
-                    className="w-full flex items-center justify-center gap-2 bg-rose-400 py-2.5 transition duration-300 rounded-md cursor-pointer !mt-6 hover:bg-rose-500"
-                  >
+                    type='submit'
+                    className='w-full flex items-center justify-center gap-2 bg-rose-400 py-2.5 transition duration-300 rounded-md cursor-pointer !mt-6 hover:bg-rose-500'>
                     <SearchOutlined />
                     Search Partners
                   </button>

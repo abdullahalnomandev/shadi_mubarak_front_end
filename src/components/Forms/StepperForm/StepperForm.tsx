@@ -12,10 +12,12 @@ import { biodataSteps } from "@/constants/global";
 import {
   useGetBioDataByNoQuery,
   useUpdateBiodataMutation,
+  useUpdateProfileMutation,
 } from "@/redux/api/biodata";
 import { getUserInfo } from "@/services/auth.service";
 import { IUser } from "@/types";
 import { SyncOutlined } from "@ant-design/icons";
+import { useRouter } from "next/navigation";
 import { getValidationSchema } from "./getValidationSchema";
 
 interface ISteps {
@@ -57,6 +59,7 @@ const submitStepData = async (
 
 const StepperForm = ({ steps }: IStepsProps) => {
   const { bioDataNo, id } = getUserInfo() as IUser;
+  const router = useRouter();
 
   const { data: bioDataInfo } = useGetBioDataByNoQuery({
     arg: { userId: id },
@@ -80,6 +83,7 @@ const StepperForm = ({ steps }: IStepsProps) => {
   const { handleSubmit, reset, watch } = methods;
 
   const [updateBiodata, { isLoading: isFetching }] = useUpdateBiodataMutation();
+  const [updateProfile] = useUpdateProfileMutation();
 
   // Auto-scroll to top on step change
   useEffect(() => {
@@ -93,7 +97,7 @@ const StepperForm = ({ steps }: IStepsProps) => {
       const stepsFromAPI = bioDataInfo.biodata.completedSteps ?? [];
       setCompletedSteps([0, ...stepsFromAPI]);
 
-      if (stepsFromAPI.length === 10) {
+      if (stepsFromAPI.length === 9) {
         if (isInitialLoad) {
           setCurrent((prev) => prev + 1);
         } else {
@@ -117,7 +121,7 @@ const StepperForm = ({ steps }: IStepsProps) => {
       setCurrent(stepNumber);
     }
   };
-
+  console.log({ completedSteps });
   const onHandleSubmit = async (data: any) => {
     try {
       await submitStepData(current, data, updateBiodata);
@@ -129,11 +133,32 @@ const StepperForm = ({ steps }: IStepsProps) => {
 
       const isLastStep = current === steps?.length - 1;
 
+      // UPDATE STATUS
+      if (isLastStep) {
+        try {
+          router.push("/user/my-biodata");
+          // Fire-and-forget update
+          updateProfile({ profileStatus: BioDataStatus.PENDING }).catch(
+            console.error
+          );
+        } catch (err) {
+          console.error("Failed to update profile status", err);
+        }
+      } else {
+        if (bioDataInfo?.biodata?.profileStatus === BioDataStatus.PENDING) {
+          updateProfile({ profileStatus: BioDataStatus.NOT_SUBMITTED });
+        }
+      }
+
       // Only move to the next step if it’s not the last and it's not a re-edit
       if (!isLastStep && !isAlreadyCompleted && !isFetching) {
         setCurrent((prev) => prev + 1);
       } else {
-        message.success("Step saved successfully");
+        if (current === 9) {
+          message.success("Biodata submitted successfully");
+        } else {
+          message.success("Step saved successfully");
+        }
       }
     } catch (error) {
       message.error(getErrorMessage(error));

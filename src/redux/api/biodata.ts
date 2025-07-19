@@ -7,10 +7,10 @@ const BIO_DATA_API = "/biodata";
 const biodataApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getBioDataByNo: build.query({
-      query: ({ arg, bioDataNo }: Record<string, any>) => ({
+      query: ({ bioDataNo }: Record<string, any>) => ({
         url: `${BIO_DATA_API}/${bioDataNo}`,
         method: "GET",
-        params: arg,
+        // params: arg,
       }),
       transformResponse: (response) => {
         return {
@@ -70,6 +70,14 @@ const biodataApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [TagTypes.biodata, TagTypes.user],
     }),
+
+    deleteBioData: build.mutation({
+      query: () => ({
+        url: BIO_DATA_API,
+        method: "DELETE",
+      }),
+      invalidatesTags: [TagTypes.biodata, TagTypes.user],
+    }),
   }),
   overrideExisting: false,
 });
@@ -80,4 +88,5 @@ export const {
   useGetALlBiodatasQuery,
   useGetBioDataByNoQuery,
   useUpdateProfileMutation,
+  useDeleteBioDataMutation,
 } = biodataApi;

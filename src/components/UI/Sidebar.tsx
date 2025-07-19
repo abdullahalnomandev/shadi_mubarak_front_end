@@ -1,7 +1,8 @@
 "use client";
+import { sidebarItems } from "@/constants/sidebarItems";
 import { getUserInfo } from "@/services/auth.service";
 import { IUserPayload } from "@/types";
-import { Layout } from "antd";
+import { Layout, Menu } from "antd";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import SidebarProfile from "./SidebarProfile";
@@ -19,6 +20,11 @@ const Sidebar = () => {
     setSelectedKey(pathname);
   }, [pathname, selectedKey]);
 
+  console.log({
+    selectedKey,
+    usePathname: usePathname(),
+    pathname,
+  });
   return (
     <Sider
       // collapsible
@@ -34,19 +40,15 @@ const Sidebar = () => {
         top: "64px",
         bottom: 0,
       }}>
-      <SidebarProfile
-        role={role}
-        selectedKey={selectedKey}
-        pathname={pathname}
-      />
-      {/* <Menu
+      <SidebarProfile role={role} />
+      <Menu
         theme='light'
         mode='inline'
         defaultSelectedKeys={[usePathname()]}
         activeKey={usePathname()}
         selectedKeys={[selectedKey]}
         items={sidebarItems(role)}
-      /> */}
+      />
     </Sider>
   );
 };

@@ -1,17 +1,18 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import React, { ReactElement } from "react";
-import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
-
-type FormConfig = {
-  defaultValues?: Record<string, string>;
-  resolver?: any;
-};
+import {
+  FormProvider,
+  SubmitHandler,
+  useForm,
+  UseFormProps,
+} from "react-hook-form";
 
 type FormProps = {
   children?: ReactElement | React.ReactNode;
   submitHandler: SubmitHandler<any>;
-} & FormConfig;
+  defaultValues?: Record<string, any>;
+  resolver?: UseFormProps<any>["resolver"];
+};
 
 const Form = ({
   children,
@@ -19,21 +20,34 @@ const Form = ({
   submitHandler,
   resolver,
 }: FormProps) => {
-  const formConfig: FormConfig = {};
-  if (!!defaultValues) formConfig["defaultValues"] = defaultValues;
-  if (!!resolver) formConfig["resolver"] = resolver;
+  const methods = useForm({
+    defaultValues,
+    resolver,
+  });
 
-  const methods = useForm<FormProps>(formConfig);
   const { handleSubmit, reset } = methods;
 
-  const onSubmit: SubmitHandler<any> = (data) => {
-    submitHandler(data);
-    // reset();
+  const onSubmit: SubmitHandler<any> = async (data) => {
+    try {
+      // Form wrapper
+      const ok = await submitHandler(data);
+      console.log({ ok });
+      if (ok) reset();
+    } catch (err) {
+      message.error("Form submission failed:", err?.message);
+      // Don't reset the form on error
+    }
   };
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(onSubmit)}>{children}</form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSubmit(onSubmit)(e); // ✅ manual call to control errors
+        }}>
+        {children}
+      </form>
     </FormProvider>
   );
 };

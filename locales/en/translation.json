@@ -20,7 +20,8 @@
     },
     "actions": {
       "copy_bio_link": "Copy Bio Link",
-      "add_to_shortlist": "Add to Shortlist"
+      "add_to_shortlist": "Add To Favorites ",
+      "remove_from_shortList": "Remove From Favorites"
     },
     "sections": {
       "general_information": "General Information",
@@ -32,7 +33,8 @@
       "marriage_related": "Marriage Related Information",
       "expected_partner": "Expected Partner",
       "agreement": "Agreement",
-      "contact": "Contact"
+      "contact": "Contact",
+      "your_contact": "Your Contact"
     },
     "address": {
       "present_address": "Present Address",
