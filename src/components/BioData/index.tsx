@@ -376,7 +376,7 @@ const BioData = ({ bioDataNo, className = "" }: IProps) => {
                       {getBioDataStatusLabel(profileStatus)}
                     </span>
                     <br />
-                    <span className='text-black'>
+                    <span className='text-red-600'>
                       Please{" "}
                       <Link
                         href='/user/edit-biodata'

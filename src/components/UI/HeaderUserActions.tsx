@@ -1,4 +1,6 @@
-import profileImage from "@/assets/boy.jpg";
+"use client";
+
+import profileImage from "@/assets/girl.jpg";
 import { sidebarItems } from "@/constants/sidebarItems";
 import { getUserInfo, isUserLoggedIn } from "@/services/auth.service";
 import { IUserPayload } from "@/types";
@@ -9,88 +11,6 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaRegEdit } from "react-icons/fa";
-
-const HeaderUserActions = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [open, setOpen] = useState(false);
-  const pathname = usePathname();
-
-  const hide = () => {
-    setOpen(false);
-  };
-
-  const handleOpenChange = (newOpen: boolean) => {
-    setOpen(newOpen);
-  };
-
-  useEffect(() => {
-    const checkAuth = () => {
-      try {
-        const loggedIn = isUserLoggedIn();
-        setIsAuthenticated(loggedIn);
-      } catch (error) {
-        console.error("Auth check failed:", error);
-        setIsAuthenticated(false);
-      } finally {
-        // Add a small delay to prevent flash of loading state
-        setTimeout(() => setIsLoading(false), 100);
-      }
-    };
-
-    checkAuth();
-    hide(); // Close popover after navigation
-  }, [pathname]);
-
-  // Only get user info if authenticated
-  const userInfo = isAuthenticated ? (getUserInfo() as IUserPayload) : null;
-  const role = userInfo?.role || "user"; // Provide a default role
-  const isLoggedIn = isUserLoggedIn();
-
-  if (isLoading || !isLoggedIn) {
-    return (
-      <div className='hidden md:flex items-center gap-3'>
-        <Link href='/login'>
-          <Button
-            type='default'
-            className='!h-10 !rounded-md border border-[#6208d4] dark:border-purple-400 dark:text-white'>
-            Sign In
-          </Button>
-        </Link>
-        <Link href='/register'>
-          <Button
-            type='primary'
-            className='!bg-[#6208d4] !h-10 !rounded-md !hover:bg-[#2708d4] dark:!bg-purple-600 dark:hover:!bg-purple-700'>
-            Create Account
-          </Button>
-        </Link>
-      </div>
-    );
-  }
-
-  return (
-    <div className='flex items-center'>
-      <Popover
-        placement='bottom'
-        open={open}
-        onOpenChange={handleOpenChange}
-        content={
-          <Content role={role} hide={hide} />
-          // <SidebarProfile role={role} />
-        }
-        trigger='hover'>
-        <Avatar
-          size='large'
-          icon={<UserOutlined />}
-          style={{ backgroundColor: "#3051F2" }}
-          className='cursor-pointer'
-        />
-      </Popover>
-    </div>
-  );
-};
-
-export default HeaderUserActions;
 
 const Content = ({ role, hide }: { role: string; hide: () => void }) => {
   const router = useRouter();
@@ -166,3 +86,81 @@ const Content = ({ role, hide }: { role: string; hide: () => void }) => {
     </>
   );
 };
+
+const HeaderUserActions = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  const hide = () => {
+    setOpen(false);
+  };
+
+  const handleOpenChange = (newOpen: boolean) => {
+    setOpen(newOpen);
+  };
+
+  useEffect(() => {
+    const checkAuth = () => {
+      try {
+        const loggedIn = isUserLoggedIn();
+        setIsAuthenticated(loggedIn);
+      } catch (error) {
+        console.error("Auth check failed:", error);
+        setIsAuthenticated(false);
+      } finally {
+        // Add a small delay to prevent flash of loading state
+        setTimeout(() => setIsLoading(false), 100);
+      }
+    };
+
+    checkAuth();
+  }, [pathname]);
+
+  // Only get user info if authenticated
+  const userInfo = isAuthenticated ? (getUserInfo() as IUserPayload) : null;
+  const role = userInfo?.role || "user"; // Provide a default role
+  const isLoggedIn = isUserLoggedIn();
+
+  if (isLoading || !isLoggedIn) {
+    return (
+      <div className='hidden md:flex items-center gap-3'>
+        <Link href='/login'>
+          <Button
+            type='default'
+            className='!h-10 !rounded-md border border-[#6208d4] dark:border-purple-400 dark:text-white'>
+            Sign In
+          </Button>
+        </Link>
+        <Link href='/register'>
+          <Button
+            type='primary'
+            className='!bg-[#6208d4] !h-10 !rounded-md !hover:bg-[#2708d4] dark:!bg-purple-600 dark:hover:!bg-purple-700'>
+            Create Account
+          </Button>
+        </Link>
+      </div>
+    );
+  }
+
+  return (
+    <div className='flex items-center'>
+      <Popover
+        placement='bottom'
+        open={open}
+        onOpenChange={handleOpenChange}
+        content={<Content role={role} hide={hide} />}
+        trigger='hover'>
+        <Avatar
+          size='large'
+          icon={<UserOutlined />}
+          style={{ backgroundColor: "#3051F2" }}
+          className='cursor-pointer'
+        />
+      </Popover>
+    </div>
+  );
+};
+
+export default HeaderUserActions;

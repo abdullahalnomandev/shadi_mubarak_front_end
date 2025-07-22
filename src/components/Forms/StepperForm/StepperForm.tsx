@@ -1,12 +1,5 @@
 "use client";
 
-import { yupResolver } from "@hookform/resolvers/yup";
-import { Button, message } from "antd";
-import React, { useEffect, useMemo, useState } from "react";
-import { Step, Stepper } from "react-form-stepper";
-import { FormProvider, useForm } from "react-hook-form";
-import * as yup from "yup";
-
 import { BioDataStatus } from "@/constants/bioData";
 import { biodataSteps } from "@/constants/global";
 import {
@@ -17,9 +10,15 @@ import {
 import { getUserInfo } from "@/services/auth.service";
 import { IUser } from "@/types";
 import { SyncOutlined } from "@ant-design/icons";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { message } from "antd";
 import { useRouter } from "next/navigation";
+import React, { useEffect, useMemo, useState } from "react";
+import { Step, Stepper } from "react-form-stepper";
+import { FormProvider, useForm } from "react-hook-form";
+import { IoIosArrowRoundBack } from "react-icons/io";
+import * as yup from "yup";
 import { getValidationSchema } from "./getValidationSchema";
-
 interface ISteps {
   title: string;
   content: React.ReactElement | React.ReactNode;
@@ -222,19 +221,19 @@ const StepperForm = ({ steps }: IStepsProps) => {
 
           <div className='flex justify-end gap-4 mt-8'>
             {current > 0 && (
-              <Button
+              <button
                 onClick={prev}
-                className='!bg-gray-300 hover:!bg-gray-400'>
-                Previous
-              </Button>
+                type='button'
+                className='flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white rounded-md bg-gradient-to-r from-slate-400 to-gray-600 hover:from-slate-500 hover:to-gray-700 transition duration-300 shadow cursor-pointer'>
+                <IoIosArrowRoundBack /> Previous
+              </button>
             )}
-            <Button
-              type='primary'
-              htmlType='submit'
+            <button
+              type='submit'
               icon={isFetching ? <SyncOutlined spin /> : undefined}
-              className='!bg-[#091C79] hover:!bg-[#14289b]'>
+              className='flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 transition duration-300 shadow cursor-pointer'>
               {current === steps?.length - 1 ? "Submit" : "Save & Next"}
-            </Button>
+            </button>
           </div>
         </form>
       </FormProvider>

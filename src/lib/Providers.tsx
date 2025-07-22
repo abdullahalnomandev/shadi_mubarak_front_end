@@ -5,7 +5,6 @@ import {
   getGoogleClientId,
 } from "@/helpers/config/envConfig";
 import { store } from "@/redux/store";
-import { StyleProvider } from "@ant-design/cssinjs";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import "@ant-design/v5-patch-for-react-19";
 import { FpjsProvider } from "@fingerprintjs/fingerprintjs-pro-react";
@@ -17,20 +16,32 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
     <GoogleOAuthProvider clientId={getGoogleClientId()}>
       <Provider store={store}>
-        <StyleProvider layer>
-          <I18nextProvider i18n={i18n}>
-            <FpjsProvider
-              loadOptions={{
-                apiKey: getFingerprintJsApiKey(),
-                region: "ap",
-              }}>
-              <AntdRegistry>{children}</AntdRegistry>
-            </FpjsProvider>
-          </I18nextProvider>
-        </StyleProvider>
+        <I18nextProvider i18n={i18n}>
+          <FpjsProvider
+            loadOptions={{
+              apiKey: getFingerprintJsApiKey(),
+              region: "ap",
+            }}>
+            <AntdRegistry>{children}</AntdRegistry>
+          </FpjsProvider>
+        </I18nextProvider>
       </Provider>
     </GoogleOAuthProvider>
   );
 };
 
 export default Providers;
+
+// <GoogleOAuthProvider clientId={getGoogleClientId()}>
+//   <Provider store={store}>
+//     <I18nextProvider i18n={i18n}>
+//       <FpjsProvider
+//         loadOptions={{
+//           apiKey: getFingerprintJsApiKey(),
+//           region: "ap",
+//         }}>
+//         <AntdRegistry>{children}</AntdRegistry>
+//       </FpjsProvider>
+//     </I18nextProvider>
+//   </Provider>
+// </GoogleOAuthProvider>
