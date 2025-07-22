@@ -105,21 +105,40 @@ export const userBiodataSchema = {
   }),
 
   family_information: yup.object().shape({
-    isParentAlive: yup.string().oneOf(["yes", "no"]).required("Required"),
-    fatherProfession: yup.string().required("Father's profession is required"),
-    isMotherAlive: yup.string().oneOf(["yes", "no"]).required("Required"),
-    motherProfession: yup.string().required("Mother's profession is required"),
+    isParentAlive: yup
+      .string()
+      .oneOf(["yes", "no"])
+      .required("Please specify if your father is alive"),
+    fatherProfession: yup
+      .string()
+      .required("Please provide your father's profession"),
+    isMotherAlive: yup
+      .string()
+      .oneOf(["yes", "no"])
+      .required("Please specify if your mother is alive"),
+    motherProfession: yup
+      .string()
+      .required("Please provide your mother's profession"),
     howManyBrothers: yup
       .string()
-      .oneOf(["0", "1", "2", "3", "4", "5", "More than 5"])
-      .required("Required"),
+      .oneOf(
+        ["0", "1", "2", "3", "4", "5", "More than 5"],
+        "Please select a valid number of brothers"
+      )
+      .required("Please specify how many brothers you have"),
+
     brothersInformation: yup
       .string()
-      .required("Brothers' information is required"),
+      .required("Please provide information about your brothers"),
+
     howManySisters: yup
       .string()
-      .oneOf(["0", "1", "2", "3", "4", "5", "More than 5"])
-      .required("Required"),
+      .oneOf(
+        ["0", "1", "2", "3", "4", "5", "More than 5"],
+        "Please select a valid number of sisters"
+      )
+      .required("Please specify how many sisters you have"),
+
     sistersInformation: yup
       .string()
       .required("Sisters' information is required"),
@@ -132,33 +151,71 @@ export const userBiodataSchema = {
         "upper_middle_class",
         "lower_middle_class",
       ])
-      .required("Required"),
-    descriptionOfFinancialCondition: yup.string().required("Required"),
-    professionOfUncles: yup.string().required("Required"),
-    familyReligiousCondition: yup.string().required("Required"),
+      .required("Please specify your family's financial status"),
+    descriptionOfFinancialCondition: yup
+      .string()
+      .required(
+        "Please provide a description of your family's financial condition"
+      ),
+    professionOfUncles: yup
+      .string()
+      .required("Please specify the professions of your uncles"),
+    familyReligiousCondition: yup
+      .string()
+      .required("Please describe your family's religious practices and values"),
   }),
 
   personal_information: yup.object().shape({
-    clothingOutside: yup.string().required("Required"),
-    wearingNiqabSince: yup.string().required("Required"),
-    praysFiveTimes: yup.string().oneOf(["yes", "no"]).required("Required"),
-    missedPrayersPerWeek: yup.string().required("Required"),
-    compliesWithMahram: yup.string().oneOf(["yes", "no"]).required("Required"),
+    clothingOutside: yup
+      .string()
+      .required("Please specify your clothing style outside"),
+    wearingNiqabSince: yup
+      .string()
+      .required("Please specify how long you have been wearing niqab"),
+    praysFiveTimes: yup
+      .string()
+      .oneOf(["yes", "no"])
+      .required("Please indicate if you pray five times a day"),
+    missedPrayersPerWeek: yup
+      .string()
+      .required("Please specify how many prayers you miss per week"),
+    compliesWithMahram: yup
+      .string()
+      .oneOf(["yes", "no"])
+      .required("Please indicate if you comply with mahram requirements"),
     canReciteQuranCorrectly: yup
       .string()
       .oneOf(["yes", "no"])
-      .required("Required"),
+      .required("Please indicate if you can recite Quran correctly"),
     fiqhFollowed: yup
       .string()
       .oneOf(["hanafi", "shafi", "maliki", "hanbali"])
-      .required("Required"),
-    watchesOrListensToMedia: yup.string().required("Required"),
-    mentalOrPhysicalDiseases: yup.string().required("Required"),
-    involvedInSpecialWork: yup.string().required("Required"),
-    beliefsAboutShrine: yup.string().required("Required"),
-    islamicBooksRead: yup.array().of(yup.string()).required("Required"),
-    islamicScholarsPreferred: yup.array().of(yup.string()).required("Required"),
-    hobbiesAndInterests: yup.string().required("Required"),
+      .required(
+        "Please select which school of Islamic jurisprudence you follow"
+      ),
+    watchesOrListensToMedia: yup
+      .string()
+      .required("Please specify your media consumption habits"),
+    mentalOrPhysicalDiseases: yup
+      .string()
+      .required("Please specify any mental or physical health conditions"),
+    involvedInSpecialWork: yup
+      .string()
+      .required("Please specify if you are involved in any special work"),
+    beliefsAboutShrine: yup
+      .string()
+      .required("Please specify your beliefs about shrines"),
+    islamicBooksRead: yup
+      .array()
+      .of(yup.string())
+      .required("Please list Islamic books you have read"),
+    islamicScholarsPreferred: yup
+      .array()
+      .of(yup.string())
+      .required("Please list your preferred Islamic scholars"),
+    hobbiesAndInterests: yup
+      .string()
+      .required("Please specify your hobbies and interests"),
   }),
 
   expected_partner: yup.object().shape({
@@ -171,8 +228,8 @@ export const userBiodataSchema = {
     complexion: yup
       .array()
       .of(yup.string().oneOf(["fair", "bright_brown", "brown", "dark"]))
-      .required("Required"),
-    height: yup.string().required("Height is required"),
+      .required("Please select preferred complexion"),
+    height: yup.string().required("Please specify preferred height"),
     education: yup.string().required("Educational qualification is required"),
     district: yup.string().required("District is required"),
     maritalStatus: yup

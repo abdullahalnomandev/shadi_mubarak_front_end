@@ -34,7 +34,7 @@ const FormInput = ({
   } = useFormContext();
 
   const errorMessage = getErrorMessageBuPropertyName(errors, name);
-  console.log("ERRORMESSAGE", errorMessage);
+  console.log("Type", type);
   return (
     <>
       {label && (
