@@ -1,6 +1,6 @@
 import banner from "@/assets/main3.jpg";
-import { districts } from "@/constants/districts";
 import { genderOptions, maritalStatusOptions } from "@/constants/global";
+import { districts } from "@/data/districts";
 import { SearchOutlined } from "@ant-design/icons";
 import { Col, Row } from "antd";
 import Link from "next/link";

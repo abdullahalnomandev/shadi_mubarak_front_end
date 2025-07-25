@@ -58,18 +58,22 @@ export const changePasswordSchema = yup.object({
 
 export const userBiodataSchema = {
   general_information: yup.object().shape({
-    gender: yup
+    biodataType: yup
       .string()
-      .oneOf(["male", "female", "other"])
-      .required("Gender is required"),
-    dateOfBirth: yup.date().required("Date of birth is required"),
-    height: yup.string().required("Height is required"),
-    weight: yup.number().required("Weight is required"),
-    skin: yup.string().required("Skin tone is required"),
-    maritalStatus: yup
+      .oneOf(["female_biodata", "male_biodata"])
+      .required("Please select biodata type"),
+    dateOfBirth: yup.date().required("Please select date of birth "),
+    height: yup.string().required("Please select height"),
+    weight: yup
       .string()
-      .oneOf(["single", "married", "divorced", "widowed"])
-      .required("Marital status is required"),
+      .transform((value, originalValue) =>
+        String(originalValue).trim() === "" ? undefined : value
+      )
+      .typeError("Weight must be a number")
+      .required("Please select a weight"),
+
+    skin: yup.string().required("Please select a Skin tone "),
+    maritalStatus: yup.string().required("Please select Marital status"),
   }),
 
   address: yup.object().shape({
@@ -151,7 +155,7 @@ export const userBiodataSchema = {
         "upper_middle_class",
         "lower_middle_class",
       ])
-      .required("Please specify your family's financial status"),
+      .required("Required"),
     descriptionOfFinancialCondition: yup
       .string()
       .required(
@@ -228,8 +232,8 @@ export const userBiodataSchema = {
     complexion: yup
       .array()
       .of(yup.string().oneOf(["fair", "bright_brown", "brown", "dark"]))
-      .required("Please select preferred complexion"),
-    height: yup.string().required("Please specify preferred height"),
+      .required("Required"),
+    height: yup.string().required("Height is required"),
     education: yup.string().required("Educational qualification is required"),
     district: yup.string().required("District is required"),
     maritalStatus: yup
@@ -238,13 +242,13 @@ export const userBiodataSchema = {
       .required("Marital status is required"),
   }),
   education: yup.object().shape({
-    ssc_passing_year: yup.number().required("SSC passing year is required"),
+    ssc_passing_year: yup.string().required("SSC passing year is required"),
     ssc_group: yup
       .string()
       .oneOf(["science", "commerce", "arts"])
       .required("SSC group is required"),
     ssc_result: yup.string().required("SSC result is required"),
-    hsc_passing_year: yup.number().required("HSC passing year is required"),
+    hsc_passing_year: yup.string().required("HSC passing year is required"),
     hsc_group: yup
       .string()
       .oneOf(["science", "commerce", "arts"])
@@ -252,7 +256,7 @@ export const userBiodataSchema = {
     hsc_result: yup.string().required("HSC result is required"),
     diploma_subject: yup.string(),
     diploma_institution: yup.string(),
-    diploma_passing_year: yup.number(),
+    diploma_passing_year: yup.string(),
     graduation_subject: yup.string(),
     graduation_institution: yup.string(),
     graduation_year: yup.string(),

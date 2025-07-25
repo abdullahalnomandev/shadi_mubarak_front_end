@@ -80,6 +80,7 @@ const StepperForm = ({ steps }: IStepsProps) => {
   });
 
   const { handleSubmit, reset, watch } = methods;
+  console.log("watch", watch());
 
   const [updateBiodata, { isLoading: isFetching }] = useUpdateBiodataMutation();
   const [updateProfile] = useUpdateProfileMutation();
@@ -120,7 +121,7 @@ const StepperForm = ({ steps }: IStepsProps) => {
       setCurrent(stepNumber);
     }
   };
-  console.log({ completedSteps });
+  console.log({ bioDataInfo });
   const onHandleSubmit = async (data: any) => {
     try {
       await submitStepData(current, data, updateBiodata);

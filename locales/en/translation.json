@@ -11,7 +11,7 @@
       "height": "Height",
       "weight": "Weight",
       "occupation": "Occupation",
-      "gender": "Gender",
+      "biodataType": "Gender",
       "marital_status": "Marital Status",
       "nationality": "Nationality",
       "dateOfBirth": "Date of Birth",
