@@ -1,8 +1,9 @@
 "use client";
 
+import { getErrorMessageBuPropertyName } from "@/utils/schema-validator";
 import { Checkbox, Col, Row } from "antd";
 import { useEffect, useState } from "react";
-import { useFormContext } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import FormInput from "../../FormInput";
 import CascadingSelect from "./CascadingSelect";
 
@@ -38,7 +39,11 @@ const addressFields = [
 ];
 
 const Address = () => {
-  const { watch, setValue } = useFormContext();
+  const {
+    watch,
+    setValue,
+    formState: { errors },
+  } = useFormContext();
   const [sameAsPresent, setSameAsPresent] = useState(false);
 
   const presentFull = watch("address.present_address.full");
@@ -58,10 +63,22 @@ const Address = () => {
       return (
         <Col xs={24} sm={12} key={path}>
           <label className='block mb-1 font-semibold'>{field.label}</label>
-          <CascadingSelect
-            areaValue={watch(path)}
-            onChange={(value: string) => setValue(path, value)}
+          <Controller
+            name={path}
+            render={({ field: controllerField }) => (
+              <CascadingSelect
+                areaValue={controllerField.value}
+                onChange={(val) => {
+                  controllerField.onChange(val);
+                }}
+              />
+            )}
           />
+          {getErrorMessageBuPropertyName(errors, path) && (
+            <p className='text-red-500'>
+              {getErrorMessageBuPropertyName(errors, path)}
+            </p>
+          )}
         </Col>
       );
     }
@@ -79,7 +96,6 @@ const Address = () => {
     );
   };
 
-  console.log({ presentFull });
   return (
     <div>
       <h1 className='text-2xl font-semibold mb-6'>Address</h1>
