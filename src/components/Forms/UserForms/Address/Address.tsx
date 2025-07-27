@@ -36,6 +36,13 @@ const addressFields = [
     placeholder: "Enter area",
     required: true,
   },
+  {
+    name: "address.grow_up",
+    label: "Grow Up",
+    type: "text",
+    placeholder: "Where did you grow up?",
+    required: true,
+  },
 ];
 
 const Address = () => {
@@ -116,6 +123,11 @@ const Address = () => {
           addressFields
             .filter((item) => item.name.includes("permanent_address"))
             .map(renderField)}
+
+        {/* ✅ Grow Up field rendered here */}
+        {renderField(
+          addressFields.find((item) => item.name === "address.grow_up")!
+        )}
       </Row>
     </div>
   );

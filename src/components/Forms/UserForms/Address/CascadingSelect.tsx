@@ -1,6 +1,6 @@
 "use client";
 
-import { dbZone as bangladeshLocations } from "@/data/districts"; // update this path if needed
+import { dbZone as bangladeshLocations } from "@/data/districts";
 import { Select } from "antd";
 import { useEffect, useState } from "react";
 
@@ -24,9 +24,10 @@ const CascadingSelect = ({ areaValue = "", onChange, lang = "en" }) => {
     }
     return "division";
   });
+
   const [selectOpen, setSelectOpen] = useState(false);
 
-  // Load default values on first render
+  // Load default values
   useEffect(() => {
     if (!areaValue) return;
 
@@ -72,19 +73,24 @@ const CascadingSelect = ({ areaValue = "", onChange, lang = "en" }) => {
       setDistricts([]);
       setAreas([]);
     }
+    setTimeout(() => setSelectOpen(true), 0);
   };
 
   const handleDivisionChange = (value: string) => {
     const division = bangladeshLocations.find((d) => d.division_en === value);
     if (!division) return;
 
-    setSelectedDivision(value);
-    setDistricts(division.districts);
-    setSelectedDistrict(undefined);
-    setSelectedArea(undefined);
-    setAreas([]);
-    setLevel("district");
-    setTimeout(() => setSelectOpen(true), 0);
+    // 🛠 Always reset and refresh even if same division
+    setSelectedDivision(""); // TEMP unselect to force update
+    setTimeout(() => {
+      setSelectedDivision(value);
+      setDistricts(division.districts);
+      setSelectedDistrict(undefined);
+      setSelectedArea(undefined);
+      setAreas([]);
+      setLevel("district");
+      setSelectOpen(true);
+    }, 0);
   };
 
   const handleDistrictChange = (value: string) => {
@@ -95,6 +101,7 @@ const CascadingSelect = ({ areaValue = "", onChange, lang = "en" }) => {
     setAreas(district.upazilas);
     setSelectedArea(undefined);
     setLevel("area");
+
     setTimeout(() => setSelectOpen(true), 0);
   };
 
@@ -109,6 +116,29 @@ const CascadingSelect = ({ areaValue = "", onChange, lang = "en" }) => {
       onChange?.(formatted);
     }
   };
+
+  // Always update district/area list on level change
+  useEffect(() => {
+    if (level === "district" && selectedDivision) {
+      const division = bangladeshLocations.find(
+        (d) => d.division_en === selectedDivision
+      );
+      if (division) {
+        setDistricts(division.districts);
+      }
+    }
+    if (level === "area" && selectedDivision && selectedDistrict) {
+      const division = bangladeshLocations.find(
+        (d) => d.division_en === selectedDivision
+      );
+      const district = division?.districts.find(
+        (dist) => dist.district_en === selectedDistrict
+      );
+      if (district) {
+        setAreas(district.upazilas);
+      }
+    }
+  }, [level, selectedDivision, selectedDistrict]);
 
   const commonSelectProps = {
     style: { width: "100%" },
@@ -159,14 +189,11 @@ const CascadingSelect = ({ areaValue = "", onChange, lang = "en" }) => {
       level: "district",
       placeholder: "Select District",
       value: selectedDistrict,
-      options:
-        bangladeshLocations
-          .find((div) => div.division_en === selectedDivision)
-          ?.districts.map((district) => ({
-            key: district.district_en,
-            value: district.district_en,
-            label: { en: district.district_en, bn: district.district_bn },
-          })) || [],
+      options: districts.map((district) => ({
+        key: district.district_en,
+        value: district.district_en,
+        label: { en: district.district_en, bn: district.district_bn },
+      })),
       onChange: handleDistrictChange,
       backLabel: `Select a Division`,
     },
@@ -174,15 +201,11 @@ const CascadingSelect = ({ areaValue = "", onChange, lang = "en" }) => {
       level: "area",
       placeholder: "Select Area",
       value: selectedArea,
-      options:
-        bangladeshLocations
-          .find((div) => div.division_en === selectedDivision)
-          ?.districts.find((dist) => dist.district_en === selectedDistrict)
-          ?.upazilas.map((upazila) => ({
-            key: upazila.upazila_en,
-            value: upazila.upazila_en,
-            label: { en: upazila.upazila_en, bn: upazila.upazila_bn },
-          })) || [],
+      options: areas.map((upazila) => ({
+        key: upazila.upazila_en,
+        value: upazila.upazila_en,
+        label: { en: upazila.upazila_en, bn: upazila.upazila_bn },
+      })),
       onChange: handleAreaChange,
       backLabel: `Select a District`,
     },
@@ -198,6 +221,16 @@ const CascadingSelect = ({ areaValue = "", onChange, lang = "en" }) => {
       placeholder={currentConfig.placeholder}
       value={currentConfig.value}
       onChange={currentConfig.onChange}
+      onSelect={(value) => {
+        // 👇 Force trigger even when selecting same division
+        if (level === "division") {
+          handleDivisionChange(value);
+        } else if (level === "district") {
+          handleDistrictChange(value);
+        } else if (level === "area") {
+          handleAreaChange(value);
+        }
+      }}
       disabled={!currentConfig.options.length}
       dropdownRender={(menu) =>
         currentConfig.backLabel ? (

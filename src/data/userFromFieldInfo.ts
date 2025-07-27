@@ -222,15 +222,66 @@ const occupation = [
   {
     name: "occupation.occupation",
     label: "Occupation",
-    type: "text",
-    placeholder: "Enter your occupation (e.g., Software Engineer)",
-    required: true,
-  },
-  {
-    name: "occupation.monthlyIncome",
-    label: "Monthly Income",
-    type: "number",
-    placeholder: "Enter your monthly income",
+    type: "select",
+    options: [
+      {
+        value: "imam",
+        label: "Imam",
+      },
+      {
+        value: "madrasa_teacher",
+        label: "Madrasa Teacher",
+      },
+      {
+        value: "teacher",
+        label: "Teacher",
+      },
+      {
+        value: "engineer",
+        label: "Engineer",
+      },
+      {
+        value: "businessman",
+        label: "Businessman",
+      },
+      {
+        value: "government_job",
+        label: "Government Job",
+      },
+      {
+        value: "private_job",
+        label: "Private Job",
+      },
+      {
+        value: "student",
+        label: "Student",
+      },
+      {
+        value: "freelancer",
+        label: "Freelancer",
+      },
+      {
+        value: "doctor",
+        label: "Doctor",
+      },
+      {
+        value: "medical_student",
+        label: "MBBS/BDS Student",
+      },
+      {
+        value: "expatriate",
+        label: "Expatriate",
+      },
+      {
+        value: "others",
+        label: "Others",
+      },
+      {
+        value: "no_profession",
+        label: "No Profession",
+      },
+    ],
+    placeholder: "Select your occupation ",
     required: true,
   },
   {
@@ -240,11 +291,18 @@ const occupation = [
     placeholder: "Describe your professional responsibilities",
     required: true,
   },
+  {
+    name: "occupation.monthlyIncome",
+    label: "Monthly Income",
+    type: "text",
+    placeholder: "Enter your monthly income",
+    required: true,
+  },
 ];
 const agreement = [
   {
     name: "agreement.parentsAwareOfRegistration",
-    label: "Are your parents aware of this registration?",
+    label: "Are your parents aware of your biodata submission?",
     type: "select",
     options: [
       {
@@ -256,12 +314,12 @@ const agreement = [
         label: "No",
       },
     ],
-    placeholder: "Please confirm if your parents are aware",
+    placeholder: "Please confirm ",
     required: true,
   },
   {
     name: "agreement.confirmTruthOfProvidedInformation",
-    label: "Do you confirm that all provided information is true?",
+    label: "By Allah, testify that all the information given is true ?",
     type: "select",
     options: [
       {
@@ -273,7 +331,7 @@ const agreement = [
         label: "No",
       },
     ],
-    placeholder: "Please confirm the truth of information",
+    placeholder: "Please confirm ",
     required: true,
   },
   {
@@ -291,7 +349,7 @@ const agreement = [
         label: "No",
       },
     ],
-    placeholder: "Please confirm your agreement to legal responsibility",
+    placeholder: "Y/N - Legal responsibility agreement",
     required: true,
   },
 ];
@@ -316,7 +374,7 @@ const family_information = [
   {
     name: "family_information.fatherProfession",
     label: "Father's Profession",
-    type: "text",
+    type: "textArea",
     placeholder: "Enter father's profession",
     required: true,
   },
@@ -485,213 +543,185 @@ const family_information = [
 ];
 const personal_information = [
   {
-    name: "personal_information.clothingOutside",
-    label: "Clothing Outside",
-    type: "textArea",
-    placeholder: "Describe your clothing style when going outside",
+    name: "personal_information.usualOutdoorClothing",
+    label: "What kind of clothes do you usually wear outside the house?",
+    type: "text",
+    placeholder: "Your outdoor attire",
+    required: true,
+  },
+  {
+    name: "personal_information.beardAccordingToSunnah",
+    label: "Do you have beard according to sunnah?",
+    type: "select",
+    options: [
+      { value: "yes", label: "Yes" },
+      { value: "no", label: "No" },
+    ],
+    placeholder: "Select yes/no",
+    required: true,
+  },
+  {
+    name: "personal_information.clothingAboveAnkles",
+    label: "Do you wear clothes above the ankles?",
+    type: "select",
+    options: [
+      { value: "yes", label: "Yes" },
+      { value: "no", label: "No" },
+    ],
+    placeholder: "Select yes/no",
+    required: true,
+  },
+  {
+    name: "personal_information.wearsNiqab",
+    label: "Do you wear niqab?",
+    type: "select",
+    options: [
+      { value: "yes", label: "Yes" },
+      { value: "no", label: "No" },
+    ],
+    placeholder: "Y/N",
     required: true,
   },
   {
     name: "personal_information.wearingNiqabSince",
-    label: "Wearing Niqab Since",
+    label: "Since when have you been wearing a veil with a niqab?",
     type: "text",
-    placeholder: "Enter year since wearing niqab",
+    placeholder: "Year",
     required: true,
   },
   {
-    name: "personal_information.praysFiveTimes",
-    label: "Do you pray five times daily?",
+    name: "personal_information.dailyPrayerRoutine",
+    label: "Do you pray five times a day?",
     type: "select",
     options: [
-      {
-        value: "yes",
-        label: "Yes",
-      },
-      {
-        value: "no",
-        label: "No",
-      },
+      { value: "yes", label: "Yes" },
+      { value: "no", label: "No" },
     ],
-    placeholder: "Select your prayer status",
+    placeholder: "Y/N",
     required: true,
   },
   {
-    name: "personal_information.missedPrayersPerWeek",
-    label: "Missed Prayers Per Week",
+    name: "personal_information.skippedPrayersPerWeek",
+    label:
+      "Usually how many times (waqt) a week are your prayers missed (Qaza)?",
     type: "text",
-    placeholder: "Enter number of missed prayers per week",
+    placeholder: "Number per week",
     required: true,
   },
   {
-    name: "personal_information.compliesWithMahram",
-    label: "Do you comply with Mahram rules?",
+    name: "personal_information.followsMahramGuidelines",
+    label: "Do you comply with mahram / non-mahram?",
     type: "select",
     options: [
-      {
-        value: "yes",
-        label: "Yes",
-      },
-      {
-        value: "no",
-        label: "No",
-      },
+      { value: "yes", label: "Yes" },
+      { value: "no", label: "No" },
     ],
-    placeholder: "Select your compliance with Mahram rules",
+    placeholder: "Y/N",
     required: true,
   },
   {
-    name: "personal_information.canReciteQuranCorrectly",
-    label: "Can you recite Quran correctly?",
+    name: "personal_information.quranRecitationAbility",
+    label: "Are you able to recite the Quran correctly?",
     type: "select",
     options: [
-      {
-        value: "yes",
-        label: "Yes",
-      },
-      {
-        value: "no",
-        label: "No",
-      },
+      { value: "yes", label: "Yes" },
+      { value: "no", label: "No" },
     ],
-    placeholder: "Select your Quran recitation ability",
+    placeholder: "Y/N",
     required: true,
   },
   {
     name: "personal_information.fiqhFollowed",
-    label: "Fiqh Followed",
+    label: "Which Fiqh do you follow?",
     type: "select",
     options: [
-      {
-        value: "hanafi",
-        label: "Hanafi",
-      },
-      {
-        value: "shafi",
-        label: "Shafi",
-      },
-      {
-        value: "maliki",
-        label: "Maliki",
-      },
-      {
-        value: "hanbali",
-        label: "Hanbali",
-      },
+      { value: "hanafi", label: "Hanafi" },
+      { value: "shafi", label: "Shafi" },
+      { value: "maliki", label: "Maliki" },
+      { value: "hanbali", label: "Hanbali" },
     ],
-    placeholder: "Select the Fiqh you follow",
+    placeholder: "Select Fiqh",
     required: true,
   },
   {
-    name: "personal_information.watchesOrListensToMedia",
-    label: "Media Consumption Habits",
+    name: "personal_information.mediaConsumptionHabits",
+    label: "Do you watch or listen to dramas / movies / serials / songs?",
     type: "textArea",
-    placeholder: "Describe your media consumption habits",
+    placeholder: "Media habits",
     required: true,
   },
   {
     name: "personal_information.mentalOrPhysicalDiseases",
-    label: "Mental or Physical Diseases",
+    label: "Do you have any mental or physical diseases?",
     type: "textArea",
-    placeholder:
-      "Describe any mental or physical conditions (if none, write 'None')",
+    placeholder: "Health conditions",
     required: true,
   },
   {
     name: "personal_information.involvedInSpecialWork",
-    label: "Special Work Involvement",
+    label: "Are you involved in any special work of deen?",
     type: "textArea",
-    placeholder: "Describe any special work you are involved in",
+    placeholder: "Islamic activities",
     required: true,
   },
   {
     name: "personal_information.beliefsAboutShrine",
-    label: "Beliefs About Shrine",
+    label: "What are your ideas or beliefs about the shrine (Mazar)?",
     type: "textArea",
-    placeholder: "Describe your beliefs about shrines",
+    placeholder: "Shrine beliefs",
     required: true,
   },
   {
     name: "personal_information.islamicBooksRead",
-    label: "Islamic Books Read",
-    type: "multiSelect",
-    options: [
-      {
-        value: "riyad_us_saliheen",
-        label: "Riyad-us-Saliheen",
-      },
-      {
-        value: "tafsir_ibn_kathir",
-        label: "Tafsir Ibn Kathir",
-      },
-      {
-        value: "fortress_of_the_muslim",
-        label: "Fortress of the Muslim",
-      },
-      {
-        value: "sahih_bukhari",
-        label: "Sahih Bukhari",
-      },
-      {
-        value: "sahih_muslim",
-        label: "Sahih Muslim",
-      },
-    ],
-    placeholder: "Select the Islamic books you have read",
+    label: "Write the names of at least 3 books you have read",
+    type: "text",
+    placeholder: "Ex: Riyadus Salihin, Bulughul Maram, Sahih Bukhari",
     required: true,
   },
   {
     name: "personal_information.islamicScholarsPreferred",
-    label: "Preferred Islamic Scholars",
+    label: "Write the names of at least 3 Islamic scholars of your choice",
     type: "multiSelect",
     options: [
-      {
-        value: "mizanur_rahman_azhari",
-        label: "Mizanur Rahman Azhari",
-      },
-      {
-        value: "delower_hossain_sayeedi",
-        label: "Delwar Hossain Sayeedi",
-      },
-      {
-        value: "sheikh_ahmadullah",
-        label: "Sheikh Ahmadullah",
-      },
-      {
-        value: "abu_toha_muhammad_adnan",
-        label: "Abu Toha Muhammad Adnan",
-      },
-      {
-        value: "mufti_menk",
-        label: "Mufti Menk",
-      },
-      {
-        value: "nouman_ali_khan",
-        label: "Nouman Ali Khan",
-      },
-      {
-        value: "dr_zakir_naik",
-        label: "Dr. Zakir Naik",
-      },
-      {
-        value: "yasir_qadhi",
-        label: "Dr. Yasir Qadhi",
-      },
-      {
-        value: "omar_suleiman",
-        label: "Sheikh Omar Suleiman",
-      },
+      { value: "mizanur_rahman_azhari", label: "Mizanur Rahman Azhari" },
+      { value: "delower_hossain_sayeedi", label: "Delwar Hossain Sayeedi" },
+      { value: "sheikh_ahmadullah", label: "Sheikh Ahmadullah" },
+      { value: "abu_toha_muhammad_adnan", label: "Abu Toha Muhammad Adnan" },
+      { value: "mufti_menk", label: "Mufti Menk" },
+      { value: "nouman_ali_khan", label: "Nouman Ali Khan" },
+      { value: "dr_zakir_naik", label: "Dr. Zakir Naik" },
+      { value: "yasir_qadhi", label: "Dr. Yasir Qadhi" },
+      { value: "omar_suleiman", label: "Sheikh Omar Suleiman" },
     ],
-    placeholder: "Select your preferred Islamic scholars",
+    placeholder: "Select scholars",
     required: true,
   },
   {
     name: "personal_information.hobbiesAndInterests",
-    label: "Hobbies and Interests",
+    label:
+      "Write about your hobbies, likes and dislikes, tastes, dreams, and so on.",
     type: "textArea",
-    placeholder: "Please write your hobbies and interests",
+    placeholder: "Your interests",
+    required: true,
+  },
+  {
+    name: "personal_information.groomMobileNumber",
+    label: "Mobile Number",
+    type: "text",
+    placeholder: " +8801XXXXXXXXX",
+    required: true,
+    helperText:
+      "We won't share this number with anyone. It's only for verification.",
+  },
+  {
+    name: "personal_information.previousRelationship",
+    label: "Do you have any relationship before? If yes, describe.",
+    type: "textArea",
+    placeholder: "Past relationships",
     required: true,
   },
 ];
+
 const expected_partner = [
   {
     name: "expected_partner.age",
@@ -701,29 +731,19 @@ const expected_partner = [
     defaultValue: [18, 45],
     min: 18,
     max: 50,
+    require: false,
   },
   {
     name: "expected_partner.complexion",
-    label: "Preferred Complexion",
+    label: "Complexion",
     type: "multiSelect",
-    mode: "multiple",
+    mode: "tags",
     options: [
-      {
-        value: "fair",
-        label: "Fair",
-      },
-      {
-        value: "bright_brown",
-        label: "Bright Brown",
-      },
-      {
-        value: "brown",
-        label: "Brown",
-      },
-      {
-        value: "dark",
-        label: "Dark",
-      },
+      { value: "fair", label: "Fair " },
+      { value: "brown", label: "Brown" },
+      { value: "light_brown", label: "Light Brown" },
+      { value: "black", label: "Black" },
+      { value: "very_fair", label: "Vary Fair" },
     ],
     placeholder: "Select preferred complexion",
     required: true,
@@ -736,7 +756,7 @@ const expected_partner = [
     required: true,
   },
   {
-    name: "expected_partner.education",
+    name: "expected_partner.educationalQualification",
     label: "Educational Qualification",
     type: "text",
     placeholder: "Enter minimum educational qualification",
@@ -781,37 +801,16 @@ const expected_partner = [
   {
     name: "expected_partner.financialCondition",
     label: "Expected Financial Condition",
-    type: "select",
-    options: [
-      {
-        value: "upper_class",
-        label: "Upper Class",
-      },
-      {
-        value: "upper_middle_class",
-        label: "Upper Middle Class",
-      },
-      {
-        value: "middle_class",
-        label: "Middle Class",
-      },
-      {
-        value: "lower_middle_class",
-        label: "Lower Middle Class",
-      },
-      {
-        value: "lower_class",
-        label: "Lower Class",
-      },
-    ],
+    type: "text",
     placeholder: "Select expected financial condition",
     required: true,
   },
   {
     name: "expected_partner.specialExpectationsOrRequests",
-    label: "Special Expectations or Requests",
+    label: "Expected Characteristics and Qualities of Life Partner",
     type: "textArea",
-    placeholder: "Describe any special expectations or requirements",
+    placeholder:
+      "What qualities or characteristics do you expect in your life partner?",
     required: true,
   },
 ];
@@ -850,77 +849,97 @@ const contact = [
 ];
 const marriage_related_information = [
   {
-    name: "marriage_related_information.doYouAgreeWithParents",
-    label: "Do you agree with your parents regarding marriage?",
+    name: "marriage_related_information.doParentsAgree",
+    label: "Do your guardians agree to your marriage?",
     type: "select",
     options: [
-      {
-        value: "yes",
-        label: "Yes",
-      },
-      {
-        value: "no",
-        label: "No",
-      },
+      { value: "yes", label: "Yes" },
+      { value: "no", label: "No" },
     ],
-    placeholder: "Select your agreement with parents",
+    placeholder: "Select an option",
     required: true,
   },
+  {
+    name: "marriage_related_information.canKeepWifeInVeil",
+    label: "Will you be able to keep your wife in the veil after marriage?",
+    type: "text",
+    isMale: true,
+    placeholder: "Type your answer",
+    required: true,
+  },
+  {
+    name: "marriage_related_information.allowWifeToStudy",
+    label: "Would you like to allow your wife to study after marriage?",
+    type: "select",
+    options: [
+      { value: "yes", label: "Yes" },
+      { value: "no", label: "No" },
+    ],
+    isMale: true,
+    placeholder: "Select an option",
+    required: true,
+  },
+  {
+    name: "marriage_related_information.allowWifeToWork",
+    label: "Would you like to allow your wife to do any job after marriage?",
+    type: "select",
+    options: [
+      { value: "yes", label: "Yes" },
+      { value: "no", label: "No" },
+    ],
+    isMale: true,
+    placeholder: "Select an option",
+    required: true,
+  },
+  {
+    name: "marriage_related_information.residenceAfterMarriage",
+    label: "Where will you live with your wife after marriage?",
+    type: "text",
+    isMale: true,
+    placeholder: "Enter location",
+    required: true,
+  },
+  {
+    name: "marriage_related_information.expectGiftsFromBrideFamily",
+    label: "Would you or your family expect any gift from the bride's family?",
+    type: "text",
+    isMale: true,
+    placeholder: "Type your answer",
+    required: true,
+  },
+
+  //
   {
     name: "marriage_related_information.willingToWorkAfterMarriage",
-    label: "Are you willing to work after marriage?",
-    type: "select",
-    options: [
-      {
-        value: "yes",
-        label: "Yes",
-      },
-      {
-        value: "yes_if_circumstances_allow",
-        label: "Yes, if circumstances allow",
-      },
-      {
-        value: "no",
-        label: "No",
-      },
-    ],
-    placeholder: "Select your willingness to work after marriage",
+    label: "Are you willing to do any job after marriage?",
+    type: "text",
+    isMale: false,
+    placeholder: "Type your thoughts",
     required: true,
   },
   {
-    name: "marriage_related_information.wantToContinueStudyAfterMarriage",
-    label: "Do you want to continue studies after marriage?",
-    type: "select",
-    options: [
-      {
-        value: "yes_higher_education",
-        label: "Yes, I plan to pursue higher education",
-      },
-      {
-        value: "no",
-        label: "No",
-      },
-      {
-        value: "maybe",
-        label: "Maybe, depending on circumstances",
-      },
-    ],
-    placeholder: "Select your study plans after marriage",
+    name: "marriage_related_information.continueStudiesAfterMarriage",
+    label: "Would you like to continue your studies after marriage?",
+    type: "text",
+    isMale: false,
+    placeholder: "Type your thoughts",
     required: true,
   },
+
   {
-    name: "marriage_related_information.whyAreYouGettingMarried",
-    label: "Why are you getting married?",
+    name: "marriage_related_information.reasonForMarriage",
+    label: "Why are you getting married? What are your thoughts on marriage?",
     type: "textArea",
-    placeholder: "Describe your reasons for getting married",
+    placeholder: "Type your thoughts",
     required: true,
   },
 ];
+
 const education = [
   {
     name: "education.ssc_passing_year",
     label: "SSC Passing Year",
-    type: "string",
+    type: "text",
     placeholder: "Enter your SSC passing year",
     required: true,
   },

@@ -1,95 +1,115 @@
 "use client";
 
-import { getErrorMessageBuPropertyName } from "@/utils/schema-validator";
-import { Slider as AntdSlider, SliderSingleProps } from "antd";
-import { Controller, useFormContext } from "react-hook-form";
-import { useEffect, useState } from "react";
+import { Slider, SliderSingleProps } from "antd";
 import { TooltipPlacement } from "antd/es/tooltip";
+import { useState } from "react";
+import { Controller, useFormContext } from "react-hook-form";
 
-interface ITextArea {
+interface IFormSliderProps {
   name: string;
-  label?: string;
   id: string;
-  value?: string | string[] | undefined;
-  placeholder?: string;
-  defaultValue?: number[];
+  label?: string;
   min?: number;
   max?: number;
-  validation?: object;
   formatter?: string;
+  defaultValue?: [number, number];
 }
 
 const FormSlider = ({
   name,
   id,
-  defaultValue = [18, 40],
   label,
   min = 1,
   max = 100,
   formatter,
-}: ITextArea) => {
-  const {
-    control,
-    formState: { errors },
-  } = useFormContext();
-  const [showTooltip, setShowTooltip] = useState(true);
+  defaultValue = [20, 30],
+}: IFormSliderProps) => {
+  const { control } = useFormContext();
 
-  const errorMessage = getErrorMessageBuPropertyName(errors, name);
+  const parseStoredValue = (val: unknown): [number, number] => {
+    if (typeof val === "string" && val.includes("-")) {
+      const parts = val.split("-").map(Number);
+      if (parts.length === 2 && parts.every((n) => !isNaN(n))) {
+        return [parts[0], parts[1]];
+      }
+    }
+    return defaultValue;
+  };
+
+  const [tooltipVisible, setTooltipVisible] = useState(false);
 
   const marks: SliderSingleProps["marks"] = {
     [min]: {
-      style: {
-        color: "blue",
-      },
-      label: <b>{`${min}`}</b>,
+      style: { color: "#2563EB", fontWeight: "600" },
+      label: <b>{min}</b>,
     },
     [max]: {
-      style: {
-        color: "blue",
-      },
-      label: <b>{`${max}`}</b>,
+      style: { color: "#2563EB", fontWeight: "600" },
+      label: <b>{max}</b>,
     },
   };
 
-  useEffect(() => {
-    setTimeout(() => {
-      setShowTooltip(false);
-    }, 3000);
-  }, []);
-
-  const tooltipConfig = {
-    placement: "top" as TooltipPlacement,
-    color: "blue",
-    formatter: (value: any) => {
-      return `${value} ${formatter}`;
-    },
-    ...(showTooltip && { open: true }),
-  };
+  const tooltipPlacement: TooltipPlacement = "top";
 
   return (
-    <>
-      {label && <label htmlFor={id}>{label}</label>}
+    <div className='space-y-2'>
+      {label && (
+        <label
+          htmlFor={id}
+          className='block font-semibold text-gray-700 text-sm'>
+          {label}
+        </label>
+      )}
+
       <Controller
-        control={control}
         name={name}
-        render={({ field }) => (
-          <AntdSlider
-            {...field}
-            id={id}
-            range
-            min={min}
-            max={max}
-            marks={marks}
-            defaultValue={defaultValue}
-            tooltip={tooltipConfig}
-            onChange={(val) =>
-              field.onChange(Array.isArray(val) ? val.join("-") : val)
-            }
-          />
-        )}
+        control={control}
+        defaultValue={defaultValue.join("-")}
+        render={({ field }) => {
+          const currentRange = parseStoredValue(field.value);
+
+          return (
+            <>
+              <Slider
+                id={id}
+                range
+                min={min}
+                max={max}
+                marks={marks}
+                value={currentRange}
+                tooltip={{
+                  open: tooltipVisible,
+                  placement: tooltipPlacement,
+                  formatter: (val: number) =>
+                    `${val}${formatter ? ` ${formatter}` : ""}`,
+                  color: "#3B82F6",
+                }}
+                trackStyle={[{ backgroundColor: "#3B82F6" }]}
+                handleStyle={[
+                  { borderColor: "#3B82F6", backgroundColor: "#3B82F6" },
+                  { borderColor: "#3B82F6", backgroundColor: "#3B82F6" },
+                ]}
+                onChange={(val) => {
+                  if (Array.isArray(val)) {
+                    field.onChange(val.join("-"));
+                  }
+                }}
+                onBeforeChange={() => setTooltipVisible(true)}
+                onChangeComplete={() => setTooltipVisible(false)}
+                onBlur={field.onBlur}
+                ref={field.ref}
+              />
+
+              <div className='text-center -mt-4 text-xs font-medium text-gray-600 select-none'>
+                Selected : {currentRange[0]}
+                {formatter ? ` ${formatter}` : ""} — {currentRange[1]}
+                {formatter ? ` ${formatter}` : ""}
+              </div>
+            </>
+          );
+        }}
       />
-      {errors && <small className='text-red-500'>{errorMessage}</small>}
-    </>
+    </div>
   );
 };
 

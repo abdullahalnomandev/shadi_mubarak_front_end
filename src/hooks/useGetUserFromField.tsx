@@ -153,7 +153,6 @@ const useGetUserFromField = () => {
     education,
   } = userFormFields;
 
-  console.log("General Information:", userFormFields);
   return {
     general_information,
     address,

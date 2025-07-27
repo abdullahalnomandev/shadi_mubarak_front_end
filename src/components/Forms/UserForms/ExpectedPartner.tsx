@@ -1,11 +1,10 @@
 "use client";
-import { Col, Row } from "antd";
-import React from "react";
-import FormInput from "../FormInput";
-import FormTextArea from "../FormTextArea";
-import FormSelectField from "../FormSelectField";
 import useGetUserFromField from "@/hooks/useGetUserFromField";
+import { Col, Row } from "antd";
+import FormInput from "../FormInput";
+import FormSelectField from "../FormSelectField";
 import FormSlider from "../FormSlider";
+import FormTextArea from "../FormTextArea";
 
 const ExpectedPartner = () => {
   const { expected_partner } = useGetUserFromField();
@@ -13,7 +12,7 @@ const ExpectedPartner = () => {
   console.log("expected_partner", expected_partner);
   return (
     <div>
-      <h1 className='text-2xl font-semibold mb-6'>Expected Partner </h1>
+      <h1 className='text-2xl font-semibold mb-6'>Expected Life Partner </h1>
       <Row gutter={[16, 16]}>
         {expected_partner.map(
           ({
@@ -53,7 +52,7 @@ const ExpectedPartner = () => {
                     name={name}
                     label={label}
                     formatter={tipFormatter}
-                    defaultValue={defaultValue}
+                    // defaultValue={defaultValue}
                   />
                 )) ||
                 (type === "textArea" && (

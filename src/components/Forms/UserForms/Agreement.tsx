@@ -1,7 +1,6 @@
 "use client";
-import { Col, Row } from "antd";
-import React from "react";
 import useGetUserFromField from "@/hooks/useGetUserFromField";
+import { Col, Row } from "antd";
 import FormSelectField from "../FormSelectField";
 
 const Agreement = () => {
@@ -19,7 +18,6 @@ const Agreement = () => {
                 name={name}
                 label={label}
                 value={options[0].value}
-                defaultValue={options[0].value}
                 placeholder={placeholder}
                 options={options}
               />

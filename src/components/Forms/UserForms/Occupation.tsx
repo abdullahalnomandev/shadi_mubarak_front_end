@@ -1,8 +1,8 @@
 "use client";
-import { Col, Row } from "antd";
-import React from "react";
-import FormInput from "../FormInput";
 import useGetUserFromField from "@/hooks/useGetUserFromField";
+import { Col, Row } from "antd";
+import FormInput from "../FormInput";
+import FormSelectField from "../FormSelectField";
 import FormTextArea from "../FormTextArea";
 
 const Occupation = () => {
@@ -11,9 +11,9 @@ const Occupation = () => {
   console.log("occupation", occupation);
   return (
     <div className='p-6'>
-      <h1 className='text-2xl font-semibold mb-6'>Occupation</h1>
+      <h1 className='text-2xl font-semibold mb-6'>Occupational Information</h1>
       <Row gutter={[16, 16]}>
-        {occupation.map(({ name, type, placeholder, label }) => (
+        {occupation.map(({ name, type, placeholder, label, options, mode }) => (
           <Col key={name} xs={24} sm={12}>
             {(type === "text" && (
               <FormInput
@@ -41,6 +41,16 @@ const Occupation = () => {
                   placeholder={placeholder}
                 />
               ))}
+            {(type === "multiSelect" || type === "select") && (
+              <FormSelectField
+                name={name}
+                {...(type === "multiSelect" ? { mode: "tags" } : {})}
+                label={label}
+                placeholder={placeholder}
+                options={options}
+                mode={mode as "multiple" | "tags"}
+              />
+            )}
           </Col>
         ))}
       </Row>

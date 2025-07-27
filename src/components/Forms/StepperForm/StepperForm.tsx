@@ -97,7 +97,7 @@ const StepperForm = ({ steps }: IStepsProps) => {
       const stepsFromAPI = bioDataInfo.biodata.completedSteps ?? [];
       setCompletedSteps([0, ...stepsFromAPI]);
 
-      if (stepsFromAPI.length === 9) {
+      if (stepsFromAPI.length === 10) {
         if (isInitialLoad) {
           setCurrent((prev) => prev + 1);
         } else {
