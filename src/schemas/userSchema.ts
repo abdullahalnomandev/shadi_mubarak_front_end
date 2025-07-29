@@ -771,8 +771,33 @@ export const userBiodataSchema = {
 
   marriage_related_information: yup.lazy((_, { parent }) => {
     const biodataType = parent?.general_information?.biodataType;
+    const maritalStatus = parent?.general_information?.maritalStatus;
 
     return yup.object().shape({
+      widower:
+        maritalStatus === "widower"
+          ? yup.string().required("Please specify if you are a widower")
+          : yup.string().notRequired(),
+
+      widow:
+        maritalStatus === "widow"
+          ? yup.string().required("Please specify if you are a widow")
+          : yup.string().notRequired(),
+      reasonForSecondMarriage:
+        maritalStatus === "married"
+          ? yup
+              .string()
+              .required("Please specify your reason for second marriage")
+          : yup.string().notRequired(),
+      currentFamilyStatus:
+        maritalStatus === "married"
+          ? yup.string().required("Please specify your current family status")
+          : yup.string().notRequired(),
+      reasonForDivorce:
+        maritalStatus === "divorced"
+          ? yup.string().required("Please provide reason for divorce")
+          : yup.string().notRequired(),
+
       doParentsAgree: yup
         .string()
         .oneOf(["yes", "no"], "Please select yes or no")

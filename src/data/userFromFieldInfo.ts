@@ -543,7 +543,7 @@ const family_information = [
 ];
 const personal_information = [
   {
-    name: "personal_information.usualOutdoorClothing",
+    name: "personal_information.usualDressOutside",
     label: "What kind of clothes do you usually wear outside the house?",
     type: "text",
     placeholder: "Your outdoor attire",
@@ -848,6 +848,49 @@ const contact = [
   },
 ];
 const marriage_related_information = [
+  {
+    name: "marriage_related_information.widower",
+    label: "When and how did your wife die? ",
+    type: "textArea",
+    placeholder:
+      "Please provide details about when and how your wife passed away",
+    required: true,
+  },
+  {
+    name: "marriage_related_information.widow",
+    label: "When and how did your husband die? ",
+    type: "textArea",
+    placeholder:
+      "Please provide details about when and how your husband passed away",
+    required: true,
+  },
+  {
+    name: "marriage_related_information.reasonForSecondMarriage",
+    label: "Why do you want to get married again when you are married?",
+    type: "textArea",
+    placeholder: "Reason for second marriage",
+    required: true,
+  },
+  {
+    name: "marriage_related_information.currentFamilyStatus",
+    label: "How many wives and children do you have at present?",
+    type: "textArea",
+    placeholder: "Current family status",
+    required: true,
+  },
+  {
+    name: "marriage_related_information.reasonForDivorce",
+    label:
+      "Write down the reasons for divorce mentioning the date of your previous marriage and divorce ",
+    type: "textArea",
+    placeholder: "Reson for devorce",
+    helperText: "This information helps us better understand your situation",
+    required: true,
+    validation: {
+      minLength: 50,
+      maxLength: 1000,
+    },
+  },
   {
     name: "marriage_related_information.doParentsAgree",
     label: "Do your guardians agree to your marriage?",
