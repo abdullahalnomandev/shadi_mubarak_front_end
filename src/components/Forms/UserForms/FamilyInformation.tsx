@@ -1,4 +1,5 @@
 "use client";
+import { useCleanHiddenFields } from "@/hooks/useCleanHiddenFields";
 import useGetUserFromField from "@/hooks/useGetUserFromField";
 import { Col, Row } from "antd";
 import { useFormContext } from "react-hook-form";
@@ -15,31 +16,19 @@ const FamilyInformation = () => {
   const howManyBrothers = watch("family_information.howManyBrothers");
   const howManySisters = watch("family_information.howManySisters");
 
-  console.log("occupation", family_information);
+  const conditionMap = {
+    "family_information.fatherProfession": isFatherAlive === "yes",
+    "family_information.motherProfession": isMotherAlive === "yes",
+    "family_information.brothersInformation": howManyBrothers !== "no_brothers",
+    "family_information.sistersInformation": howManySisters !== "no_sisters",
+  };
 
-  const filteredFamilyInformation = family_information.filter(({ name }) => {
-    if (
-      name === "family_information.fatherProfession" &&
-      isFatherAlive === "no"
-    )
-      return false;
-    if (
-      name === "family_information.motherProfession" &&
-      isMotherAlive === "no"
-    )
-      return false;
-    if (
-      name === "family_information.brothersInformation" &&
-      Number(howManyBrothers) === 0
-    )
-      return false;
-    if (
-      name === "family_information.sistersInformation" &&
-      Number(howManySisters) === 0
-    )
-      return false;
-    return true;
-  });
+  useCleanHiddenFields({ conditionMap });
+
+  const filteredFamilyInformation = family_information.filter(
+    ({ name }) => conditionMap[name] !== false
+  );
+
   return (
     <div>
       <h1 className='text-2xl font-semibold mb-6'>Family Information</h1>

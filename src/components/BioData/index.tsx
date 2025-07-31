@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import { BioDataStatus } from "@/constants/bioData";
 import { useGetBioDataByNoQuery } from "@/redux/api/biodata";
@@ -170,6 +171,7 @@ const BioData = ({ bioDataNo, className = "" }: IProps) => {
           <tbody>
             {Object.entries(data)
               .filter(([key]) => key !== "_id")
+              .filter(([key, value]) => value !== null && value !== undefined)
               .map(([key, value]) => (
                 <tr key={key} className='not-odd:bg-gray-100'>
                   <td className='w-1/2 border-x-0 border border-gray-300 p-2 align-top capitalize'>
@@ -216,7 +218,9 @@ const BioData = ({ bioDataNo, className = "" }: IProps) => {
   return (
     <div className={`m-auto mt-16 mb-8  ${className}  px-1`}>
       <div className='sm:flex sm:flex-wrap sm:gap-4 relative'>
-        {usrInfo?.bioDataNo === bioDataNo && <PriviewBioDataHeader profileStatus={profileStatus}/>}
+        {usrInfo?.bioDataNo === bioDataNo && (
+          <PriviewBioDataHeader profileStatus={profileStatus} />
+        )}
         <div className='sm:w-[350px] md:sticky md:top-[100px]   h-fit'>
           <GeneralInfoProfile
             general_information={bioData?.general_information}

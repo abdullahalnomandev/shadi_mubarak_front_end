@@ -408,7 +408,7 @@ const family_information = [
     type: "select",
     options: [
       {
-        value: "0",
+        value: "no_brothers",
         label: "no brothers",
       },
       {
@@ -432,7 +432,7 @@ const family_information = [
         label: "5",
       },
       {
-        value: "More than 5",
+        value: "more_than_5",
         label: "More than 5",
       },
     ],
@@ -452,7 +452,7 @@ const family_information = [
     type: "select",
     options: [
       {
-        value: "0",
+        value: "no_sisters",
         label: "no sisters",
       },
       {
@@ -476,7 +476,7 @@ const family_information = [
         label: "5",
       },
       {
-        value: "More than 5",
+        value: "more_than_6",
         label: "More than 5",
       },
     ],

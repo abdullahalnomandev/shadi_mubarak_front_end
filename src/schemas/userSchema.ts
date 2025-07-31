@@ -132,14 +132,10 @@ export const userBiodataSchema = {
     }),
     howManyBrothers: yup
       .string()
-      .oneOf(
-        ["0", "1", "2", "3", "4", "5", "More than 5"],
-        "Please select a valid number of brothers"
-      )
       .required("Please specify how many brothers you have"),
 
     brothersInformation: yup.string().when("howManyBrothers", {
-      is: (val: string) => val !== "0",
+      is: (val: string) => val !== "no_brothers",
       then: (schema) =>
         schema.required("Please provide information about your brothers"),
       otherwise: (schema) => schema.notRequired(),
@@ -147,14 +143,10 @@ export const userBiodataSchema = {
 
     howManySisters: yup
       .string()
-      .oneOf(
-        ["0", "1", "2", "3", "4", "5", "More than 5"],
-        "Please select a valid number of sisters"
-      )
       .required("Please specify how many sisters you have"),
 
     sistersInformation: yup.string().when("howManySisters", {
-      is: (val: string) => val !== "0",
+      is: (val: string) => val !== "no_sisters",
       then: (schema) => schema.required("Sisters' information is required"),
       otherwise: (schema) => schema.notRequired(),
     }),
