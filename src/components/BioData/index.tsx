@@ -3,159 +3,16 @@ import { BioDataStatus } from "@/constants/bioData";
 import { useGetBioDataByNoQuery } from "@/redux/api/biodata";
 import { getUserInfo } from "@/services/auth.service";
 import { IUser } from "@/types";
-import { getBioDataStatusLabel } from "@/utils/biodata-status";
 import dayjs from "dayjs";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
+import FooterStatus from "./FooterStatus";
 import GeneralInfoProfile from "./GeneralInfoProfile";
+import PriviewBioDataHeader from "./PriviewBioDataHeader";
 import ViewContact from "./ViewContact";
-
 interface IProps {
   bioDataNo: string;
   className?: string;
 }
-
-// const data = {
-//   statusCode: 200,
-//   status: "success",
-//   message: "BioData retrieved successfully",
-//   data: {
-//     _id: "67fc068da8a5af9875132620",
-//     bioDataNo: "SM-003",
-//     isLived: false,
-//     view: 73,
-//     completedSteps: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-//     isBlocked: false,
-//     profileStatus: "verified",
-//     createdAt: "2025-04-13T18:46:37.065Z",
-//     updatedAt: "2025-04-27T06:04:08.957Z",
-//     __v: 0,
-//     general_information: {
-//       gender: "male",
-//       dateOfBirth: "2025-05-15T18:00:00.000Z",
-//       height: "5.1",
-//       weight: 52,
-//       skin: "white",
-//       maritalStatus: "single",
-//       _id: "6827561ac2d3d9807cdc487c",
-//     },
-//     address: {
-//       present_address: {
-//         full: "Lakshmipur Sadar, Lakshmipur, Chattogram, Bangladesh",
-//         area: "হামছাদী, কাজির দিঘির পাড়,  দালাল বাজার,লক্ষ্মীপুর",
-//         _id: "67fe35d2291beb5fc8fa7a70",
-//       },
-//       permanent_address: {
-//         full: "Dhaka North City Corporation, Dhaka, Dhaka, Bangladesh",
-//         area: "Mirpur 1",
-//         _id: "67fe35d2291beb5fc8fa7a71",
-//       },
-//       grow_up: "নিজ বাড়িতেই",
-//       _id: "67fe35d2291beb5fc8fa7a6f",
-//     },
-// education: {
-//   ssc_passing_year: 2018,
-//   ssc_group: "Science",
-//   ssc_result: "A+",
-//   hsc_passing_year: 2020,
-//   hsc_group: "Science",
-//   hsc_result: "A",
-//   diploma_subject: "Computer Engineering",
-//   diploma_institution: "Dhaka Polytechnic Institute",
-//   diploma_passing_year: 2022,
-//   graduation_subject: "B.Sc. in Computer Science",
-//   graduation_institution: "University of Dhaka",
-//   graduation_year: "2025",
-//   _id: "67fe39d8510b4c7a5fe4a950",
-// },
-// family_information: {
-//   isParentAlive: "yes",
-//   fatherProfession: "Govt. Employe",
-//   isMotherAlive: "yes",
-//   motherProfession: "Housewife",
-//   howManyBrothers: 1,
-//   brothersInformation: "Bideshi",
-//   howManySisters: 2,
-//   sistersInformation: "Married",
-//   professionOfUncles: "N/A",
-//   familyFinancialStatus: "middle_class",
-//   descriptionOfFinancialCondition: "Alhamdullah",
-//   familyReligiousCondition: "Islam practricing",
-//   _id: "68275689c2d3d9807cdc4884",
-// },
-// personal_information: {
-//   clothingOutside:
-//     "শার্ট, প্যান্ট, পাঞ্জাবি এবং টুপি প্রায় সবসময় পড়া হয়। শার্ট, প্যান্ট, পাঞ্জাবি এবং টুপি প্রায় সবসময় পড়া হয়।শার্ট, প্যান্ট, পাঞ্জাবি এবং টুপি প্রায় সবসময় পড়া হয়",
-//   wearingNiqabSince: "2019",
-//   praysFiveTimes: true,
-//   missedPrayersPerWeek: 0,
-//   compliesWithMahram: true,
-//   canReciteQuranCorrectly: true,
-//   fiqhFollowed: "Hanafi",
-//   watchesOrListensToMedia: "Only Islamic content occasionally",
-//   mentalOrPhysicalDiseases: "None",
-//   involvedInSpecialWork: "Teaching at an Islamic school",
-//   beliefsAboutShrine: "Do not believe in seeking help from shrines",
-//   islamicBooksRead: [
-//     "Riyad-us-Saliheen",
-//     "Tafsir Ibn Kathir",
-//     "Fortress of the Muslim",
-//   ],
-//   islamicScholarsPreferred: [
-//     "Mufti Menk",
-//     "Nouman Ali Khan",
-//     "Dr. Zakir Naik",
-//   ],
-//   hobbiesAndInterests: [
-//     "Reading Islamic literature",
-//     "Memorizing Quran",
-//     "Calligraphy",
-//   ],
-//   _id: "67fe75fa18510a6e9dc54b69",
-// },
-// occupation: {
-//   occupation: "Software Engineer",
-//   monthlyIncome: 3500,
-//   descriptionOfProfession:
-//     "Responsible for developing and maintaining web applications.",
-//   _id: "67fe7e41f229fbcf35d301c7",
-// },
-// marriageRelatedInformation: {
-//   doYouAgreeWithParents: "Yes",
-//   willingToWorkAfterMarriage: "Yes, if circumstances allow",
-//   wantToContinueStudyAfterMarriage:
-//     "Yes, I plan to pursue higher education",
-//   whyAreYouGettingMarried: "To build a supportive and loving partnership",
-//   _id: "67fe85d8cad8379f1ccec848",
-// },
-// expected_partner: {
-//   age: "22-28",
-//   complexion: ["fair", "bright_brown"],
-//   height: "5'4\" - 5'8\"",
-//   education: "Bachelor's degree or higher",
-//   district: "Dhaka",
-//   maritalStatus: ["never_married"],
-//   profession: "Software Engineer",
-//   financialCondition: "Middle class or above",
-//   specialExpectationsOrRequests: "Should be respectful and open-minded",
-//   _id: "67fe89887c23adeab2e59036",
-// },
-// agreement: {
-//   parentsAwareOfRegistration: true,
-//   confirmTruthOfProvidedInformation: true,
-//   agreeToLegalResponsibilityForFalseInfo: true,
-//   _id: "67fe8a3f3ef99a0e5ada17ee",
-// },
-// contact: {
-//   brideName: "Fatima Rahman",
-//   guardianPhoneNumber: "+8801712345678",
-//   relationWithGuardian: "Father",
-//   emailUsedForRegistration: "fatima.rahman@example.com",
-//   _id: "67fe8b0f3ef99a0e5ada17f2",
-// },
-//   },
-// };
-// const { data: bioData } = data;
 
 const BioData = ({ bioDataNo, className = "" }: IProps) => {
   // const router = useRouter();
@@ -166,16 +23,8 @@ const BioData = ({ bioDataNo, className = "" }: IProps) => {
     isLoading,
     error,
   } = useGetBioDataByNoQuery({
-    // arg: {
-    //   userId: usrInfo?.id,
-    // },
     bioDataNo,
   });
-
-  // const { data: visitedData } = useVisitorData(
-  //   { extendedResult: true },
-  //   { immediate: true }
-  // );
 
   const bioData = bioDataInfo?.biodata || {};
   const profileStatus = bioDataInfo?.biodata?.profileStatus;
@@ -215,7 +64,34 @@ const BioData = ({ bioDataNo, className = "" }: IProps) => {
     },
     {
       title: t("biodata.sections.family_information"),
-      data: bioData.family_information || {},
+      data: bioData.family_information
+        ? {
+            [t("biodata.family_information.isParentAlive")]:
+              bioData.family_information.isParentAlive,
+            [t("biodata.family_information.fatherProfession")]:
+              bioData.family_information.fatherProfession,
+            [t("biodata.family_information.isMotherAlive")]:
+              bioData.family_information.isMotherAlive,
+            [t("biodata.family_information.motherProfession")]:
+              bioData.family_information.motherProfession,
+            [t("biodata.family_information.howManyBrothers")]:
+              bioData.family_information.howManyBrothers,
+            [t("biodata.family_information.brothersInformation")]:
+              bioData.family_information.brothersInformation,
+            [t("biodata.family_information.howManySisters")]:
+              bioData.family_information.howManySisters,
+            [t("biodata.family_information.sistersInformation")]:
+              bioData.family_information.sistersInformation,
+            [t("biodata.family_information.professionOfUncles")]:
+              bioData.family_information.professionOfUncles,
+            [t("biodata.family_information.familyFinancialStatus")]:
+              bioData.family_information.familyFinancialStatus,
+            [t("biodata.family_information.descriptionOfFinancialCondition")]:
+              bioData.family_information.descriptionOfFinancialCondition,
+            [t("biodata.family_information.familyReligiousCondition")]:
+              bioData.family_information.familyReligiousCondition,
+          }
+        : {},
     },
     {
       title: t("biodata.sections.personal_information"),
@@ -340,6 +216,7 @@ const BioData = ({ bioDataNo, className = "" }: IProps) => {
   return (
     <div className={`m-auto mt-16 mb-8  ${className}  px-1`}>
       <div className='sm:flex sm:flex-wrap sm:gap-4 relative'>
+        {usrInfo?.bioDataNo === bioDataNo && <PriviewBioDataHeader profileStatus={profileStatus}/>}
         <div className='sm:w-[350px] md:sticky md:top-[100px]   h-fit'>
           <GeneralInfoProfile
             general_information={bioData?.general_information}
@@ -354,62 +231,12 @@ const BioData = ({ bioDataNo, className = "" }: IProps) => {
           )}
           <div className='text-center'>
             {profileStatus !== BioDataStatus.VERIFIED && (
-              <>
-                {usrInfo?.bioDataNo === bioDataNo &&
-                !!filteredSections?.length ? (
-                  <p className='text-sm text-red-600'>
-                    Your biodata is{" "}
-                    <span
-                      className={`text-xs font-medium px-3 py-0.5 rounded-full border ${
-                        profileStatus === BioDataStatus.NOT_STARTED
-                          ? "text-gray-800 bg-gray-100 border-gray-300"
-                          : profileStatus === BioDataStatus.INCOMPLETE
-                          ? "text-orange-800 bg-orange-100 border-orange-300"
-                          : profileStatus === BioDataStatus.NOT_SUBMITTED
-                          ? "text-blue-800 bg-blue-100 border-blue-300"
-                          : profileStatus === BioDataStatus.PENDING
-                          ? "text-yellow-800 bg-yellow-100 border-yellow-300"
-                          : profileStatus === BioDataStatus.REJECTED
-                          ? "text-red-800 bg-red-100 border-red-300"
-                          : "text-green-800 bg-green-100 border-green-300"
-                      }`}>
-                      {getBioDataStatusLabel(profileStatus)}
-                    </span>
-                    <br />
-                    <span className='text-red-600'>
-                      Please{" "}
-                      <Link
-                        href='/user/edit-biodata'
-                        className='text-blue-600 underline'>
-                        complete your biodata
-                      </Link>{" "}
-                      to proceed.
-                    </span>
-                  </p>
-                ) : (
-                  <p className='text-md text-red-700 mt-2'>
-                    This biodata is currently{" "}
-                    <span
-                      className={`text-xs font-medium px-3 py-0.5 rounded-full border ${
-                        profileStatus === BioDataStatus.NOT_STARTED
-                          ? "text-gray-800 bg-gray-100 border-gray-300"
-                          : profileStatus === BioDataStatus.INCOMPLETE
-                          ? "text-orange-800 bg-orange-100 border-orange-300"
-                          : profileStatus === BioDataStatus.NOT_SUBMITTED
-                          ? "text-blue-800 bg-blue-100 border-blue-300"
-                          : profileStatus === BioDataStatus.PENDING
-                          ? "text-yellow-800 bg-yellow-100 border-yellow-300"
-                          : profileStatus === BioDataStatus.REJECTED
-                          ? "text-red-800 bg-red-100 border-red-300"
-                          : "text-green-800 bg-green-100 border-green-300"
-                      }`}>
-                      {getBioDataStatusLabel(profileStatus)}
-                    </span>
-                    <br />
-                    So you can’t view the contact details.
-                  </p>
-                )}
-              </>
+              <FooterStatus
+                bioDataInfo={bioDataInfo}
+                usrInfo={usrInfo}
+                bioDataNo={bioDataNo}
+                filterLength={!!filteredSections?.length}
+              />
             )}
           </div>
 

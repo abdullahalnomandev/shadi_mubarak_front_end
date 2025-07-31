@@ -4,6 +4,7 @@ import { Slider, SliderSingleProps } from "antd";
 import { TooltipPlacement } from "antd/es/tooltip";
 import { useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
+import FieldRequireLabel from "../UI/FieldRequireLabel";
 
 interface IFormSliderProps {
   name: string;
@@ -53,13 +54,7 @@ const FormSlider = ({
 
   return (
     <div className='space-y-2'>
-      {label && (
-        <label
-          htmlFor={id}
-          className='block font-semibold text-gray-700 text-sm'>
-          {label}
-        </label>
-      )}
+      <FieldRequireLabel label={label} required={false} />
 
       <Controller
         name={name}

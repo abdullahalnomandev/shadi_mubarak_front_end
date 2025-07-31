@@ -40,6 +40,21 @@
       "present_address": "Present Address",
       "permanent_address": "Permanent Address",
       "grow_up": "Grow Up"
+  
+    },
+    "family_information": {
+      "isParentAlive": "Are your parents alive?",
+      "fatherProfession": "Father's Profession",
+      "isMotherAlive": "Is your mother alive?",
+      "motherProfession": "Mother's Profession",
+      "howManyBrothers": "How many brothers do you have?",
+      "brothersInformation": "Brothers' Information",
+      "howManySisters": "How many sisters do you have?",
+      "sistersInformation": "Sisters' Information",
+      "professionOfUncles": "Profession of Uncles",
+      "familyFinancialStatus": "Family Financial Status",
+      "descriptionOfFinancialCondition": "Description of Financial Condition",
+      "familyReligiousCondition": "Family Religious Condition"
     }
   }
 }

@@ -82,6 +82,7 @@ import { getErrorMessageBuPropertyName } from "@/utils/schema-validator";
 import { Select } from "antd";
 import dayjs from "dayjs";
 import { Controller, useFormContext } from "react-hook-form";
+import FieldRequireLabel from "../UI/FieldRequireLabel";
 
 interface IDatePickerProps {
   name: string;
@@ -116,9 +117,7 @@ const FormDatePicker = ({
 
   return (
     <div className='w-full'>
-      {label && (
-        <label className='block text-sm font-medium mb-1'>{label}</label>
-      )}
+      <FieldRequireLabel label={label} required={true} />
 
       <Controller
         name={name}

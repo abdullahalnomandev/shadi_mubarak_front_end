@@ -1,5 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
+import AntModal from "@/components/UI/AntModal";
 import { BioDataStatus } from "@/constants/bioData";
 import { biodataSteps } from "@/constants/global";
 import {
@@ -68,6 +70,8 @@ const StepperForm = ({ steps }: IStepsProps) => {
   const [completedSteps, setCompletedSteps] = useState<number[]>([]);
   const [current, setCurrent] = useState<number>(0);
   const [isInitialLoad, setIsInitialLoad] = useState(false);
+  const [isLastStep, setIsLastStep] = useState(false);
+  const [contactData, setContactData] = useState<any>(null);
   const validationSchema = useMemo(
     () => getValidationSchema(current + 1),
     [current]
@@ -95,10 +99,11 @@ const StepperForm = ({ steps }: IStepsProps) => {
     if (bioDataInfo?.biodata) {
       reset(bioDataInfo.biodata);
       const stepsFromAPI = bioDataInfo.biodata.completedSteps ?? [];
+      console.log({ stepsFromAPI });
       setCompletedSteps([0, ...stepsFromAPI]);
 
       if (stepsFromAPI.length === 10) {
-        if (isInitialLoad) {
+        if (isInitialLoad && current !== 9) {
           setCurrent((prev) => prev + 1);
         } else {
           setIsInitialLoad(true);
@@ -122,9 +127,37 @@ const StepperForm = ({ steps }: IStepsProps) => {
     }
   };
   console.log({ bioDataInfo });
+
+  const handleSubmitBioData = async (type: "priview" | "submit") => {
+    const stepKey = biodataSteps[current + 1];
+    const stepData = contactData[stepKey];
+
+    if (!stepData) throw new Error("No data to update");
+
+    if (type === "submit") {
+      message.success("Biodata submitted successfully");
+      // router.push("/user/dashboard");
+      await updateBiodata({
+        stepNumber: current + 1,
+        biodataStepInfo: { [stepKey]: stepData },
+      });
+      updateProfile({ profileStatus: BioDataStatus.PENDING }).catch(
+        console.error
+      );
+    } else {
+      // router.push("/user/my-biodata");
+      await updateBiodata({
+        stepNumber: current + 1,
+        biodataStepInfo: { [stepKey]: stepData },
+      });
+      updateProfile({ profileStatus: BioDataStatus.NOT_SUBMITTED }).catch(
+        console.error
+      );
+    }
+    setIsLastStep(false);
+  };
   const onHandleSubmit = async (data: any) => {
     try {
-      await submitStepData(current, data, updateBiodata);
       const isAlreadyCompleted = completedSteps.includes(current);
 
       if (!isAlreadyCompleted) {
@@ -135,31 +168,25 @@ const StepperForm = ({ steps }: IStepsProps) => {
 
       // UPDATE STATUS
       if (isLastStep) {
-        try {
-          router.push("/user/my-biodata");
-          // Fire-and-forget update
-          updateProfile({ profileStatus: BioDataStatus.PENDING }).catch(
-            console.error
-          );
-        } catch (err) {
-          console.error("Failed to update profile status", err);
-        }
+        setIsLastStep(true);
+        setContactData(data);
       } else {
+        await submitStepData(current, data, updateBiodata);
         if (bioDataInfo?.biodata?.profileStatus === BioDataStatus.PENDING) {
           updateProfile({ profileStatus: BioDataStatus.NOT_SUBMITTED });
         }
       }
 
-      // Only move to the next step if it’s not the last and it's not a re-edit
-      if (!isLastStep && !isAlreadyCompleted && !isFetching) {
-        setCurrent((prev) => prev + 1);
-      } else {
-        if (current === 9) {
-          message.success("Biodata submitted successfully");
-        } else {
-          message.success("Step saved successfully");
-        }
-      }
+      // // Only move to the next step if it’s not the last and it's not a re-edit
+      // if (!isLastStep && !isAlreadyCompleted && !isFetching) {
+      //   setCurrent((prev) => prev + 1);
+      // } else {
+      //   if (current === 9) {
+      //     message.success("Biodata submitted successfully");
+      //   } else {
+      //     message.success("Step saved successfully");
+      //   }
+      // }
     } catch (error) {
       message.error(getErrorMessage(error));
     }
@@ -185,9 +212,50 @@ const StepperForm = ({ steps }: IStepsProps) => {
     return null;
   }
   console.log("bi", bioDataInfo?.biodata?.profileStatus);
-
+  console.log({ current });
   return (
     <div className='p-4 sm:p-6'>
+      <AntModal
+        title='Complete Your Biodata Submission'
+        isOpen={isLastStep}
+        onClose={() => setIsLastStep(false)}
+        styles={{
+          content: {
+            backgroundColor: "#F9FAFB",
+            background: "linear-gradient(to bottom right, #F3F4F6, #E5E7EB)",
+          },
+          header: {
+            backgroundColor: "#F9FAFB",
+            background: "linear-gradient(to bottom right, #F3F4F6, #E5E7EB)",
+          },
+        }}
+        footer={null}>
+        <div className='flex flex-col items-center p-6 rounded-lg'>
+          <h1 className='text-2xl font-semibold text-gray-900 mb-4'>
+            Submit Your Biodata
+          </h1>
+          <div className='w-12 h-1 bg-indigo-500 rounded mb-6'></div>
+          <p className='text-gray-600 text-center mb-8 leading-relaxed max-w-md'>
+            Ready to submit your biodata? Click{" "}
+            <strong>&apos;Submit Now&apos;</strong> to proceed, or choose{" "}
+            <strong>&apos;Submit Later&apos;</strong> if you&apos;d like to
+            review it again.
+          </p>
+          <div className='flex gap-4'>
+            <button
+              onClick={() => handleSubmitBioData("priview")}
+              className='px-6 py-2 bg-white border cursor-pointer border-gray-300 hover:bg-gray-100 text-gray-700 rounded-md transition-all duration-300'>
+              Submit Later
+            </button>
+            <button
+              onClick={() => handleSubmitBioData("submit")}
+              className='flex items-center cursor-pointer justify-center gap-2 px-6 py-2 text-sm font-medium text-white rounded-md bg-gradient-to-r from-indigo-500 to-blue-600 hover:from-blue-600 hover:to-indigo-500 transition duration-300'>
+              Submit Now
+            </button>
+          </div>
+        </div>
+      </AntModal>
+
       <Stepper
         activeStep={current}
         connectorStateColors
@@ -225,15 +293,23 @@ const StepperForm = ({ steps }: IStepsProps) => {
               <button
                 onClick={prev}
                 type='button'
-                className='flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white rounded-md bg-gradient-to-r from-slate-400 to-gray-600 hover:from-slate-500 hover:to-gray-700 transition duration-300 shadow cursor-pointer'>
+                className='flex items-center justify-center gap-2 px-4 py-2 bg-white border cursor-pointer border-gray-300 hover:bg-gray-100 text-gray-700 rounded-md transition-all duration-300'>
                 <IoIosArrowRoundBack /> Previous
               </button>
             )}
             <button
               type='submit'
-              icon={isFetching ? <SyncOutlined spin /> : undefined}
+              disabled={isFetching}
               className='flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 transition duration-300 shadow cursor-pointer'>
-              {current === steps?.length - 1 ? "Submit" : "Save & Next"}
+              {isFetching ? (
+                <span className='flex items-center gap-2'>
+                  <SyncOutlined spin /> Saving...
+                </span>
+              ) : current === steps?.length - 1 ? (
+                "Save & Submit"
+              ) : (
+                "Save & Next"
+              )}
             </button>
           </div>
         </form>

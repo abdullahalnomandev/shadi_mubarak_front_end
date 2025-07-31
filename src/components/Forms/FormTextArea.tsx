@@ -3,6 +3,7 @@
 import { getErrorMessageBuPropertyName } from "@/utils/schema-validator";
 import TextArea from "antd/es/input/TextArea";
 import { Controller, useFormContext } from "react-hook-form";
+import FieldRequireLabel from "../UI/FieldRequireLabel";
 
 interface ITextArea {
   name: string;
@@ -19,6 +20,7 @@ const FormTextArea = ({
   value,
   placeholder,
   label,
+  required = false,
 }: ITextArea) => {
   const {
     control,
@@ -28,9 +30,7 @@ const FormTextArea = ({
   const errorMessage = getErrorMessageBuPropertyName(errors, name);
   return (
     <>
-      {label && (
-        <p className="text-gray-500 dark:text-slate-400 mb-0.5">{label}</p>
-      )}
+      <FieldRequireLabel label={label} required={required} />
 
       <Controller
         control={control}
@@ -38,7 +38,7 @@ const FormTextArea = ({
         render={({ field }) => (
           <TextArea
             size={size}
-            autoComplete="off"
+            autoComplete='off'
             {...field}
             value={value ? value : field.value}
             placeholder={placeholder}
@@ -54,7 +54,7 @@ const FormTextArea = ({
           />
         )}
       />
-      {errors && <small className="text-red-500">{errorMessage}</small>}
+      {errors && <small className='text-red-500'>{errorMessage}</small>}
     </>
   );
 };

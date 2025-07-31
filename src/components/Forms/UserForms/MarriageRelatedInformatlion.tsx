@@ -9,7 +9,6 @@ import FormTextArea from "../FormTextArea";
 const MarriageRelatedInformation = () => {
   const { marriage_related_information } = useGetUserFromField();
   const { watch } = useFormContext();
-
   const isMaleForm =
     watch("general_information.biodataType") === "male_biodata";
   const maritalStatus = watch("general_information.maritalStatus");
@@ -22,11 +21,20 @@ const MarriageRelatedInformation = () => {
   ];
   const widowFields = ["marriage_related_information.widow"];
   const widowerFields = ["marriage_related_information.widower"];
+  const commonFields = [
+    "marriage_related_information.reasonForMarriage",
+    "marriage_related_information.doParentsAgree",
+  ];
 
   const shouldIncludeField = (field: any) => {
     const { name, isMale } = field;
 
     const isMaleRelevant = isMale === undefined || isMale === isMaleForm;
+
+    // Always include common fields regardless of marital status
+    if (commonFields.includes(name)) {
+      return true;
+    }
 
     // Always include regular fields that match gender and are not conditionally shown
     const isSpecialField = [
@@ -59,7 +67,6 @@ const MarriageRelatedInformation = () => {
       isMale: field.isMale ?? null,
     }))
     .filter(shouldIncludeField);
-
   return (
     <div>
       <h1 className='text-2xl font-semibold mb-6'>

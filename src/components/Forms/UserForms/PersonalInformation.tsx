@@ -93,6 +93,7 @@ const PersonalInformation = () => {
                   name={name}
                   label={label}
                   type={type}
+                  required={required}
                   placeholder={placeholder}
                 />
               )}
@@ -102,6 +103,7 @@ const PersonalInformation = () => {
                   name={name}
                   label={label}
                   type={type}
+                  required={required}
                   placeholder={placeholder}
                 />
               )}
@@ -110,6 +112,7 @@ const PersonalInformation = () => {
                   id={name}
                   name={name}
                   label={label}
+                  required={required}
                   placeholder={placeholder}
                 />
               )}

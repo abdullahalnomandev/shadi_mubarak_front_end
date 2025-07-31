@@ -181,325 +181,124 @@ export const userBiodataSchema = {
       .required("Please describe your family's religious practices and values"),
   }),
 
-  personal_information: yup.object().shape({
-    // Always shown
-    usualOutdoorClothing: yup
-      .string()
-      .required("Please specify your clothing style outside"),
+  personal_information: yup.lazy((_, { parent }) => {
+    const biodataType = parent?.general_information?.biodataType;
+    const isMale = biodataType === "male_biodata";
+    const isFemale = biodataType === "female_biodata";
 
-    dailyPrayerRoutine: yup
-      .string()
-      .oneOf(["yes", "no"])
-      .required("Please indicate your daily prayer routine"),
+    const wearsNiqab = parent?.personal_information?.wearsNiqab;
+    const beardAccordingToSunnah =
+      parent?.personal_information?.beardAccordingToSunnah;
+    const clothingAboveAnkles =
+      parent?.personal_information?.clothingAboveAnkles;
+    const dailyPrayerRoutine = parent?.personal_information?.dailyPrayerRoutine;
 
-    // Conditional (gender: male)
-    beardAccordingToSunnah: yup
-      .string()
-      .oneOf(["yes", "no"])
-      .when("..general_information.biodataType", {
-        is: "male_biodata",
-        then: (schema) =>
-          schema.required(
-            "Please indicate if you have beard according to sunnah"
-          ),
-        otherwise: (schema) => schema.notRequired(),
-      }),
+    const yesCount = [
+      isMale && beardAccordingToSunnah === "yes",
+      isMale && clothingAboveAnkles === "yes",
+      dailyPrayerRoutine === "yes",
+      isFemale && wearsNiqab === "yes",
+    ].filter(Boolean).length;
 
-    clothingAboveAnkles: yup
-      .string()
-      .oneOf(["yes", "no"])
-      .when("..general_information.biodataType", {
-        is: "male_biodata",
-        then: (schema) =>
-          schema.required("Please indicate if your clothing is above ankles"),
-        otherwise: (schema) => schema.notRequired(),
-      }),
+    const showAdvancedFields = yesCount >= 2;
 
-    // Conditional (gender: female)
-    wearsNiqab: yup
-      .string()
-      .oneOf(["yes", "no"])
-      .when("..general_information.biodataType", {
-        is: "female_biodata",
-        then: (schema) => schema.required("Please specify if you wear niqab"),
-        otherwise: (schema) => schema.notRequired(),
-      }),
+    return yup.object({
+      usualOutdoorClothing: yup
+        .string()
+        .required("Please specify your clothing style outside"),
 
-    wearingNiqabSince: yup
-      .string()
-      .when(["wearsNiqab", "..general_information.biodataType"], {
-        is: (wearsNiqab, type) =>
-          type === "female_biodata" && wearsNiqab === "yes",
-        then: (schema) =>
-          schema.required(
-            "Please specify how long you have been wearing niqab"
-          ),
-        otherwise: (schema) => schema.notRequired(),
-      }),
+      dailyPrayerRoutine: yup
+        .string()
+        .oneOf(["yes", "no"])
+        .required("Please indicate your daily prayer routine"),
 
-    // Conditionally visible advanced fields (triggered by 2+ "yes")
-    skippedPrayersPerWeek: yup
-      .string()
-      .when(
-        [
-          "..general_information.biodataType",
-          "wearsNiqab",
-          "beardAccordingToSunnah",
-          "clothingAboveAnkles",
-          "dailyPrayerRoutine",
-        ],
-        (
-          [
-            biodataType,
-            wearsNiqab,
-            beardAccordingToSunnah,
-            clothingAboveAnkles,
-            dailyPrayerRoutine,
-          ],
-          schema
-        ) => {
-          const isMale = biodataType === "male_biodata";
-          let yesCount = 0;
+      beardAccordingToSunnah: isMale
+        ? yup
+            .string()
+            .required("Please indicate if you have beard according to sunnah")
+        : yup.string().notRequired(),
 
-          if (isMale) {
-            if (beardAccordingToSunnah === "yes") yesCount++;
-            if (clothingAboveAnkles === "yes") yesCount++;
-            if (dailyPrayerRoutine === "yes") yesCount++;
-          } else {
-            if (wearsNiqab === "yes") yesCount++;
-            if (dailyPrayerRoutine === "yes") yesCount++;
-          }
+      clothingAboveAnkles: isMale
+        ? yup
+            .string()
+            .required("Please indicate if your clothing is above the ankles")
+        : yup.string().notRequired(),
 
-          return yesCount >= 2
-            ? schema.required(
-                "Please specify how many prayers you miss per week"
-              )
-            : schema.notRequired();
-        }
-      ),
+      wearsNiqab: isFemale
+        ? yup.string().required("Please specify if you wear niqab")
+        : yup.string().notRequired(),
 
-    followsMahramGuidelines: yup
-      .string()
-      .oneOf(["yes", "no"])
-      .when(
-        [
-          "..general_information.biodataType",
-          "wearsNiqab",
-          "beardAccordingToSunnah",
-          "clothingAboveAnkles",
-          "dailyPrayerRoutine",
-        ],
-        (
-          [
-            biodataType,
-            wearsNiqab,
-            beardAccordingToSunnah,
-            clothingAboveAnkles,
-            dailyPrayerRoutine,
-          ],
-          schema
-        ) => {
-          const isMale = biodataType === "male_biodata";
-          let yesCount = 0;
+      wearingNiqabSince:
+        isFemale && wearsNiqab === "yes"
+          ? yup
+              .string()
+              .required("Please specify how long you have been wearing niqab")
+          : yup.string().notRequired(),
 
-          if (isMale) {
-            if (beardAccordingToSunnah === "yes") yesCount++;
-            if (clothingAboveAnkles === "yes") yesCount++;
-            if (dailyPrayerRoutine === "yes") yesCount++;
-          } else {
-            if (wearsNiqab === "yes") yesCount++;
-            if (dailyPrayerRoutine === "yes") yesCount++;
-          }
+      skippedPrayersPerWeek: showAdvancedFields
+        ? yup
+            .string()
+            .required("Please specify how many prayers you miss per week")
+        : yup.string().notRequired(),
 
-          return yesCount >= 2
-            ? schema.required(
-                "Please indicate if you comply with mahram requirements"
-              )
-            : schema.notRequired();
-        }
-      ),
+      followsMahramGuidelines: showAdvancedFields
+        ? yup
+            .string()
+            .oneOf(["yes", "no"])
+            .required("Please indicate if you comply with mahram requirements")
+        : yup.string().notRequired(),
 
-    quranRecitationAbility: yup
-      .string()
-      .oneOf(["yes", "no"])
-      .required("Please indicate if you can recite Quran correctly"),
+      quranRecitationAbility: yup
+        .string()
+        .oneOf(["yes", "no"])
+        .required("Please indicate if you can recite Quran correctly"),
 
-    fiqhFollowed: yup
-      .string()
-      .oneOf(["hanafi", "shafi", "maliki", "hanbali"])
-      .when(
-        [
-          "..general_information.biodataType",
-          "wearsNiqab",
-          "beardAccordingToSunnah",
-          "clothingAboveAnkles",
-          "dailyPrayerRoutine",
-        ],
-        (
-          [
-            biodataType,
-            wearsNiqab,
-            beardAccordingToSunnah,
-            clothingAboveAnkles,
-            dailyPrayerRoutine,
-          ],
-          schema
-        ) => {
-          const isMale = biodataType === "male_biodata";
-          let yesCount = 0;
+      fiqhFollowed: showAdvancedFields
+        ? yup
+            .string()
+            .oneOf(["hanafi", "shafi", "maliki", "hanbali"])
+            .required(
+              "Please select which school of Islamic jurisprudence you follow"
+            )
+        : yup.string().notRequired(),
 
-          if (isMale) {
-            if (beardAccordingToSunnah === "yes") yesCount++;
-            if (clothingAboveAnkles === "yes") yesCount++;
-            if (dailyPrayerRoutine === "yes") yesCount++;
-          } else {
-            if (wearsNiqab === "yes") yesCount++;
-            if (dailyPrayerRoutine === "yes") yesCount++;
-          }
+      mediaConsumptionHabits: yup
+        .string()
+        .required("Please specify your media consumption habits"),
 
-          return yesCount >= 2
-            ? schema.required(
-                "Please select which school of Islamic jurisprudence you follow"
-              )
-            : schema.notRequired();
-        }
-      ),
+      mentalOrPhysicalDiseases: yup
+        .string()
+        .required("Please specify any mental or physical health conditions"),
 
-    mediaConsumptionHabits: yup
-      .string()
-      .required("Please specify your media consumption habits"),
+      involvedInSpecialWork: showAdvancedFields
+        ? yup
+            .string()
+            .required("Please specify if you are involved in any special work")
+        : yup.string().notRequired(),
 
-    mentalOrPhysicalDiseases: yup
-      .string()
-      .required("Please specify any mental or physical health conditions"),
+      beliefsAboutShrine: showAdvancedFields
+        ? yup.string().required("Please specify your beliefs about shrines")
+        : yup.string().notRequired(),
 
-    involvedInSpecialWork: yup
-      .string()
-      .when(
-        [
-          "..general_information.biodataType",
-          "wearsNiqab",
-          "beardAccordingToSunnah",
-          "clothingAboveAnkles",
-          "dailyPrayerRoutine",
-        ],
-        (
-          [
-            biodataType,
-            wearsNiqab,
-            beardAccordingToSunnah,
-            clothingAboveAnkles,
-            dailyPrayerRoutine,
-          ],
-          schema
-        ) => {
-          const isMale = biodataType === "male_biodata";
-          let yesCount = 0;
+      islamicBooksRead: yup
+        .string()
+        .required("Please list at least one Islamic book"),
 
-          if (isMale) {
-            if (beardAccordingToSunnah === "yes") yesCount++;
-            if (clothingAboveAnkles === "yes") yesCount++;
-            if (dailyPrayerRoutine === "yes") yesCount++;
-          } else {
-            if (wearsNiqab === "yes") yesCount++;
-            if (dailyPrayerRoutine === "yes") yesCount++;
-          }
+      islamicScholarsPreferred: showAdvancedFields
+        ? yup
+            .array()
+            .of(yup.string())
+            .min(1, "Please list your preferred Islamic scholars")
+        : yup.array().of(yup.string()).notRequired(),
 
-          return yesCount >= 2
-            ? schema.required(
-                "Please specify if you are involved in any special work"
-              )
-            : schema.notRequired();
-        }
-      ),
+      hobbiesAndInterests: yup
+        .string()
+        .required("Please specify your hobbies and interests"),
 
-    beliefsAboutShrine: yup
-      .string()
-      .when(
-        [
-          "..general_information.biodataType",
-          "wearsNiqab",
-          "beardAccordingToSunnah",
-          "clothingAboveAnkles",
-          "dailyPrayerRoutine",
-        ],
-        (
-          [
-            biodataType,
-            wearsNiqab,
-            beardAccordingToSunnah,
-            clothingAboveAnkles,
-            dailyPrayerRoutine,
-          ],
-          schema
-        ) => {
-          const isMale = biodataType === "male_biodata";
-          let yesCount = 0;
+      groomMobileNumber: yup.string().required("Mobile Number is required"),
 
-          if (isMale) {
-            if (beardAccordingToSunnah === "yes") yesCount++;
-            if (clothingAboveAnkles === "yes") yesCount++;
-            if (dailyPrayerRoutine === "yes") yesCount++;
-          } else {
-            if (wearsNiqab === "yes") yesCount++;
-            if (dailyPrayerRoutine === "yes") yesCount++;
-          }
-
-          return yesCount >= 2
-            ? schema.required("Please specify your beliefs about shrines")
-            : schema.notRequired();
-        }
-      ),
-
-    islamicBooksRead: yup
-      .string()
-      .required("Please list at least one Islamic book"),
-
-    islamicScholarsPreferred: yup
-      .array(yup.string())
-      .when(
-        [
-          "..general_information.biodataType",
-          "wearsNiqab",
-          "beardAccordingToSunnah",
-          "clothingAboveAnkles",
-          "dailyPrayerRoutine",
-        ],
-        (
-          [
-            biodataType,
-            wearsNiqab,
-            beardAccordingToSunnah,
-            clothingAboveAnkles,
-            dailyPrayerRoutine,
-          ],
-          schema
-        ) => {
-          const isMale = biodataType === "male_biodata";
-          let yesCount = 0;
-
-          if (isMale) {
-            if (beardAccordingToSunnah === "yes") yesCount++;
-            if (clothingAboveAnkles === "yes") yesCount++;
-            if (dailyPrayerRoutine === "yes") yesCount++;
-          } else {
-            if (wearsNiqab === "yes") yesCount++;
-            if (dailyPrayerRoutine === "yes") yesCount++;
-          }
-
-          return yesCount >= 2
-            ? schema.min(1, "Please list your preferred Islamic scholars")
-            : schema.notRequired();
-        }
-      ),
-
-    hobbiesAndInterests: yup
-      .string()
-      .required("Please specify your hobbies and interests"),
-
-    groomMobileNumber: yup.string().required("Mobile Number is required"),
-
-    previousRelationship: yup.string().optional(),
+      previousRelationship: yup.string().notRequired(),
+    });
   }),
 
   expected_partner: yup.object().shape({
@@ -537,11 +336,10 @@ export const userBiodataSchema = {
       .oneOf(["general", "alia", "quami"])
       .required("Education system is required"),
 
+    additional_qualifications: yup.string().optional(),
+
     highest_qualification: yup.string().required("Qualification is required"),
 
-    // ========================
-    // For General / Alia
-    // ========================
     post_ssc_medium: yup
       .string()
       .when(["education_system", "highest_qualification"], {
@@ -549,170 +347,179 @@ export const userBiodataSchema = {
           (system === "general" || system === "alia") &&
           ["F", "G", "H", "I"].includes(qual),
         then: (schema) => schema.required("Post SSC Medium is required"),
-        otherwise: (schema) => schema.notRequired(),
+        otherwise: () => yup.string().notRequired(),
       }),
 
     // SSC
-    passing_year_ssc: yup.string().when("education_system", {
-      is: (val) => val !== "quami",
-      then: (schema) => schema.required("SSC passing year is required"),
-      otherwise: (schema) => schema.notRequired(),
-    }),
-    group_ssc: yup.string().when("education_system", {
-      is: (val) => val !== "quami",
-      then: (schema) => schema.required("SSC group is required"),
-      otherwise: (schema) => schema.notRequired(),
-    }),
-    result_ssc: yup.string().when("education_system", {
-      is: (val) => val !== "quami",
-      then: (schema) => schema.required("SSC result is required"),
-      otherwise: (schema) => schema.notRequired(),
-    }),
+    passing_year_ssc: yup
+      .string()
+      .when(["education_system", "highest_qualification"], {
+        is: (system, qual) =>
+          (system === "general" || system === "alia") && qual !== "C",
+        then: (schema) => schema.required("SSC passing year is required"),
+        otherwise: () => yup.string().notRequired(),
+      }),
 
-    // HSC
+    group_ssc: yup
+      .string()
+      .when(["education_system", "highest_qualification"], {
+        is: (system, qual) =>
+          (system === "general" || system === "alia") && qual !== "C",
+        then: (schema) => schema.required("SSC group is required"),
+        otherwise: () => yup.string().notRequired(),
+      }),
+
+    result_ssc: yup
+      .string()
+      .when(["education_system", "highest_qualification"], {
+        is: (system, qual) =>
+          (system === "general" || system === "alia") && qual !== "C",
+        then: (schema) => schema.required("SSC result is required"),
+        otherwise: () => yup.string().notRequired(),
+      }),
+
+    // HSC — required only when medium = hsc
     passing_year_hsc: yup
       .string()
-      .when(["education_system", "highest_qualification", "post_ssc_medium"], {
-        is: (system, qual, medium) =>
-          (system === "general" || system === "alia") &&
-          ["A", "F", "G", "H", "I"].includes(qual) &&
-          medium === "hsc",
+      .when(["post_ssc_medium", "highest_qualification"], {
+        is: (medium, qual) => medium === "hsc" && qual !== "C",
         then: (schema) => schema.required("HSC passing year is required"),
-        otherwise: (schema) => schema.notRequired(),
-      }),
-    group_hsc: yup
-      .string()
-      .when(["education_system", "highest_qualification", "post_ssc_medium"], {
-        is: (system, qual, medium) =>
-          (system === "general" || system === "alia") &&
-          ["A", "F", "G", "H", "I"].includes(qual) &&
-          medium === "hsc",
-        then: (schema) => schema.required("HSC group is required"),
-        otherwise: (schema) => schema.notRequired(),
-      }),
-    result_hsc: yup
-      .string()
-      .when(["education_system", "highest_qualification", "post_ssc_medium"], {
-        is: (system, qual, medium) =>
-          (system === "general" || system === "alia") &&
-          ["A", "F", "G", "H", "I"].includes(qual) &&
-          medium === "hsc",
-        then: (schema) => schema.required("HSC result is required"),
-        otherwise: (schema) => schema.notRequired(),
+        otherwise: () => yup.string().notRequired(),
       }),
 
-    // Diploma
-    diploma_subject: yup
+    group_hsc: yup.string().when(["post_ssc_medium", "highest_qualification"], {
+      is: (medium, qual) => medium === "hsc" && qual !== "C",
+      then: (schema) => schema.required("HSC group is required"),
+      otherwise: () => yup.string().notRequired(),
+    }),
+
+    result_hsc: yup
       .string()
-      .when(["education_system", "highest_qualification", "post_ssc_medium"], {
-        is: (system, qual, medium) =>
-          (system === "general" || system === "alia") &&
-          ["D", "E", "F", "G", "H", "I"].includes(qual) &&
-          medium === "diploma",
-        then: (schema) => schema.required("Diploma subject is required"),
-        otherwise: (schema) => schema.notRequired(),
+      .when(["post_ssc_medium", "highest_qualification"], {
+        is: (medium, qual) => medium === "hsc" && qual !== "C",
+        then: (schema) => schema.required("HSC result is required"),
+        otherwise: () => yup.string().notRequired(),
       }),
-    diploma_institution: yup
+    // Diploma — required only when medium = diploma
+    diploma_subject: yup.string().when("post_ssc_medium", {
+      is: "diploma",
+      then: (schema) => schema.required("Diploma subject is required"),
+      otherwise: () => yup.string().notRequired(),
+    }),
+    diploma_institution: yup.string().when("post_ssc_medium", {
+      is: "diploma",
+      then: (schema) => schema.required("Diploma institution is required"),
+      otherwise: () => yup.string().notRequired(),
+    }),
+    diploma_passing_year: yup
       .string()
-      .when(["education_system", "highest_qualification", "post_ssc_medium"], {
-        is: (system, qual, medium) =>
-          (system === "general" || system === "alia") &&
-          ["D", "E", "F", "G", "H", "I"].includes(qual) &&
-          medium === "diploma",
-        then: (schema) => schema.required("Diploma institution is required"),
-        otherwise: (schema) => schema.notRequired(),
+      .when(["highest_qualification", "post_ssc_medium"], {
+        is: (qual, medium) =>
+          ["D", "F", "G", "H", "I"].includes(qual) && medium === "diploma",
+        then: (schema) => schema.required("Diploma passing year is required"),
+        otherwise: () => yup.string().notRequired(),
       }),
     diploma_current_study_year: yup
       .string()
       .when(
-        ["post_ssc_medium", "diploma_passing_year"],
-        ([post_ssc_medium, diploma_passing_year], schema) => {
-          if (post_ssc_medium === "diploma" && !diploma_passing_year) {
+        ["highest_qualification", "post_ssc_medium", "diploma_passing_year"],
+        (qual, medium, year, schema) => {
+          if (qual === "E" && medium === "diploma" && !year) {
             return schema.required("Current study year is required");
           }
-          return schema.notRequired();
+          return yup.string().notRequired();
         }
       ),
-    diploma_passing_year: yup.string().when("highest_qualification", {
-      is: (val) => ["D", "F", "G", "H", "I"].includes(val),
-      then: (schema) => schema.required("Diploma passing year is required"),
-      otherwise: (schema) => schema.notRequired(),
-    }),
 
     // Graduation
-    graduation_subject: yup.string().when("highest_qualification", {
-      is: (val) => ["F", "G", "H", "I"].includes(val),
-      then: (schema) => schema.required("Graduation subject is required"),
-      otherwise: (schema) => schema.notRequired(),
-    }),
-    graduation_institution: yup.string().when("highest_qualification", {
-      is: (val) => ["F", "G", "H", "I"].includes(val),
-      then: (schema) => schema.required("Graduation institution is required"),
-      otherwise: (schema) => schema.notRequired(),
-    }),
-    graduation_year: yup.string().when("highest_qualification", {
-      is: (val) => ["F", "G", "H", "I"].includes(val),
-      then: (schema) => schema.required("Graduation year is required"),
-      otherwise: (schema) => schema.notRequired(),
-    }),
+    graduation_subject: yup
+      .string()
+      .when(["education_system", "highest_qualification"], {
+        is: (system, qual) =>
+          (system === "general" || system === "alia") &&
+          ["F", "G", "H", "I"].includes(qual),
+        then: (schema) => schema.required("Graduation subject is required"),
+        otherwise: () => yup.string().notRequired(),
+      }),
+
+    graduation_institution: yup
+      .string()
+      .when(["education_system", "highest_qualification"], {
+        is: (system, qual) =>
+          (system === "general" || system === "alia") &&
+          ["F", "G", "H", "I"].includes(qual),
+        then: (schema) => schema.required("Graduation institution is required"),
+        otherwise: () => yup.string().notRequired(),
+      }),
+
+    graduation_year: yup
+      .string()
+      .when(["education_system", "highest_qualification"], {
+        is: (system, qual) =>
+          (system === "general" || system === "alia") &&
+          ["F", "G", "H", "I"].includes(qual),
+        then: (schema) => schema.required("Graduation year is required"),
+        otherwise: () => yup.string().notRequired(),
+      }),
 
     // Post Graduation
     postgraduation_subject: yup.string().when("highest_qualification", {
       is: (val) => ["H", "I"].includes(val),
       then: (schema) => schema.required("Postgrad subject is required"),
-      otherwise: (schema) => schema.notRequired(),
+      otherwise: () => yup.string().notRequired(),
     }),
     postgraduation_institution: yup.string().when("highest_qualification", {
       is: (val) => ["H", "I"].includes(val),
       then: (schema) => schema.required("Postgrad institution is required"),
-      otherwise: (schema) => schema.notRequired(),
+      otherwise: () => yup.string().notRequired(),
     }),
     postgraduation_year: yup.string().when("highest_qualification", {
       is: (val) => ["H", "I"].includes(val),
       then: (schema) => schema.required("Postgrad year is required"),
-      otherwise: (schema) => schema.notRequired(),
+      otherwise: () => yup.string().notRequired(),
     }),
 
     // Doctorate
     doctorate_subject: yup.string().when("highest_qualification", {
       is: "I",
       then: (schema) => schema.required("Doctorate subject is required"),
-      otherwise: (schema) => schema.notRequired(),
+      otherwise: () => yup.string().notRequired(),
     }),
     doctorate_institution: yup.string().when("highest_qualification", {
       is: "I",
       then: (schema) => schema.required("Doctorate institution is required"),
-      otherwise: (schema) => schema.notRequired(),
+      otherwise: () => yup.string().notRequired(),
     }),
     doctorate_year: yup.string().when("highest_qualification", {
       is: "I",
       then: (schema) => schema.required("Doctorate year is required"),
-      otherwise: (schema) => schema.notRequired(),
+      otherwise: () => yup.string().notRequired(),
     }),
 
     // Below SSC
-    below_ssc: yup.string().when("highest_qualification", {
-      is: "C",
-      then: (schema) => schema.required("Class is required"),
-      otherwise: (schema) => schema.notRequired(),
-    }),
+    below_ssc: yup
+      .string()
+      .when(["education_system", "highest_qualification"], {
+        is: (system, qual) =>
+          (system === "general" || system === "alia") && qual === "C",
+        then: (schema) => schema.required("Class is required"),
+        otherwise: () => yup.string().notRequired(),
+      }),
 
-    // ========================
-    // Quami-specific Fields
-    // ========================
+    // Quami-specific fields
     madrasha_name: yup
       .string()
       .when(["education_system", "highest_qualification"], {
         is: (system, qual) =>
           system === "quami" && ["B", "C", "D", "E", "F"].includes(qual),
         then: (schema) => schema.required("Madrasha name is required"),
-        otherwise: (schema) => schema.notRequired(),
+        otherwise: () => yup.string().notRequired(),
       }),
     result: yup.string().when(["education_system", "highest_qualification"], {
       is: (system, qual) =>
         system === "quami" && ["B", "C", "D", "E", "F"].includes(qual),
       then: (schema) => schema.required("Result is required"),
-      otherwise: (schema) => schema.notRequired(),
+      otherwise: () => yup.string().notRequired(),
     }),
     passing_year: yup
       .string()
@@ -720,30 +527,30 @@ export const userBiodataSchema = {
         is: (system, qual) =>
           system === "quami" && ["B", "C", "D", "E", "F"].includes(qual),
         then: (schema) => schema.required("Passing year is required"),
-        otherwise: (schema) => schema.notRequired(),
+        otherwise: () => yup.string().notRequired(),
       }),
 
-    // Takmil + Takhassus (qualification G)
+    // Takmil + Takhassus (G)
     takmil_madrasha_name: yup
       .string()
       .when(["education_system", "highest_qualification"], {
         is: (system, qual) => system === "quami" && qual === "G",
         then: (schema) => schema.required("Takmil madrasha name is required"),
-        otherwise: (schema) => schema.notRequired(),
+        otherwise: () => yup.string().notRequired(),
       }),
     takmil_result: yup
       .string()
       .when(["education_system", "highest_qualification"], {
         is: (system, qual) => system === "quami" && qual === "G",
         then: (schema) => schema.required("Takmil result is required"),
-        otherwise: (schema) => schema.notRequired(),
+        otherwise: () => yup.string().notRequired(),
       }),
     takmil_passing_year: yup
       .string()
       .when(["education_system", "highest_qualification"], {
         is: (system, qual) => system === "quami" && qual === "G",
         then: (schema) => schema.required("Takmil passing year is required"),
-        otherwise: (schema) => schema.notRequired(),
+        otherwise: () => yup.string().notRequired(),
       }),
     takhassus_madrasha_name: yup
       .string()
@@ -751,21 +558,21 @@ export const userBiodataSchema = {
         is: (system, qual) => system === "quami" && qual === "G",
         then: (schema) =>
           schema.required("Takhassus madrasha name is required"),
-        otherwise: (schema) => schema.notRequired(),
+        otherwise: () => yup.string().notRequired(),
       }),
     takhassus_result: yup
       .string()
       .when(["education_system", "highest_qualification"], {
         is: (system, qual) => system === "quami" && qual === "G",
         then: (schema) => schema.required("Takhassus result is required"),
-        otherwise: (schema) => schema.notRequired(),
+        otherwise: () => yup.string().notRequired(),
       }),
     takhassus_passing_year: yup
       .string()
       .when(["education_system", "highest_qualification"], {
         is: (system, qual) => system === "quami" && qual === "G",
         then: (schema) => schema.required("Takhassus passing year is required"),
-        otherwise: (schema) => schema.notRequired(),
+        otherwise: () => yup.string().notRequired(),
       }),
   }),
 

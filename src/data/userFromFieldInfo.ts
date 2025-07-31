@@ -543,7 +543,7 @@ const family_information = [
 ];
 const personal_information = [
   {
-    name: "personal_information.usualDressOutside",
+    name: "personal_information.usualOutdoorClothing",
     label: "What kind of clothes do you usually wear outside the house?",
     type: "text",
     placeholder: "Your outdoor attire",
@@ -750,9 +750,9 @@ const expected_partner = [
   },
   {
     name: "expected_partner.height",
-    label: "Height",
+    label: "Height ",
     type: "text",
-    placeholder: "5'1\" - 5'`0\"",
+    placeholder: "5'1\" - 5'10\"",
     required: true,
   },
   {
@@ -776,8 +776,8 @@ const expected_partner = [
     mode: "multiple",
     options: [
       {
-        value: "never_married",
-        label: "Never Married",
+        value: "single",
+        label: "Single",
       },
       {
         value: "divorced",

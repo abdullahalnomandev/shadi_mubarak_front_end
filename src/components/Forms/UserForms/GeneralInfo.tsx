@@ -1,10 +1,9 @@
 "use client";
-import { Col, Row } from "antd";
-import React from "react";
-import FormInput from "../FormInput";
-import FormDatePicker from "../FormDatePicker";
-import FormSelectField from "../FormSelectField";
 import useGetUserFromField from "@/hooks/useGetUserFromField";
+import { Col, Row } from "antd";
+import FormDatePicker from "../FormDatePicker";
+import FormInput from "../FormInput";
+import FormSelectField from "../FormSelectField";
 
 const GeneralInfo = () => {
   const { general_information } = useGetUserFromField();
@@ -14,7 +13,7 @@ const GeneralInfo = () => {
       <h1 className='text-2xl font-semibold mb-6'>General Information</h1>
       <Row gutter={[16, 16]}>
         {general_information.map(
-          ({ name, type, placeholder, label, options }) => (
+          ({ name, type, placeholder, label, options, required }) => (
             <Col key={name} xs={24} sm={12}>
               {(type === "text" && (
                 <FormInput
@@ -22,6 +21,7 @@ const GeneralInfo = () => {
                   label={label}
                   type={type}
                   placeholder={placeholder}
+                  required={required}
                 />
               )) ||
                 (type === "number" && (
@@ -29,6 +29,7 @@ const GeneralInfo = () => {
                     name={name}
                     label={label}
                     type={type}
+                    required={required}
                     placeholder={placeholder}
                   />
                 )) ||
@@ -38,6 +39,7 @@ const GeneralInfo = () => {
                     label={label}
                     placeholder={placeholder}
                     options={options}
+                    required={required}
                   />
                 )) ||
                 (type === "date" && (
@@ -45,6 +47,7 @@ const GeneralInfo = () => {
                     name={name}
                     label={label}
                     placeholder={placeholder}
+                    required={required}
                   />
                 ))}
             </Col>

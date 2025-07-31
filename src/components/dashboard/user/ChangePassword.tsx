@@ -6,7 +6,7 @@ import { useUserUpdatePasswordMutation } from "@/redux/api/auth";
 import { changePasswordSchema } from "@/schemas/userSchema";
 import { LockOutlined } from "@ant-design/icons";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Col, Typography, message } from "antd";
+import { Col, Row, Typography, message } from "antd";
 
 const { Title, Text } = Typography;
 
@@ -78,15 +78,27 @@ const ChangePassword = () => {
             <Form
               submitHandler={handleSubmit}
               resolver={yupResolver(changePasswordSchema)}>
-              <div className='space-y-4'>
-                {changePasswordFields.map((field) => (
-                  <FormInput key={field.name} {...field} />
-                ))}
+              <div>
+                <Row gutter={[16, 16]}>
+                  {changePasswordFields.map(
+                    ({ name, type, placeholder, label }) => (
+                      <Col key={name} xs={24}>
+                        <FormInput
+                          name={name}
+                          type={type}
+                          placeholder={placeholder}
+                          label={label}
+                          required={true}
+                        />
+                      </Col>
+                    )
+                  )}
+                </Row>
 
                 <button
                   type='submit'
                   disabled={isLoading}
-                  className='w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-white font-medium bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 transition-all duration-300 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer'>
+                  className='flex items-center mt-4 justify-center gap-2 px-4 md:px-6 py-2.5 text-sm font-medium text-white rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 transition duration-300 shadow-sm w-full  min-w-[120px] cursor-pointer hover:scale-105'>
                   {isLoading ? (
                     <>
                       <svg

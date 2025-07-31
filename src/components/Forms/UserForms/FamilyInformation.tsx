@@ -1,11 +1,10 @@
 "use client";
-import { Col, Row } from "antd";
-import React from "react";
-import FormInput from "../FormInput";
 import useGetUserFromField from "@/hooks/useGetUserFromField";
-import FormTextArea from "../FormTextArea";
-import FormSelectField from "../FormSelectField";
+import { Col, Row } from "antd";
 import { useFormContext } from "react-hook-form";
+import FormInput from "../FormInput";
+import FormSelectField from "../FormSelectField";
+import FormTextArea from "../FormTextArea";
 
 const FamilyInformation = () => {
   const { family_information } = useGetUserFromField();
@@ -46,13 +45,14 @@ const FamilyInformation = () => {
       <h1 className='text-2xl font-semibold mb-6'>Family Information</h1>
       <Row gutter={[16, 16]}>
         {filteredFamilyInformation.map(
-          ({ name, type, placeholder, label, options }) => (
+          ({ name, type, placeholder, label, options, required }) => (
             <Col key={name} xs={24} sm={12}>
               {(type === "text" && (
                 <FormInput
                   name={name}
                   label={label}
                   type={type}
+                  required={required}
                   placeholder={placeholder}
                 />
               )) ||
@@ -61,6 +61,7 @@ const FamilyInformation = () => {
                     name={name}
                     label={label}
                     placeholder={placeholder}
+                    required={required}
                     options={options}
                   />
                 )) ||
@@ -69,11 +70,13 @@ const FamilyInformation = () => {
                     name={name}
                     label={label}
                     type={type}
+                    required={required}
                     placeholder={placeholder}
                   />
                 )) ||
                 (type === "textArea" && (
                   <FormTextArea
+                    required={required}
                     id={name}
                     name={name}
                     label={label}

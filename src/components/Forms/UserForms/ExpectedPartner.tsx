@@ -24,7 +24,6 @@ const ExpectedPartner = () => {
             tipFormatter,
             min,
             max,
-            defaultValue,
             mode,
           }) => (
             <Col key={name} xs={24} sm={12}>

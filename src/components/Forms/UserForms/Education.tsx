@@ -4,6 +4,7 @@ import { Col, Row } from "antd";
 import { useFormContext } from "react-hook-form";
 import FormInput from "../FormInput";
 import FormSelectField from "../FormSelectField";
+import FormTextArea from "../FormTextArea";
 
 // Options
 const resultOptions = [
@@ -448,6 +449,14 @@ const Education = () => {
               </Col>
             )
           )}
+        <Col xs={24} sm={12}>
+          <FormTextArea
+            name='education.additional_qualifications'
+            label='Additional Educational Qualifications'
+            placeholder='Enter institution name, subject and passing year if any'
+            required={false}
+          />
+        </Col>
       </Row>
     </div>
   );

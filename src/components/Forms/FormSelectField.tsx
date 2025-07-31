@@ -3,6 +3,7 @@
 import { getErrorMessageBuPropertyName } from "@/utils/schema-validator";
 import { Select } from "antd";
 import { Controller, useFormContext } from "react-hook-form";
+import FieldRequireLabel from "../UI/FieldRequireLabel";
 
 type ISelectFieldProps = {
   name: string;
@@ -38,12 +39,7 @@ const FormSelectField = ({
   console.log({ fromSelectField: errorMessage });
   return (
     <div className='w-full'>
-      {label && (
-        <label className='block text-sm font-medium text-black mb-1'>
-          {label}
-          {required && <span className='text-red-500'> *</span>}
-        </label>
-      )}
+      <FieldRequireLabel label={label} required={required} />
       <Controller
         control={control}
         name={name}

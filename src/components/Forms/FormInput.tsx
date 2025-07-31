@@ -4,6 +4,7 @@ import { getErrorMessageBuPropertyName } from "@/utils/schema-validator";
 import { Input } from "antd";
 import { ReactNode } from "react";
 import { Controller, useFormContext } from "react-hook-form";
+import FieldRequireLabel from "../UI/FieldRequireLabel";
 
 interface IInput {
   name: string;
@@ -16,6 +17,7 @@ interface IInput {
   disabled?: boolean;
   prefixSelector?: ReactNode;
   className?: string;
+  required?: boolean;
 }
 const FormInput = ({
   name,
@@ -26,6 +28,7 @@ const FormInput = ({
   label,
   prefixSelector,
   disabled = false,
+  required = false,
   className = "!py-2",
 }: IInput) => {
   const {
@@ -37,9 +40,8 @@ const FormInput = ({
   console.log("Type", type);
   return (
     <>
-      {label && (
-        <p className='text-gray-900 dark:text-slate-200 mb-0.5'>{label}</p>
-      )}
+      <FieldRequireLabel label={label} required={required} />
+
       <Controller
         control={control}
         name={name}

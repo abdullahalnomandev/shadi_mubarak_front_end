@@ -1,5 +1,6 @@
 import { BioDataStatus } from "@/constants/bioData";
 import { useUpdateProfileMutation } from "@/redux/api/biodata";
+import { message } from "antd";
 import { useRouter } from "next/navigation";
 import { FaRegEdit } from "react-icons/fa";
 import { LuSend } from "react-icons/lu";
@@ -14,14 +15,16 @@ const ProfileStatusAction = ({ profileStatus }: { profileStatus: string }) => {
     try {
       router.push("/user/edit-biodata");
       // Fire-and-forget update
-      updateProfile({ profileStatus: BioDataStatus.INCOMPLETE }).catch(
-        console.error
-      );
-      // if (profileStatus === BioDataStatus.NOT_STARTED) {
-      //   updateProfile({ profileStatus: BioDataStatus.INCOMPLETE }).catch(
-      //     console.error
-      //   );
-      // }
+      if (profileStatus === BioDataStatus.NOT_STARTED) {
+        updateProfile({ profileStatus: BioDataStatus.INCOMPLETE }).catch(
+          console.error
+        );
+      } else if (profileStatus === BioDataStatus.NOT_SUBMITTED) {
+        updateProfile({ profileStatus: BioDataStatus.PENDING }).catch(
+          console.error
+        );
+        message.success("Biodata submitted successfully");
+      }
     } catch (err) {
       console.error("Failed to update profile status", err);
     }
