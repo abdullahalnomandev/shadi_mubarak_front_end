@@ -47,7 +47,7 @@ const GeneralInfoProfile = ({
         </div>
 
         {/* Biodata No */}
-        <div className='text-center text-slate-700 dark:text-white text-lg font-semibold my-3'>
+        <div className='text-center text-slate-700 dark:text-white text-lg  my-3'>
           {t("biodata.general.biodata_no")} : {bioDataNo}
         </div>
 
@@ -65,7 +65,7 @@ const GeneralInfoProfile = ({
                     ? "bg-blue-50 dark:bg-blue-900/40"
                     : "bg-white dark:bg-blue-950/40"
                 }`}>
-                <div className='w-1/2 p-3 text-slate-700 dark:text-white font-semibold capitalize border-r border-blue-100 dark:border-blue-800 text-sm'>
+                <div className='w-1/2 p-3 text-slate-700 dark:text-white  capitalize border-r border-blue-100 dark:border-blue-800 text-sm '>
                   {t(`biodata.general.${key}`)}
                 </div>
                 <div className='w-1/2 p-3 text-slate-600 dark:text-slate-300 capitalize text-sm'>

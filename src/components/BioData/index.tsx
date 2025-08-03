@@ -64,7 +64,7 @@ const BioData = ({ bioDataNo, className = "" }: IProps) => {
               .filter(([key, value]) => value !== null && value !== undefined)
               .map(([key, value]) => (
                 <tr key={key} className='not-odd:bg-gray-100'>
-                  <td className='w-1/2 border-x-0 border font-semibold border-gray-300 p-2 align-top dark:border-gray-600'>
+                  <td className='w-1/2 border-x-0 border  border-gray-300 p-2 align-top dark:border-gray-600 '>
                     {key}
                   </td>
                   <td className='w-1/2 border align-top border-gray-300 border-r-0 p-2'>

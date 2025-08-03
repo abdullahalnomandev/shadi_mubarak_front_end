@@ -71,7 +71,7 @@ const Header = () => {
       key: "/how-it-works",
       label: <Link href='/how-it-works'>How it Works</Link>,
     },
-    { key: "/pricing", label: <Link href='/pricing'>Pricing</Link> },
+    { key: "/blog", label: <Link href='/blog'>Blog</Link> },
     { key: "/faq", label: <Link href='/faq'>FAQ</Link> },
     { key: "/contact", label: <Link href='/contact'>Contact</Link> },
   ];
