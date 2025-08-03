@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { getRequestConfig } from "next-intl/server";
-import { cookies } from 'next/headers';
 import { languageKey } from "@/constants/storageKey";
+import { getRequestConfig } from "next-intl/server";
+import { cookies } from "next/headers";
 
 export default getRequestConfig(async () => {
   const cookieStore = cookies();
   const language = (await cookieStore).get(languageKey)?.value;
-  const locale = language || "en";
+  const locale = language || "bn";
   try {
     const messages = await import(`../../locales/${locale}/translation.json`);
     return {

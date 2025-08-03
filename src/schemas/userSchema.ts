@@ -60,7 +60,7 @@ export const userBiodataSchema = {
   general_information: yup.object().shape({
     biodataType: yup
       .string()
-      .oneOf(["female_biodata", "male_biodata"])
+      .oneOf(["female's_biodata", "male's_biodata"])
       .required("Please select biodata type"),
     dateOfBirth: yup.date().required("Please select date of birth "),
     height: yup.string().required("Please select height"),
@@ -342,12 +342,13 @@ export const userBiodataSchema = {
         otherwise: () => yup.string().notRequired(),
       }),
 
-    // SSC
+    // SSC — required only when medium = ssc
     passing_year_ssc: yup
       .string()
       .when(["education_system", "highest_qualification"], {
         is: (system, qual) =>
-          (system === "general" || system === "alia") && qual !== "C",
+          (system === "general" || system === "alia") &&
+          ["A", "B", "C", "D", "E", "F", "G", "H", "I"].includes(qual),
         then: (schema) => schema.required("SSC passing year is required"),
         otherwise: () => yup.string().notRequired(),
       }),
@@ -356,7 +357,8 @@ export const userBiodataSchema = {
       .string()
       .when(["education_system", "highest_qualification"], {
         is: (system, qual) =>
-          (system === "general" || system === "alia") && qual !== "C",
+          (system === "general" || system === "alia") &&
+          ["A", "B", "C", "D", "E", "F", "G", "H", "I"].includes(qual),
         then: (schema) => schema.required("SSC group is required"),
         otherwise: () => yup.string().notRequired(),
       }),
@@ -365,63 +367,87 @@ export const userBiodataSchema = {
       .string()
       .when(["education_system", "highest_qualification"], {
         is: (system, qual) =>
-          (system === "general" || system === "alia") && qual !== "C",
+          (system === "general" || system === "alia") &&
+          ["A", "B", "C", "D", "E", "F", "G", "H", "I"].includes(qual),
         then: (schema) => schema.required("SSC result is required"),
         otherwise: () => yup.string().notRequired(),
       }),
 
-    // HSC — required only when medium = hsc
+    // HSC Fields – now also required if highest_qualification === "A"
     passing_year_hsc: yup
       .string()
-      .when(["post_ssc_medium", "highest_qualification"], {
-        is: (medium, qual) => medium === "hsc" && qual !== "C",
+      .when(["education_system", "highest_qualification", "post_ssc_medium"], {
+        is: (system, qual, medium) =>
+          (system === "general" || system === "alia") &&
+          (qual === "A" || medium === "hsc"),
         then: (schema) => schema.required("HSC passing year is required"),
         otherwise: () => yup.string().notRequired(),
       }),
 
-    group_hsc: yup.string().when(["post_ssc_medium", "highest_qualification"], {
-      is: (medium, qual) => medium === "hsc" && qual !== "C",
-      then: (schema) => schema.required("HSC group is required"),
-      otherwise: () => yup.string().notRequired(),
-    }),
+    group_hsc: yup
+      .string()
+      .when(["education_system", "highest_qualification", "post_ssc_medium"], {
+        is: (system, qual, medium) =>
+          (system === "general" || system === "alia") &&
+          (qual === "A" || medium === "hsc"),
+        then: (schema) => schema.required("HSC group is required"),
+        otherwise: () => yup.string().notRequired(),
+      }),
 
     result_hsc: yup
       .string()
-      .when(["post_ssc_medium", "highest_qualification"], {
-        is: (medium, qual) => medium === "hsc" && qual !== "C",
+      .when(["education_system", "highest_qualification", "post_ssc_medium"], {
+        is: (system, qual, medium) =>
+          (system === "general" || system === "alia") &&
+          (qual === "A" || medium === "hsc"),
         then: (schema) => schema.required("HSC result is required"),
         otherwise: () => yup.string().notRequired(),
       }),
-    // Diploma — required only when medium = diploma
-    diploma_subject: yup.string().when("post_ssc_medium", {
-      is: "diploma",
-      then: (schema) => schema.required("Diploma subject is required"),
-      otherwise: () => yup.string().notRequired(),
-    }),
-    diploma_institution: yup.string().when("post_ssc_medium", {
-      is: "diploma",
-      then: (schema) => schema.required("Diploma institution is required"),
-      otherwise: () => yup.string().notRequired(),
-    }),
+
+    // Diploma fields
+    diploma_subject: yup
+      .string()
+      .when(["education_system", "highest_qualification", "post_ssc_medium"], {
+        is: (system, qual, medium) =>
+          (system === "general" || system === "alia") &&
+          (["D", "E"].includes(qual) ||
+            (["F", "G", "H", "I"].includes(qual) && medium === "diploma")),
+        then: (schema) => schema.required("Diploma subject is required"),
+        otherwise: () => yup.string().notRequired(),
+      }),
+
+    diploma_institution: yup
+      .string()
+      .when(["education_system", "highest_qualification", "post_ssc_medium"], {
+        is: (system, qual, medium) =>
+          (system === "general" || system === "alia") &&
+          (["D", "E"].includes(qual) ||
+            (["F", "G", "H", "I"].includes(qual) && medium === "diploma")),
+        then: (schema) => schema.required("Diploma institution is required"),
+        otherwise: () => yup.string().notRequired(),
+      }),
+
     diploma_passing_year: yup
       .string()
-      .when(["highest_qualification", "post_ssc_medium"], {
-        is: (qual, medium) =>
-          ["D", "F", "G", "H", "I"].includes(qual) && medium === "diploma",
+      .when(["education_system", "highest_qualification", "post_ssc_medium"], {
+        is: (system, qual, medium) =>
+          (system === "general" || system === "alia") &&
+          (["D"].includes(qual) ||
+            (["F", "G", "H", "I"].includes(qual) && medium === "diploma")),
         then: (schema) => schema.required("Diploma passing year is required"),
         otherwise: () => yup.string().notRequired(),
       }),
+
     diploma_current_study_year: yup
       .string()
-      .when(
-        ["highest_qualification", "post_ssc_medium", "diploma_passing_year"],
-        (qual, medium, year, schema) => {
-          if (qual === "E" && medium === "diploma" && !year) {
-            return schema.required("Current study year is required");
-          }
-          return yup.string().notRequired();
-        }
-      ),
+      .when(["education_system", "highest_qualification", "post_ssc_medium"], {
+        is: (system, qual, medium) =>
+          (system === "general" || system === "alia") &&
+          (qual === "E" ||
+            (["F", "G", "H", "I"].includes(qual) && medium === "diploma")),
+        then: (schema) => schema.required("Current study year is required"),
+        otherwise: () => yup.string().notRequired(),
+      }),
 
     // Graduation
     graduation_subject: yup
@@ -449,8 +475,18 @@ export const userBiodataSchema = {
       .when(["education_system", "highest_qualification"], {
         is: (system, qual) =>
           (system === "general" || system === "alia") &&
-          ["F", "G", "H", "I"].includes(qual),
+          ["G", "H", "I"].includes(qual), // Removed "F"
         then: (schema) => schema.required("Graduation year is required"),
+        otherwise: () => yup.string().notRequired(),
+      }),
+
+    graduation_current_study_year: yup
+      .string()
+      .when(["education_system", "highest_qualification"], {
+        is: (system, qual) =>
+          (system === "general" || system === "alia") && qual === "F",
+        then: (schema) =>
+          schema.required("Current graduation study year is required"),
         otherwise: () => yup.string().notRequired(),
       }),
 
@@ -664,21 +700,31 @@ export const userBiodataSchema = {
         .required("Please specify your thoughts on marriage"),
     });
   }),
-  contact: yup.object().shape({
-    brideName: yup.string().required("Bride name is required"),
-    guardianPhoneNumber: yup
-      .string()
-      .required("Guardian phone number is required"),
-    relationWithGuardian: yup
-      .string()
-      .required("Relation with guardian is required"),
-    emailUsedForRegistration: yup
-      .string()
-      .email("Invalid email address")
-      .required("Email is required")
-      .matches(
-        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-        "Invalid email format"
-      ),
+  contact: yup.lazy((_, { parent }) => {
+    const biodataType = parent?.general_information?.biodataType;
+    const isMale = biodataType === "male_biodata";
+
+    return yup.object().shape({
+      brideName: isMale
+        ? yup.string().notRequired()
+        : yup.string().required("Bride name is required"),
+      groomName: isMale
+        ? yup.string().required("Groom name is required")
+        : yup.string().notRequired(),
+      guardianPhoneNumber: yup
+        .string()
+        .required("Guardian phone number is required"),
+      relationWithGuardian: yup
+        .string()
+        .required("Relation with guardian is required"),
+      emailUsedForRegistration: yup
+        .string()
+        .email("Invalid email address")
+        .required("Email is required")
+        .matches(
+          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+          "Invalid email format"
+        ),
+    });
   }),
 };

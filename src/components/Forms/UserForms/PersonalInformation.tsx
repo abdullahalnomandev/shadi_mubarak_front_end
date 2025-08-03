@@ -1,4 +1,6 @@
 "use client";
+
+import { useCleanHiddenFields } from "@/hooks/useCleanHiddenFields"; // <-- Make sure this exists
 import useGetUserFromField from "@/hooks/useGetUserFromField";
 import { Col, Row } from "antd";
 import { useFormContext } from "react-hook-form";
@@ -13,7 +15,6 @@ const PersonalInformation = () => {
   const isMaleForm =
     watch("general_information.biodataType") === "male_biodata";
 
-  // Watch needed values
   const wearsNiqabValue = watch("personal_information.wearsNiqab");
   const dailyPrayerRoutine = watch("personal_information.dailyPrayerRoutine");
   const beardAccordingToSunnah = watch(
@@ -30,18 +31,22 @@ const PersonalInformation = () => {
     "personal_information.islamicScholarsPreferred",
   ];
 
-  const filteredFields = personal_information.filter((field) => {
+  // Construct conditionMap for field visibility
+  const conditionMap: Record<string, boolean> = {};
+
+  personal_information.forEach((field) => {
+    const fieldName = field.name;
+
     const isMaleField = [
       "personal_information.beardAccordingToSunnah",
       "personal_information.clothingAboveAnkles",
-    ].includes(field.name);
+    ].includes(fieldName);
 
     const isFemaleField = [
       "personal_information.wearsNiqab",
       "personal_information.wearingNiqabSince",
-    ].includes(field.name);
+    ].includes(fieldName);
 
-    // Calculate yes counts
     const maleYesCount = [
       beardAccordingToSunnah,
       clothingAboveAnkles,
@@ -55,30 +60,44 @@ const PersonalInformation = () => {
     const hideAdvancedFields =
       (isMaleForm && maleYesCount < 2) || (!isMaleForm && femaleYesCount < 2);
 
-    // Skip "wearingNiqabSince" if wearsNiqab is not "yes"
-    if (field.name === "personal_information.wearingNiqabSince") {
-      return wearsNiqabValue === "yes";
+    if (fieldName === "personal_information.wearingNiqabSince") {
+      conditionMap[fieldName] = wearsNiqabValue === "yes";
+      return;
     }
 
-    // Skip gender-specific fields
-    if (isMaleForm && isFemaleField) return false;
-    if (!isMaleForm && isMaleField) return false;
-
-    // Hide advanced fields if not qualified
-    if (hideAdvancedFields && advancedFieldsToHide.includes(field.name)) {
-      return false;
+    if (isMaleForm && isFemaleField) {
+      conditionMap[fieldName] = false;
+      return;
     }
 
-    // Hide previousRelationship if advanced fields are hidden
+    if (!isMaleForm && isMaleField) {
+      conditionMap[fieldName] = false;
+      return;
+    }
+
+    if (hideAdvancedFields && advancedFieldsToHide.includes(fieldName)) {
+      conditionMap[fieldName] = false;
+      return;
+    }
+
     if (
-      field.name === "personal_information.previousRelationship" &&
+      fieldName === "personal_information.previousRelationship" &&
       !hideAdvancedFields
     ) {
-      return false;
+      conditionMap[fieldName] = false;
+      return;
     }
 
-    return true;
+    conditionMap[fieldName] = true;
   });
+
+  // Auto-clean hidden fields from form state
+  useCleanHiddenFields({ conditionMap });
+
+  // Filter only visible fields for rendering
+  const filteredFields = personal_information.filter(
+    (field) => conditionMap[field.name]
+  );
 
   return (
     <div className='p-6'>

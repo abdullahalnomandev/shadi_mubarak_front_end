@@ -136,7 +136,8 @@ const StepperForm = ({ steps }: IStepsProps) => {
 
     if (type === "submit") {
       message.success("Biodata submitted successfully");
-      // router.push("/user/dashboard");
+      router.push("/user/dashboard");
+
       await updateBiodata({
         stepNumber: current + 1,
         biodataStepInfo: { [stepKey]: stepData },
@@ -145,7 +146,7 @@ const StepperForm = ({ steps }: IStepsProps) => {
         console.error
       );
     } else {
-      // router.push("/user/my-biodata");
+      router.push("/user/my-biodata");
       await updateBiodata({
         stepNumber: current + 1,
         biodataStepInfo: { [stepKey]: stepData },

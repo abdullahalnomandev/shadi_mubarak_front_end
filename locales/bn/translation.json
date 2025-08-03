@@ -1,8 +1,8 @@
 {
-    "Welcome to React": "বাংলাদেশ ইন্যারন্যাশনাল ক্রিকেট কলকে স্বাগতম বিশ্ব",
+    "Welcome to React": "বাংলাদেশ আন্তর্জাতিক ক্রিকেট কাউন্সিল",
     "forgot-password": {
         "title": "পাসওয়ার্ড ভুলে গেছেন",
-        "description": "আপনার ইমেইল দিন এবং আমরা আপনার পাসওয়ার্ড পুনরুদ্ধার লিংক পাঠিয়ে দেবো"
+        "description": "আপনার ইমেইল প্রবেশ করান এবং আমরা আপনাকে পাসওয়ার্ড রিসেট লিংক পাঠাবো"
     },
     "biodata": {
         "general": {
@@ -11,16 +11,17 @@
             "height": "উচ্চতা",
             "weight": "ওজন",
             "occupation": "পেশা",
-            "gender": "লিঙ্গ",
+            "biodataType": "বায়োডাটার ধরন",
             "marital_status": "বৈবাহিক অবস্থা",
             "nationality": "জাতীয়তা",
             "dateOfBirth": "জন্ম তারিখ",
-            "skin": "স্কিন",
+            "skin": "গায়ের রং",
             "maritalStatus": "বৈবাহিক অবস্থা"
         },
         "actions": {
-            "copy_bio_link": "বায়োডাটা লিংক কপি করুন",
-            "add_to_shortlist": "শর্টলিস্টে যোগ করুন"
+            "copy_bio_link": "Copy Link",
+            "add_to_shortlist": "পছন্দের তালিকায় যোগ করুন",
+            "remove_from_shortList": "পছন্দের তালিকা থেকে সরান"
         },
         "sections": {
             "general_information": "সাধারণ তথ্য",
@@ -28,17 +29,137 @@
             "educational_qualifications": "শিক্ষাগত যোগ্যতা",
             "family_information": "পারিবারিক তথ্য",
             "personal_information": "ব্যক্তিগত তথ্য",
-            "occupation_info": "পেশা",
-            "marriage_related": "বিবাহ সংক্রান্ত তথ্য",
+            "occupation_info": "পেশাগত তথ্য",
+            "marriage_related_information": "বিবাহ সংক্রান্ত তথ্য",
             "expected_partner": "প্রত্যাশিত জীবনসঙ্গী",
-            "agreement": "চুক্তি",
-            "contact": "যোগাযোগের তথ্য",
-            "your_contact": "আপনার যোগাযোগের তথ্য"
+            "agreement": "সম্মতি",
+            "contact": "যোগাযোগ",
+            "your_contact": "আপনার যোগাযোগ"
         },
         "address": {
             "present_address": "বর্তমান ঠিকানা",
             "permanent_address": "স্থায়ী ঠিকানা",
-            "grow_up": "বেড়ে ওঠা"
+            "grow_up": "আপনি কোথায় বড় হয়েছেন?"
+        },
+        "education": {
+            "education_system": "শিক্ষা ব্যবস্থা",
+            "additional_qualifications": "অতিরিক্ত যোগ্যতা",
+            "highest_qualification": "সর্বোচ্চ শিক্ষাগত যোগ্যতা",
+            "post_ssc_medium": "এসএসসি পরবর্তী শিক্ষার মাধ্যম",
+            "passing_year_ssc": "এসএসসি পাশের সাল",
+            "group_ssc": "এসএসসি গ্রুপ/বিষয়",
+            "result_ssc": "এসএসসি ফলাফল",
+            "passing_year_hsc": "এইচএসসি পাশের সাল",
+            "group_hsc": "এইচএসসি গ্রুপ/বিষয়",
+            "result_hsc": "এইচএসসি ফলাফল",
+            "diploma_subject": "ডিপ্লোমা বিষয়",
+            "diploma_institution": "ডিপ্লোমা প্রতিষ্ঠান",
+            "diploma_passing_year": "ডিপ্লোমা পাশের সাল",
+            "diploma_current_study_year": "বর্তমান অধ্যয়নের বছর (ডিপ্লোমা)",
+            "graduation_subject": "স্নাতক বিষয়",
+            "graduation_institution": "স্নাতক প্রতিষ্ঠান",
+            "graduation_year": "স্নাতক পাশের সাল",
+            "graduation_current_study_year": "বর্তমান অধ্যয়নের বছর (স্নাতক)",
+            "postgraduation_subject": "স্নাতকোত্তর বিষয়",
+            "postgraduation_institution": "স্নাতকোত্তর প্রতিষ্ঠান",
+            "postgraduation_year": "স্নাতকোত্তর পাশের সাল",
+            "doctorate_subject": "পিএইচডি বিষয়",
+            "doctorate_institution": "পিএইচডি প্রতিষ্ঠান",
+            "doctorate_year": "পিএইচডি সম্পন্ন করার সাল",
+            "below_ssc": "এসএসসির নিচের শিক্ষা",
+            "madrasha_name": "মাদরাসার নাম",
+            "result": "ফলাফল",
+            "passing_year": "পাশের সাল",
+            "takmil_madrasha_name": "তাকমীল মাদরাসার নাম",
+            "takmil_result": "তাকমীল ফলাফল",
+            "takmil_passing_year": "তাকমীল পাশের সাল",
+            "takhassus_madrasha_name": "তাখাস্সুস মাদরাসার নাম",
+            "takhassus_result": "তাখাস্সুস ফলাফল",
+            "takhassus_passing_year": "তাখাস্সুস পাশের সাল"
+        },
+        "family_information": {
+            "isParentAlive": "আপনার পিতা কি জীবিত?",
+            "fatherProfession": "পিতার পেশা",
+            "isMotherAlive": "আপনার মাতা কি জীবিত?",
+            "motherProfession": "মাতার পেশা",
+            "howManyBrothers": "আপনার কতজন ভাই আছে?",
+            "brothersInformation": "আপনার ভাইদের সম্পর্কে তথ্য",
+            "howManySisters": "আপনার কতজন বোন আছে?",
+            "sistersInformation": "আপনার বোনদের সম্পর্কে তথ্য",
+            "professionOfUncles": "আপনার চাচা/মামাদের পেশা",
+            "familyFinancialStatus": "আপনার পরিবারের আর্থিক অবস্থা",
+            "familyFinancialStatus_upper_class": "উচ্চবিত্ত",
+            "familyFinancialStatus_middle_class": "মধ্যবিত্ত",
+            "familyFinancialStatus_lower_class": "নিম্নবিত্ত",
+            "familyFinancialStatus_upper_middle_class": "উচ্চ মধ্যবিত্ত",
+            "familyFinancialStatus_lower_middle_class": "নিম্ন মধ্যবিত্ত",
+            "descriptionOfFinancialCondition": "আপনার পরিবারের আর্থিক অবস্থার বিবরণ",
+            "familyReligiousCondition": "আপনার পরিবারের ধর্মীয় অনুশীলন ও মূল্যবোধ"
+        },
+        "personal_information": {
+            "usualOutdoorClothing": "আপনি সাধারণত বাইরে কি ধরনের পোশাক পরেন?",
+            "dailyPrayerRoutine": "আপনি কি নিয়মিত নামাজ পড়েন?",
+            "beardAccordingToSunnah": "আপনি কি সুন্নত অনুযায়ী দাড়ি রাখেন?",
+            "clothingAboveAnkles": "আপনি কি গোড়ালির উপরে কাপড় পরেন?",
+            "wearsNiqab": "আপনি কি নিকাব পরেন?",
+            "wearingNiqabSince": "কতদিন ধরে নিকাব পরছেন?",
+            "skippedPrayersPerWeek": "সপ্তাহে কতটি নামাজ ছুটে যায়?",
+            "followsMahramGuidelines": "আপনি কি মাহরাম নিয়ম মেনে চলেন?",
+            "quranRecitationAbility": "আপনি কি সঠিকভাবে কুরআন তিলাওয়াত করতে পারেন?",
+            "fiqhFollowed": "আপনি কোন ইসলামী ফিকহ অনুসরণ করেন?",
+            "mediaConsumptionHabits": "আপনার মিডিয়া দেখার অভ্যাস",
+            "mentalOrPhysicalDiseases": "কোন মানসিক বা শারীরিক স্বাস্থ্য সমস্যা আছে কি?",
+            "involvedInSpecialWork": "আপনি কি কোন বিশেষ ইসলামী কাজে জড়িত?",
+            "beliefsAboutShrine": "মাজার সম্পর্কে আপনার বিশ্বাস",
+            "islamicBooksRead": "আপনি যে ইসলামী বইগুলো পড়েছেন",
+            "islamicScholarsPreferred": "আপনার পছন্দের ইসলামী আলেমগণ",
+            "hobbiesAndInterests": "আপনার শখ ও আগ্রহ",
+            "groomMobileNumber": "আপনার মোবাইল নম্বর",
+            "previousRelationship": "পূর্বে কোন সম্পর্ক ছিল কি?"
+        },
+        "occupation": {
+            "occupation": "আপনার পেশা",
+            "monthlyIncome": "মাসিক আয়",
+            "descriptionOfProfession": "আপনার পেশার বিবরণ"
+        },
+        "marriage_related_information": {
+            "widower": "আপনি কি বিধুর?",
+            "widow": "আপনি কি বিধবা?",
+            "reasonForSecondMarriage": "দ্বিতীয় বিবাহের কারণ",
+            "currentFamilyStatus": "বর্তমান পারিবারিক অবস্থা",
+            "reasonForDivorce": "বিবাহ বিচ্ছেদের কারণ",
+            "doParentsAgree": "আপনার মা-বাবা কি আপনার বিবাহে সম্মত?",
+            "canKeepWifeInVeil": "আপনি কি আপনার স্ত্রীকে পর্দায় রাখতে পারবেন?",
+            "allowWifeToStudy": "আপনি কি আপনার স্ত্রীকে পড়াশোনা করতে দেবেন?",
+            "allowWifeToWork": "আপনি কি আপনার স্ত্রীকে চাকরি করতে দেবেন?",
+            "residenceAfterMarriage": "বিবাহের পর আপনি কোথায় থাকবেন?",
+            "expectGiftsFromBrideFamily": "আপনি কি কনের পরিবার থেকে উপহার আশা করেন?",
+            "willingToWorkAfterMarriage": "আপনি কি বিবাহের পর কাজ করতে ইচ্ছুক?",
+            "continueStudiesAfterMarriage": "আপনি কি বিবাহের পর পড়াশোনা চালিয়ে যাবেন?",
+            "reasonForMarriage": "বিবাহ সম্পর্কে আপনার চিন্তাভাবনা"
+        },
+        "expected_partner": {
+            "age": "পছন্দের বয়সের সীমা",
+            "complexion": "পছন্দের গায়ের রং",
+            "height": "পছন্দের উচ্চতা",
+            "educationalQualification": "প্রয়োজনীয় শিক্ষাগত যোগ্যতা",
+            "district": "পছন্দের জেলা",
+            "maritalStatus": "গ্রহণযোগ্য বৈবাহিক অবস্থা",
+            "profession": "পছন্দের পেশা",
+            "financialCondition": "প্রত্যাশিত আর্থিক অবস্থা",
+            "specialExpectationsOrRequests": "বিশেষ প্রত্যাশা বা অনুরোধ"
+        },
+        "agreement": {
+            "parentsAwareOfRegistration": "আপনার মা-বাবা কি এই নিবন্ধন সম্পর্কে অবগত?",
+            "confirmTruthOfProvidedInformation": "আপনি কি নিশ্চিত করছেন যে সব তথ্য সত্য?",
+            "agreeToLegalResponsibilityForFalseInfo": "আপনি কি মিথ্যা তথ্যের জন্য আইনি দায়বদ্ধতা নিতে সম্মত?"
+        },
+        "contact": {
+            "brideName": "কনের নাম",
+            "guardianPhoneNumber": "অভিভাবকের ফোন নম্বর",
+            "relationWithGuardian": "অভিভাবকের সাথে আপনার সম্পর্ক",
+            "emailUsedForRegistration": "নিবন্ধনের জন্য ব্যবহৃত ইমেইল ঠিকানা",
+            "groomName": "বরের নাম"
         }
     }
 }

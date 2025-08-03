@@ -5,7 +5,7 @@ import { sidebarItems } from "@/constants/sidebarItems";
 import { getUserInfo, isUserLoggedIn } from "@/services/auth.service";
 import { IUserPayload } from "@/types";
 import { UserOutlined } from "@ant-design/icons";
-import { Avatar, Button, Menu, Popover, Progress, Tooltip } from "antd";
+import { Avatar, Menu, Popover, Progress, Tooltip } from "antd";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -127,18 +127,18 @@ const HeaderUserActions = () => {
     return (
       <div className='hidden md:flex items-center gap-3'>
         <Link href='/login'>
-          <Button
+          <button
             type='default'
-            className='!h-10 !rounded-md border border-[#6208d4] dark:border-purple-400 dark:text-white'>
+            className='flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition duration-300 shadow-sm w-full sm:w-auto min-w-[120px] cursor-pointer hover:scale-105'>
             Sign In
-          </Button>
+          </button>
         </Link>
         <Link href='/register'>
-          <Button
+          <button
             type='primary'
-            className='!bg-[#6208d4] !h-10 !rounded-md !hover:bg-[#2708d4] dark:!bg-purple-600 dark:hover:!bg-purple-700'>
+            className='flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 text-sm font-medium text-white rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 transition duration-300 shadow-sm w-full sm:w-auto min-w-[120px] cursor-pointer hover:scale-105'>
             Create Account
-          </Button>
+          </button>
         </Link>
       </div>
     );

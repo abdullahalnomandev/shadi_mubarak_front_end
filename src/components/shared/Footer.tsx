@@ -14,7 +14,7 @@ const Footer = () => {
   return (
     <AntFooter
       style={{ background: "none" }}
-      className='!dark:bg-gray-800 pt-16 pb-8'>
+      className='!dark:bg-gray-800 pt-16 pb-8 max-w-7xl m-auto px-4'>
       <div className='container mx-auto'>
         <Row gutter={[32, 32]}>
           <Col xs={24} sm={12} md={6}>

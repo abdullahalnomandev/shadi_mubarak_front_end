@@ -1,7 +1,7 @@
 "use client";
-import React from "react";
 import Footer from "@/components/shared/Footer";
 import { usePathname } from "next/navigation";
+import React from "react";
 import Header from "../shared/Header";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
@@ -14,7 +14,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <React.Fragment>
       <Header />
-      <main className='flex-grow'>{children}</main>
+      <main className='flex-grow max-w-7xl m-auto px-4'>{children}</main>
       {!isProtectedRoute && <Footer />}
     </React.Fragment>
   );
