@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import {
   FaArrowRight,
@@ -15,33 +16,34 @@ import {
 } from "react-icons/fa";
 
 const About = () => {
+  const t = useTranslations("about");
   const stats = [
     {
       icon: <FaUsers className='w-6 h-6' />,
-      label: "Active Members",
-      value: "50,000+",
-      description: "Verified profiles",
+      label: t("stats.active_members.label"),
+      value: t("stats.active_members.value"),
+      description: t("stats.active_members.description"),
       color: "from-blue-500 to-blue-600",
     },
     {
       icon: <FaHeart className='w-6 h-6' />,
-      label: "Success Stories",
-      value: "2,500+",
-      description: "Happy marriages",
+      label: t("stats.success_stories.label"),
+      value: t("stats.success_stories.value"),
+      description: t("stats.success_stories.description"),
       color: "from-pink-500 to-pink-600",
     },
     {
       icon: <FaShieldAlt className='w-6 h-6' />,
-      label: "Trust & Safety",
-      value: "100%",
-      description: "Secure platform",
+      label: t("stats.trust_safety.label"),
+      value: t("stats.trust_safety.value"),
+      description: t("stats.trust_safety.description"),
       color: "from-green-500 to-green-600",
     },
     {
       icon: <FaMosque className='w-6 h-6' />,
-      label: "Islamic Values",
-      value: "100%",
-      description: "Shariah compliant",
+      label: t("stats.islamic_values.label"),
+      value: t("stats.islamic_values.value"),
+      description: t("stats.islamic_values.description"),
       color: "from-purple-500 to-purple-600",
     },
   ];
@@ -49,48 +51,32 @@ const About = () => {
   const values = [
     {
       icon: <FaMosque className='w-8 h-8' />,
-      title: "Islamic Principles",
-      description:
-        "We follow Islamic guidelines in every aspect of our matchmaking process, ensuring halal interactions and proper family involvement.",
+      title: t("core_values.values.islamic_principles.title"),
+      description: t("core_values.values.islamic_principles.description"),
       color: "text-purple-600",
     },
     {
       icon: <FaShieldAlt className='w-8 h-8' />,
-      title: "Privacy & Security",
-      description:
-        "Your personal information is protected with advanced security measures. We maintain strict confidentiality throughout your journey.",
+      title: t("core_values.values.privacy_security.title"),
+      description: t("core_values.values.privacy_security.description"),
       color: "text-green-600",
     },
     {
       icon: <FaHandsHelping className='w-8 h-8' />,
-      title: "Personal Support",
-      description:
-        "Our dedicated relationship managers provide personalized assistance to help you find your perfect match with care and understanding.",
+      title: t("core_values.values.personal_support.title"),
+      description: t("core_values.values.personal_support.description"),
       color: "text-blue-600",
     },
   ];
 
-  const features = [
-    "Advanced matching algorithm based on Islamic compatibility",
-    "Family involvement and approval system",
-    "Verified profiles with background checks",
-    "Multi-language support (Bengali, English, Arabic)",
-    "24/7 customer support and relationship guidance",
-    "Mobile app for iOS and Android",
-  ];
+  const features = t("features.list").split("\n");
 
-  const testimonials = [
-    {
-      text: "BiyerThikana helped us find our perfect match while respecting our Islamic values. The process was smooth and professional.",
-      author: "Ahmed & Fatima",
-      location: "Dhaka, Bangladesh",
-    },
-    {
-      text: "The family involvement feature gave us confidence. We found our son's wife through this blessed platform.",
-      author: "The Rahman Family",
-      location: "Chittagong, Bangladesh",
-    },
-  ];
+  const testimonials = t("testimonials.stories")
+    .split(";")
+    .map((story) => {
+      const [text, author, location] = story.split("|");
+      return { text, author, location };
+    });
 
   return (
     <div className='min-h-screen bg-gray-50'>
@@ -110,10 +96,10 @@ const About = () => {
           <div className='text-center mb-12'>
             <div className='inline-block p-8 bg-white/10 backdrop-blur-lg rounded-3xl border border-white/20 shadow-2xl mb-8'>
               <p className='text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 leading-relaxed'>
-                بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
+                {t("bismillah.arabic")}
               </p>
               <p className='text-white/90 text-sm sm:text-base font-medium'>
-                In the name of Allah, the Most Gracious, the Most Merciful
+                {t("bismillah.translation")}
               </p>
             </div>
           </div>
@@ -121,17 +107,17 @@ const About = () => {
           {/* Main Header */}
           <div className='text-center max-w-4xl mx-auto'>
             <h1 className='text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6'>
-              About{" "}
               <span className='bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent'>
-                BiyerThikana
+                {t("header.title_highlight")}
               </span>
+              <span className='sr-only'>-</span>
+              {t("header.title_prefix")}{" "}
             </h1>
             <p className='text-xl sm:text-2xl text-white/90 mb-8 leading-relaxed'>
-              Bangladesh&apos;s Most Trusted Islamic Matrimony Platform
+              {t("header.subtitle")}
             </p>
             <p className='text-lg text-white/80 max-w-3xl mx-auto'>
-              Connecting hearts, building families, and creating blessed unions
-              through Islamic principles and modern technology
+              {t("header.description")}
             </p>
           </div>
         </div>
@@ -167,39 +153,29 @@ const About = () => {
             <div>
               <div className='inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-6'>
                 <FaHeart className='w-4 h-4' />
-                <span>Our Story</span>
+                <span>{t("introduction.our_story_badge")}</span>
               </div>
 
               <h2 className='text-3xl sm:text-4xl font-bold text-gray-900 mb-6'>
-                Bringing Together Muslim Hearts Across Bangladesh
+                {t("introduction.heading")}
               </h2>
 
               <div className='space-y-4 text-gray-600 leading-relaxed'>
-                <p>
-                  BiyerThikana was born from a simple belief: every practicing
-                  Muslim deserves to find their perfect life partner while
-                  staying true to Islamic values and traditions. Founded in
-                  2024, we have grown from a small initiative to
-                  Bangladesh&apos;s most trusted Islamic matrimony platform.
-                </p>
-                <p>
-                  Our platform bridges the gap between traditional matchmaking
-                  and modern technology, creating a safe, secure, and halal
-                  environment where Muslim families can find suitable matches
-                  for their loved ones.
-                </p>
+                <p>{t("introduction.story_part1")}</p>
+                <p>{t("introduction.story_part2")}</p>
               </div>
 
               <div className='mt-8'>
                 <button className='inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300'>
-                  Learn More <FaArrowRight className='w-4 h-4' />
+                  {t("introduction.learn_more")}{" "}
+                  <FaArrowRight className='w-4 h-4' />
                 </button>
               </div>
             </div>
 
             <div className='bg-white rounded-3xl p-8 shadow-xl'>
               <h3 className='text-xl font-bold text-gray-900 mb-6'>
-                Why Choose BiyerThikana?
+                {t("features.title")}
               </h3>
               <div className='space-y-4'>
                 {features.map((feature, index) => (
@@ -219,12 +195,10 @@ const About = () => {
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
           <div className='text-center mb-16'>
             <h2 className='text-3xl sm:text-4xl font-bold text-gray-900 mb-4'>
-              Our Core Values
+              {t("core_values.heading")}
             </h2>
             <p className='text-lg text-gray-600 max-w-3xl mx-auto'>
-              Everything we do is guided by Islamic principles and our
-              commitment to helping Muslim families find happiness and
-              compatibility.
+              {t("core_values.description")}
             </p>
           </div>
 
@@ -258,13 +232,10 @@ const About = () => {
                 <FaStar className='w-8 h-8' />
               </div>
               <h3 className='text-2xl font-bold text-gray-900 mb-6'>
-                Our Mission
+                {t("mission_vision.mission.title")}
               </h3>
               <p className='text-gray-700 text-lg leading-relaxed'>
-                To provide a trusted, secure, and Islamic platform where Muslim
-                individuals and families can find compatible life partners while
-                maintaining the highest standards of privacy, authenticity, and
-                religious compliance.
+                {t("mission_vision.mission.description")}
               </p>
             </div>
 
@@ -273,13 +244,10 @@ const About = () => {
                 <FaGlobe className='w-8 h-8' />
               </div>
               <h3 className='text-2xl font-bold text-gray-900 mb-6'>
-                Our Vision
+                {t("mission_vision.vision.title")}
               </h3>
               <p className='text-gray-700 text-lg leading-relaxed'>
-                To become the leading Islamic matrimony platform globally, known
-                for our commitment to Islamic values, successful matches, and
-                the trust of Muslim families worldwide in helping them build
-                blessed marriages.
+                {t("mission_vision.vision.description")}
               </p>
             </div>
           </div>
@@ -291,10 +259,10 @@ const About = () => {
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
           <div className='text-center mb-16'>
             <h2 className='text-3xl sm:text-4xl font-bold text-gray-900 mb-4'>
-              Success Stories
+              {t("testimonials.heading")}
             </h2>
             <p className='text-lg text-gray-600'>
-              Real families, real success stories
+              {t("testimonials.subheading")}
             </p>
           </div>
 
@@ -326,22 +294,20 @@ const About = () => {
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
           <div className='max-w-3xl mx-auto'>
             <h2 className='text-3xl sm:text-4xl font-bold text-white mb-6'>
-              Ready to Begin Your Journey?
+              {t("cta.heading")}
             </h2>
             <p className='text-xl text-blue-100 mb-10 leading-relaxed'>
-              Join thousands of Muslim families who have found their perfect
-              matches through BiyerThikana. Your ideal partner might be just a
-              click away.
+              {t("cta.description")}
             </p>
             <div className='flex flex-col sm:flex-row gap-4 justify-center'>
               <Link href='/register'>
                 <button className='bg-white cursor-pointer text-blue-600 font-semibold px-8 py-4 rounded-xl hover:bg-blue-50 transition-colors duration-300 shadow-lg hover:shadow-xl'>
-                  Create Your Profile
+                  {t("cta.create_profile")}
                 </button>
               </Link>
               <Link href='/'>
                 <button className='bg-transparent border-2 cursor-pointer border-white text-white font-semibold px-8 py-4 rounded-xl hover:bg-white hover:text-blue-600 transition-all duration-300'>
-                  Browse Profiles
+                  {t("cta.browse_profiles")}
                 </button>
               </Link>
             </div>

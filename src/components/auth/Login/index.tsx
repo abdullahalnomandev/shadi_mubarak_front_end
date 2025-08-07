@@ -44,7 +44,7 @@ const Login = () => {
       const res = await userLogin(data).unwrap();
       if (res?.accessToken) {
         storeUserInfo({ accessToken: res.accessToken });
-        router.push("/");
+        // router.push("/");
         message.success("Login successful!");
       }
     } catch (error) {

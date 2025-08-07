@@ -3,7 +3,7 @@
 import { handleBiodataSubmit } from "@/app/actions/biodata-actions";
 import CreateBiodataCTA from "@/components/dashboard/user/CreateBiodataCTA";
 import StepperFrom from "@/components/Forms/StepperForm/StepperForm";
-import Address from "@/components/Forms/UserForms/Address/Address";
+import AddressForm from "@/components/Forms/UserForms/Address/AddressForm";
 import Agreement from "@/components/Forms/UserForms/Agreement";
 import Contact from "@/components/Forms/UserForms/Contact";
 import Education from "@/components/Forms/UserForms/Education";
@@ -23,7 +23,7 @@ const steps = [
   },
   {
     title: "Address",
-    content: <Address />,
+    content: <AddressForm />,
   },
   {
     title: "Family Information",

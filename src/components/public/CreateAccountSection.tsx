@@ -1,8 +1,12 @@
 import profileMan from "@/assets/boy-create-1.jpg";
 import niqab from "@/assets/girl.jpg";
 import Image from "next/image";
+import Link from "next/link";
 import VideoPlayerButton from "../UI/VideoPlayerButton";
+import { useTranslations } from "next-intl";
+
 const CreateAccountSection = () => {
+  const t = useTranslations("create_account_section");
   return (
     <>
       {/* Quote Section */}
@@ -14,12 +18,10 @@ const CreateAccountSection = () => {
           🌺
         </span>
         <p className='italic text-2xl md:text-3xl text-gray-800 dark:text-slate-100 font-serif leading-relaxed'>
-          &quot;Marry the single people from among you and the righteous slaves
-          and slave-girls. If you are poor, Allah (SwT) will make you rich
-          through His favour; and Allah (SwT) is Bountiful, All-Knowing.&quot;
+          {t("quote")}
         </p>
         <footer className='mt-6 text-gray-600 font-medium text-sm'>
-          — Quran (24:32)
+          — {t("quote_source")}
         </footer>
       </div>
 
@@ -62,19 +64,57 @@ const CreateAccountSection = () => {
         </div>
 
         {/* Right: Text Content */}
-        <div className='w-full md:w-1/2 text-center md:text-left'>
-          <h2 className='text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-snug'>
-            Create Your Profile Today
-          </h2>
-          <p className='text-gray-600 text-base md:text-lg mb-6 max-w-md'>
-            Creating a biodata is 100% free. Quickly get started in a few steps
-            and explore thousands of profiles using filters like age,
-            profession, and education.
-          </p>
-          <VideoPlayerButton
-            title='Not understand how to Create biodata '
-            videoId='RHuVlgjwOHA'
-          />
+        <div className='w-full lg:w-1/2 text-center lg:text-left space-y-8'>
+          {/* Badge */}
+          <div className='inline-flex items-center px-4 py-2 bg-gradient-to-r from-rose-100 to-pink-100 dark:from-rose-900/30 dark:to-pink-900/30 rounded-full text-sm font-semibold text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800'>
+            {t("free_registration_badge")}
+          </div>
+
+          {/* Main heading */}
+          <div>
+            <h2 className='text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent leading-tight mb-6'>
+              {t("main_heading_part1")}
+              <span className='block bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent'>
+                {t("main_heading_part2")}
+              </span>
+            </h2>
+
+            <p className='text-gray-600 dark:text-gray-300 text-lg md:text-xl leading-relaxed max-w-xl mx-auto lg:mx-0 mb-8'>
+              {t("description")}
+            </p>
+          </div>
+
+          {/* CTA Buttons */}
+          <div className='flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4'>
+            <Link href='/register' className='w-full sm:w-auto'>
+              <button className='px-8 py-3 text-lg font-semibold bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 text-white rounded-lg w-full cursor-pointer'>
+                {t("create_biodata_button")}
+              </button>
+            </Link>
+            <VideoPlayerButton
+              title={t("video_button_title")}
+              videoId='RHuVlgjwOHA'
+              variant='outline'
+            />
+          </div>
+
+          {/* Trust indicators */}
+          <div className='flex items-center justify-center lg:justify-start gap-6 pt-6 text-sm text-gray-500 dark:text-gray-400'>
+            <div className='flex items-center gap-2'>
+              <div className='flex -space-x-1'>
+                {[1, 2, 3, 4].map((i) => (
+                  <div
+                    key={i}
+                    className='w-6 h-6 rounded-full bg-gradient-to-r from-rose-400 to-pink-400 border-2 border-white dark:border-slate-800'></div>
+                ))}
+              </div>
+              <span className='font-medium'>{t("success_stories")}</span>
+            </div>
+            <div className='flex items-center gap-1'>
+              <span>⭐</span>
+              <span className='font-semibold'>{t("rating")}</span>
+            </div>
+          </div>
         </div>
       </div>
     </>

@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { authKey } from "@/constants/storageKey";
+import { setAccessTokenToCookie } from "@/services/action.setTokenToCookie";
 import { getNewAccessToken } from "@/services/auth.service";
 import { IGenericErrorMessage, ResponseSuccessType } from "@/types";
 import { getFromLocalStorage, setToLocalStorage } from "@/utils/logal-storage";
@@ -53,7 +54,9 @@ instance.interceptors.response.use(
       console.log("get-new-version-access-token", accessToken);
       if (response?.data?.accessToken) {
         config.headers["Authorization"] = `Bearer ${accessToken}`;
-        setToLocalStorage(authKey, accessToken);
+
+        setToLocalStorage(authKey, accessToken); // set local storage
+        setAccessTokenToCookie(accessToken); // set cookie
         return instance(config);
       }
     } else {

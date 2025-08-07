@@ -3,6 +3,7 @@
 import profileImage from "@/assets/girl.jpg";
 import { sidebarItems } from "@/constants/sidebarItems";
 import { getUserInfo, isUserLoggedIn } from "@/services/auth.service";
+import { logOutUser } from "@/services/logOutUser";
 import { IUserPayload } from "@/types";
 import { UserOutlined } from "@ant-design/icons";
 import { Avatar, Menu, Popover, Progress, Tooltip } from "antd";
@@ -11,6 +12,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaRegEdit } from "react-icons/fa";
+import Button from "./Button";
 
 const Content = ({ role, hide }: { role: string; hide: () => void }) => {
   const router = useRouter();
@@ -19,6 +21,10 @@ const Content = ({ role, hide }: { role: string; hide: () => void }) => {
   const handleMenuClick = ({ key }: { key: string }) => {
     router.push(key);
     hide(); // Close popover after navigation
+  };
+
+  const handleLogout = () => {
+    logOutUser(router);
   };
 
   return (
@@ -81,7 +87,7 @@ const Content = ({ role, hide }: { role: string; hide: () => void }) => {
         theme='light'
         mode='inline'
         selectedKeys={[pathname]}
-        items={sidebarItems(role)}
+        items={sidebarItems(role, handleLogout)}
       />
     </>
   );
@@ -134,11 +140,11 @@ const HeaderUserActions = () => {
           </button>
         </Link>
         <Link href='/register'>
-          <button
-            type='primary'
+          <Button
+            variant='cta'
             className='flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 text-sm font-medium text-white rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 transition duration-300 shadow-sm w-full sm:w-auto min-w-[120px] cursor-pointer hover:scale-105'>
             Create Account
-          </button>
+          </Button>
         </Link>
       </div>
     );

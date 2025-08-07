@@ -14,7 +14,7 @@ const FieldRequireLabel: React.FC<FieldRequireLabelProps> = ({
       {label && (
         <label className='block text-sm  text-gray-500 mb-1'>
           {label}
-          {required && <span className='text-red-500'> *</span>}
+          {required && <span className='text-red-500 text-xs'> *</span>}
         </label>
       )}
     </>

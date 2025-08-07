@@ -1,44 +1,48 @@
 import works from "@/assets/cupple.png";
 import Image from "next/image";
-
-const steps = [
-  {
-    id: 1,
-    title: "Create Biodata",
-    description:
-      "You can easily create a biodata on Niqah completely free of cost within some steps.",
-    bgColor: "bg-pink-500",
-  },
-  {
-    id: 2,
-    title: "Search Biodata",
-    description:
-      "You can easily search biodata using many filters including age, profession, educational qualification, madhhab and more.",
-    bgColor: "bg-violet-600",
-  },
-  {
-    id: 3,
-    title: "Contact with Guardians",
-    description:
-      "If someone likes your biodata or you like someone's biodata, you can directly contact their parents.",
-    bgColor: "bg-violet-600",
-  },
-  {
-    id: 4,
-    title: "Get Married",
-    description:
-      "If you like the biodata and if the conversation is well, do your own inquiry & get married according to sunnah.",
-    bgColor: "bg-pink-500",
-  },
-];
+import { useTranslations } from "next-intl";
 
 const HowItWorks = () => {
+  const t = useTranslations("how_it_works");
+
+  const steps = [
+    {
+      id: 1,
+      title: t("step1_title"),
+      description: t("step1_description"),
+      bgColor: "bg-pink-500",
+    },
+    {
+      id: 2,
+      title: t("step2_title"),
+      description: t("step2_description"),
+      bgColor: "bg-violet-600",
+    },
+    {
+      id: 3,
+      title: t("step3_title"),
+      description: t("step3_description"),
+      bgColor: "bg-violet-600",
+    },
+    {
+      id: 4,
+      title: t("step4_title"),
+      description: t("step4_description"),
+      bgColor: "bg-pink-500",
+    },
+  ];
+
   return (
     <div className='container mx-auto px-4 sm:px-8 lg:px-20 py-16'>
       <div className='text-center pb-16'>
-        <h2 className='text-3xl  font-bold mb-1 '>How it works?</h2>
-        <p className='font-medium '>
-          A very easy 4 step process to find your partner.
+        <h2 className='text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent leading-tight'>
+          <span className='text-gray-700 dark:text-white'>{t("heading_part1")}</span>
+          <span className='block bg-gradient-to-r from-blue-600 via-purple-600 to-rose-600 bg-clip-text text-transparent'>
+            {t("heading_part2")}
+          </span>
+        </h2>
+        <p className='text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed'>
+          {t("description")}
         </p>
       </div>
       <div className='flex flex-col md:flex-row gap-8 items-start'>

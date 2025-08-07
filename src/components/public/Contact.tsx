@@ -1,6 +1,7 @@
 "use client";
 
 import Form from "@/components/Forms/Form";
+import { useTranslations } from 'next-intl';
 import FormInput from "@/components/Forms/FormInput";
 import FormTextArea from "@/components/Forms/FormTextArea";
 import contactSchema from "@/schemas/contactSchema";
@@ -18,26 +19,27 @@ interface FormValues {
   message: string;
 }
 
-const contactFields = [
-  {
-    name: "name",
-    type: "text",
-    placeholder: "Your name",
-  },
-  {
-    name: "email",
-    type: "email",
-    placeholder: "Email address",
-  },
-  {
-    name: "subject",
-    type: "text",
-    placeholder: "Subject",
-  },
-];
-
 const Contact = () => {
+  const t = useTranslations('contact');
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const contactFields = [
+    {
+      name: "name",
+      type: "text",
+      placeholder: t('form.fields.name'),
+    },
+    {
+      name: "email",
+      type: "email",
+      placeholder: t('form.fields.email'),
+    },
+    {
+      name: "subject",
+      type: "text",
+      placeholder: t('form.fields.subject'),
+    },
+  ];
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     setIsSubmitting(true);
@@ -66,14 +68,14 @@ const Contact = () => {
       );
 
       if (response.ok) {
-        message.success("Form submitted successfully!");
+        message.success(t('form.success'));
         // Form will be reset automatically by the Form component after successful submission
       } else {
-        message.error("Failed to send message. Please try again later.");
+        message.error(t('form.error.send_failed'));
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      message.error("An error occurred. Please try again later.");
+      message.error(t('form.error.general'));
     } finally {
       setIsSubmitting(false);
     }
@@ -91,10 +93,10 @@ const Contact = () => {
           data-aos='fade-right'>
           <div className='text-center lg:text-left mb-8'>
             <h2 className='text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent'>
-              Let&apos;s Connect
+              {t('header.title')}
             </h2>
             <p className='text-gray-600 dark:text-gray-300 text-sm sm:text-base'>
-              Send us a message and we&apos;ll get back to you soon
+              {t('header.description')}
             </p>
           </div>
           <Form
@@ -110,7 +112,7 @@ const Contact = () => {
             <div>
               <FormTextArea
                 name='message'
-                placeholder='Type your message here'
+                placeholder={t('form.fields.message')}
                 rows={5}
                 className='rounded-xl border border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500
                      px-4 py-3 resize-none bg-white dark:bg-slate-700 dark:placeholder-gray-400'
@@ -121,28 +123,27 @@ const Contact = () => {
               type='submit'
               loading={isSubmitting}
               className='mt-6'
-              loadingText='Submitting...'>
-              Submit
+              loadingText={t('form.submitting')}>
+              {t('form.submit')}
             </Button>
           </Form>
           <div className='text-center lg:text-left absolute bottom-12 left-0 right-0 px-10'>
             <p className='text-xs text-gray-500 dark:text-gray-400 mb-4'>
-              🔒 Your information is secure and will never be shared with third
-              parties
+              {t('security.info')}
             </p>
 
             <div className='flex flex-wrap justify-center lg:justify-start gap-4 text-xs text-gray-600 dark:text-gray-400'>
               <div className='flex items-center gap-2'>
                 <span className='w-1.5 h-1.5 bg-green-500 rounded-full'></span>
-                <span>SSL Encrypted</span>
+                <span>{t('security.features.ssl')}</span>
               </div>
               <div className='flex items-center gap-2'>
                 <span className='w-1.5 h-1.5 bg-blue-500 rounded-full'></span>
-                <span>GDPR Compliant</span>
+                <span>{t('security.features.gdpr')}</span>
               </div>
               <div className='flex items-center gap-2'>
                 <span className='w-1.5 h-1.5 bg-purple-500 rounded-full'></span>
-                <span>No Spam Policy</span>
+                <span>{t('security.features.spam')}</span>
               </div>
             </div>
           </div>
@@ -157,11 +158,11 @@ const Contact = () => {
             <div className='bg-white dark:bg-slate-700 p-4 rounded-full mb-4'>
               <FaPhone className='text-blue-600 w-6 h-6' />
             </div>
-            <p className='font-semibold mb-1'>Phone Number</p>
+            <p className='font-semibold mb-1'>{t('contact_info.phone.label')}</p>
             <a
               href='tel:+8801741581512'
               className='text-blue-700 dark:text-blue-400 hover:underline transition'>
-              +8801571221838
+              {t('contact_info.phone.value')}
             </a>
           </div>
 
@@ -170,11 +171,11 @@ const Contact = () => {
             <div className='bg-white dark:bg-slate-700 p-4 rounded-full mb-4'>
               <FaEnvelope className='text-blue-600 w-6 h-6' />
             </div>
-            <p className='font-semibold mb-1'>Email Address</p>
+            <p className='font-semibold mb-1'>{t('contact_info.email.label')}</p>
             <a
               href='mailto:biyerthikana@gmail.com'
               className='text-blue-700 dark:text-blue-400 hover:underline transition'>
-              biyerthikana@gmail.com
+              {t('contact_info.email.value')}
             </a>
           </div>
 
@@ -183,11 +184,14 @@ const Contact = () => {
             <div className='bg-white dark:bg-slate-700 p-4 rounded-full mb-4'>
               <FaMapMarkerAlt className='text-blue-600 w-6 h-6' />
             </div>
-            <p className='font-semibold mb-1'>Location</p>
+            <p className='font-semibold mb-1'>{t('contact_info.location.label')}</p>
             <address className='not-italic text-gray-700 dark:text-gray-300 text-sm leading-relaxed'>
-              Mirpur‑1,
-              <br />
-              Dhaka, Bangladesh
+              {t('contact_info.location.address').split('\n').map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index === 0 && <br />}
+                </span>
+              ))}
             </address>
           </div>
         </div>
@@ -196,7 +200,7 @@ const Contact = () => {
       {/* ───────────────────────── Google Map ───────────────────────── */}
       <div className='w-full h-[300px] md:h-[400px] mpb-10'>
         <iframe
-          title='Google Map - Mirpur-1 Dhaka'
+          title={t('map.title')}
           src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.578356451677!2d90.35655181540004!3d23.810332284573265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c754d5ebd69b%3A0x2d79608d9a16429f!2sMirpur-1%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1698866563220!5m2!1sen!2sbd'
           width='100%'
           height='100%'

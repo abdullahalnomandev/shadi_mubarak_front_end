@@ -1,4 +1,3 @@
-import { removedUserInfo } from "@/services/auth.service";
 import {
   CrownOutlined,
   DashboardOutlined,
@@ -13,13 +12,8 @@ import { ImProfile } from "react-icons/im";
 import { IoCartOutline, IoKeyOutline } from "react-icons/io5";
 import { MdDeleteOutline } from "react-icons/md";
 import { USER_ROLE } from "./role";
-import { authKey } from "./storageKey";
 
-export const sidebarItems = (role: string) => {
-  const handleLogout = () => {
-    removedUserInfo(authKey);
-  };
-
+export const sidebarItems = (role: string, handleLogout: () => void) => {
   const defaultItems: MenuProps["items"] = [
     {
       label: "Settings",
@@ -106,11 +100,7 @@ export const sidebarItems = (role: string) => {
 
     {
       label: (
-        <Button
-          type='link'
-          href='/login'
-          className='!text-red-500'
-          onClick={handleLogout}>
+        <Button type='link' className='!text-red-500' onClick={handleLogout}>
           Log out
         </Button>
       ),

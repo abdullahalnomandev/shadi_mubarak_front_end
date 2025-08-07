@@ -2,18 +2,31 @@ import dayjs from "dayjs";
 const renderValue = (value: any): string | React.ReactNode => {
   if (value === null || value === undefined) return "";
 
-  // Format string values (e.g. "ami_tomi" → "Ami Tomi")
-  const formatString = (str: string) =>
-    str.includes("_")
-      ? str
-          .split("_")
-          .map(
-            (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
-          )
-          .join(" ")
-      : str;
+  // Email check
+  const isEmail = (str: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(str);
 
-  // Handle array values
+  // Special replacements (always uppercase)
+  const keywordMap: Record<string, string> = {
+    hsc: "HSC",
+    ssc: "SSC",
+  };
+
+  // Capitalize each word with special handling
+  const formatString = (str: string) => {
+    if (isEmail(str)) return str.toLowerCase();
+
+    return str
+      .replace(/[_\s]+/g, " ") // Normalize underscores and spaces
+      .split(" ")
+      .map((word) => {
+        const lower = word.toLowerCase();
+        if (keywordMap[lower]) return keywordMap[lower]; // Use special casing
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+      })
+      .join(" ");
+  };
+
+  // Handle array
   if (Array.isArray(value)) {
     if (
       value.length === 2 &&
@@ -33,11 +46,9 @@ const renderValue = (value: any): string | React.ReactNode => {
   }
 
   // Number
-  if (typeof value === "number") {
-    return value.toString();
-  }
+  if (typeof value === "number") return value.toString();
 
-  // ISO date string
+  // ISO Date
   if (
     typeof value === "string" &&
     dayjs(value, dayjs.ISO_8601, true).isValid() &&
@@ -49,10 +60,9 @@ const renderValue = (value: any): string | React.ReactNode => {
   ) {
     return dayjs(value).format("MMMM D, YYYY");
   }
-  // String with underscore
-  if (typeof value === "string") {
-    return formatString(value);
-  }
+
+  // String
+  if (typeof value === "string") return formatString(value);
 
   // Fallback
   return value?.toString?.() ?? "";

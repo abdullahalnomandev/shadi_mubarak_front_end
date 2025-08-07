@@ -1,9 +1,10 @@
 "use client";
 import { sidebarItems } from "@/constants/sidebarItems";
 import { getUserInfo } from "@/services/auth.service";
+import { logOutUser } from "@/services/logOutUser";
 import { IUserPayload } from "@/types";
 import { Layout, Menu } from "antd";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import SidebarProfile from "./SidebarProfile";
 
@@ -13,6 +14,7 @@ const Sidebar = () => {
   const pathname = usePathname();
   const [collapsed, setCollapsed] = useState(false);
   const [selectedKey, setSelectedKey] = useState(pathname);
+  const router = useRouter();
 
   const { role } = getUserInfo() as IUserPayload;
 
@@ -25,6 +27,10 @@ const Sidebar = () => {
     usePathname: usePathname(),
     pathname,
   });
+  const handleLogout = () => {
+    logOutUser(router);
+  };
+
   return (
     <Sider
       // collapsible
@@ -47,7 +53,7 @@ const Sidebar = () => {
         defaultSelectedKeys={[usePathname()]}
         activeKey={usePathname()}
         selectedKeys={[selectedKey]}
-        items={sidebarItems(role)}
+        items={sidebarItems(role, handleLogout)}
       />
     </Sider>
   );

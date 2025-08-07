@@ -34,6 +34,25 @@ export const getNewAccessToken = async () => {
   });
 };
 
+// export const setAccessToken = async (token: string, options: any) => {
+//   try {
+//     const res = await axios.post(`${getBaseUrl()}/api/auth/set-cookie`, {
+//       token,
+//     });
+//     if (options && options?.redirect && res?.data?.success) {
+//       window.location.href = options?.redirect;
+//     }
+//     return { success: true };
+//   } catch (error) {
+//     console.error("Error setting cookie:", error);
+//     return {
+//       success: false,
+//       error: "Failed to set cookie",
+//       status: 500,
+//     };
+//   }
+// };
+
 export const getUserInfoWithToken = async (accessToken: string) => {
   return await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
     headers: {

@@ -1,3 +1,4 @@
+import { setAccessTokenToCookie } from "@/services/action.setTokenToCookie";
 import { TagTypes } from "../tag-types";
 import { baseApi } from "./baseApi";
 
@@ -12,6 +13,18 @@ const authApi = baseApi.injectEndpoints({
         data: loginData,
       }),
       invalidatesTags: [TagTypes.user],
+      transformResponse: (response) => {
+        // Handle success logic here
+        console.log({ REFRESH_TOKEN: response });
+
+        if (response?.accessToken) {
+          setAccessTokenToCookie(response.accessToken, {
+            redirect: "/",
+          });
+        }
+
+        return response;
+      },
     }),
 
     userRegister: build.mutation({
