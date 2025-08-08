@@ -3,7 +3,7 @@ import { useGetALlBiodatasQuery } from "@/redux/api/biodata";
 import { Row } from "antd";
 import { useSearchParams } from "next/navigation";
 import BioDataCardSkeleton from "../skeletons/BioDataCardSkeleton";
-import BioDataCard from "./BioDataCard";
+import BioDataCard from "./BiodataCard";
 import Sidebar from "./Sidebar";
 
 const BioDatas = () => {
