@@ -3,12 +3,14 @@
 import loginImage from "@/assets/login.png";
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
+import Button from "@/components/UI/Button";
 import { useUserLoginMutation } from "@/redux/api/auth";
 import { loginSchema } from "@/schemas/userSchema";
 import { storeUserInfo } from "@/services/auth.service";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useGoogleLogin } from "@react-oauth/google";
 import { Checkbox, Col, message, Row } from "antd";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -21,20 +23,22 @@ interface FormValues {
   password: string;
 }
 
-const loginFields = [
+// login fields now use translations for placeholders
+const getLoginFields = (t: (key: string) => string) => [
   {
     name: "email",
     type: "email",
-    placeholder: "Email",
+    placeholder: t("email_placeholder"),
   },
   {
     name: "password",
     type: "password",
-    placeholder: "Password",
+    placeholder: t("password_placeholder"),
   },
 ];
 
 const Login = () => {
+  const t = useTranslations("login");
   const router = useRouter();
   const [userLogin, { isLoading }] = useUserLoginMutation();
   const [rememberMe, setRememberMe] = useState(false);
@@ -44,13 +48,10 @@ const Login = () => {
       const res = await userLogin(data).unwrap();
       if (res?.accessToken) {
         storeUserInfo({ accessToken: res.accessToken });
-        // router.push("/");
-        message.success("Login successful!");
+        message.success(t("login_successful"));
       }
     } catch (error) {
-      message.error(
-        (error as any)?.data || "Something went wrong please try again later."
-      );
+      message.error((error as any)?.data || t("something_went_wrong"));
     }
   };
 
@@ -63,17 +64,15 @@ const Login = () => {
         if (res?.accessToken) {
           storeUserInfo({ accessToken: res.accessToken });
           router.push("/");
-          message.success("Login successful!");
+          message.success(t("login_successful"));
         }
       } catch (error: any) {
-        message.error(
-          error?.data || "Something went wrong please try again later"
-        );
+        message.error(error?.data || t("something_went_wrong"));
       }
     },
     onError: (error) => {
       console.error("Google login error:", error);
-      message.error("Login failed. Please try again.");
+      message.error(t("login_failed"));
     },
     flow: "implicit",
   });
@@ -93,7 +92,7 @@ const Login = () => {
             className='justify-center items-center p-8 hidden md:block'>
             <Image
               src={loginImage}
-              alt='Login Illustration'
+              alt={t("login_illustration_alt")}
               width={500}
               height={500}
               className='object-contain max-w-full'
@@ -106,19 +105,19 @@ const Login = () => {
             sm={12}
             md={8}
             lg={8}
-            className='bg-white dark:bg-blue-950 dark:text-white w-full p-6 rounded-xl '>
-            <div className=' md:max-w-md mx-auto'>
+            className='bg-white dark:bg-gray-800 dark:text-white w-full p-6 rounded-xl'>
+            <div className='md:max-w-md mx-auto'>
               <h2 className='text-3xl font-bold dark:text-white text-gray-800 text-center'>
-                Welcome Back!
+                {t("welcome_back")}
               </h2>
-              <p className='text-gray-600 dark:text-white text-center pt-2 py-4'>
-                Please sign in to continue
+              <p className='text-gray-600 dark:text-gray-300 text-center pt-2 py-4'>
+                {t("please_sign_in")}
               </p>
 
               <Form
                 submitHandler={onSubmit}
                 resolver={yupResolver(loginSchema)}>
-                {loginFields.map((field) => (
+                {getLoginFields(t).map((field) => (
                   <div key={field.name} className='mb-4'>
                     <FormInput {...field} />
                   </div>
@@ -127,55 +126,29 @@ const Login = () => {
                   <Checkbox
                     checked={rememberMe}
                     onChange={(e) => setRememberMe(e.target.checked)}
-                    className='text-sm text-gray-600 dark:text-white hover:text-gray-800'>
-                    Remember me
+                    className='text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800'>
+                    {t("remember_me")}
                   </Checkbox>
                   <Link
                     href='/forgot-password'
                     className='text-sm text-blue-600 hover:text-blue-800 !underline'>
-                    Forgot Password?
+                    {t("forgot_password")}
                   </Link>
                 </div>
-                <button
-                  disabled={isLoading}
+                <Button
+                  loading={isLoading}
+                  loadingText={t("logging_in")}
                   type='submit'
-                  className='w-full mt-3 py-3 text-white rounded-md transition duration-400 
-                    cursor-pointer bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 
-                    hover:to-cyan-500 flex items-center justify-center gap-2'>
-                  {isLoading ? (
-                    <>
-                      <svg
-                        className='animate-spin h-5 w-5 text-white'
-                        xmlns='http://www.w3.org/2000/svg'
-                        fill='none'
-                        viewBox='0 0 24 24'>
-                        <circle
-                          className='opacity-25'
-                          cx='12'
-                          cy='12'
-                          r='10'
-                          stroke='currentColor'
-                          strokeWidth='4'
-                        />
-                        <path
-                          className='opacity-75'
-                          fill='currentColor'
-                          d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
-                        />
-                      </svg>
-                      <span>Logging in...</span>
-                    </>
-                  ) : (
-                    "Log In"
-                  )}
-                </button>
+                  variant='cta'>
+                  {t("log_in_button")}
+                </Button>
                 <div className='relative my-6'>
                   <div className='absolute inset-0 flex items-center'>
-                    <div className='w-full border-t border-gray-300 dark:bg-blue-900'></div>
+                    <div className='w-full border-t border-gray-300 dark:border-gray-700'></div>
                   </div>
                   <div className='relative flex justify-center text-sm'>
-                    <span className='px-4 dark:bg-blue-950 dark:text-white bg-white text-gray-500'>
-                      Or
+                    <span className='px-4 dark:bg-gray-800 dark:text-gray-300 bg-white text-gray-500'>
+                      {t("or")}
                     </span>
                   </div>
                 </div>
@@ -186,16 +159,16 @@ const Login = () => {
                     focus:outline-none focus:ring-2 cursor-pointer focus:ring-gray-500'
                   onClick={() => googleLogin()}>
                   <FcGoogle className='w-5 h-5' />
-                  Log in with Google
+                  {t("log_in_with_google")}
                 </button>
               </Form>
 
-              <p className='mt-4 font-medium text-center dark:text-white text-gray-600'>
-                Dont have an account?{" "}
+              <p className='mt-4 font-medium text-center dark:text-gray-300 text-gray-600'>
+                {t("dont_have_account")}{" "}
                 <Link
                   href='/register'
                   className='text-blue-600 hover:text-blue-800 !underline font-medium'>
-                  Create account
+                  {t("create_account")}
                 </Link>
               </p>
             </div>

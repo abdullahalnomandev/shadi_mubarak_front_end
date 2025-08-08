@@ -73,7 +73,10 @@ const Header = () => {
     },
     { key: "/blog", label: <Link href='/blog'>{t("header.blog")}</Link> },
     { key: "/faq", label: <Link href='/faq'>{t("header.faq")}</Link> },
-    { key: "/contact", label: <Link href='/contact'>{t("header.contact")}</Link> },
+    {
+      key: "/contact",
+      label: <Link href='/contact'>{t("header.contact")}</Link>,
+    },
   ];
 
   const languageOptions = [
@@ -127,7 +130,9 @@ const Header = () => {
         <div className='flex justify-between items-center px-4 sm:px-8 h-full max-w-7xl m-auto'>
           <div>
             <Link href='/'>
-              <Image src={logo} alt='Shadi Mubarak' width={40} height={40} />
+              <h2 className='text-xl font-bold tracking-tight bg-gradient-to-r from-pink-600 to-blue-600 bg-clip-text text-transparent'>
+                বিয়ের ঠিকানা
+              </h2>
             </Link>
           </div>
 

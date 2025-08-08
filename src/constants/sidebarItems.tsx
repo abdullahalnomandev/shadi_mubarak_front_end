@@ -13,17 +13,25 @@ import { IoCartOutline, IoKeyOutline } from "react-icons/io5";
 import { MdDeleteOutline } from "react-icons/md";
 import { USER_ROLE } from "./role";
 
-export const sidebarItems = (role: string, handleLogout: () => void) => {
+export const sidebarItems = (
+  role: string,
+  handleLogout: () => void,
+  t: (key: string) => string
+) => {
   const defaultItems: MenuProps["items"] = [
     {
-      label: "Settings",
+      label: (
+        <Link href={`/${role}/account-settings`}>
+          {t("sidebar.account_settings")}
+        </Link>
+      ),
       key: `/${role}/account-settings`,
       icon: <SettingOutlined />,
       children: [
         {
           label: (
             <Link href={`/${role}/settings/change-password`}>
-              Change Password
+              {t("sidebar.change_password")}
             </Link>
           ),
           key: `/${role}/settings/change-password`,
@@ -32,7 +40,7 @@ export const sidebarItems = (role: string, handleLogout: () => void) => {
         {
           label: (
             <Link href={`/${role}/settings/delete-biodata`}>
-              Delete Biodata
+              {t("sidebar.delete_biodata")}
             </Link>
           ),
           key: `/${role}/settings/delete-biodata`,
@@ -45,12 +53,16 @@ export const sidebarItems = (role: string, handleLogout: () => void) => {
   const adminItems: MenuProps["items"] = [
     ...defaultItems,
     {
-      label: <Link href={`/${role}/manage-users`}>Manage Users</Link>,
+      label: (
+        <Link href={`/${role}/manage-users`}>{t("sidebar.manage_user")}</Link>
+      ),
       key: `/${role}/manage-users`,
       icon: <TeamOutlined />,
     },
     {
-      label: <Link href={`/${role}/manage-admin`}>Manage Admin</Link>,
+      label: (
+        <Link href={`/${role}/manage-admin`}>{t("sidebar.manage_admin")}</Link>
+      ),
       key: `/${role}/manage-admin`,
       icon: <TeamOutlined />,
     },
@@ -58,12 +70,12 @@ export const sidebarItems = (role: string, handleLogout: () => void) => {
 
   const superAdminItems: MenuProps["items"] = [
     {
-      label: <Link href={`/${role}/admin`}>Manage Admin</Link>,
+      label: <Link href={`/${role}/admin`}>{t("sidebar.manage_admin")}</Link>,
       key: `/${role}/admin`,
       icon: <CrownOutlined />,
     },
     {
-      label: <Link href={`/${role}/user`}>Manage User</Link>,
+      label: <Link href={`/${role}/user`}>{t("sidebar.manage_user")}</Link>,
       key: `/${role}/user`,
       icon: <CrownOutlined />,
     },
@@ -71,28 +83,38 @@ export const sidebarItems = (role: string, handleLogout: () => void) => {
   ];
   const userItems: MenuProps["items"] = [
     {
-      label: <Link href={`/${role}/dashboard`}>Dashboard</Link>,
+      label: <Link href={`/${role}/dashboard`}>{t("sidebar.dashboard")}</Link>,
       key: `/${role}/dashboard`,
       icon: <DashboardOutlined />,
     },
     {
-      label: <Link href={`/${role}/my-biodata`}>My Biodata</Link>,
+      label: (
+        <Link href={`/${role}/my-biodata`}>{t("sidebar.my_biodata")}</Link>
+      ),
       key: `/${role}/my-biodata`,
       icon: <ImProfile />,
     },
 
     {
-      label: <Link href={`/${role}/edit-biodata`}>Edit BioData</Link>,
+      label: (
+        <Link href={`/${role}/edit-biodata`}>{t("sidebar.edit_biodata")}</Link>
+      ),
       key: `/${role}/edit-biodata`,
       icon: <FaRegEdit />,
     },
     {
-      label: <Link href={`/${role}/favorite-list`}>Favorites List</Link>,
+      label: (
+        <Link href={`/${role}/favorite-list`}>
+          {t("sidebar.favorite_list")}
+        </Link>
+      ),
       key: `/${role}/favorite-list`,
       icon: <FaRegHeart />,
     },
     {
-      label: <Link href={`/${role}/my-purchased`}>My purchased</Link>,
+      label: (
+        <Link href={`/${role}/my-purchased`}>{t("sidebar.my_purchased")}</Link>
+      ),
       key: `/${role}/my-purchased`,
       icon: <IoCartOutline />,
     },
@@ -101,7 +123,7 @@ export const sidebarItems = (role: string, handleLogout: () => void) => {
     {
       label: (
         <Button type='link' className='!text-red-500' onClick={handleLogout}>
-          Log out
+          {t("sidebar.logout")}
         </Button>
       ),
       key: `/${role}/log-out`,

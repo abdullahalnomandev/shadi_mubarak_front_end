@@ -1,12 +1,14 @@
 "use client";
 import useGetUserFromField from "@/hooks/useGetUserFromField";
 import { Col, Row } from "antd";
+import { useTranslations } from "next-intl";
 import { useFormContext } from "react-hook-form";
 import FormInput from "../FormInput";
 import FormSelectField from "../FormSelectField";
 import FormTextArea from "../FormTextArea";
 
 const MarriageRelatedInformation = () => {
+  const t = useTranslations();
   const { marriage_related_information } = useGetUserFromField();
   const { watch } = useFormContext();
   const isMaleForm =
@@ -70,7 +72,7 @@ const MarriageRelatedInformation = () => {
   return (
     <div>
       <h1 className='text-2xl font-semibold mb-6'>
-        Marriage Related Information
+        {t("edit_biodata.marriage_related_information")}
       </h1>
       <Row gutter={[16, 16]}>
         {filteredFields.map(({ name, type, placeholder, label, options }) => (

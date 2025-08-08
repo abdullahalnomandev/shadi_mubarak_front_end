@@ -266,7 +266,7 @@ const StepperForm = ({ steps }: IStepsProps) => {
         {steps.map((item, index) => (
           <Step
             key={index}
-            label={item.title}
+            label={<span className='hidden md:inline-block'>{item.title}</span>}
             onClick={() => handleStepClick(index)}
             completed={completedSteps.includes(index)}
             style={{

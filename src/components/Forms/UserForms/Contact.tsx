@@ -1,11 +1,13 @@
 "use client";
 import useGetUserFromField from "@/hooks/useGetUserFromField";
 import { Col, Row } from "antd";
+import { useTranslations } from "next-intl";
 import { useFormContext } from "react-hook-form";
 import FormInput from "../FormInput";
 import FormTextArea from "../FormTextArea";
 
 const Contact = () => {
+  const t = useTranslations();
   const { watch } = useFormContext();
   const isMaleForm =
     watch("general_information.biodataType") === "male_biodata";
@@ -21,7 +23,9 @@ const Contact = () => {
 
   return (
     <div>
-      <h1 className='text-2xl font-semibold mb-6'>Contact</h1>
+      <h1 className='text-2xl font-semibold mb-6'>
+        {t("edit_biodata.contact")}
+      </h1>
       <Row gutter={[16, 16]}>
         {filteredContact.map(({ name, type, placeholder, label }) => (
           <Col key={name} xs={24} sm={12}>

@@ -39,7 +39,7 @@ const MessengerWidget = () => {
   return (
     <div
       ref={containerRef}
-      className='fixed bottom-4 right-4 z-50 flex flex-col items-end'>
+      className='fixed bottom-4 right-2 z-50 flex flex-col items-end'>
       {/* Action Buttons */}
       <div
         className={`flex flex-col items-center gap-3 transform transition duration-500 ease-in-out origin-bottom ${
@@ -78,7 +78,7 @@ const MessengerWidget = () => {
         <Tooltip title='Close' placement='left'>
           <button
             onClick={() => setIsOpen(false)}
-            className='bg-red-400 hover:bg-red-500 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition'>
+            className='text-white bg-gradient-to-r from-pink-500 to-rose-500 border-transparent hover:from-pink-600 hover:to-rose-600 hover:shadow-xl hover:scale-[1.02] focus:ring-pink-500 active:scale-[0.98] shadow-lg cursor-pointer w-12 h-12 rounded-full flex items-center justify-center transition'>
             <FaTimes className='text-xl' />
           </button>
         </Tooltip>
@@ -89,7 +89,7 @@ const MessengerWidget = () => {
         <Tooltip title='Contact Us' placement='left'>
           <button
             onClick={() => setIsOpen(true)}
-            className='bg-red-400 hover:bg-red-500 cursor-pointer text-white w-12 h-12 rounded-full flex items-center justify-center shadow-xl transition mt-3'>
+            className='text-white bg-gradient-to-r from-pink-500 to-rose-500 border-transparent hover:from-pink-600 hover:to-rose-600 hover:shadow-xl hover:scale-[1.02] focus:ring-pink-500 active:scale-[0.98] shadow-lg cursor-pointer w-12 h-12 rounded-full flex items-center justify-center transition mt-3'>
             <FaCommentDots className='text-2xl' />
           </button>
         </Tooltip>

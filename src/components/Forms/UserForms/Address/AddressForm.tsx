@@ -107,7 +107,9 @@ const AddressForm = () => {
 
   return (
     <div>
-      <h1 className='text-2xl font-semibold mb-6'>Address</h1>
+      <h1 className='text-2xl font-semibold mb-6'>
+        {t("edit_biodata.address")}
+      </h1>
       <Row gutter={[16, 16]}>
         {/* Present address fields */}
         {addressFields

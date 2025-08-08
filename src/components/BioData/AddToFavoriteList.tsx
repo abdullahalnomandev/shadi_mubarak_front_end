@@ -40,15 +40,15 @@ const AddToFavoriteList = ({ bioDataNo }: { bioDataNo: string }) => {
       className={`flex items-center cursor-pointer gap-1 px-3 py-1.5 rounded-md text-sm transition-all duration-300 font-medium
         ${
           isFavorite
-            ? "bg-red-100 text-pink-600 hover:bg-red-200"
-            : "bg-purple-100 text-pink-700 hover:bg-purple-200"
+            ? "bg-red-100 text-blue-600 hover:bg-red-200"
+            : "bg-purple-100 text-blue-700 hover:bg-purple-200"
         }
         disabled:opacity-50 disabled:cursor-not-allowed
       `}
       disabled={isAdding || isRemoving}
       onClick={handleToggleFavorite}>
       {isFavorite ? (
-        <AiOutlineHeart className='w-4 h-4 text-red-600' />
+        <AiOutlineHeart className='w-4 h-4 text-bue-600' />
       ) : (
         <AiOutlineHeart className='w-4 h-4 text-purple-700' />
       )}

@@ -2,6 +2,7 @@
 
 import { useCleanHiddenFields } from "@/hooks/useCleanHiddenFields";
 import { Col, Row } from "antd";
+import { useTranslations } from "next-intl";
 import { useFormContext } from "react-hook-form";
 import FormInput from "../FormInput";
 import FormSelectField from "../FormSelectField";
@@ -68,6 +69,7 @@ const belowSSCClassOptions = [
 ];
 
 const Education = () => {
+  const t = useTranslations();
   const { watch } = useFormContext();
   const system = watch("education.education_system");
   const level = watch("education.highest_qualification");
@@ -340,7 +342,7 @@ const Education = () => {
   return (
     <div>
       <h1 className='text-2xl font-semibold mb-4'>
-        Educational Qualifications
+        {t("edit_biodata.education_qualifications")}
       </h1>
       <Row gutter={[16, 16]}>
         <Col xs={24} sm={12}>

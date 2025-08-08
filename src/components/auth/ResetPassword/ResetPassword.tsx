@@ -11,20 +11,22 @@ import { useState } from "react";
 import resetImage from "@/assets/Reset password-pana.png";
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
+import Button from "@/components/UI/Button";
 import { resetPasswordSchema } from "@/schemas/userSchema";
+import { useTranslations } from "next-intl";
 
 const resetPasswordFields = [
   {
     name: "password",
     type: "password",
-    placeholder: "Enter new password",
-    label: "New Password",
+    placeholderKey: "placeholder_new_password",
+    labelKey: "label_new_password",
   },
   {
     name: "confirmPassword",
     type: "password",
-    placeholder: "Confirm new password",
-    label: "Confirm Password",
+    placeholderKey: "placeholder_confirm_password",
+    labelKey: "label_confirm_password",
   },
 ];
 
@@ -33,12 +35,13 @@ const ResetPassword = () => {
   const router = useRouter();
   const token = searchParams.get("token");
 
+  const t = useTranslations("reset_password");
   const [resetPassword, { isLoading }] = useUserResetPasswordMutation();
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = async (values: { password: string }) => {
     if (!token) {
-      message.error("Missing reset token.");
+      message.error(t("error_missing_token"));
       return;
     }
 
@@ -49,12 +52,12 @@ const ResetPassword = () => {
       }).unwrap();
 
       setSubmitted(true);
-      message.success("Password reset successful!");
+      message.success(t("message_success_redirect"));
       setTimeout(() => {
         router.push("/login");
       }, 2000);
     } catch (error: any) {
-      message.error(error?.data || "Failed to reset password.");
+      message.error(error?.data || t("error_failed_reset"));
     }
   };
 
@@ -73,7 +76,7 @@ const ResetPassword = () => {
             className='justify-center items-center p-8 hidden md:block'>
             <Image
               src={resetImage}
-              alt='Reset Password Illustration'
+              alt={t("alt_reset_image")}
               width={500}
               height={500}
               className='object-contain max-w-full'
@@ -89,44 +92,51 @@ const ResetPassword = () => {
             className='bg-white dark:bg-blue-950 dark:text-white w-full p-6 rounded-xl'>
             <div className='md:max-w-md mx-auto'>
               <h2 className='text-3xl font-bold dark:text-white text-gray-800 text-center'>
-                Reset Your Password
+                {t("title")}
               </h2>
               <p className='text-gray-600 dark:text-white text-center pt-2 py-4'>
-                Please enter your new password
+                {t("instructions")}
               </p>
 
               {!submitted ? (
                 <Form
                   submitHandler={handleSubmit}
                   resolver={yupResolver(resetPasswordSchema)}>
-                  {resetPasswordFields.map((field) => (
-                    <div key={field.name} className='mb-4'>
-                      <FormInput {...field} />
-                    </div>
-                  ))}
-                  <button
+                  {resetPasswordFields.map(
+                    ({ name, type, placeholderKey, labelKey }) => (
+                      <div key={name} className='mb-4'>
+                        <FormInput
+                          name={name}
+                          type={type}
+                          placeholder={t(placeholderKey)}
+                          label={t(labelKey)}
+                        />
+                      </div>
+                    )
+                  )}
+
+                  <Button
                     type='submit'
-                    disabled={isLoading}
-                    className='w-full mt-3 py-3 text-white rounded-md transition duration-300 
-                      bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500
-                      focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
-                      disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer'>
-                    {isLoading ? "Resetting..." : "Reset Password"}
-                  </button>
+                    loading={isLoading}
+                    loadingText={t("button_resetting")}
+                    variant='cta'
+                    className='py-3'>
+                    {t("button_reset_password")}
+                  </Button>
                 </Form>
               ) : (
                 <div className='text-center mt-6 text-green-600 font-medium'>
-                  Password has been successfully reset. Redirecting...
+                  {t("message_success_redirect")}
                 </div>
               )}
 
               {!submitted && (
                 <p className='mt-6 text-center text-sm text-gray-600 dark:text-white'>
-                  Remember your password?{" "}
+                  {t("message_remember_password")}{" "}
                   <Link
                     href='/login'
                     className='text-blue-600 hover:text-blue-800 underline font-medium'>
-                    Back to Login
+                    {t("message_back_to_login")}
                   </Link>
                 </p>
               )}

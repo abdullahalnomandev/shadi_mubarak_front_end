@@ -1,8 +1,9 @@
 "use client";
-import { locationData } from "@/data/locationData";
+import { getLocationData } from "@/data/locationData";
 import { DownOutlined, UpOutlined } from "@ant-design/icons";
 import { Button, Input, Select, Slider } from "antd";
 import Sider from "antd/es/layout/Sider";
+import { useTranslations } from "next-intl";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import FormCascader from "../Forms/FormCascader";
@@ -18,6 +19,7 @@ interface FilterState {
 }
 
 const Sidebar = () => {
+  const t = useTranslations();
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -269,7 +271,7 @@ const Sidebar = () => {
                 <FormCascader
                   name='presentAddress'
                   label='Present Address'
-                  options={locationData.searchLocationData}
+                  options={getLocationData(t).searchLocationData}
                   value={filters.presentAddress}
                   placeholder='Select present address'
                   onChange={(value) =>
@@ -287,7 +289,7 @@ const Sidebar = () => {
                 <FormCascader
                   name='permanentAddress'
                   label='Permanent Address'
-                  options={locationData.searchLocationData}
+                  options={getLocationData(t).searchLocationData}
                   value={filters.permanentAddress}
                   placeholder='Select permanent address'
                   onChange={(value) =>

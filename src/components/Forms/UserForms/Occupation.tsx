@@ -1,17 +1,20 @@
 "use client";
 import useGetUserFromField from "@/hooks/useGetUserFromField";
 import { Col, Row } from "antd";
+import { useTranslations } from "next-intl";
 import FormInput from "../FormInput";
 import FormSelectField from "../FormSelectField";
 import FormTextArea from "../FormTextArea";
 
 const Occupation = () => {
+  const t = useTranslations();
   const { occupation } = useGetUserFromField();
 
-  console.log("occupation", occupation);
   return (
     <div className='p-6'>
-      <h1 className='text-2xl font-semibold mb-6'>Occupational Information</h1>
+      <h1 className='text-2xl font-semibold mb-6'>
+        {t("edit_biodata.occupation")}
+      </h1>
       <Row gutter={[16, 16]}>
         {occupation.map(({ name, type, placeholder, label, options, mode }) => (
           <Col key={name} xs={24} sm={12}>

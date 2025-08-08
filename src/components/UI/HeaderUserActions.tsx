@@ -1,20 +1,25 @@
 "use client";
 
 import profileImage from "@/assets/girl.jpg";
+import { BioDataStatus } from "@/constants/bioData";
 import { sidebarItems } from "@/constants/sidebarItems";
+import { useGetUserQuery } from "@/redux/api/user";
 import { getUserInfo, isUserLoggedIn } from "@/services/auth.service";
 import { logOutUser } from "@/services/logOutUser";
 import { IUserPayload } from "@/types";
+import { getBioDataStatusLabel } from "@/utils/biodata-status";
 import { UserOutlined } from "@ant-design/icons";
 import { Avatar, Menu, Popover, Progress, Tooltip } from "antd";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { FaRegEdit } from "react-icons/fa";
 import Button from "./Button";
+import ProfileStatusAction from "./ProfileStatusAction";
 
 const Content = ({ role, hide }: { role: string; hide: () => void }) => {
+  const t = useTranslations();
   const router = useRouter();
   const pathname = usePathname();
 
@@ -27,27 +32,65 @@ const Content = ({ role, hide }: { role: string; hide: () => void }) => {
     logOutUser(router);
   };
 
+  const { data: userData } = useGetUserQuery();
+
+  const completedSteps = userData?.user?.bioData?.completedSteps;
+  console.log({ completedSteps });
+
+  const totalSteps = 10;
+  const basePercent = 15;
+  const maxPercent = 100;
+  const stepIncrement = (maxPercent - basePercent) / totalSteps;
+  const completedCount = completedSteps?.length;
+  const profileStatus = userData?.user?.bioData?.profileStatus;
+
+  const percent = Math.min(
+    basePercent + stepIncrement * completedCount,
+    maxPercent
+  );
   return (
     <>
-      <div className='max-w-xs mx-auto mb-1 border-b border-gray-300  p-4 bg-white'>
+      <div className='max-w-xs mx-auto mb-1 border-b border-gray-300  p-4 pt-1 bg-white'>
         {/* Profile Image */}
-        <div className='flex justify-center mb-1'>
-          <div className='w-14 h-14 rounded-full overflow-hidden border-2 border-purple-500'>
+        <div className='flex justify-center mb-4'>
+          <div className='w-20 h-20 rounded-full overflow-hidden border-2 border-purple-600 shadow'>
             <Image
               src={profileImage}
               alt='Profile'
               className='object-cover w-full h-full'
-              width={96}
-              height={96}
+              width={80}
+              height={80}
             />
           </div>
         </div>
 
+        {/* Status */}
+        <div className='flex justify-between items-center mt-4'>
+          <span className='text-sm font-medium text-gray-700'>
+            Biodata Status:
+          </span>
+          <span
+            className={`text-xs font-semibold px-3 py-0.5 rounded-full border ${
+              profileStatus === BioDataStatus.NOT_STARTED
+                ? "text-gray-800 bg-gray-100 border-gray-300"
+                : profileStatus === BioDataStatus.INCOMPLETE
+                ? "text-orange-800 bg-orange-100 border-orange-300"
+                : profileStatus === BioDataStatus.NOT_SUBMITTED
+                ? "text-blue-800 bg-blue-100 border-blue-300"
+                : profileStatus === BioDataStatus.PENDING
+                ? "text-yellow-800 bg-yellow-100 border-yellow-300"
+                : profileStatus === BioDataStatus.REJECTED
+                ? "text-red-800 bg-red-100 border-red-300"
+                : "text-green-800 bg-green-100 border-green-300" // for verified status
+            }`}>
+            {getBioDataStatusLabel(profileStatus)}
+          </span>
+        </div>
         {/* Progress & Tip */}
         <div className='mb-2'>
           <Tooltip title='Biodata completion: 50%' placement='bottomRight'>
             <Progress
-              percent={50}
+              percent={percent}
               status='active'
               strokeColor={{
                 from: "#06b6d4",
@@ -57,28 +100,14 @@ const Content = ({ role, hide }: { role: string; hide: () => void }) => {
                 align: "end",
                 type: "outer",
               }}
+              showInfo={true}
             />
           </Tooltip>
           <p className='text-sm text-gray-500 mt-1'>Complete your profile</p>
         </div>
 
-        {/* Status */}
-        <div className='flex justify-between items-center mt-4'>
-          <span className='text-sm mr-1 font-medium text-gray-700'>
-            Biodata Status:
-          </span>
-          <span className='text-xs font-semibold text-yellow-800 bg-yellow-100 px-1 py-0.5 rounded-full border border-yellow-300'>
-            Not Completed
-          </span>
-        </div>
-
         {/* Edit Button */}
-        <button
-          className='w-full mt-4 flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 transition duration-300 shadow cursor-pointer '
-          onClick={() => router.push(`/${role}/edit-biodata`)}>
-          <FaRegEdit size={16} />
-          Edit Biodata
-        </button>
+        <ProfileStatusAction profileStatus={profileStatus} />
       </div>
 
       {/* Sidebar Menu */}
@@ -87,7 +116,7 @@ const Content = ({ role, hide }: { role: string; hide: () => void }) => {
         theme='light'
         mode='inline'
         selectedKeys={[pathname]}
-        items={sidebarItems(role, handleLogout)}
+        items={sidebarItems(role, handleLogout, t)}
       />
     </>
   );

@@ -2,12 +2,15 @@
 import { useCleanHiddenFields } from "@/hooks/useCleanHiddenFields";
 import useGetUserFromField from "@/hooks/useGetUserFromField";
 import { Col, Row } from "antd";
+import { useTranslations } from "next-intl";
 import { useFormContext } from "react-hook-form";
 import FormInput from "../FormInput";
 import FormSelectField from "../FormSelectField";
 import FormTextArea from "../FormTextArea";
 
 const FamilyInformation = () => {
+  const t = useTranslations();
+
   const { family_information } = useGetUserFromField();
   const { watch } = useFormContext();
 
@@ -31,7 +34,9 @@ const FamilyInformation = () => {
 
   return (
     <div>
-      <h1 className='text-2xl font-semibold mb-6'>Family Information</h1>
+      <h1 className='text-2xl font-semibold mb-6'>
+        {t("edit_biodata.family_information")}
+      </h1>
       <Row gutter={[16, 16]}>
         {filteredFamilyInformation.map(
           ({ name, type, placeholder, label, options, required }) => (
