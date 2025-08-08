@@ -1,12 +1,11 @@
-import BioDatas from '@/components/Biodatas/BiodataCard';
-import React from 'react';
+import BioDatas from "@/components/Biodatas/Biodatas";
 
 const BioData = () => {
-    return (
-        <>
-            <BioDatas />
-        </>
-    );
+  return (
+    <>
+      <BioDatas />
+    </>
+  );
 };
 
 export default BioData;

@@ -1,22 +1,21 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useEffect, useState } from 'react';
+import { useTranslation, UseTranslationResponse } from 'react-i18next';
 
 type TranslationReturn = {
   t: (key: string) => string;
-  i18n: any;
+  i18n: UseTranslationResponse<any, any>['i18n'];
 };
 
 export const useTranslate = (): TranslationReturn => {
-  const [mounted, setMounted] = useState(false);
   const { t, i18n } = useTranslation();
-
+  const [isClient, setIsClient] = useState(false)
+ 
   useEffect(() => {
-    setMounted(true);
-  }, []);
-
+    setIsClient(true)
+  }, [])
+ 
   return {
-    t: mounted ? t : () => "",
-    i18n: mounted ? i18n : { changeLanguage: () => Promise.resolve() }
+    t: isClient ? t : () => '',
+    i18n: isClient ? i18n : ({} as UseTranslationResponse<any, any>['i18n']),
   };
 };
