@@ -1,6 +1,15 @@
-export default async function Page({params,}: {params: Promise<{ biodata: string }>}) {
+import BioData from "@/components/BioData";
 
-    const { biodata } = await params
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ biodata: string }>;
+}) {
+  const { biodata } = await params;
 
-    return <div>My Post: {biodata}</div>
-  }
+  return (
+    <div className='min-h-screen'>
+      <BioData bioDataNo={biodata} className='sm:px-14' />
+    </div>
+  );
+}
