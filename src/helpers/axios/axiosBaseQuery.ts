@@ -14,16 +14,14 @@ interface AxiosBaseQueryArgs {
 }
 
 export const axiosBaseQuery =
-  ({ baseUrl }: { baseUrl: string } = { baseUrl: "" }): BaseQueryFn<
-    AxiosBaseQueryArgs,
-    unknown,
-    unknown
-  > =>
+  (
+    { baseUrl }: { baseUrl: string } = { baseUrl: "" }
+  ): BaseQueryFn<AxiosBaseQueryArgs, unknown, unknown> =>
   async ({ url, method = "GET", data, params, headers = {}, contentType }) => {
     try {
       const finalHeaders = {
         ...headers,
-        ...(contentType ? { "Content-Type": contentType } : {}),
+        "Content-Type": contentType || "application/json",
       };
 
       const result = await axiosInstance({
@@ -32,16 +30,17 @@ export const axiosBaseQuery =
         data,
         params,
         headers: finalHeaders,
+        withCredentials: true,
       });
 
-      return { data: result.data };
+      return result;
     } catch (axiosError) {
       const err = axiosError as AxiosError;
 
       return {
         error: {
           status: err.response?.status,
-          data: err.response?.data || err.message,
+          data: err.response?.data || err?.message,
         },
       };
     }

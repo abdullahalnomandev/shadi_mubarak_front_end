@@ -1,23 +1,22 @@
 "use client";
-import React from "react";
-import Footer from "@/components/UI/Footer";
-import Header from "@/components/UI/Header";
+import Footer from "@/components/shared/Footer";
 import { usePathname } from "next/navigation";
+import React from "react";
+import Header from "../shared/Header";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
   const isProtectedRoute =
     pathname?.startsWith("/user") ||
     pathname?.startsWith("/admin") ||
-    pathname?.startsWith("/login") ||
-    pathname?.startsWith("/register");
+    pathname?.startsWith("/super_admin");
 
   return (
-    <div className="min-h-screen flex flex-col">
-      {isProtectedRoute && <Header />}
-      <main className="flex-grow">{children}</main>
-      {isProtectedRoute && <Footer />}
-    </div>
+    <React.Fragment>
+      <Header />
+      <main className='flex-grow max-w-7xl m-auto px-4'>{children}</main>
+      {!isProtectedRoute && <Footer />}
+    </React.Fragment>
   );
 };
 
