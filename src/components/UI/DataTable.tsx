@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { Table } from 'antd';
-import type { TablePaginationConfig } from 'antd/es/table';
-import React from 'react';
+import { Table } from "antd";
+import type { TablePaginationConfig } from "antd/es/table";
+import React from "react";
 
 interface IDataTableProps {
   pageSize: number;
@@ -23,17 +22,14 @@ const DataTable: React.FC<IDataTableProps> = ({
   const paginationConfig: TablePaginationConfig = {
     pageSize,
     total,
-    pageSizeOptions: ['5', '10', '20'],
+    pageSizeOptions: ["5", "10", "20"],
     showSizeChanger,
     onChange: onPageSizeChange,
     responsive: true,
   };
 
   return (
-    <Table
-      {...props}
-      pagination={showPagination ? paginationConfig : false}
-    />
+    <Table {...props} pagination={showPagination ? paginationConfig : false} />
   );
 };
 

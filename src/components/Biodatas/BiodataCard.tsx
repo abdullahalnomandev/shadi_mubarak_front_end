@@ -1,154 +1,150 @@
-import React from "react";
-import { Row, Col } from "antd";
-import {
-  FaBriefcase,
-  FaRuler,
-  FaCalendarAlt,
-} from "react-icons/fa";
-import Image from "next/image";
-import male from "@/assets/boy.jpg";
+import male from "@/assets/boy-create-1.jpg";
 import female from "@/assets/girl.jpg";
-import { BsEye } from "react-icons/bs";
+import { Col } from "antd";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+import { FaEye, FaHeart } from "react-icons/fa";
+import Button from "../UI/Button";
+import { formatPreciseAgeFromDOB } from "./formateDob";
 
-const BioDatas = () => {
-  const data = [
-    {
-      bioDataNo: "ODM-18549",
-      age: 32,
-      height: "5' 6\"",
-      occupation: "Businessman",
-      gender: "male",
-    },
-    {
-      bioDataNo: "ODM-3343",
-      age: 29,
-      height: "5' 5\"",
-      occupation: "Doctor",
-      gender: "female",
-    },
-    {
-      bioDataNo: "ODM-4189",
-      age: 28,
-      height: "5' 6\"",
-      occupation: "Madrasa Teacher",
-      gender: "female",
-    },
-    {
-      bioDataNo: "ODM-11671",
-      age: 35,
-      height: "5' 11\"",
-      occupation: "Teacher",
-      gender: "male",
-    },
-    {
-      bioDataNo: "ODM-10135",
-      age: 34,
-      height: "5' 5\"",
-      occupation: "Engineer",
-      gender: "male",
-    },
-    {
-      bioDataNo: "ODM-18315",
-      age: 39,
-      height: "5' 5\"",
-      occupation: "Madrasa Teacher",
-      gender: "female",
-    },
-    {
-      bioDataNo: "ODM-14373",
-      age: 29,
-      height: "5' 11\"",
-      occupation: "Businessman",
-      gender: "male",
-    },
-    {
-      bioDataNo: "ODM-7377",
-      age: 33,
-      height: "6'",
-      occupation: "Engineer",
-      gender: "female",
-    },
-    {
-      bioDataNo: "ODM-14812",
-      age: 25,
-      height: "5' 4\"",
-      occupation: "Imam",
-      gender: "female",
-    },
-  ];
+interface BiodataProps {
+  biodata: {
+    bioDataNo: string;
+    biodataType: "male's_biodata" | "female's_biodata";
+    age: number;
+    height: string;
+    occupation: string;
+    views?: number;
+  };
+}
 
+const BioDataCard = ({ biodata }: BiodataProps) => {
+  const [isShortlisted, setIsShortlisted] = useState(false);
+
+  const handleShortlist = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsShortlisted(!isShortlisted);
+  };
+
+  // Static values for demonstration
+  const staticBiodata = {
+    bioDataNo: biodata?.bioDataNo || "BD2024001",
+    biodataType: biodata?.general_information?.biodataType,
+    age: formatPreciseAgeFromDOB(biodata?.general_information?.dateOfBirth),
+
+    height: biodata?.generalInformation?.height || "5'4\"",
+    occupation: biodata?.generalInformation?.occupation || "Software Engineer",
+    views: biodata?.view || 0,
+  };
+  console.log({ biodata });
   return (
-    <div className="p-2">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-semibold">Biodatas</h1>
-        <p className="text-gray-600">{data.length} biodatas found</p>
-      </div>
-      <Row gutter={[4, 12]}>
-        {data.map((biodata) => (
-          <Col xs={24} sm={12} md={8} key={biodata.bioDataNo}>
-            <div className="flex justify-center">
-              <div
-                className="relative cursor-pointer hover:scale-100 transition-transform duration-300"
-                style={{
-                  width: "300px",
-                  aspectRatio: "1",
-                  boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-                  background: `
-                    radial-gradient(circle at 60% 65%, ${
-                      biodata.gender === "male" ? "#2563eb" : "#ec4899"
-                    } 64%, transparent 65%) top left/50% 50%,
-                    radial-gradient(circle at 40% 65%, ${
-                      biodata.gender === "male" ? "#2563eb" : "#ec4899"
-                    } 64%, transparent 65%) top right/50% 50%,
-                    conic-gradient(from -45deg at 50% 85.5%, ${
-                      biodata.gender === "male" ? "#2563eb" : "#ec4899"
-                    } 90deg, transparent 0) bottom/100% 50%`,
-                  backgroundRepeat: "no-repeat",
-                }}
-              >
-                <div className="relative z-10 flex flex-col items-center justify-center text-white p-1 pb-8 h-full">
-                  <div className="flex justify-center items-center mb-4">
-                    <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-white/30">
+    <Col xs={24} sm={12} md={8} lg={8}>
+      <div className='group'>
+        <div className='bg-white shadow-md rounded-lg  hover:shadow-md transition-all duration-300 overflow-hidden border border-gray-200 hover:border-rose-200 hover:scale-105'>
+          {/* Profile Section */}
+          <div className='relative'>
+            <div className='bg-gradient-to-r from-blue-50 to-purple-50 p-4'>
+              <div className='flex items-center justify-between'>
+                <div className='flex items-center gap-3'>
+                  <div className='relative'>
+                    <div className='w-14 h-14 rounded-full overflow-hidden border-2 border-rose-200 shadow-sm'>
                       <Image
-                        src={biodata.gender === "male" ? male : female}
-                        alt={biodata.gender}
-                        width={80}
-                        height={80}
-                        className="object-cover w-full h-full"
+                        src={
+                          staticBiodata.biodataType === "male's_biodata"
+                            ? male
+                            : female
+                        }
+                        alt='Profile'
+                        width={56}
+                        height={56}
+                        className='object-cover w-full h-full'
                       />
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 text-sm mb-2">
-                    <FaCalendarAlt className="text-white/80" />
-                    <span>
-                      Age: <span className="font-bold">{biodata.age}</span>
-                    </span>
+                  <div>
+                    <h3 className='font-semibold text-gray-800 text-sm'>
+                      Profile
+                    </h3>
+                    <p className='text-xs text-gray-500 font-medium'>
+                      #{staticBiodata.bioDataNo}
+                    </p>
                   </div>
-                  <div className="flex items-center gap-2 text-sm mb-2">
-                    <FaRuler className="text-white/80" />
-                    <span>
-                      Height:{" "}
-                      <span className="font-bold">{biodata.height}</span>
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm mb-3">
-                    <FaBriefcase className="text-white/80" />
-                    <span className="font-bold">{biodata.occupation}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm mb-3">
-                    <BsEye className="text-white/80" />
-                    50
-                    {/* <span className="font-bold">10</span> */}
-                  </div>
-
                 </div>
+
+                <button
+                  onClick={handleShortlist}
+                  className={`p-2 rounded-full transition-all duration-200 ${
+                    isShortlisted
+                      ? "bg-pink-500 text-white shadow-md"
+                      : "bg-white text-pink-400 hover:bg-rose-50 border border-rose-200"
+                  }`}
+                  title={
+                    isShortlisted ? "Remove from shortlist" : "Add to shortlist"
+                  }>
+                  <FaHeart className='text-xs' />
+                </button>
               </div>
             </div>
-          </Col>
-        ))}
-      </Row>
-    </div>
+          </div>
+
+          {/* Details Section */}
+          <div className='p-4'>
+            <div className='space-y-3'>
+              <div className='flex items-center justify-between'>
+                <div className='flex items-center gap-2'>
+                  <span className='text-xs text-gray-500'>Age</span>
+                </div>
+                <span className='font-medium text-sm text-gray-800'>
+                  {staticBiodata.age}
+                </span>
+              </div>
+
+              <div className='flex items-center justify-between'>
+                <div className='flex items-center gap-2'>
+                  <span className='text-xs text-gray-500'>Height</span>
+                </div>
+                <span className='font-medium text-sm text-gray-800'>
+                  {staticBiodata.height}
+                </span>
+              </div>
+
+              <div className='flex items-center justify-between'>
+                <div className='flex items-center gap-2'>
+                  <span className='text-xs text-gray-500'>Profession</span>
+                </div>
+                <span
+                  className='font-medium text-sm text-gray-800 text-right max-w-[120px] truncate'
+                  title={staticBiodata.occupation}>
+                  {staticBiodata.occupation}
+                </span>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className='mt-4 pt-3 border-t border-gray-100'>
+              <div className='flex items-center justify-between'>
+                <div className='flex items-center gap-1 text-xs text-gray-400'>
+                  <FaEye className='text-xs' />
+                  <span>{staticBiodata.views} views</span>
+                </div>
+
+                <Link href={`/biodata/${staticBiodata.bioDataNo}`}>
+                  <Button
+                    variant='secondary'
+                    size='sm'
+                    className='!rounded-full border-2 !border-pink-500 !text-pink-500 hover:bg-gradient-to-r hover:from-pink-500 hover:to-rose-500 hover:!text-white relative overflow-hidden transition-all duration-300 before:absolute before:content-[""] before:bg-gradient-to-r before:from-pink-500 before:to-rose-500 before:w-full before:h-full before:-translate-x-full hover:before:translate-x-0 before:transition-transform before:duration-300 before:-z-10 hover:border-transparent'>
+                    View Profile
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Col>
   );
 };
 
-export default BioDatas;
+export default BioDataCard;

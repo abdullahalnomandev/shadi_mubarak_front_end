@@ -1,0 +1,85 @@
+"use client";
+import useGetUserFromField from "@/hooks/useGetUserFromField";
+import { Col, Row } from "antd";
+import { useTranslations } from "next-intl";
+import FormInput from "../FormInput";
+import FormSelectField from "../FormSelectField";
+import FormSlider from "../FormSlider";
+import FormTextArea from "../FormTextArea";
+
+const ExpectedPartner = () => {
+  const { expected_partner } = useGetUserFromField();
+  const t = useTranslations();
+  return (
+    <div>
+      <h1 className='text-2xl font-semibold mb-6'>
+        {t("edit_biodata.expected_life_partner")}
+      </h1>
+      <Row gutter={[16, 16]}>
+        {expected_partner.map(
+          ({
+            name,
+            type,
+            placeholder,
+            label,
+            options,
+            tipFormatter,
+            min,
+            max,
+            mode,
+          }) => (
+            <Col key={name} xs={24} sm={12}>
+              {(type === "text" && (
+                <FormInput
+                  name={name}
+                  label={label}
+                  type={type}
+                  placeholder={placeholder}
+                />
+              )) ||
+                (type === "number" && (
+                  <FormInput
+                    name={name}
+                    label={label}
+                    type={type}
+                    placeholder={placeholder}
+                  />
+                )) ||
+                (type === "slider" && (
+                  <FormSlider
+                    id={name}
+                    min={min}
+                    max={max}
+                    name={name}
+                    label={label}
+                    formatter={tipFormatter}
+                    // defaultValue={defaultValue}
+                  />
+                )) ||
+                (type === "textArea" && (
+                  <FormTextArea
+                    id={name}
+                    name={name}
+                    label={label}
+                    placeholder={placeholder}
+                  />
+                )) ||
+                ((type === "multiSelect" || type === "select") && (
+                  <FormSelectField
+                    name={name}
+                    {...(type === "multiSelect" ? { mode: "tags" } : {})}
+                    label={label}
+                    placeholder={placeholder}
+                    options={options}
+                    mode={mode as "multiple" | "tags"}
+                  />
+                ))}
+            </Col>
+          )
+        )}
+      </Row>
+    </div>
+  );
+};
+
+export default ExpectedPartner;

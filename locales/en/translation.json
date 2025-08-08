@@ -1,0 +1,1355 @@
+{
+  "Welcome to React": "Bangladesh is the International Cricket Council",
+  "header": {
+    "home": "Home",
+    "about": "About",
+    "how_it_works": "How it Works",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "contact": "Contact"
+  },
+  "login": {
+    "login_successful": "Login successful!",
+    "something_went_wrong": "Something went wrong, please try again later.",
+    "login_failed": "Login failed. Please try again.",
+    "login_illustration_alt": "Login illustration",
+    "welcome_back": "Welcome back!",
+    "please_sign_in": "Please sign in to continue",
+    "remember_me": "Remember me",
+    "forgot_password": "Forgot password?",
+    "logging_in": "Logging in...",
+    "log_in_button": "Log in",
+    "or": "or",
+    "log_in_with_google": "Log in with Google",
+    "dont_have_account": "Don't have an account?",
+    "create_account": "Create account",
+    "email_placeholder": "Email",
+    "password_placeholder": "Password"
+  },
+  "reset_password": {
+    "title": "Reset Your Password",
+    "instructions": "Please enter your new password",
+    "alt_reset_image": "Password reset illustration",
+    "placeholder_new_password": "Enter new password",
+    "placeholder_confirm_password": "Confirm new password",
+    "label_new_password": "New Password",
+    "label_confirm_password": "Confirm Password",
+    "button_reset_password": "Reset Password",
+    "button_resetting": "Resetting...",
+    "message_success_redirect": "Password reset successful. Redirecting to login page...",
+    "message_remember_password": "Remember your password?",
+    "message_back_to_login": "Back to Login",
+    "error_missing_token": "Reset token not found.",
+    "error_failed_reset": "Failed to reset password. Please try again."
+  },
+  "forgot_password": {
+    "title": "Forgot Your Password?",
+    "instructions": "Enter your email address and we’ll send you instructions to reset your password.",
+    "alt_reset_image": "Forgot Password Illustration",
+    "placeholder_email": "Enter your email",
+    "label_email": "Email Address",
+    "button_send_reset_link": "Send Reset Link",
+    "button_sending": "Sending...",
+    "check_email_title": "Check Your Email",
+    "check_email_message": "We’ve sent a link to reset your password.",
+    "hint_email_message": "Can’t find it? Look in your spam folder.",
+    "back_to_login": "Back to Login",
+    "remember_password": "Remember your password?",
+    "error_something_wrong": "Something went wrong. Please try again."
+  },
+  "register": {
+    "email_placeholder": "Enter email",
+    "email_label": "Email",
+    "phone_placeholder": "1xxxxxxxxx",
+    "phone_label": "Mobile",
+    "password_placeholder": "Enter password",
+    "password_label": "Password",
+    "register_illustration_alt": "Registration illustration",
+    "email_sent_illustration_alt": "Email sent illustration",
+    "check_email_title": "Check your email",
+    "check_email_subtext": "We've sent a confirmation link to your inbox.",
+    "check_email_message": "Please check your email to verify your account.",
+    "create_account_title": "Create Account",
+    "choose_registration_method": "Select how you want to create your account",
+    "fill_details": "Fill in your information to complete registration",
+    "create_with_google": "Create with Google",
+    "create_with_email": "Create with Email",
+    "or": "or",
+    "creating": "Creating...",
+    "create_account_button": "Create Account",
+    "already_have_account": "Already have an account?",
+    "login_here": "Login here",
+    "how_to_create_account": "How to create an account",
+    "account_created": "Account created successfully!",
+    "something_went_wrong": "Something went wrong, please try again later.",
+    "google_info_failed": "Failed to fetch Google account information.",
+    "google_failed": "Google sign-in failed. Please try again.",
+    "not_understand": "You don't understand? Watch this video."
+  },
+  "footer": {
+    "brandName": "বিয়ের ঠিকানা",
+    "description": "Your trusted partner in finding meaningful connections...",
+    "contact_email": "support@biyerthikana.com",
+    "contact_phone": "+88 01700-000000",
+    "contact_address": "Dhaka, Bangladesh",
+    "quick_links": "Quick Links",
+    "about_us": "About Us",
+    "contact_us": "Contact Us",
+    "support": "Support",
+    "faq": "FAQ",
+    "how_it_works": "How It Works",
+    "legal": "Legal",
+    "trust_message": "Trusted by thousands of families across Bangladesh",
+    "back_to_top": "Back to Top",
+    "help_center": "Help Center",
+    "customer_support": "Customer Support",
+    "safety_tips": "Safety Tips",
+    "success_stories": "Success Stories",
+    "privacy_policy": "Privacy Policy",
+    "terms_of_service": "Terms of Service",
+    "cookie_policy": "Cookie Policy",
+    "disclaimer": "Disclaimer",
+    "copyright": " BiyerThikana. All rights reserved.",
+    "terms_conditions": "Terms & Conditions",
+    "refund_policy": "Refund Policy"
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "my_biodata": "My Biodata",
+    "edit_biodata": "Edit BioData",
+    "favorite_list": "Favorites List",
+    "my_purchased": "My purchased",
+    "account_settings": "Account Settings",
+    "logout": "Logout",
+    "change_password": "Change Password",
+    "delete_biodata": "Delete Biodata",
+    "manage_user": "Manage Users",
+    "manage_admin": "Manage Admin",
+    "manage_biodata": "Manage Biodata",
+    "manage_favorites": "Manage Favorites"
+  },
+  "edit_biodata": {
+    "general_information": "General Information",
+    "personal_information": "Personal Information",
+    "address": "Address",
+    "agreement": "Agreement",
+    "contact": "Contact",
+    "occupation": "Occupation",
+    "education_qualifications": "Educational Qualifications",
+    "family": "Family",
+    "family_relations": "Family Relations",
+    "expected_life_partner": "Expected Life Partner",
+    "family_information": "Family Information",
+    "marriage_related_information": "Marriage Related Information"
+  },
+  "banner": {
+    "trust_badge": "Trusted by thousands of families across Bangladesh",
+    "heading_part1": "Bangladesh Islamic",
+    "heading_part2": "Matrimony",
+    "description": "Find your perfect life partner with our trusted and secure platform designed for the Bangladeshi Islamic community",
+    "verified_profiles": "100% Verified Profiles",
+    "privacy_protected": "Privacy Protected",
+    "islamic_values": "Islamic Values"
+  },
+  "search_form": {
+    "looking_for": "Looking for",
+    "select_gender": "Select Gender",
+    "religion": "Religion",
+    "select_religion": "Select Religion",
+    "marital_status": "Marital Status",
+    "select_status": "Select Status",
+    "present_address": "Present Address",
+    "select_location": "Select Location",
+    "find_match_heading": "Find Your Perfect Match",
+    "search_partners_button": "Search Partners",
+    "bioDataType": {
+      "all": "All",
+      "male's_biodata": "Male's Biodata",
+      "female's_biodata": "Female's Biodata"
+    },
+    "marital_status_options": {
+      "single": "Single",
+      "married": "Married",
+      "divorced": "Divorced",
+      "widow": "Widow",
+      "widower": "Widower"
+    },
+    "religions": {
+      "strict": "strictly Religious",
+      "flexible": "Moderately Religious"
+    }
+  },
+  "create_account_section": {
+    "quote": "Marry the single people from among you and the righteous slaves and slave-girls. If you are poor, Allah (SwT) will make you rich through His favour; and Allah (SwT) is Bountiful, All-Knowing.",
+    "quote_source": "Quran (24:32)",
+    "free_registration_badge": "✨ 100% Free Registration",
+    "main_heading_part1": "Create Your",
+    "main_heading_part2": "Perfect Biodata",
+    "description": "Join thousands of Muslims finding their perfect match. Create your biodata in minutes and start your journey towards a blessed marriage.",
+    "create_biodata_button": "Create Biodata",
+    "video_button_title": "How to Create Biodata",
+    "success_stories": "500+ Success Stories",
+    "rating": "4.9/5 Rating"
+  },
+  "how_it_works": {
+    "heading_part1": "How",
+    "heading_part2": "Biyer Thikana Works?",
+    "description": "A very easy 4 step process to find your partner.",
+    "step1_title": "Create Biodata",
+    "step1_description": "You can easily create a biodata on Niqah completely free of cost within some steps.",
+    "step2_title": "Search Biodata",
+    "step2_description": "You can easily search biodata using many filters including age, profession, educational qualification, madhhab and more.",
+    "step3_title": "Contact with Guardians",
+    "step3_description": "If someone likes your biodata or you like someone's biodata, you can directly contact their parents.",
+    "step4_title": "Get Married",
+    "step4_description": "If you like the biodata and if the conversation is well, do your own inquiry & get married according to sunnah."
+  },
+  "forgot-password": {
+    "title": "Forgot Password",
+    "description": "Enter your email and we will send you a password reset link"
+  },
+  "faq": {
+    "badge": "Frequently Asked Questions",
+    "header": {
+      "title": "Know About BiyerThikana",
+      "description": "BiyerThikana is Bangladesh's premier Islamic matrimony platform, helping thousands of practicing Muslims find their perfect life partners while maintaining Islamic values and traditions."
+    },
+    "items": [
+      {
+        "question": "What is BiyerThikana and how does it work?",
+        "answer": "BiyerThikana is a trusted Bangladeshi Islamic matrimony platform that helps practicing Muslim individuals find their life partners. Our platform allows you to create detailed biodata, search for compatible matches based on Islamic values, and connect with potential partners through their guardians. We follow Islamic principles throughout the matchmaking process."
+      },
+      {
+        "question": "How much does it cost to create and submit biodata?",
+        "answer": "Creating a basic biodata on BiyerThikana is completely FREE! You can browse profiles, create your biodata, and receive match suggestions without any cost. We offer premium membership plans starting from ৳500/month for advanced features like unlimited messaging, priority profile visibility, and enhanced search filters."
+      },
+      {
+        "question": "Is BiyerThikana open to everyone?",
+        "answer": "BiyerThikana is exclusively designed for practicing Muslims who are seriously looking for marriage. We welcome Bangladeshi Muslims from all backgrounds, whether living in Bangladesh or abroad. All users must be 18+ years old and have genuine matrimonial intentions. We maintain strict verification processes to ensure authenticity."
+      },
+      {
+        "question": "What are the special requirements for creating biodata?",
+        "answer": "To create biodata on BiyerThikana, you need: Valid phone number and email for verification, Recent clear photograph (following Islamic guidelines), Educational and professional details, Family information, Religious practice details, and Guardian/family contact information. All information must be truthful and verifiable."
+      },
+      {
+        "question": "How confidential is my information? What will be published publicly?",
+        "answer": "Your privacy is our top priority. Only basic information like age, education, location, and profession appears in search results. Personal details like phone numbers, exact address, and family specifics are only shared when you approve a match request. You have full control over what information to display and can hide your profile anytime."
+      },
+      {
+        "question": "How do I search for suitable matches on BiyerThikana?",
+        "answer": "Our advanced search system allows filtering by age, education, location, profession, family background, religious practice level, and more. You can save searches, receive daily match suggestions, and use our compatibility algorithm to find the most suitable partners. Premium members get access to enhanced search features."
+      },
+      {
+        "question": "What happens after I find someone interesting?",
+        "answer": "When you find a potential match, you can express interest through our platform. If both parties show mutual interest, we facilitate initial communication through guardians/family members following Islamic protocols. Our relationship managers can also assist in the introduction process to ensure proper Islamic guidelines are followed."
+      },
+      {
+        "question": "Do you verify the authenticity of profiles?",
+        "answer": "Yes! We have a comprehensive verification process including phone/email verification, document verification for education and profession, and manual profile review by our team. Verified profiles get special badges. We continuously monitor for fake profiles and take strict action against fraudulent accounts."
+      },
+      {
+        "question": "Can I get assistance in the matchmaking process?",
+        "answer": "Absolutely! Our experienced relationship managers provide personalized matchmaking assistance, help in profile optimization, guide through Islamic marriage protocols, and offer counseling support throughout your journey. Premium members get dedicated relationship manager support."
+      },
+      {
+        "question": "What makes BiyerThikana different from other matrimony sites?",
+        "answer": "BiyerThikana stands out with our strict Islamic values adherence, Bangladeshi cultural understanding, comprehensive verification system, guardian involvement in the process, personalized matchmaking assistance, and affordable pricing. We focus on quality matches rather than quantity, ensuring serious matrimonial intentions."
+      }
+    ],
+    "cta": {
+      "title": "Still Have Questions?",
+      "description": "Our friendly support team is here to help you find your perfect match. Get in touch with us anytime!",
+      "contact_support": "Contact Support",
+      "create_biodata": "Create Your Biodata"
+    }
+  },
+  "why_you_choose": {
+    "trusted_badge": "Trusted by 50,000+ Users",
+    "main_heading_part1": "Why Choose",
+    "main_heading_part2": "Biyer Thikana?",
+    "description": "We're dedicated to helping you find your perfect match while ensuring your journey is secure, private, and successful. Join our community of success stories.",
+    "feature1_title": "Verified Profiles",
+    "feature1_description": "All profiles undergo thorough verification process to ensure authenticity and security for our users.",
+    "feature1_stats": "100% Verified",
+    "feature2_title": "Privacy First",
+    "feature2_description": "We prioritize your privacy with advanced security measures and strict data protection protocols.",
+    "feature2_stats": "Bank-level Security",
+    "feature3_title": "Success Stories",
+    "feature3_description": "Join thousands of successful marriages. Our platform has helped countless couples find their perfect match.",
+    "feature3_stats": "10,000+ Matches",
+    "additional_feature_heading": "Built for Your Success",
+    "additional_feature_description": "Our platform combines cutting-edge technology with Islamic values to create meaningful connections that last a lifetime.",
+    "additional_feature1": "24/7 Customer Support",
+    "additional_feature2": "Active Community",
+    "additional_feature3": "Premium Matching Algorithm",
+    "cta_marriages": "500+ Marriages This Year",
+    "cta_rating": "4.9/5 User Rating"
+  },
+  "about": {
+    "bismillah": {
+      "arabic": "بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ",
+      "translation": "In the name of Allah, the Most Gracious, the Most Merciful"
+    },
+    "header": {
+      "title_prefix": "Learn About",
+      "title_highlight": "BiyerThikana",
+      "title": "About BiyerThikana",
+      "subtitle": "Bangladesh's Most Trusted Islamic Matrimony Platform",
+      "description": "Connecting hearts, building families, and creating blessed unions through Islamic principles and modern technology"
+    },
+    "stats": {
+      "active_members": {
+        "label": "Active Members",
+        "value": "50,000+",
+        "description": "Verified profiles"
+      },
+      "success_stories": {
+        "label": "Success Stories",
+        "value": "2,500+",
+        "description": "Happy marriages"
+      },
+      "trust_safety": {
+        "label": "Trust & Safety",
+        "value": "100%",
+        "description": "Secure platform"
+      },
+      "islamic_values": {
+        "label": "Islamic Values",
+        "value": "100%",
+        "description": "Shariah compliant"
+      }
+    },
+    "introduction": {
+      "our_story_badge": "Our Story",
+      "heading": "Bringing Together Muslim Hearts Across Bangladesh",
+      "story_part1": "BiyerThikana was born from a simple belief: every practicing Muslim deserves to find their perfect life partner while staying true to Islamic values and traditions. Founded in 2024, we have grown from a small initiative to Bangladesh's most trusted Islamic matrimony platform.",
+      "story_part2": "Our platform bridges the gap between traditional matchmaking and modern technology, creating a safe, secure, and halal environment where Muslim families can find suitable matches for their loved ones.",
+      "learn_more": "Learn More"
+    },
+    "features": {
+      "title": "Why Choose BiyerThikana?",
+      "list": "Advanced matching algorithm based on Islamic compatibility\nFamily involvement and approval system\nVerified profiles with background checks\nMultilingual support (Bengali, English, Arabic)\n24/7 customer support and relationship guidance\nMobile apps for iOS and Android"
+    },
+    "core_values": {
+      "heading": "Our Core Values",
+      "description": "Everything we do is guided by Islamic principles and our commitment to helping Muslim families find happiness and compatibility.",
+      "values": {
+        "islamic_principles": {
+          "title": "Islamic Principles",
+          "description": "We follow Islamic guidelines in every aspect of our matchmaking process, ensuring halal interactions and proper family involvement."
+        },
+        "privacy_security": {
+          "title": "Privacy & Security",
+          "description": "Your personal information is protected with advanced security measures. We maintain strict confidentiality throughout your journey."
+        },
+        "personal_support": {
+          "title": "Personal Support",
+          "description": "Our dedicated relationship managers provide personalized assistance to help you find your perfect match with care and understanding."
+        }
+      }
+    },
+    "mission_vision": {
+      "mission": {
+        "title": "Our Mission",
+        "description": "To provide a trusted, secure, and Islamic platform where Muslim individuals and families can find compatible life partners while maintaining the highest standards of privacy, authenticity, and religious compliance."
+      },
+      "vision": {
+        "title": "Our Vision",
+        "description": "To become the leading Islamic matrimony platform globally, known for our commitment to Islamic values, successful matches, and the trust of Muslim families worldwide in helping them build blessed marriages."
+      }
+    },
+    "testimonials": {
+      "heading": "Success Stories",
+      "subheading": "Real Families, Real Success Stories",
+      "stories": "BiyerThikana helped us find our perfect match while maintaining Islamic values. The process was smooth and professional.|Ahmed & Fatima|Dhaka, Bangladesh;The family involvement feature gave us confidence. We found our son's wife through this blessed platform.|Rahman Family|Chittagong, Bangladesh"
+    },
+    "cta": {
+      "heading": "Ready to Begin Your Journey?",
+      "description": "Join thousands of Muslim families who have found their perfect matches through BiyerThikana. Your ideal partner might be just a click away.",
+      "create_profile": "Create Your Profile",
+      "browse_profiles": "Browse Profiles"
+    }
+  },
+  "contact": {
+    "header": {
+      "title": "Let's Connect",
+      "description": "Send us a message and we'll get back to you soon"
+    },
+    "form": {
+      "fields": {
+        "name": "Your name",
+        "email": "Email address",
+        "subject": "Subject",
+        "message": "Type your message here"
+      },
+      "submit": "Submit",
+      "submitting": "Submitting...",
+      "success": "Form submitted successfully!",
+      "error": {
+        "send_failed": "Failed to send message. Please try again later.",
+        "general": "An error occurred. Please try again later."
+      }
+    },
+    "security": {
+      "info": "🔒 Your information is secure and will never be shared with third parties",
+      "features": {
+        "ssl": "SSL Encrypted",
+        "gdpr": "GDPR Compliant",
+        "spam": "No Spam Policy"
+      }
+    },
+    "contact_info": {
+      "phone": {
+        "label": "Phone Number",
+        "value": "+8801571221838"
+      },
+      "email": {
+        "label": "Email Address",
+        "value": "biyerthikana@gmail.com"
+      },
+      "location": {
+        "label": "Location",
+        "address": "Mirpur‑1,\nDhaka, Bangladesh"
+      }
+    },
+    "map": {
+      "title": "Google Map - Mirpur-1 Dhaka"
+    }
+  },
+  "biodata": {
+    "general": {
+      "biodata_no": "Biodata No",
+      "age": "Age",
+      "height": "Height",
+      "weight": "Weight",
+      "occupation": "Occupation",
+      "biodataType": "Gender",
+      "marital_status": "Marital Status",
+      "nationality": "Nationality",
+      "dateOfBirth": "Date of Birth",
+      "skin": "Skin",
+      "maritalStatus": "Marital Status"
+    },
+    "actions": {
+      "copy_bio_link": "Copy Bio Link",
+      "add_to_shortlist": "Add To Favorites",
+      "remove_from_shortList": "Remove From Favorites"
+    },
+    "sections": {
+      "general_information": "General Information",
+      "address": "Address",
+      "educational_qualifications": "Educational Qualifications",
+      "family_information": "Family Information",
+      "personal_information": "Personal Information",
+      "occupation_info": "Occupation",
+      "marriage_related_information": "Marriage Related Information",
+      "expected_partner": "Expected Partner",
+      "agreement": "Agreement",
+      "contact": "Contact",
+      "your_contact": "Your Contact"
+    },
+    "address": {
+      "present_address": "Present address",
+      "permanent_address": "Permanent address",
+      "grow_up": "Where did you grow up?"
+    },
+    "education": {
+      "education_system": "Education system",
+      "additional_qualifications": "Additional qualifications",
+      "highest_qualification": "Highest qualification",
+      "post_ssc_medium": "Post SSC medium of instruction",
+      "passing_year_ssc": "SSC passing year",
+      "group_ssc": "SSC group/subject",
+      "result_ssc": "SSC result",
+      "passing_year_hsc": "HSC passing year",
+      "group_hsc": "HSC group/subject",
+      "result_hsc": "HSC result",
+      "diploma_subject": "Diploma subject",
+      "diploma_institution": "Diploma institution",
+      "diploma_passing_year": "Diploma passing year",
+      "diploma_current_study_year": "Current study year (diploma)",
+      "graduation_subject": "Graduation subject",
+      "graduation_institution": "Graduation institution",
+      "graduation_year": "Graduation year",
+      "graduation_current_study_year": "Current study year (graduation)",
+      "postgraduation_subject": "Post graduation subject",
+      "postgraduation_institution": "Post graduation institution",
+      "postgraduation_year": "Post graduation year",
+      "doctorate_subject": "Doctorate subject",
+      "doctorate_institution": "Doctorate institution",
+      "doctorate_year": "Doctorate year",
+      "below_ssc": "Education below SSC",
+      "madrasha_name": "Madrasha name",
+      "result": "Result",
+      "passing_year": "Passing year",
+      "takmil_madrasha_name": "Takmil madrasha name",
+      "takmil_result": "Takmil result",
+      "takmil_passing_year": "Takmil passing year",
+      "takhassus_madrasha_name": "Takhassus madrasha name",
+      "takhassus_result": "Takhassus result",
+      "takhassus_passing_year": "Takhassus passing year"
+    },
+    "family_information": {
+      "isParentAlive": "Is your father alive?",
+      "fatherProfession": "Father's profession",
+      "isMotherAlive": "Is your mother alive?",
+      "motherProfession": "Mother's profession",
+      "howManyBrothers": "How many brothers do you have?",
+      "brothersInformation": "Information about your brothers",
+      "howManySisters": "How many sisters do you have?",
+      "sistersInformation": "Information about your sisters",
+      "professionOfUncles": "Your uncles' professions",
+      "familyFinancialStatus": "Your family's financial status",
+      "familyFinancialStatus_upper_class": "Upper class",
+      "familyFinancialStatus_middle_class": "Middle class",
+      "familyFinancialStatus_lower_class": "Lower class",
+      "familyFinancialStatus_upper_middle_class": "Upper middle class",
+      "familyFinancialStatus_lower_middle_class": "Lower middle class",
+      "descriptionOfFinancialCondition": "Description of your family's financial condition",
+      "familyReligiousCondition": "Your family's religious practices and values"
+    },
+    "personal_information": {
+      "usualOutdoorClothing": "What do you usually wear outdoors?",
+      "dailyPrayerRoutine": "Do you maintain daily prayer routine?",
+      "beardAccordingToSunnah": "Do you keep beard according to sunnah?",
+      "clothingAboveAnkles": "Do you wear clothing above ankles?",
+      "wearsNiqab": "Do you wear niqab?",
+      "wearingNiqabSince": "How long have you been wearing niqab?",
+      "skippedPrayersPerWeek": "How many prayers do you miss per week?",
+      "followsMahramGuidelines": "Do you follow mahram guidelines?",
+      "quranRecitationAbility": "Can you recite Quran correctly?",
+      "fiqhFollowed": "Which school of Islamic jurisprudence do you follow?",
+      "mediaConsumptionHabits": "Your media consumption habits",
+      "mentalOrPhysicalDiseases": "Any mental or physical health conditions?",
+      "involvedInSpecialWork": "Are you involved in any special Islamic work?",
+      "beliefsAboutShrine": "Your beliefs about shrines",
+      "islamicBooksRead": "Islamic books you have read",
+      "islamicScholarsPreferred": "Your preferred Islamic scholars",
+      "hobbiesAndInterests": "Your hobbies and interests",
+      "groomMobileNumber": "Your mobile number",
+      "previousRelationship": "Any previous relationship?"
+    },
+    "occupation": {
+      "occupation": "Your occupation",
+      "monthlyIncome": "Monthly income",
+      "descriptionOfProfession": "Description of your profession"
+    },
+    "marriage_related_information": {
+      "widower": "Are you a widower?",
+      "widow": "Are you a widow?",
+      "reasonForSecondMarriage": "Reason for second marriage",
+      "currentFamilyStatus": "Current family status",
+      "reasonForDivorce": "Reason for divorce",
+      "doParentsAgree": "Do your parents agree to your marriage?",
+      "canKeepWifeInVeil": "Can you keep your wife in veil?",
+      "allowWifeToStudy": "Will you allow your wife to study?",
+      "allowWifeToWork": "Will you allow your wife to work?",
+      "residenceAfterMarriage": "Where will you live after marriage?",
+      "expectGiftsFromBrideFamily": "Do you expect gifts from bride's family?",
+      "willingToWorkAfterMarriage": "Are you willing to work after marriage?",
+      "continueStudiesAfterMarriage": "Will you continue studies after marriage?",
+      "reasonForMarriage": "Your thoughts on marriage"
+    },
+    "expected_partner": {
+      "age": "Preferred age range",
+      "complexion": "Preferred complexion",
+      "height": "Preferred height",
+      "educationalQualification": "Required educational qualification",
+      "district": "Preferred district",
+      "maritalStatus": "Acceptable marital status",
+      "profession": "Preferred profession",
+      "financialCondition": "Expected financial condition",
+      "specialExpectationsOrRequests": "Special expectations or requests"
+    },
+    "agreement": {
+      "parentsAwareOfRegistration": "Are your parents aware of this registration?",
+      "confirmTruthOfProvidedInformation": "Do you confirm all information is truthful?",
+      "agreeToLegalResponsibilityForFalseInfo": "Do you agree to take legal responsibility for any false information?"
+    },
+    "contact": {
+      "brideName": "Bride's name",
+      "guardianPhoneNumber": "Guardian's phone number",
+      "relationWithGuardian": "Your relation with guardian",
+      "emailUsedForRegistration": "Email address used for registration",
+      "groomName": "Groom's name"
+    }
+  },
+  "location": {
+    "all": "Entire Bangladesh",
+    "chittagong": {
+      "label": "Chittagong",
+      "all": "Entire Chittagong Division",
+      "bandarban": {
+        "label": "Bandarban",
+        "all": "Entire Bandarban District",
+        "bandarban_sadar": "Bandarban Sadar",
+        "alikadam": "Alikadam",
+        "lama": "Lama",
+        "naikhongchhari": "Naikhongchhari",
+        "rowangchhari": "Rowangchhari",
+        "ruma": "Ruma",
+        "thanchi": "Thanchi"
+      },
+      "brahmanbaria": {
+        "label": "Brahmanbaria",
+        "all": "Entire Brahmanbaria District",
+        "brahmanbaria_sadar": "Brahmanbaria Sadar",
+        "akhaura": "Akhaura",
+        "bancharampur": "Bancharampur",
+        "bijoynagar": "Bijoynagar",
+        "kasba": "Kasba",
+        "nabinagar": "Nabinagar",
+        "nasirnagar": "Nasirnagar",
+        "sarail": "Sarail",
+        "ashuganj": "Ashuganj"
+      },
+      "chandpur": {
+        "label": "Chandpur",
+        "all": "Entire Chandpur District",
+        "chandpur_sadar": "Chandpur Sadar",
+        "faridganj": "Faridganj",
+        "haimchar": "Haimchar",
+        "haziganj": "Haziganj",
+        "kachua": "Kachua",
+        "matlab_dakshin": "Matlab Dakshin",
+        "matlab_uttar": "Matlab Uttar",
+        "shahrasti": "Shahrasti"
+      },
+      "comilla": {
+        "label": "Comilla",
+        "all": "Entire Comilla District",
+        "comilla_sadar": "Comilla Sadar",
+        "barura": "Barura",
+        "brahmanpara": "Brahmanpara",
+        "burichang": "Burichang",
+        "chandina": "Chandina",
+        "chauddagram": "Chauddagram",
+        "daudkandi": "Daudkandi",
+        "debidwar": "Debidwar",
+        "homna": "Homna",
+        "laksam": "Laksam",
+        "manoharganj": "Manoharganj",
+        "meghna": "Meghna",
+        "monohorgonj": "Monohorgonj",
+        "muradnagar": "Muradnagar",
+        "nangalkot": "Nangalkot",
+        "comilla_sadar_dakshin": "Comilla Sadar Dakshin",
+        "titas": "Titas"
+      },
+      "coxs_bazar": {
+        "label": "Cox's Bazar",
+        "all": "Entire Cox's Bazar District",
+        "coxs_bazar_sadar": "Cox's Bazar Sadar",
+        "chakaria": "Chakaria",
+        "kutubdia": "Kutubdia",
+        "maheshkhali": "Maheshkhali",
+        "pekua": "Pekua",
+        "ramu": "Ramu",
+        "teknaf": "Teknaf",
+        "ukhia": "Ukhia"
+      },
+      "feni": {
+        "label": "Feni",
+        "all": "Entire Feni District",
+        "feni_sadar": "Feni Sadar",
+        "chhagalnaiya": "Chhagalnaiya",
+        "daganbhuiyan": "Daganbhuiyan",
+        "fulgazi": "Fulgazi",
+        "parshuram": "Parshuram",
+        "sonagazi": "Sonagazi"
+      },
+      "chittagong": {
+        "label": "Chittagong District",
+        "all": "Entire Chittagong District",
+        "anwara": "Anwara",
+        "banshkhali": "Banshkhali",
+        "boalkhali": "Boalkhali",
+        "chandanaish": "Chandanaish",
+        "fatikchhari": "Fatikchhari",
+        "hathazari": "Hathazari",
+        "lohagara": "Lohagara",
+        "mirsharai": "Mirsharai",
+        "patiya": "Patiya",
+        "rangunia": "Rangunia",
+        "raozan": "Raozan",
+        "sandwip": "Sandwip",
+        "satkania": "Satkania",
+        "sitakunda": "Sitakunda",
+        "karnaphuli": "Karnaphuli"
+      },
+      "khagrachhari": {
+        "label": "Khagrachhari",
+        "all": "Entire Khagrachhari District",
+        "khagrachhari_sadar": "Khagrachhari Sadar",
+        "dighinala": "Dighinala",
+        "lakshmichhari": "Lakshmichhari",
+        "mahalchhari": "Mahalchhari",
+        "manikchhari": "Manikchhari",
+        "matiranga": "Matiranga",
+        "panchhari": "Panchhari",
+        "ramgarh": "Ramgarh"
+      },
+      "lakshmipur": {
+        "label": "Lakshmipur",
+        "all": "Entire Lakshmipur District",
+        "lakshmipur_sadar": "Lakshmipur Sadar",
+        "kamalnagar": "Kamalnagar",
+        "raipur": "Raipur",
+        "ramganj": "Ramganj",
+        "ramgati": "Ramgati"
+      },
+      "noakhali": {
+        "label": "Noakhali",
+        "all": "Entire Noakhali District",
+        "noakhali_sadar": "Noakhali Sadar",
+        "begumganj": "Begumganj",
+        "chatkhil": "Chatkhil",
+        "companiganj": "Companiganj",
+        "hatiya": "Hatiya",
+        "kabir_hat": "Kabir Hat",
+        "senbagh": "Senbagh",
+        "sonaimuri": "Sonaimuri",
+        "subarna_char": "Subarna Char"
+      },
+      "rangamati": {
+        "label": "Rangamati",
+        "all": "Entire Rangamati District",
+        "rangamati_sadar": "Rangamati Sadar",
+        "baghaichhari": "Baghaichhari",
+        "barkal": "Barkal",
+        "belaichhari": "Belaichhari",
+        "bilaichhari": "Bilaichhari",
+        "juraichhari": "Juraichhari",
+        "kaptai": "Kaptai",
+        "kawkhali": "Kawkhali",
+        "langadu": "Langadu",
+        "naniarchar": "Naniarchar"
+      }
+    },
+    "dhaka": {
+      "label": "Dhaka",
+      "all": "Entire Dhaka Division",
+      "faridpur": {
+        "label": "Faridpur",
+        "all": "Entire Faridpur District",
+        "faridpur_sadar": "Faridpur Sadar",
+        "alfadanga": "Alfadanga",
+        "boalmari": "Boalmari",
+        "charbhadrasan": "Charbhadrasan",
+        "madhukhali": "Madhukhali",
+        "nagarkanda": "Nagarkanda",
+        "sadarpur": "Sadarpur",
+        "saltha": "Saltha",
+        "bhanga": "Bhanga"
+      },
+      "gazipur": {
+        "label": "Gazipur",
+        "all": "Entire Gazipur District",
+        "gazipur_sadar": "Gazipur Sadar",
+        "kaliakair": "Kaliakair",
+        "kaliganj": "Kaliganj",
+        "kapasia": "Kapasia",
+        "sreepur": "Sreepur"
+      },
+      "dhaka": {
+        "label": "Dhaka District",
+        "all": "Entire Dhaka District",
+        "dhaka_north_city_corporation": "Dhaka North City Corporation",
+        "dhaka_south_city_corporation": "Dhaka South City Corporation",
+        "sadar": "Sadar",
+        "dhamrai": "Dhamrai",
+        "dohar": "Dohar",
+        "keraniganj": "Keraniganj",
+        "nawabganj": "Nawabganj",
+        "savar": "Savar"
+      },
+      "gopalganj": {
+        "label": "Gopalganj",
+        "all": "Entire Gopalganj District",
+        "gopalganj_sadar": "Gopalganj Sadar",
+        "kashiani": "Kashiani",
+        "kotalipara": "Kotalipara",
+        "muksudpur": "Muksudpur",
+        "tungipara": "Tungipara"
+      },
+      "kishoreganj": {
+        "label": "Kishoreganj",
+        "all": "Entire Kishoreganj District",
+        "kishoreganj_sadar": "Kishoreganj Sadar",
+        "austagram": "Austagram",
+        "bajitpur": "Bajitpur",
+        "bhairab": "Bhairab",
+        "hossainpur": "Hossainpur",
+        "itna": "Itna",
+        "karimganj": "Karimganj",
+        "katiadi": "Katiadi",
+        "kuliarchar": "Kuliarchar",
+        "mithamain": "Mithamain",
+        "nikli": "Nikli",
+        "pakundia": "Pakundia",
+        "tarail": "Tarail"
+      },
+      "madaripur": {
+        "label": "Madaripur",
+        "all": "Entire Madaripur District",
+        "madaripur_sadar": "Madaripur Sadar",
+        "kalkini": "Kalkini",
+        "rajoir": "Rajoir",
+        "shibchar": "Shibchar"
+      },
+      "manikganj": {
+        "label": "Manikganj",
+        "all": "Entire Manikganj District",
+        "manikganj_sadar": "Manikganj Sadar",
+        "daulatpur": "Daulatpur",
+        "ghior": "Ghior",
+        "harirampur": "Harirampur",
+        "saturia": "Saturia",
+        "shivalaya": "Shivalaya",
+        "singair": "Singair"
+      },
+      "munshiganj": {
+        "label": "Munshiganj",
+        "all": "Entire Munshiganj District",
+        "munshiganj_sadar": "Munshiganj Sadar",
+        "gazaria": "Gazaria",
+        "lohajang": "Lohajang",
+        "sirajdikhan": "Sirajdikhan",
+        "sreenagar": "Sreenagar",
+        "tongibari": "Tongibari"
+      },
+      "narayanganj": {
+        "label": "Narayanganj",
+        "all": "Entire Narayanganj District",
+        "narayanganj_sadar": "Narayanganj Sadar",
+        "araihazar": "Arai Hazar",
+        "bandar": "Bandar",
+        "rupganj": "Rupganj",
+        "sonargaon": "Sonargaon"
+      },
+      "rajbari": {
+        "label": "Rajbari",
+        "all": "Entire Rajbari District",
+        "rajbari_sadar": "Rajbari Sadar",
+        "baliakandi": "Baliakandi",
+        "goalandaghat": "Goalandaghat",
+        "kalukhali": "Kalukhali",
+        "pangsha": "Pangsha"
+      },
+      "shariatpur": {
+        "label": "Shariatpur",
+        "all": "Entire Shariatpur District",
+        "shariatpur_sadar": "Shariatpur Sadar",
+        "bhedarganj": "Bhedarganj",
+        "damudya": "Damudya",
+        "gosairhat": "Gosairhat",
+        "naria": "Naria",
+        "zajira": "Zajira"
+      },
+      "tangail": {
+        "label": "Tangail",
+        "all": "Entire Tangail District",
+        "tangail_sadar": "Tangail Sadar",
+        "basail": "Basail",
+        "bhuapur": "Bhuapur",
+        "delduar": "Delduar",
+        "dhanbari": "Dhanbari",
+        "ghatail": "Ghatail",
+        "gopalpur": "Gopalpur",
+        "kalihati": "Kalihati",
+        "madhupur": "Madhupur",
+        "mirzapur": "Mirzapur",
+        "nagarpur": "Nagarpur",
+        "sakhipur": "Sakhipur"
+      }
+    },
+    "khulna": {
+      "label": "Khulna Division",
+      "all": "All Districts",
+      "bagerhat": {
+        "label": "Bagerhat",
+        "all": "All Upazilas",
+        "bagerhat_sadar": "Bagerhat Sadar",
+        "chitalmari": "Chitalmari",
+        "fakirhat": "Fakirhat",
+        "kachua": "Kachua",
+        "mollahat": "Mollahat",
+        "mongla": "Mongla",
+        "morrelganj": "Morrelganj",
+        "rampal": "Rampal",
+        "sarankhola": "Sarankhola"
+      },
+      "chuadanga": {
+        "label": "Chuadanga",
+        "all": "All Upazilas",
+        "chuadanga_sadar": "Chuadanga Sadar",
+        "alamdanga": "Alamdanga",
+        "damurhuda": "Damurhuda",
+        "jibannagar": "Jibannagar"
+      },
+      "jessore": {
+        "label": "Jessore",
+        "all": "All Upazilas",
+        "jessore_sadar": "Jessore Sadar",
+        "abhaynagar": "Abhaynagar",
+        "bagherpara": "Bagherpara",
+        "chaugachha": "Chaugachha",
+        "jhikargachha": "Jhikargachha",
+        "keshabpur": "Keshabpur",
+        "manirampur": "Manirampur",
+        "sharsha": "Sharsha"
+      },
+      "khulna": {
+        "label": "Khulna",
+        "all": "All Upazilas",
+        "khulna_sadar": "Khulna Sadar",
+        "batiaghata": "Batiaghata",
+        "dacope": "Dacope",
+        "dumuria": "Dumuria",
+        "dighalia": "Dighalia",
+        "koyra": "Koyra",
+        "paikgachha": "Paikgachha",
+        "phultala": "Phultala",
+        "rupsa": "Rupsa",
+        "terokhada": "Terokhada"
+      },
+      "jhenaidah": {
+        "label": "Jhenaidah",
+        "all": "All Upazilas",
+        "jhenaidah_sadar": "Jhenaidah Sadar",
+        "harinakunda": "Harinakunda",
+        "kaliganj": "Kaliganj",
+        "kotchandpur": "Kotchandpur",
+        "maheshpur": "Maheshpur",
+        "shailkupa": "Shailkupa"
+      },
+      "kushtia": {
+        "label": "Kushtia",
+        "all": "All Upazilas",
+        "kushtia_sadar": "Kushtia Sadar",
+        "bheramara": "Bheramara",
+        "daulatpur": "Daulatpur",
+        "khoksa": "Khoksa",
+        "kumarkhali": "Kumarkhali",
+        "mirpur": "Mirpur"
+      },
+      "magura": {
+        "label": "Magura",
+        "all": "All Upazilas",
+        "magura_sadar": "Magura Sadar",
+        "mohammadpur": "Mohammadpur",
+        "shalikha": "Shalikha",
+        "sreepur": "Sreepur"
+      },
+      "meherpur": {
+        "label": "Meherpur",
+        "all": "All Upazilas",
+        "meherpur_sadar": "Meherpur Sadar",
+        "gangni": "Gangni",
+        "mujibnagar": "Mujibnagar"
+      },
+      "narail": {
+        "label": "Narail",
+        "all": "All Upazilas",
+        "narail_sadar": "Narail Sadar",
+        "kalia": "Kalia",
+        "lohagara": "Lohagara"
+      },
+      "satkhira": {
+        "label": "Satkhira",
+        "all": "All Upazilas",
+        "satkhira_sadar": "Satkhira Sadar",
+        "assasuni": "Assasuni",
+        "debhata": "Debhata",
+        "kalaroa": "Kalaroa",
+        "kaliganj": "Kaliganj",
+        "shyamnagar": "Shyamnagar",
+        "tala": "Tala"
+      }
+    },
+    "rajshahi": {
+      "label": "Rajshahi",
+      "all": "Entire Rajshahi Division",
+      "bogura": {
+        "label": "Bogura",
+        "all": "Entire Bogura District",
+        "bogura_sadar": "Bogura Sadar",
+        "adamdighi": "Adamdighi",
+        "dhunat": "Dhunat",
+        "dhupchanchia": "Dhupchanchia",
+        "gabtali": "Gabtali",
+        "kahaloo": "Kahaloo",
+        "nandigram": "Nandigram",
+        "sariakandi": "Sariakandi",
+        "shajahanpur": "Shajahanpur",
+        "sherpur": "Sherpur",
+        "shibganj": "Shibganj",
+        "sonatola": "Sonatola"
+      },
+      "chapainawabganj": {
+        "label": "Chapainawabganj",
+        "all": "Entire Chapainawabganj District",
+        "chapainawabganj_sadar": "Chapainawabganj Sadar",
+        "bholahat": "Bholahat",
+        "gomastapur": "Gomastapur",
+        "nachole": "Nachole",
+        "shibganj": "Shibganj"
+      },
+      "joypurhat": {
+        "label": "Joypurhat",
+        "all": "Entire Joypurhat District",
+        "joypurhat_sadar": "Joypurhat Sadar",
+        "akkelpur": "Akkelpur",
+        "kalai": "Kalai",
+        "khetlal": "Khetlal",
+        "panchbibi": "Panchbibi"
+      },
+      "rajshahi": {
+        "label": "Rajshahi",
+        "all": "Entire Rajshahi District",
+        "rajshahi_sadar": "Rajshahi Sadar",
+        "bagha": "Bagha",
+        "bagmara": "Bagmara",
+        "charghat": "Charghat",
+        "durgapur": "Durgapur",
+        "godagari": "Godagari",
+        "mohanpur": "Mohanpur",
+        "paba": "Paba",
+        "puthia": "Puthia",
+        "tanore": "Tanore"
+      },
+      "naogaon": {
+        "label": "Naogaon",
+        "all": "Entire Naogaon District",
+        "naogaon_sadar": "Naogaon Sadar",
+        "atrai": "Atrai",
+        "badalgachhi": "Badalgachhi",
+        "dhamoirhat": "Dhamoirhat",
+        "manda": "Manda",
+        "mahadebpur": "Mahadebpur",
+        "niamatpur": "Niamatpur",
+        "patnitala": "Patnitala",
+        "porsha": "Porsha",
+        "raninagar": "Raninagar",
+        "sapahar": "Sapahar"
+      },
+      "natore": {
+        "label": "Natore",
+        "all": "Entire Natore District",
+        "natore_sadar": "Natore Sadar",
+        "bagatipara": "Bagatipara",
+        "baraigram": "Baraigram",
+        "gurudaspur": "Gurudaspur",
+        "lalpur": "Lalpur",
+        "singra": "Singra"
+      },
+      "pabna": {
+        "label": "Pabna",
+        "all": "Entire Pabna District",
+        "pabna_sadar": "Pabna Sadar",
+        "ataikula": "Ataikula",
+        "atgharia": "Atgharia",
+        "bera": "Bera",
+        "bhangura": "Bhangura",
+        "chatmohar": "Chatmohar",
+        "faridpur": "Faridpur",
+        "ishwardi": "Ishwardi",
+        "santhia": "Santhia",
+        "sujanagar": "Sujanagar"
+      },
+      "sirajganj": {
+        "label": "Sirajganj",
+        "all": "Entire Sirajganj District",
+        "sirajganj_sadar": "Sirajganj Sadar",
+        "belkuchi": "Belkuchi",
+        "chauhali": "Chauhali",
+        "kamarkhanda": "Kamarkhanda",
+        "kazipur": "Kazipur",
+        "raiganj": "Raiganj",
+        "shahjadpur": "Shahjadpur",
+        "tarash": "Tarash",
+        "ullahpara": "Ullahpara"
+      }
+    },
+    "rangpur": {
+      "label": "Rangpur",
+      "all": "Entire Rangpur Division",
+      "dinajpur": {
+        "label": "Dinajpur",
+        "all": "Entire Dinajpur District",
+        "dinajpur_sadar": "Dinajpur Sadar",
+        "biral": "Biral",
+        "birampur": "Birampur",
+        "birganj": "Birganj",
+        "bochaganj": "Bochaganj",
+        "chirirbandar": "Chirirbandar",
+        "fulbari": "Fulbari",
+        "ghoraghat": "Ghoraghat",
+        "hakimpur": "Hakimpur",
+        "kaharole": "Kaharole",
+        "khansama": "Khansama",
+        "nawabganj": "Nawabganj",
+        "parbatipur": "Parbatipur"
+      },
+      "gaibandha": {
+        "label": "Gaibandha",
+        "all": "Entire Gaibandha District",
+        "gaibandha_sadar": "Gaibandha Sadar",
+        "fulchhari": "Fulchhari",
+        "gobindaganj": "Gobindaganj",
+        "palashbari": "Palashbari",
+        "sadullapur": "Sadullapur",
+        "sughatta": "Sughatta",
+        "sundarganj": "Sundarganj"
+      },
+      "rangpur": {
+        "label": "Rangpur",
+        "all": "Entire Rangpur District",
+        "rangpur_sadar": "Rangpur Sadar",
+        "badarganj": "Badarganj",
+        "gangachhara": "Gangachhara",
+        "kaunia": "Kaunia",
+        "mithapukur": "Mithapukur",
+        "pirgachha": "Pirgachha",
+        "pirganj": "Pirganj",
+        "taraganj": "Taraganj"
+      },
+      "kurigram": {
+        "label": "Kurigram",
+        "all": "Entire Kurigram District",
+        "kurigram_sadar": "Kurigram Sadar",
+        "bhurungamari": "Bhurungamari",
+        "char_rajibpur": "Char Rajibpur",
+        "chilmari": "Chilmari",
+        "fulbari": "Fulbari",
+        "nageshwari": "Nageshwari",
+        "rajarhat": "Rajarhat",
+        "raomari": "Raomari",
+        "ulipur": "Ulipur"
+      },
+      "lalmonirhat": {
+        "label": "Lalmonirhat",
+        "all": "Entire Lalmonirhat District",
+        "lalmonirhat_sadar": "Lalmonirhat Sadar",
+        "aditmari": "Aditmari",
+        "hatibandha": "Hatibandha",
+        "kaliganj": "Kaliganj",
+        "patgram": "Patgram"
+      },
+      "nilphamari": {
+        "label": "Nilphamari",
+        "all": "Entire Nilphamari District",
+        "nilphamari_sadar": "Nilphamari Sadar",
+        "dimla": "Dimla",
+        "domar": "Domar",
+        "jaldhaka": "Jaldhaka",
+        "kishoreganj": "Kishoreganj",
+        "saidpur": "Saidpur"
+      },
+      "panchagarh": {
+        "label": "Panchagarh",
+        "all": "Entire Panchagarh District",
+        "panchagarh_sadar": "Panchagarh Sadar",
+        "atwari": "Atwari",
+        "boda": "Boda",
+        "debiganj": "Debiganj",
+        "tetulia": "Tetulia"
+      },
+      "thakurgaon": {
+        "label": "Thakurgaon",
+        "all": "Entire Thakurgaon District",
+        "thakurgaon_sadar": "Thakurgaon Sadar",
+        "baliadangi": "Baliadangi",
+        "haripur": "Haripur",
+        "pirganj": "Pirganj",
+        "ranisankail": "Ranisankail"
+      }
+    },
+    "mymensingh": {
+      "label": "Mymensingh",
+      "all": "Entire Mymensingh Division",
+      "jamalpur": {
+        "label": "Jamalpur",
+        "all": "Entire Jamalpur District",
+        "jamalpur_sadar": "Jamalpur Sadar",
+        "baksiganj": "Baksiganj",
+        "dewanganj": "Dewanganj",
+        "islampur": "Islampur",
+        "madarganj": "Madarganj",
+        "melandaha": "Melandaha",
+        "sarishabari": "Sarishabari"
+      },
+      "netrokona": {
+        "label": "Netrokona",
+        "all": "Entire Netrokona District",
+        "netrokona_sadar": "Netrokona Sadar",
+        "atpara": "Atpara",
+        "barhatta": "Barhatta",
+        "durgapur": "Durgapur",
+        "kalmakanda": "Kalmakanda",
+        "kendua": "Kendua",
+        "khaliajuri": "Khaliajuri",
+        "madan": "Madan",
+        "mohanganj": "Mohanganj",
+        "purbadhala": "Purbadhala"
+      },
+      "mymensingh": {
+        "label": "Mymensingh",
+        "all": "Entire Mymensingh District",
+        "mymensingh_sadar": "Mymensingh Sadar",
+        "bhaluka": "Bhaluka",
+        "dhobaura": "Dhobaura",
+        "fulbaria": "Fulbaria",
+        "gaffargaon": "Gaffargaon",
+        "gauripur": "Gauripur",
+        "haluaghat": "Haluaghat",
+        "ishwarganj": "Ishwarganj",
+        "muktagachha": "Muktagachha",
+        "nandail": "Nandail",
+        "phulpur": "Phulpur",
+        "tarakanda": "Tarakanda",
+        "trishal": "Trishal"
+      },
+      "sherpur": {
+        "label": "Sherpur",
+        "all": "Entire Sherpur District",
+        "sherpur_sadar": "Sherpur Sadar",
+        "jhenaigati": "Jhenaigati",
+        "nakla": "Nakla",
+        "nalitabari": "Nalitabari",
+        "sreebardi": "Sreebardi"
+      }
+    },
+    "sylhet": {
+      "label": "Sylhet",
+      "all": "Entire Sylhet Division",
+      "sunamganj": {
+        "label": "Sunamganj",
+        "all": "Entire Sunamganj District",
+        "sunamganj_sadar": "Sunamganj Sadar",
+        "bishwamvarpur": "Bishwamvarpur",
+        "chhatak": "Chhatak",
+        "derai": "Derai",
+        "dharampasha": "Dharampasha",
+        "dowarabazar": "Dowarabazar",
+        "jagannathpur": "Jagannathpur",
+        "jamalganj": "Jamalganj",
+        "sulla": "Sulla",
+        "tahirpur": "Tahirpur",
+        "south_sunamganj": "South Sunamganj",
+        "madhyanagar": "Madhyanagar"
+      },
+      "habiganj": {
+        "label": "Habiganj",
+        "all": "Entire Habiganj District",
+        "habiganj_sadar": "Habiganj Sadar",
+        "ajmiriganj": "Ajmiriganj",
+        "bahubal": "Bahubal",
+        "baniyachong": "Baniyachong",
+        "chunarughat": "Chunarughat",
+        "lakhai": "Lakhai",
+        "madhabpur": "Madhabpur",
+        "nabiganj": "Nabiganj",
+        "shaistaganj": "Shaistaganj"
+      },
+      "sylhet": {
+        "label": "Sylhet",
+        "all": "Entire Sylhet District",
+        "sylhet_sadar": "Sylhet Sadar",
+        "balaganj": "Balaganj",
+        "beanibazar": "Beanibazar",
+        "bishwanath": "Bishwanath",
+        "companiganj": "Companiganj",
+        "dakshin_surma": "Dakshin Surma",
+        "fenchuganj": "Fenchuganj",
+        "golapganj": "Golapganj",
+        "gowainghat": "Gowainghat",
+        "jaintiapur": "Jaintiapur",
+        "kanaighat": "Kanaighat",
+        "osmani_nagar": "Osmani Nagar",
+        "zakiganj": "Zakiganj"
+      },
+      "moulvibazar": {
+        "label": "Moulvibazar",
+        "all": "Entire Moulvibazar District",
+        "moulvibazar_sadar": "Moulvibazar Sadar",
+        "barlekha": "Barlekha",
+        "juri": "Juri",
+        "kamalganj": "Kamalganj",
+        "kulaura": "Kulaura",
+        "rajnagar": "Rajnagar",
+        "sreemangal": "Sreemangal"
+      }
+    },
+    "barishal": {
+      "label": "Barishal",
+      "all": "Entire Barishal Division",
+      "barguna": {
+        "label": "Barguna",
+        "all": "Entire Barguna District",
+        "barguna_sadar": "Barguna Sadar",
+        "amtali": "Amtali",
+        "betagi": "Betagi",
+        "bamna": "Bamna",
+        "pathorghata": "Pathorghata",
+        "taltoli": "Taltoli"
+      },
+      "bhola": {
+        "label": "Bhola",
+        "all": "Entire Bhola District",
+        "bhola_sadar": "Bhola Sadar",
+        "borhanuddin": "Borhanuddin",
+        "charfasson": "Charfasson",
+        "daulatkhan": "Daulatkhan",
+        "lalmohan": "Lalmohan",
+        "manpura": "Manpura",
+        "tazumuddin": "Tazumuddin"
+      },
+      "jhalokati": {
+        "label": "Jhalokati",
+        "all": "Entire Jhalokati District",
+        "jhalokati_sadar": "Jhalokati Sadar",
+        "kathalia": "Kathalia",
+        "nalchity": "Nalchity",
+        "rajapur": "Rajapur"
+      },
+      "barishal": {
+        "label": "Barishal",
+        "all": "Entire Barishal District",
+        "agailjhara": "Agailjhara",
+        "babuganj": "Babuganj",
+        "bakerganj": "Bakerganj",
+        "banaripara": "Banaripara",
+        "barishal_sadar": "Barishal Sadar",
+        "gournadi": "Gournadi",
+        "hizla": "Hizla",
+        "mehendiganj": "Mehendiganj",
+        "muladi": "Muladi",
+        "wazirpur": "Wazirpur"
+      },
+      "patuakhali": {
+        "label": "Patuakhali",
+        "all": "Entire Patuakhali District",
+        "patuakhali_sadar": "Patuakhali Sadar",
+        "bauphal": "Bauphal",
+        "dashmina": "Dashmina",
+        "dumki": "Dumki",
+        "galachipa": "Galachipa",
+        "kalapara": "Kalapara",
+        "mirzaganj": "Mirzaganj",
+        "rangabali": "Rangabali"
+      },
+      "pirojpur": {
+        "label": "Pirojpur",
+        "all": "Entire Pirojpur District",
+        "pirojpur_sadar": "Pirojpur Sadar",
+        "bhandaria": "Bhandaria",
+        "kawkhali": "Kawkhali",
+        "mathbaria": "Mathbaria",
+        "nazirpur": "Nazirpur",
+        "nesarabad": "Nesarabad",
+        "zianagar": "Zianagar"
+      }
+    }
+  }
+}
