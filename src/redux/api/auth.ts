@@ -7,22 +7,18 @@ const AUTH_URL = "/auth";
 const authApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     userLogin: build.mutation({
-      query: (loginData) => ({
+      query: (args: { loginData: any; callbackUrl?: string }) => ({
         url: `${AUTH_URL}/login`,
         method: "POST",
-        data: loginData,
+        data: args.loginData, // use loginData from args
       }),
       invalidatesTags: [TagTypes.user],
-      transformResponse: (response) => {
-        // Handle success logic here
-        console.log({ REFRESH_TOKEN: response });
-
+      transformResponse: (response, meta, arg) => {
         if (response?.accessToken) {
           setAccessTokenToCookie(response.accessToken, {
-            redirect: "/",
+            redirect: arg.callbackUrl || "/", // use callbackUrl from arg here
           });
         }
-
         return response;
       },
     }),

@@ -29,7 +29,7 @@ const BioData = ({ bioDataNo, className = "" }: IProps) => {
   });
 
   const bioData = bioDataInfo?.biodata || {};
-  const sections = useBiodataSections({ bioData, bioDataNo, t });
+  const sections = useBiodataSections({ bioData, bioDataNo:usrInfo?.bioDataNo, t });
   const profileStatus = bioDataInfo?.biodata?.profileStatus;
   if (isLoading) {
     return <div>Loading...</div>;

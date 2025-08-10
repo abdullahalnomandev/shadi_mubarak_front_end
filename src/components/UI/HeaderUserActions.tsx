@@ -32,7 +32,7 @@ const Content = ({ role, hide }: { role: string; hide: () => void }) => {
     logOutUser(router);
   };
 
-  const { data: userData } = useGetUserQuery();
+  const { data: userData } = useGetUserQuery({});
 
   const completedSteps = userData?.user?.bioData?.completedSteps;
   console.log({ completedSteps });
@@ -123,6 +123,7 @@ const Content = ({ role, hide }: { role: string; hide: () => void }) => {
 };
 
 const HeaderUserActions = () => {
+  const t = useTranslations();
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [open, setOpen] = useState(false);
@@ -162,17 +163,17 @@ const HeaderUserActions = () => {
     return (
       <div className='hidden md:flex items-center gap-3'>
         <Link href='/login'>
-          <button
-            type='default'
-            className='flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition duration-300 shadow-sm w-full sm:w-auto min-w-[120px] cursor-pointer hover:scale-105'>
-            Sign In
-          </button>
+          <Button
+            variant='outline'
+            className='flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition duration-300 shadow-sm w-full sm:w-auto min-w-[120px] cursor-pointer hover:scale-105 border-pink-500 text-pink-500 hover:border-pink-500 hover:text-pink-500 focus:ring-pink-500'>
+            {t("header.login")}
+          </Button>
         </Link>
         <Link href='/register'>
           <Button
             variant='cta'
-            className='flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 text-sm font-medium text-white rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 transition duration-300 shadow-sm w-full sm:w-auto min-w-[120px] cursor-pointer hover:scale-105'>
-            Create Account
+            className='flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 text-sm font-medium text-white rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 transition duration-300 shadow-sm w-full sm:w-auto min-w-[120px] cursor-pointer hover:scale-105 focus:ring-pink-500'>
+            {t("header.register")}
           </Button>
         </Link>
       </div>

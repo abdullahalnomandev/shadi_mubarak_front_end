@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 export const setAccessTokenToCookie = async (token: string, options: any) => {
-  cookies().set(authKey, token, {
+  (await cookies()).set(authKey, token, {
     httpOnly: true,
     secure: true,
   });

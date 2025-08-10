@@ -102,7 +102,7 @@ const Contact = () => {
           <Form
             submitHandler={onSubmit}
             resolver={yupResolver(contactSchema)}
-            className='flex flex-col gap-5 text-gray-800 dark:text-gray-200 '>
+            >
             {contactFields.map((field) => (
               <div key={field.name} className='mb-6'>
                 <FormInput {...field} />
@@ -112,16 +112,15 @@ const Contact = () => {
             <div>
               <FormTextArea
                 name='message'
-                placeholder={t('form.fields.message')}
-                rows={5}
-                className='rounded-xl border border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500
-                     px-4 py-3 resize-none bg-white dark:bg-slate-700 dark:placeholder-gray-400'
+                id="message"
+
               />
             </div>
 
             <Button
               type='submit'
               loading={isSubmitting}
+              variant="cta"
               className='mt-6'
               loadingText={t('form.submitting')}>
               {t('form.submit')}

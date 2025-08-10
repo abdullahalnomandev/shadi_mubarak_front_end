@@ -193,6 +193,7 @@ const FormCascader = ({
           onChange={(val, selectedOptions) =>
             handleCascaderChange(val, selectedOptions, customOnChange)
           }
+          className='!w-full'
         />
       </div>
     );
@@ -214,6 +215,7 @@ const FormCascader = ({
               onChange={(val, selectedOptions) =>
                 handleCascaderChange(val, selectedOptions, onChange)
               }
+              className='!w-full'
             />
           );
         }}

@@ -13,7 +13,7 @@ import { Checkbox, Col, message, Row } from "antd";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import {  useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
@@ -39,13 +39,19 @@ const getLoginFields = (t: (key: string) => string) => [
 
 const Login = () => {
   const t = useTranslations("login");
-  const router = useRouter();
+
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl");
+
   const [userLogin, { isLoading }] = useUserLoginMutation();
   const [rememberMe, setRememberMe] = useState(false);
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     try {
-      const res = await userLogin(data).unwrap();
+      const res = await userLogin({
+        loginData: data,
+        callbackUrl: callbackUrl || undefined,
+      }).unwrap();
       if (res?.accessToken) {
         storeUserInfo({ accessToken: res.accessToken });
         message.success(t("login_successful"));
@@ -59,11 +65,13 @@ const Login = () => {
     onSuccess: async (tokenResponse) => {
       try {
         const res = await userLogin({
-          token: tokenResponse?.access_token,
+          loginData: {
+            token: tokenResponse?.access_token,
+          },
+          callbackUrl: callbackUrl || undefined,
         }).unwrap();
         if (res?.accessToken) {
           storeUserInfo({ accessToken: res.accessToken });
-          router.push("/");
           message.success(t("login_successful"));
         }
       } catch (error: any) {

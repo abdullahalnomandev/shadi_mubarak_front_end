@@ -6,7 +6,26 @@
     "how_it_works": "How it Works",
     "blog": "Blog",
     "faq": "FAQ",
-    "contact": "Contact"
+    "contact": "Contact",
+    "login": "Login",
+    "register": "Create Account"
+  },
+  "view_contact": {
+    "title": "Contact",
+    "description": "Do you want to use 1 connection to unlock this contact's details?",
+    "contact_successfully_unlocked": "Contact successfully unlocked",
+    "failed_to_unlock_contact": "Failed to unlock contact",
+    "cancel": "Cancel",
+    "yes_confirm": "Yes, Confirm",
+    "not_enough_connections": "You don’t have enough connections to unlock this contact.",
+    "purchase_connections": "Purchase Connections",
+    "contact_info_message": "You need 1 connection to view the contact information of this biodata's parent.",
+    "please_login_to_view_contact": "Login to view contact information",
+    "view_contact_information": "View Contact Information",
+    "unlock_contact_modal_title": "Unlock this contact using 1 connection?",
+    "need_connection_modal_title": "You need at least 1 connection to unlock this contact.",
+    "yes_unlock": "Yes, Unlock",
+    "how_to_view_contact_info": "How to view contact information"
   },
   "login": {
     "login_successful": "Login successful!",
@@ -432,8 +451,8 @@
     },
     "actions": {
       "copy_bio_link": "Copy Bio Link",
-      "add_to_shortlist": "Add To Favorites",
-      "remove_from_shortList": "Remove From Favorites"
+      "add_to_shortlist": "Add Favorite",
+      "remove_from_shortList": "Remove Favorite"
     },
     "sections": {
       "general_information": "General Information",
