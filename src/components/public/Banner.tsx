@@ -8,7 +8,7 @@ const Banner = () => {
     <div className='relative w-full'>
       {/* Background Image Container */}
       <div
-        className='relative mx-2 md:mx-8 mt-2 md:mt-5 rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl'
+        className='relative sm:mx-2 md:mx-8 mt-2 md:mt-5  md:rounded-2xl overflow-hidden shadow-2xl'
         style={{ minHeight: "100vh" }}>
         {/* Background Image */}
         <div
@@ -34,7 +34,7 @@ const Banner = () => {
 
         {/* Main Content */}
         <div className='relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex flex-col'>
-          <div className='flex-1 flex flex-col justify-center items-center pt-16 pb-32 md:pb-40'>
+          <div className='flex-1 flex flex-col justify-center items-center pt-16 '>
             {/* Trust Badge */}
             <div className='mb-6 md:mb-8'>
               <div className='inline-flex items-center px-6 py-3 bg-white/15 backdrop-blur-md rounded-full border border-white/25 shadow-lg'>
@@ -99,6 +99,7 @@ const Banner = () => {
           {/* <div className='relative -mb-16 md:-mb-20'>
             <div className='w-full max-w-6xl mx-auto'> */}
           <SearchForm />
+
           {/* </div>
           </div> */}
         </div>

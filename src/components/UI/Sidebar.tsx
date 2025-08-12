@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { FaChevronRight } from "react-icons/fa";
 import CustomButton from "./Button";
 import SidebarProfile from "./SidebarProfile";
+import Link from "next/link";
 
 const { Sider } = Layout;
 
@@ -65,12 +66,11 @@ const Sidebar = () => {
     }
   }, [pathname, role, t, openKeys]);
 
+
   const handleLogout = () => {
     logOutUser(router);
-    if (isMobile) {
-      setMobileDrawerOpen(false);
-    }
   };
+
 
   const handleOpenChange = (keys: string[]) => {
     setOpenKeys(keys);
@@ -118,7 +118,7 @@ const Sidebar = () => {
             top: "64px",
             bottom: 0,
           }}>
-          <SidebarProfile role={role} />
+          <SidebarProfile  />
           <Menu
             theme='light'
             mode='inline'
@@ -151,9 +151,11 @@ const Sidebar = () => {
             {/* Mobile Navigation Header */}
             <div className='flex justify-between items-center px-6 py-4 border-b border-gray-100 sticky top-0 bg-gradient-to-r from-pink-50 to-indigo-50 backdrop-blur-sm z-10 shadow-sm'>
               <div className='flex items-center space-x-3'>
-                <h2 className='text-xl font-bold tracking-tight bg-gradient-to-r from-pink-600 to-blue-600 bg-clip-text text-transparent'>
-                  বিয়ের ঠিকানা
-                </h2>
+                <Link href='/'>
+                  <h2 className='text-xl font-bold tracking-tight bg-gradient-to-r from-pink-600 to-blue-600 bg-clip-text text-transparent'>
+                    বিয়ের ঠিকানা
+                  </h2>
+                </Link>
               </div>
               <Button
                 type='text'
@@ -174,7 +176,7 @@ const Sidebar = () => {
 
             {/* Mobile Content */}
             <div className='flex-1 overflow-y-auto px-2'>
-              <SidebarProfile role={role} />
+              <SidebarProfile />
               <Menu
                 theme='light'
                 mode='inline'
@@ -183,6 +185,9 @@ const Sidebar = () => {
                 onOpenChange={handleOpenChange}
                 items={sidebarItems(role, handleLogout, t)}
                 className='border-none mobile-menu'
+                onClick={() => {
+                    setMobileDrawerOpen(false);
+                }}
               />
             </div>
           </div>

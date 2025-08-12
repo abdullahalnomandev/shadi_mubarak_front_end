@@ -107,7 +107,6 @@ const SearchForm = () => {
                           name={field.name}
                           placeholder={field.placeholder}
                           size='large'
-                          className='form-field'
                         />
                       ) : (
                         <FormCascader

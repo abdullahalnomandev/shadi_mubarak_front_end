@@ -14,7 +14,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <React.Fragment>
       <Header />
-      <main className='flex-grow max-w-7xl m-auto px-4'>{children}</main>
+      <main className='flex-grow max-w-7xl m-auto md:px-4'>{children}</main>
       {!isProtectedRoute && <Footer />}
     </React.Fragment>
   );

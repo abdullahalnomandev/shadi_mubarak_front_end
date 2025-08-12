@@ -129,7 +129,7 @@ const Header = () => {
           scrolled ? "shadow-md" : ""
         }`}
       >
-        <div className="flex justify-between items-center px-4 sm:px-8 h-full max-w-7xl m-auto">
+        <div className="flex justify-between items-center  sm:px-8 h-full max-w-7xl m-auto">
           <div>
             <Link href="/">
               <h2 className="text-xl font-bold tracking-tight bg-gradient-to-r from-pink-600 to-blue-600 bg-clip-text text-transparent">
@@ -146,6 +146,7 @@ const Header = () => {
               disabledOverflow
               className="!bg-transparent !border-none"
               theme={isDarkMode ? "dark" : "light"}
+          
             />
           </div>
 
@@ -232,9 +233,12 @@ const Header = () => {
               selectedKeys={selectedKeys}
               items={navItems}
               className="border-none dark:text-white"
+              onClick={() => {
+                  setDrawerVisible(false);
+              }}
             />
             <div className="mt-6 flex flex-col gap-3">
-              <Link href="/login">
+              <Link href="/login" onClick={() => setDrawerVisible(false)}>
                 <CustomButton
                   variant="outline"
                   className="flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition duration-300 shadow-sm w-full sm:w-auto min-w-[120px] cursor-pointer hover:scale-105 border-pink-500 text-pink-500 hover:border-pink-500 hover:text-pink-500 !w-full !focus:ring-pink-500"
@@ -242,7 +246,7 @@ const Header = () => {
                   {t("header.login")}
                 </CustomButton>
               </Link>
-              <Link href="/register">
+              <Link href="/register" onClick={() => setDrawerVisible(false)}>
                 <CustomButton
                   variant="cta"
                   className="flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 text-sm font-medium text-white rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 transition duration-300 shadow-sm w-full sm:w-auto min-w-[120px] cursor-pointer hover:scale-105 !w-full !focus:ring-pink-500"

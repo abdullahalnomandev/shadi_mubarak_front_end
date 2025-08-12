@@ -20,11 +20,7 @@ export const sidebarItems = (
 ) => {
   const defaultItems: MenuProps["items"] = [
     {
-      label: (
-        <Link href={`/${role}/account-settings`}>
-          {t("sidebar.account_settings")}
-        </Link>
-      ),
+      label: t("sidebar.account_settings"),
       key: `/${role}/account-settings`,
       icon: <SettingOutlined />,
       children: [

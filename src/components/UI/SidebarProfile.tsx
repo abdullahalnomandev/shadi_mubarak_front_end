@@ -8,7 +8,7 @@ import Image from "next/image";
 import ProfileStatusAction from "./ProfileStatusAction";
 
 const SidebarProfile = () => {
-  const { data: userData } = useGetUserQuery();
+  const { data: userData } = useGetUserQuery({});
 
   const completedSteps = userData?.user?.bioData?.completedSteps;
   console.log({ completedSteps });
