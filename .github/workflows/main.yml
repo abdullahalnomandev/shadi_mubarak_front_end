@@ -1,37 +1,40 @@
-name: Basic CI
+name: Deploy to Vercel
 
 on:
   push:
-    branches: [main]   # Run on pushes to main branch
+    branches: [main]    # Deploy only on main branch
   pull_request:
-    branches: [main]   # Also run when a PR targets main
+    branches: [main]    # Optional: deploy preview for PRs
 
 jobs:
-  build:
-    runs-on: ubuntu-latest  # GitHub provides this Linux VM
+  build_and_deploy:
+    runs-on: ubuntu-latest
 
     steps:
+      # 1. Checkout your code
       - name: Checkout code
         uses: actions/checkout@v4
-        # This pulls your code into the runner
 
-      - name: Set up Node.js
+      # 2. Setup Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-        # Change Node version if your project needs a different one
 
+      # 3. Install dependencies
       - name: Install dependencies
-        run: yarn install
-        # Or "yarn install" / "pnpm install" depending on your project
+        run: yarn install          # or `yarn install` if using yarn
 
+      # 4. Run tests
       # - name: Run tests
       #   run: yarn test
-        # Or skip if you don't have tests yet
 
-      - name: Build (if needed)
-        run: yarn build || echo "No build step"
-        # The `|| echo` prevents failure if no build script exists
+      # 5. Build the project
+      - name: Build project
+        run: yarn build   # or `yarn build`
 
-      - name: Done
-        run: echo "✅ CI finished!"
+      # 5. Deploy to Vercel
+      - name: Deploy to Vercel
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: npx vercel --prod --token=$VERCEL_TOKEN --confirm
