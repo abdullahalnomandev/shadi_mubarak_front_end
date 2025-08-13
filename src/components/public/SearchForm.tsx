@@ -67,7 +67,7 @@ const SearchForm = () => {
             ? val.replace("all,", "").trim()
             : val;
 
-        query.append(key, processedVal);
+        query.append(key, processedVal as string);
       }
     }
 

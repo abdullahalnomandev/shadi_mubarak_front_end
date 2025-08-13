@@ -34,7 +34,7 @@ const Content = ({ role, hide }: { role: string; hide: () => void }) => {
 
   const { data: userData } = useGetUserQuery({});
 
-  const completedSteps = userData?.user?.bioData?.completedSteps;
+  const completedSteps = (userData?.user as any)?.bioData?.completedSteps;
   console.log({ completedSteps });
 
   const totalSteps = 10;
@@ -42,7 +42,7 @@ const Content = ({ role, hide }: { role: string; hide: () => void }) => {
   const maxPercent = 100;
   const stepIncrement = (maxPercent - basePercent) / totalSteps;
   const completedCount = completedSteps?.length;
-  const profileStatus = userData?.user?.bioData?.profileStatus;
+  const profileStatus = (userData?.user as any)?.bioData?.profileStatus;
 
   const percent = Math.min(
     basePercent + stepIncrement * completedCount,

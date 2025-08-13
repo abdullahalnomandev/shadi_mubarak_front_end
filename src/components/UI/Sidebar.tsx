@@ -60,7 +60,7 @@ const Sidebar = () => {
       return null;
     };
 
-    const parentKey = findParentKey(menuItems, pathname);
+    const parentKey = findParentKey(menuItems as any, pathname);
     if (parentKey && !openKeys.includes(parentKey)) {
       setOpenKeys([parentKey]);
     }

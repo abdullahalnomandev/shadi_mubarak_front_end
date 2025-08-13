@@ -34,7 +34,6 @@ const ForgotPassword = () => {
       await userForgetPassword(values).unwrap();
       setEmailSent(true);
     } catch (error: any) {
-      console.log("ERROR", error);
       message.error(error?.data || t("error_something_wrong"));
     } finally {
       setSubmitting(false);
