@@ -50,7 +50,7 @@ const Banner = () => {
               <h1 className='text-white font-extrabold mb-6 md:mb-8 py-4 leading-tight'>
                 <span className='block text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-3'>
                   <span className='bg-gradient-to-r from-rose-300 via-pink-200 to-rose-300 bg-clip-text text-transparent font-extrabold drop-shadow-lg'>
-                    {t("heading_part1")}
+                    {t("heading_part1")} NOAMN
                   </span>
                 </span>
                 <span className='block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold'>
