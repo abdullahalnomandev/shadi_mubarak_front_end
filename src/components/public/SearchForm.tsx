@@ -14,8 +14,8 @@ import { CiUser } from "react-icons/ci";
 import { HiOutlineUsers } from "react-icons/hi2";
 import { PiMosqueThin } from "react-icons/pi";
 import Form from "../Forms/Form";
-import FormCascader from "../Forms/FormCascader";
 import FormSelectField from "../Forms/FormSelectField";
+import FromCaseCaderItem from "../Forms/FormCascaderItem";
 
 const SearchForm = () => {
   const t = useTranslations();
@@ -27,7 +27,7 @@ const SearchForm = () => {
     {
       name: "biodataType",
       label: t("search_form.looking_for"),
-      icon: <CiUser className='text-lg' />,
+      icon: <CiUser className="text-lg" />,
       placeholder: t("search_form.select_gender"),
       options: getGenderOption(t),
       type: "select",
@@ -35,7 +35,7 @@ const SearchForm = () => {
     {
       name: "religious",
       label: t("search_form.religion"),
-      icon: <PiMosqueThin className='text-lg' />,
+      icon: <PiMosqueThin className="text-lg" />,
       placeholder: t("search_form.select_religion"),
       options: getReligiousOptions(t),
       type: "select",
@@ -43,7 +43,7 @@ const SearchForm = () => {
     {
       name: "maritalStatus",
       label: t("search_form.marital_status"),
-      icon: <HiOutlineUsers className='text-lg' />,
+      icon: <HiOutlineUsers className="text-lg" />,
       placeholder: t("search_form.select_status"),
       options: getMaritalStatusOptions(t),
       type: "select",
@@ -51,85 +51,90 @@ const SearchForm = () => {
     {
       name: "presentAddress",
       label: t("search_form.present_address"),
-      icon: <HomeOutlined className='text-lg' />,
+      icon: <HomeOutlined className="text-lg" />,
       placeholder: t("search_form.select_location"),
       options: getLocationData(t).searchLocationData,
       type: "cascader",
     },
   ];
-  const onSubmit = (values: any) => {
-    const query = new URLSearchParams();
-    for (const [key, val] of Object.entries(values)) {
-      if (val) {
-        // If value is a string and contains 'all,', remove 'all,' from it
-        const processedVal =
-          typeof val === "string" && val.startsWith("all,")
-            ? val.replace("all,", "").trim()
-            : val;
+  const onSubmit = (values: Record<string, any>) => {
+    const params = new URLSearchParams();
 
-        query.append(key, processedVal as string);
+    Object.entries(values).forEach(([key, value]) => {
+      if (value) {
+        const paramValue = Array.isArray(value)
+          ? value.join(",")
+          : typeof value === "object"
+          ? Object.values(value).join(",")
+          : String(value);
+        params.append(key, paramValue);
       }
-    }
+    });
 
-    router.push(`/biodatas?${query.toString()}`);
+    router.push(`/biodatas?${params.toString()}`);
   };
-
   return (
-    <div className='w-full relative z-30'>
-      <div className='bg-white/98 backdrop-blur-lg rounded-lg shadow-2xl border border-white/30 overflow-hidden max-w-6xl mx-auto'>
-        <div className='h-1.5 bg-gradient-to-r from-rose-400 via-pink-500 to-rose-400' />
+    <div className="w-full relative z-30">
+      <div className="bg-white/98 backdrop-blur-lg rounded-lg shadow-2xl border border-white/30 overflow-hidden max-w-6xl mx-auto">
+        <div className="h-1.5 bg-gradient-to-r from-rose-400 via-pink-500 to-rose-400" />
 
-        <div className='bg-gradient-to-br from-gray-50/95 to-white/95 backdrop-blur-sm p-4 md:p-8 border-b border-gray-100/50'>
-          <div className='text-center'>
-            <div className='inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-rose-500 to-pink-600 rounded-2xl mb-4 shadow-xl transform hover:scale-105 transition-transform duration-300'>
-              <span className='text-white text-2xl'>💕</span>
+        <div className="bg-gradient-to-br from-gray-50/95 to-white/95 backdrop-blur-sm p-4 md:p-8 border-b border-gray-100/50">
+          <div className="text-center">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-rose-500 to-pink-600 rounded-2xl mb-4 shadow-xl transform hover:scale-105 transition-transform duration-300">
+              <span className="text-white text-2xl">💕</span>
             </div>
-            <h3 className='text-2xl md:text-3xl font-bold bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 bg-clip-text text-transparent'>
+            <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 bg-clip-text text-transparent">
               {t("search_form.find_match_heading")}
             </h3>
           </div>
         </div>
 
-        <div className='p-6 md:p-10'>
+        <div className="p-6 md:p-10">
           <Form submitHandler={onSubmit}>
-            <Row gutter={[20, 28]} justify='center' align='middle'>
+            <Row gutter={[20, 28]} justify="center" align="middle">
               {searchFields.map((field) => (
                 <Col xs={24} sm={12} md={6} lg={6} key={field.name}>
-                  <div className='group'>
-                    <label className='flex items-center gap-2 text-sm font-semibold text-gray-700 mb-3'>
+                  <div className="group">
+                    <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-3">
                       {field.icon}
                       {field.label}
                     </label>
-                    <div className='relative'>
+                    <div className="relative">
                       {field.type === "select" ? (
                         <FormSelectField
                           options={field.options}
                           name={field.name}
                           placeholder={field.placeholder}
-                          size='large'
+                          size="large"
                         />
                       ) : (
-                        <FormCascader
+                        <FromCaseCaderItem
                           name={field.name}
                           options={field.options}
                           placeholder={field.placeholder}
                           showSearch
-                          size='large'
+                          size="large"
                           required
+                          displayRender={(label: string[]) => {
+                            // return label[label.length-1];
+                            return label.reverse().join(", ");
+                          }}
                         />
                       )}
-                      <div className='field-hover-effect' />
+
+                      <div className="field-hover-effect" />
                     </div>
                   </div>
                 </Col>
               ))}
 
               <Col xs={24}>
-                <div className='flex justify-center mt-8 md:mt-10'>
+                <div className="flex justify-center mt-8 md:mt-10">
                   <button
-                    className='px-8 py-3 text-lg font-semibold bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 text-white rounded-lg w-full sm:w-auto cursor-pointer flex items-center justify-center gap-2'
-                    type='submit'>
-                    <SearchOutlined className='text-lg' />
+                    className="px-8 py-3 text-lg font-semibold bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 text-white rounded-lg w-full sm:w-auto cursor-pointer flex items-center justify-center gap-2"
+                    type="submit"
+                  >
+                    <SearchOutlined className="text-lg" />
                     <span>{t("search_form.search_partners_button")}</span>
                   </button>
                 </div>

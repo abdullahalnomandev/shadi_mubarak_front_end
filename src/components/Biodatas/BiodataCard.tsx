@@ -6,7 +6,8 @@ import Link from "next/link";
 import { useState } from "react";
 import { FaEye, FaHeart } from "react-icons/fa";
 import Button from "../UI/Button";
-import { formatPreciseAgeFromDOB } from "./formateDob";
+import { formatPreciseAgeFromDOB } from "./util/formateDob";
+import { useTranslations } from "next-intl";
 
 interface BiodataProps {
   biodata: {
@@ -20,6 +21,8 @@ interface BiodataProps {
 }
 
 const BioDataCard = ({ biodata }: BiodataProps) => {
+  const t = useTranslations();
+
   const [isShortlisted, setIsShortlisted] = useState(false);
 
   const handleShortlist = (e: React.MouseEvent) => {
@@ -30,45 +33,46 @@ const BioDataCard = ({ biodata }: BiodataProps) => {
 
   // Static values for demonstration
   const staticBiodata = {
-    bioDataNo: biodata?.bioDataNo || "BD2024001",
+    bioDataNo: biodata?.bioDataNo,
     biodataType: biodata?.general_information?.biodataType,
     age: formatPreciseAgeFromDOB(biodata?.general_information?.dateOfBirth),
-
-    height: biodata?.generalInformation?.height || "5'4\"",
-    occupation: biodata?.generalInformation?.occupation || "Software Engineer",
-    views: biodata?.view || 0,
+    skin: biodata?.general_information?.skin,
+    height: biodata?.general_information?.height,
+    occupation: biodata.occupation?.occupation || "-",
+    views: biodata?.view,
   };
+
   console.log({ biodata });
   return (
     <Col xs={24} sm={12} md={8} lg={8}>
-      <div className='group'>
-        <div className='bg-white shadow-md rounded-lg  hover:shadow-md transition-all duration-300 overflow-hidden border border-gray-200 hover:border-rose-200 hover:scale-105'>
+      <div className="group">
+        <div className="bg-white shadow-md rounded-lg  hover:shadow-md transition-all duration-300 overflow-hidden border border-gray-200 hover:border-rose-200 hover:scale-105">
           {/* Profile Section */}
-          <div className='relative'>
-            <div className='bg-gradient-to-r from-blue-50 to-purple-50 p-4'>
-              <div className='flex items-center justify-between'>
-                <div className='flex items-center gap-3'>
-                  <div className='relative'>
-                    <div className='w-14 h-14 rounded-full overflow-hidden border-2 border-rose-200 shadow-sm'>
+          <div className="relative">
+            <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="relative">
+                    <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-rose-200 shadow-sm">
                       <Image
                         src={
                           staticBiodata.biodataType === "male's_biodata"
                             ? male
                             : female
                         }
-                        alt='Profile'
+                        alt="Profile"
                         width={56}
                         height={56}
-                        className='object-cover w-full h-full'
+                        className="object-cover w-full h-full"
                       />
                     </div>
                   </div>
                   <div>
-                    <h3 className='font-semibold text-gray-800 text-sm'>
-                      Profile
+                    <h3 className="font-semibold text-gray-800 text-sm">
+                      {t("profile.profile")}
                     </h3>
-                    <p className='text-xs text-gray-500 font-medium'>
-                      #{staticBiodata.bioDataNo}
+                    <p className="text-xs text-gray-500 font-medium">
+                      # {staticBiodata.bioDataNo}
                     </p>
                   </div>
                 </div>
@@ -82,60 +86,85 @@ const BioDataCard = ({ biodata }: BiodataProps) => {
                   }`}
                   title={
                     isShortlisted ? "Remove from shortlist" : "Add to shortlist"
-                  }>
-                  <FaHeart className='text-xs' />
+                  }
+                >
+                  <FaHeart className="text-xs" />
                 </button>
               </div>
             </div>
           </div>
 
           {/* Details Section */}
-          <div className='p-4'>
-            <div className='space-y-3'>
-              <div className='flex items-center justify-between'>
-                <div className='flex items-center gap-2'>
-                  <span className='text-xs text-gray-500'>Age</span>
+          <div className="p-4">
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-gray-500">
+                    {t("profile.age")}
+                  </span>
                 </div>
-                <span className='font-medium text-sm text-gray-800'>
+                <span className="font-medium text-sm text-gray-800">
                   {staticBiodata.age}
                 </span>
               </div>
 
-              <div className='flex items-center justify-between'>
-                <div className='flex items-center gap-2'>
-                  <span className='text-xs text-gray-500'>Height</span>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-gray-500">
+                    {" "}
+                    {t("profile.height")}
+                  </span>
                 </div>
-                <span className='font-medium text-sm text-gray-800'>
+                <span className="font-medium text-sm text-gray-800">
                   {staticBiodata.height}
                 </span>
               </div>
 
-              <div className='flex items-center justify-between'>
-                <div className='flex items-center gap-2'>
-                  <span className='text-xs text-gray-500'>Profession</span>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-gray-500">
+                    {biodata?.general_information?.biodataType === "male's_biodata"
+                      ? t("profile.profession")
+                      : t("profile.skin")}
+                  </span>
                 </div>
                 <span
-                  className='font-medium text-sm text-gray-800 text-right max-w-[120px] truncate'
-                  title={staticBiodata.occupation}>
-                  {staticBiodata.occupation}
+                  className="font-medium text-sm text-gray-800 text-right max-w-[120px] truncate"
+                  title={
+                    biodata?.general_information?.biodataType === "male's_biodata"
+                      ? t("profile.profession")
+                      : t("profile.skin")
+                  }
+                >
+                  {staticBiodata?.biodataType === "male's_biodata"
+                    ? staticBiodata?.occupation
+                    : staticBiodata?.skin}
                 </span>
               </div>
             </div>
 
             {/* Action Buttons */}
-            <div className='mt-4 pt-3 border-t border-gray-100'>
-              <div className='flex items-center justify-between'>
-                <div className='flex items-center gap-1 text-xs text-gray-400'>
-                  <FaEye className='text-xs' />
+            <div className="mt-4 pt-3 border-t border-gray-100">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-1 text-xs text-gray-400">
+                  <FaEye className="text-xs" />
                   <span>{staticBiodata.views} views</span>
                 </div>
 
                 <Link href={`/biodata/${staticBiodata.bioDataNo}`}>
                   <Button
-                    variant='secondary'
-                    size='sm'
-                    className='!rounded-full border-2 !border-pink-500 !text-pink-500 hover:bg-gradient-to-r hover:from-pink-500 hover:to-rose-500 hover:!text-white relative overflow-hidden transition-all duration-300 before:absolute before:content-[""] before:bg-gradient-to-r before:from-pink-500 before:to-rose-500 before:w-full before:h-full before:-translate-x-full hover:before:translate-x-0 before:transition-transform before:duration-300 before:-z-10 hover:border-transparent'>
-                    View Profile
+                    variant="secondary"
+                    size="sm"
+                    className='!rounded-full border-2 !border-pink-500 !text-pink-500 relative overflow-hidden transition-all duration-300 
+                    before:absolute before:content-[""] before:bg-gradient-to-r before:from-pink-500 before:to-rose-500 
+                    before:w-full before:h-full before:-translate-x-full hover:before:translate-x-0 
+                    before:transition-transform before:duration-300 before:-z-10 hover:border-transparent
+                    after:absolute after:content-[""] after:bg-gradient-to-r after:from-pink-500 after:to-rose-500 
+                    after:w-full after:h-full after:translate-x-full hover:after:-translate-x-0
+                    after:transition-transform after:duration-300 after:-z-10
+                    hover:!text-white'
+                  >
+                    {t("profile.view_profile")}
                   </Button>
                 </Link>
               </div>

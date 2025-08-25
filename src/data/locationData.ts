@@ -4,1171 +4,10 @@ interface Option {
   children?: Option[];
 }
 
-// const searchLocation: Option[] = [
-//   {
-//     value: "all",
-//     label: "Entire Bangladesh",
-//   },
-//   // Chittagong Division
-//   {
-//     value: "chittagong",
-//     label: "Chittagong",
-//     children: [
-//       {
-//         value: "all",
-//         label: "Entire Chittagong Division",
-//       },
-//       {
-//         value: "bandarban",
-//         label: "Bandarban",
-//         children: [
-//           { value: "all", label: "Entire Bandarban District" },
-//           { value: "bandarban_sadar", label: "Bandarban Sadar" },
-//           { value: "alikadam", label: "Alikadam" },
-//           { value: "lama", label: "Lama" },
-//           { value: "naikhongchhari", label: "Naikhongchhari" },
-//           { value: "rowangchhari", label: "Rowangchhari" },
-//           { value: "ruma", label: "Ruma" },
-//           { value: "thanchi", label: "Thanchi" },
-//         ],
-//       },
-//       {
-//         value: "brahmanbaria",
-//         label: "Brahmanbaria",
-//         children: [
-//           { value: "all", label: "Entire Brahmanbaria District" },
-//           { value: "brahmanbaria_sadar", label: "Brahmanbaria Sadar" },
-//           { value: "akhaura", label: "Akhaura" },
-//           { value: "bancharampur", label: "Bancharampur" },
-//           { value: "bijoynagar", label: "Bijoynagar" },
-//           { value: "kasba", label: "Kasba" },
-//           { value: "nabinagar", label: "Nabinagar" },
-//           { value: "nasirnagar", label: "Nasirnagar" },
-//           { value: "sarail", label: "Sarail" },
-//           { value: "ashuganj", label: "Ashuganj" },
-//         ],
-//       },
-//       {
-//         value: "chandpur",
-//         label: "Chandpur",
-//         children: [
-//           { value: "all", label: "Entire Chandpur District" },
-//           { value: "chandpur_sadar", label: "Chandpur Sadar" },
-//           { value: "faridganj", label: "Faridganj" },
-//           { value: "haimchar", label: "Haimchar" },
-//           { value: "haziganj", label: "Haziganj" },
-//           { value: "kachua", label: "Kachua" },
-//           { value: "matlab_dakshin", label: "Matlab Dakshin" },
-//           { value: "matlab_uttar", label: "Matlab Uttar" },
-//           { value: "shahrasti", label: "Shahrasti" },
-//         ],
-//       },
-//       {
-//         value: "comilla",
-//         label: "Comilla",
-//         children: [
-//           { value: "all", label: "Entire Comilla District" },
-//           { value: "comilla_sadar", label: "Comilla Sadar" },
-//           { value: "barura", label: "Barura" },
-//           { value: "brahmanpara", label: "Brahmanpara" },
-//           { value: "burichang", label: "Burichang" },
-//           { value: "chandina", label: "Chandina" },
-//           { value: "chauddagram", label: "Chauddagram" },
-//           { value: "daudkandi", label: "Daudkandi" },
-//           { value: "debidwar", label: "Debidwar" },
-//           { value: "homna", label: "Homna" },
-//           { value: "laksam", label: "Laksam" },
-//           { value: "manoharganj", label: "Manoharganj" },
-//           { value: "meghna", label: "Meghna" },
-//           { value: "monohorgonj", label: "Monohorgonj" },
-//           { value: "muradnagar", label: "Muradnagar" },
-//           { value: "nangalkot", label: "Nangalkot" },
-//           { value: "comilla_sadar_dakshin", label: "Comilla Sadar Dakshin" },
-//           { value: "titas", label: "Titas" },
-//         ],
-//       },
-//       {
-//         value: "coxs_bazar",
-//         label: "Cox's Bazar",
-//         children: [
-//           { value: "all", label: "Entire Cox's Bazar District" },
-//           { value: "coxs_bazar_sadar", label: "Cox's Bazar Sadar" },
-//           { value: "chakaria", label: "Chakaria" },
-//           { value: "kutubdia", label: "Kutubdia" },
-//           { value: "maheshkhali", label: "Maheshkhali" },
-//           { value: "pekua", label: "Pekua" },
-//           { value: "ramu", label: "Ramu" },
-//           { value: "teknaf", label: "Teknaf" },
-//           { value: "ukhia", label: "Ukhia" },
-//         ],
-//       },
-//       {
-//         value: "feni",
-//         label: "Feni",
-//         children: [
-//           { value: "all", label: "Entire Feni District" },
-//           { value: "feni_sadar", label: "Feni Sadar" },
-//           { value: "chhagalnaiya", label: "Chhagalnaiya" },
-//           { value: "daganbhuiyan", label: "Daganbhuiyan" },
-//           { value: "fulgazi", label: "Fulgazi" },
-//           { value: "parshuram", label: "Parshuram" },
-//           { value: "sonagazi", label: "Sonagazi" },
-//         ],
-//       },
-//       {
-//         value: "chittagong",
-//         label: "Chittagong",
-//         children: [
-//           { value: "all", label: "Entire Chittagong District" },
-//           { value: "anwara", label: "Anwara" },
-//           { value: "banshkhali", label: "Banshkhali" },
-//           { value: "boalkhali", label: "Boalkhali" },
-//           { value: "chandanaish", label: "Chandanaish" },
-//           { value: "fatikchhari", label: "Fatikchhari" },
-//           { value: "hathazari", label: "Hathazari" },
-//           { value: "lohagara", label: "Lohagara" },
-//           { value: "mirsharai", label: "Mirsharai" },
-//           { value: "patiya", label: "Patiya" },
-//           { value: "rangunia", label: "Rangunia" },
-//           { value: "raozan", label: "Raozan" },
-//           { value: "sandwip", label: "Sandwip" },
-//           { value: "satkania", label: "Satkania" },
-//           { value: "sitakunda", label: "Sitakunda" },
-//           { value: "karnaphuli", label: "Karnaphuli" },
-//         ],
-//       },
-//       {
-//         value: "khagrachhari",
-//         label: "Khagrachhari",
-//         children: [
-//           { value: "all", label: "Entire Khagrachhari District" },
-//           { value: "khagrachhari_sadar", label: "Khagrachhari Sadar" },
-//           { value: "dighinala", label: "Dighinala" },
-//           { value: "lakshmichhari", label: "Lakshmichhari" },
-//           { value: "mahalchhari", label: "Mahalchhari" },
-//           { value: "manikchhari", label: "Manikchhari" },
-//           { value: "matiranga", label: "Matiranga" },
-//           { value: "panchhari", label: "Panchhari" },
-//           { value: "ramgarh", label: "Ramgarh" },
-//         ],
-//       },
-//       {
-//         value: "lakshmipur",
-//         label: "Lakshmipur",
-//         children: [
-//           { value: "all", label: "Entire Lakshmipur District" },
-//           { value: "lakshmipur_sadar", label: "Lakshmipur Sadar" },
-//           { value: "kamalnagar", label: "Kamalnagar" },
-//           { value: "raipur", label: "Raipur" },
-//           { value: "ramganj", label: "Ramganj" },
-//           { value: "ramgati", label: "Ramgati" },
-//         ],
-//       },
-//       {
-//         value: "noakhali",
-//         label: "Noakhali",
-//         children: [
-//           { value: "all", label: "Entire Noakhali District" },
-//           { value: "noakhali_sadar", label: "Noakhali Sadar" },
-//           { value: "begumganj", label: "Begumganj" },
-//           { value: "chatkhil", label: "Chatkhil" },
-//           { value: "companiganj", label: "Companiganj" },
-//           { value: "hatiya", label: "Hatiya" },
-//           { value: "kabir_hat", label: "Kabir Hat" },
-//           { value: "senbagh", label: "Senbagh" },
-//           { value: "sonaimuri", label: "Sonaimuri" },
-//           { value: "subarna_char", label: "Subarna Char" },
-//         ],
-//       },
-//       {
-//         value: "rangamati",
-//         label: "Rangamati",
-//         children: [
-//           { value: "all", label: "Entire Rangamati District" },
-
-//           { value: "rangamati_sadar", label: "Rangamati Sadar" },
-//           { value: "baghaichhari", label: "Baghaichhari" },
-//           { value: "barkal", label: "Barkal" },
-//           { value: "belaichhari", label: "Belaichhari" },
-//           { value: "bilaichhari", label: "Bilaichhari" },
-//           { value: "juraichhari", label: "Juraichhari" },
-//           { value: "kaptai", label: "Kaptai" },
-//           { value: "kawkhali", label: "Kawkhali" },
-//           { value: "langadu", label: "Langadu" },
-//           { value: "naniarchar", label: "Naniarchar" },
-//         ],
-//       },
-//     ],
-//   },
-//   // Dhaka Division
-//   {
-//     value: "dhaka",
-//     label: "Dhaka",
-//     children: [
-//       {
-//         value: "all",
-//         label: "Entire Dhaka Division",
-//       },
-//       {
-//         value: "faridpur",
-//         label: "Faridpur",
-//         children: [
-//           { value: "all", label: "Entire Faridpur District" },
-//           { value: "faridpur_sadar", label: "Faridpur Sadar" },
-//           { value: "alfadanga", label: "Alfadanga" },
-//           { value: "boalmari", label: "Boalmari" },
-//           { value: "charbhadrasan", label: "Charbhadrasan" },
-//           { value: "madhukhali", label: "Madhukhali" },
-//           { value: "nagarkanda", label: "Nagarkanda" },
-//           { value: "sadarpur", label: "Sadarpur" },
-//           { value: "saltha", label: "Saltha" },
-//           { value: "bhanga", label: "Bhanga" },
-//         ],
-//       },
-//       {
-//         value: "gazipur",
-//         label: "Gazipur",
-//         children: [
-//           { value: "all", label: "Entire Gazipur District" },
-//           { value: "gazipur_sadar", label: "Gazipur Sadar" },
-//           { value: "kaliakair", label: "Kaliakair" },
-//           { value: "kaliganj", label: "Kaliganj" },
-//           { value: "kapasia", label: "Kapasia" },
-//           { value: "sreepur", label: "Sreepur" },
-//         ],
-//       },
-//       {
-//         value: "dhaka",
-//         label: "Dhaka",
-//         children: [
-//           { value: "all", label: "Entire Dhaka District" },
-//           {
-//             value: "dhaka_north_city_corporation",
-//             label: "Dhaka North City Corporation",
-//           },
-//           {
-//             value: "dhaka_south_city_corporation",
-//             label: "Dhaka South City Corporation",
-//           },
-//           { value: "sadar", label: "Sadar" },
-//           { value: "dhamrai", label: "Dhamrai" },
-//           { value: "dohar", label: "Dohar" },
-//           { value: "keraniganj", label: "Keraniganj" },
-//           { value: "nawabganj", label: "Nawabganj" },
-//           { value: "savar", label: "Savar" },
-//         ],
-//       },
-//       {
-//         value: "gopalganj",
-//         label: "Gopalganj",
-//         children: [
-//           { value: "all", label: "Entire Gopalganj District" },
-//           { value: "gopalganj_sadar", label: "Gopalganj Sadar" },
-//           { value: "kashiani", label: "Kashiani" },
-//           { value: "kotalipara", label: "Kotalipara" },
-//           { value: "muksudpur", label: "Muksudpur" },
-//           { value: "tungipara", label: "Tungipara" },
-//         ],
-//       },
-//       {
-//         value: "kishoreganj",
-//         label: "Kishoreganj",
-//         children: [
-//           { value: "all", label: "Entire Kishoreganj District" },
-//           { value: "kishoreganj_sadar", label: "Kishoreganj Sadar" },
-//           { value: "austagram", label: "Austagram" },
-//           { value: "bajitpur", label: "Bajitpur" },
-//           { value: "bhairab", label: "Bhairab" },
-//           { value: "hossainpur", label: "Hossainpur" },
-//           { value: "itna", label: "Itna" },
-//           { value: "karimganj", label: "Karimganj" },
-//           { value: "katiadi", label: "Katiadi" },
-//           { value: "kuliarchar", label: "Kuliarchar" },
-//           { value: "mithamain", label: "Mithamain" },
-//           { value: "nikli", label: "Nikli" },
-//           { value: "pakundia", label: "Pakundia" },
-//           { value: "tarail", label: "Tarail" },
-//         ],
-//       },
-//       {
-//         value: "madaripur",
-//         label: "Madaripur",
-//         children: [
-//           { value: "all", label: "Entire Madaripur District" },
-//           { value: "madaripur_sadar", label: "Madaripur Sadar" },
-//           { value: "kalkini", label: "Kalkini" },
-//           { value: "rajoir", label: "Rajoir" },
-//           { value: "shibchar", label: "Shibchar" },
-//         ],
-//       },
-//       {
-//         value: "manikganj",
-//         label: "Manikganj",
-//         children: [
-//           { value: "all", label: "Entire Manikganj District" },
-//           { value: "manikganj_sadar", label: "Manikganj Sadar" },
-//           { value: "daulatpur", label: "Daulatpur" },
-//           { value: "ghior", label: "Ghior" },
-//           { value: "harirampur", label: "Harirampur" },
-//           { value: "saturia", label: "Saturia" },
-//           { value: "shivalaya", label: "Shivalaya" },
-//           { value: "singair", label: "Singair" },
-//         ],
-//       },
-//       {
-//         value: "munshiganj",
-//         label: "Munshiganj",
-//         children: [
-//           { value: "all", label: "Entire Munshiganj District" },
-//           { value: "munshiganj_sadar", label: "Munshiganj Sadar" },
-//           { value: "gazaria", label: "Gazaria" },
-//           { value: "lohajang", label: "Lohajang" },
-//           { value: "sirajdikhan", label: "Sirajdikhan" },
-//           { value: "sreenagar", label: "Sreenagar" },
-//           { value: "tongibari", label: "Tongibari" },
-//         ],
-//       },
-//       {
-//         value: "narayanganj",
-//         label: "Narayanganj",
-//         children: [
-//           { value: "all", label: "Entire Narayanganj District" },
-//           { value: "narayanganj_sadar", label: "Narayanganj Sadar" },
-//           { value: "araihazar", label: "Araihazar" },
-//           { value: "bandar", label: "Bandar" },
-//           { value: "rupganj", label: "Rupganj" },
-//           { value: "sonargaon", label: "Sonargaon" },
-//         ],
-//       },
-//       {
-//         value: "rajbari",
-//         label: "Rajbari",
-//         children: [
-//           { value: "all", label: "Entire Rajbari District" },
-//           { value: "rajbari_sadar", label: "Rajbari Sadar" },
-//           { value: "baliakandi", label: "Baliakandi" },
-//           { value: "goalandaghat", label: "Goalandaghat" },
-//           { value: "kalukhali", label: "Kalukhali" },
-//           { value: "pangsha", label: "Pangsha" },
-//         ],
-//       },
-//       {
-//         value: "shariatpur",
-//         label: "Shariatpur",
-//         children: [
-//           { value: "all", label: "Entire Shariatpur District" },
-//           { value: "shariatpur_sadar", label: "Shariatpur Sadar" },
-//           { value: "bhedarganj", label: "Bhedarganj" },
-//           { value: "damudya", label: "Damudya" },
-//           { value: "gosairhat", label: "Gosairhat" },
-//           { value: "naria", label: "Naria" },
-//           { value: "zajira", label: "Zajira" },
-//         ],
-//       },
-//       {
-//         value: "tangail",
-//         label: "Tangail",
-//         children: [
-//           { value: "all", label: "Entire Tangail District" },
-//           { value: "tangail_sadar", label: "Tangail Sadar" },
-//           { value: "basail", label: "Basail" },
-//           { value: "bhuapur", label: "Bhuapur" },
-//           { value: "delduar", label: "Delduar" },
-//           { value: "dhanbari", label: "Dhanbari" },
-//           { value: "ghatail", label: "Ghatail" },
-//           { value: "gopalpur", label: "Gopalpur" },
-//           { value: "kalihati", label: "Kalihati" },
-//           { value: "madhupur", label: "Madhupur" },
-//           { value: "mirzapur", label: "Mirzapur" },
-//           { value: "nagarpur", label: "Nagarpur" },
-//           { value: "sakhipur", label: "Sakhipur" },
-//         ],
-//       },
-//     ],
-//   },
-//   // Khulna Division **
-//   {
-//     value: "khulna",
-//     label: "Khulna",
-//     children: [
-//       {
-//         value: "all",
-//         label: "Entire Khulna Division",
-//       },
-
-//       {
-//         value: "bagerhat",
-//         label: "Bagerhat",
-//         children: [
-//           { value: "all", label: "Entire Bagerhat District" },
-//           { value: "bagerhat_sadar", label: "Bagerhat Sadar" },
-//           { value: "chitalmari", label: "Chitalmari" },
-//           { value: "fakirhat", label: "Fakirhat" },
-//           { value: "kachua", label: "Kachua" },
-//           { value: "mollahat", label: "Mollahat" },
-//           { value: "mongla", label: "Mongla" },
-//           { value: "morrelganj", label: "Morrelganj" },
-//           { value: "rampal", label: "Rampal" },
-//           { value: "sarankhola", label: "Sarankhola" },
-//         ],
-//       },
-//       {
-//         value: "chuadanga",
-//         label: "Chuadanga",
-//         children: [
-//           { value: "all", label: "Entire Chuadanga District" },
-//           { value: "chuadanga_sadar", label: "Chuadanga Sadar" },
-//           { value: "alamdanga", label: "Alamdanga" },
-//           { value: "damurhuda", label: "Damurhuda" },
-//           { value: "jibannagar", label: "Jibannagar" },
-//         ],
-//       },
-//       {
-//         value: "jessore",
-//         label: "Jessore",
-//         children: [
-//           { value: "all", label: "Entire Jessore District" },
-//           { value: "jessore_sadar", label: "Jessore Sadar" },
-//           { value: "abhaynagar", label: "Abhaynagar" },
-//           { value: "bagherpara", label: "Bagherpara" },
-//           { value: "chaugachha", label: "Chaugachha" },
-//           { value: "jhikargachha", label: "Jhikargachha" },
-//           { value: "keshabpur", label: "Keshabpur" },
-//           { value: "manirampur", label: "Manirampur" },
-//           { value: "sharsha", label: "Sharsha" },
-//         ],
-//       },
-//       {
-//         value: "khulna",
-//         label: "Khulna",
-//         children: [
-//           { value: "all", label: "Entire Khulna District" },
-//           { value: "khulna_sadar", label: "Khulna Sadar" },
-//           { value: "batiaghata", label: "Batiaghata" },
-//           { value: "dacope", label: "Dacope" },
-//           { value: "dumuria", label: "Dumuria" },
-//           { value: "dighalia", label: "Dighalia" },
-//           { value: "koyra", label: "Koyra" },
-//           { value: "paikgachha", label: "Paikgachha" },
-//           { value: "phultala", label: "Phultala" },
-//           { value: "rupsa", label: "Rupsa" },
-//           { value: "terokhada", label: "Terokhada" },
-//         ],
-//       },
-//       {
-//         value: "jhenaidah",
-//         label: "Jhenaidah",
-//         children: [
-//           { value: "all", label: "Entire Jhenaidah District" },
-//           { value: "jhenaidah_sadar", label: "Jhenaidah Sadar" },
-//           { value: "harinakunda", label: "Harinakunda" },
-//           { value: "kaliganj", label: "Kaliganj" },
-//           { value: "kotchandpur", label: "Kotchandpur" },
-//           { value: "maheshpur", label: "Maheshpur" },
-//           { value: "shailkupa", label: "Shailkupa" },
-//         ],
-//       },
-//       {
-//         value: "kushtia",
-//         label: "Kushtia",
-//         children: [
-//             "all": "সমগ্র চাঁদপুর জেলা",
-//             "chandpur_sadar": "চাঁদপুর সদর",
-//             "faridganj": "ফরিদগঞ্জ",
-//             "haimchar": "হাইমচর",
-//             "haziganj": "হাজীগঞ্জ",
-//             "kachua": "কচুয়া",
-//             "matlab_dakshin": "মতলব দক্ষিণ",
-//             "matlab_uttar": "মতলব উত্তর",
-//             "shahrasti": "শাহরাস্তি"
-//         },
-//         "comilla": {
-//             "label": "কুমিল্লা",
-//             "all": "সমগ্র কুমিল্লা জেলা",
-//             "comilla_sadar": "কুমিল্লা সদর",
-//             "barura": "বরুড়া",
-//             "brahmanpara": "ব্রাহ্মণপাড়া",
-//             "burichang": "বুড়িচং",
-//             "chandina": "চান্দিনা",
-//             "chauddagram": "চৌদ্দগ্রাম",
-//             "daudkandi": "দাউদকান্দি",
-//             "debidwar": "দেবিদ্বার",
-//             "homna": "হোমনা",
-//             "laksam": "লাকসাম",
-//             "manoharganj": "মনোহরগঞ্জ",
-//             "meghna": "মেঘনা",
-//             "monohorgonj": "মনোহরগঞ্জ",
-//             "muradnagar": "মুরাদনগর",
-//             "nangalkot": "নাঙ্গলকোট",
-//             "comilla_sadar_dakshin": "কুমিল্লা সদর দক্ষিণ",
-//             "titas": "তিতাস"
-//         },
-//         "coxs_bazar": {
-//             "label": "কক্সবাজার",
-//             "all": "সমগ্র কক্সবাজার জেলা",
-//             "coxs_bazar_sadar": "কক্সবাজার সদর",
-//             "chakaria": "চকরিয়া",
-//             "kutubdia": "কুতুবদিয়া",
-//             "maheshkhali": "মহেশখালী",
-//             "pekua": "পেকুয়া",
-//             "ramu": "রামু",
-//             "teknaf": "টেকনাফ",
-//             "ukhia": "উখিয়া"
-//         },
-//         "feni": {
-//             "label": "ফেনী",
-//             "all": "সমগ্র ফেনী জেলা",
-//             "feni_sadar": "ফেনী সদর",
-//             "chhagalnaiya": "ছাগলনাইয়া",
-//             "daganbhuiyan": "দাগনভূঞা",
-//             "fulgazi": "ফুলগাজী",
-//             "parshuram": "পরশুরাম",
-//             "sonagazi": "সোনাগাজী"
-//         },
-//         "chittagong": {
-//             "label": "চট্টগ্রাম",
-//             "all": "সমগ্র চট্টগ্রাম জেলা",
-//             "anwara": "আনোয়ারা",
-//             "banshkhali": "বাঁশখালী",
-//             "boalkhali": "বোয়ালখালী",
-//             "chandanaish": "চন্দনাইশ",
-//             "fatikchhari": "ফটিকছড়ি",
-//             "hathazari": "হাটহাজারী",
-//             "lohagara": "লোহাগাড়া",
-//             "mirsharai": "মীরসরাই",
-//             "patiya": "পটিয়া",
-//             "rangunia": "রাঙ্গুনিয়া",
-//             "raozan": "রাউজান",
-//             "sandwip": "সন্দ্বীপ",
-//             "satkania": "সাতকানিয়া",
-//             "sitakunda": "সীতাকুন্ড",
-//             "karnaphuli": "কর্ণফুলী"
-//         },
-//         "khagrachhari": {
-//             "label": "খাগড়াছড়ি",
-//             "all": "সমগ্র খাগড়াছড়ি জেলা",
-//             "khagrachhari_sadar": "খাগড়াছড়ি সদর",
-//             "dighinala": "দিঘীনালা",
-//             "lakshmichhari": "লক্ষ্মীছড়ি",
-//             "mahalchhari": "মহালছড়ি",
-//             "manikchhari": "মানিকছড়ি",
-//             "matiranga": "মাটিরাঙ্গা",
-//             "panchhari": "পানছড়ি",
-//             "ramgarh": "রামগড়"
-//         },
-//         "lakshmipur": {
-//             "label": "লক্ষ্মীপুর",
-//             "all": "সমগ্র লক্ষ্মীপুর জেলা",
-//             "lakshmipur_sadar": "লক্ষ্মীপুর সদর",
-//             "kamalnagar": "কমলনগর",
-//             "raipur": "রায়পুর",
-//             "ramganj": "রামগঞ্জ",
-//             "ramgati": "রামগতি"
-//         },
-//         "noakhali": {
-//             "label": "নোয়াখালী",
-//             "all": "সমগ্র নোয়াখালী জেলা",
-//             "noakhali_sadar": "নোয়াখালী সদর",
-//             "begumganj": "বেগমগঞ্জ",
-//             "chatkhil": "চাটখিল",
-//             "companiganj": "কোম্পানীগঞ্জ",
-//             "hatiya": "হাতিয়া",
-//             "kabir_hat": "কবির হাট",
-//             "senbagh": "সেনবাগ",
-//             "sonaimuri": "সোনাইমুড়ি",
-//             "subarna_char": "সুবর্ণচর"
-//         },
-//         "rangamati": {
-//             "label": "রাঙ্গামাটি",
-//             "all": "সমগ্র রাঙ্গামাটি জেলা",
-//             "rangamati_sadar": "রাঙ্গামাটি সদর",
-//             "baghaichhari": "বাঘাইছড়ি",
-//             "barkal": "বরকল",
-//             "belaichhari": "বিলাইছড়ি",
-//             "bilaichhari": "বিলাইছড়ি",
-//             "juraichhari": "জুরাছড়ি",
-//             "kaptai": "কাপ্তাই",
-//             "kawkhali": "কাউখালী",
-//             "langadu": "লংগদু",
-//             "naniarchar": "নানিয়ারচর"
-//         }
-//     }
-// }
-//           { value: "all", label: "Entire Kushtia District" },
-//           { value: "kushtia_sadar", label: "Kushtia Sadar" },
-//           { value: "bheramara", label: "Bheramara" },
-//           { value: "daulatpur", label: "Daulatpur" },
-//           { value: "khoksa", label: "Khoksa" },
-//           { value: "kumarkhali", label: "Kumarkhali" },
-//           { value: "mirpur", label: "Mirpur" },
-//         ],
-//       },
-//       {
-//         value: "magura",
-//         label: "Magura",
-//         children: [
-//           { value: "all", label: "Entire Magura District" },
-//           { value: "magura_sadar", label: "Magura Sadar" },
-//           { value: "mohammadpur", label: "Mohammadpur" },
-//           { value: "shalikha", label: "Shalikha" },
-//           { value: "sreepur", label: "Sreepur" },
-//         ],
-//       },
-//       {
-//         value: "meherpur",
-//         label: "Meherpur",
-//         children: [
-//           { value: "all", label: "Entire Meherpur District" },
-//           { value: "meherpur_sadar", label: "Meherpur Sadar" },
-//           { value: "gangni", label: "Gangni" },
-//           { value: "mujibnagar", label: "Mujibnagar" },
-//         ],
-//       },
-//       {
-//         value: "narail",
-//         label: "Narail",
-//         children: [
-//           { value: "all", label: "Entire Narail District" },
-//           { value: "narail_sadar", label: "Narail Sadar" },
-//           { value: "kalia", label: "Kalia" },
-//           { value: "lohagara", label: "Lohagara" },
-//         ],
-//       },
-//       {
-//         value: "satkhira",
-//         label: "Satkhira",
-//         children: [
-//           { value: "all", label: "Entire Satkhira District" },
-//           { value: "satkhira_sadar", label: "Satkhira Sadar" },
-//           { value: "assasuni", label: "Assasuni" },
-//           { value: "debhata", label: "Debhata" },
-//           { value: "kalaroa", label: "Kalaroa" },
-//           { value: "kaliganj", label: "Kaliganj" },
-//           { value: "shyamnagar", label: "Shyamnagar" },
-//           { value: "tala", label: "Tala" },
-//         ],
-//       },
-//     ],
-//   },
-//   // Rajshahi Division
-//   {
-//     value: "rajshahi",
-//     label: "Rajshahi",
-//     children: [
-//       {
-//         value: "all",
-//         label: "Entire Rajshahi Division",
-//       },
-//       {
-//         value: "bogura",
-//         label: "Bogura",
-//         children: [
-//           { value: "all", label: "Entire Bogura District" },
-//           { value: "bogura_sadar", label: "Bogura Sadar" },
-//           { value: "adamdighi", label: "Adamdighi" },
-//           { value: "dhunat", label: "Dhunat" },
-//           { value: "dhupchanchia", label: "Dhupchanchia" },
-//           { value: "gabtali", label: "Gabtali" },
-//           { value: "kahaloo", label: "Kahaloo" },
-//           { value: "nandigram", label: "Nandigram" },
-//           { value: "sariakandi", label: "Sariakandi" },
-//           { value: "shajahanpur", label: "Shajahanpur" },
-//           { value: "sherpur", label: "Sherpur" },
-//           { value: "shibganj", label: "Shibganj" },
-//           { value: "sonatola", label: "Sonatola" },
-//         ],
-//       },
-//       {
-//         value: "chapainawabganj",
-//         label: "Chapainawabganj",
-//         children: [
-//           { value: "all", label: "Entire Chapainawabganj District" },
-//           { value: "chapainawabganj_sadar", label: "Chapainawabganj Sadar" },
-//           { value: "bholahat", label: "Bholahat" },
-//           { value: "gomastapur", label: "Gomastapur" },
-//           { value: "nachole", label: "Nachole" },
-//           { value: "shibganj", label: "Shibganj" },
-//         ],
-//       },
-//       {
-//         value: "joypurhat",
-//         label: "Joypurhat",
-//         children: [
-//           { value: "all", label: "Entire Joypurhat District" },
-//           { value: "joypurhat_sadar", label: "Joypurhat Sadar" },
-//           { value: "akkelpur", label: "Akkelpur" },
-//           { value: "kalai", label: "Kalai" },
-//           { value: "khetlal", label: "Khetlal" },
-//           { value: "panchbibi", label: "Panchbibi" },
-//         ],
-//       },
-//       {
-//         value: "rajshahi",
-//         label: "Rajshahi",
-//         children: [
-//           { value: "all", label: "Entire Rajshahi District" },
-//           { value: "rajshahi_sadar", label: "Rajshahi Sadar" },
-//           { value: "bagha", label: "Bagha" },
-//           { value: "bagmara", label: "Bagmara" },
-//           { value: "charghat", label: "Charghat" },
-//           { value: "durgapur", label: "Durgapur" },
-//           { value: "godagari", label: "Godagari" },
-//           { value: "mohanpur", label: "Mohanpur" },
-//           { value: "paba", label: "Paba" },
-//           { value: "puthia", label: "Puthia" },
-//           { value: "tanore", label: "Tanore" },
-//         ],
-//       },
-//       {
-//         value: "naogaon",
-//         label: "Naogaon",
-//         children: [
-//           { value: "all", label: "Entire Naogaon District" },
-//           { value: "naogaon_sadar", label: "Naogaon Sadar" },
-//           { value: "atrai", label: "Atrai" },
-//           { value: "badalgachhi", label: "Badalgachhi" },
-//           { value: "dhamoirhat", label: "Dhamoirhat" },
-//           { value: "manda", label: "Manda" },
-//           { value: "mahadebpur", label: "Mahadebpur" },
-//           { value: "niamatpur", label: "Niamatpur" },
-//           { value: "patnitala", label: "Patnitala" },
-//           { value: "porsha", label: "Porsha" },
-//           { value: "raninagar", label: "Raninagar" },
-//           { value: "sapahar", label: "Sapahar" },
-//         ],
-//       },
-//       {
-//         value: "natore",
-//         label: "Natore",
-//         children: [
-//           { value: "all", label: "Entire Natore District" },
-//           { value: "natore_sadar", label: "Natore Sadar" },
-//           { value: "bagatipara", label: "Bagatipara" },
-//           { value: "baraigram", label: "Baraigram" },
-//           { value: "gurudaspur", label: "Gurudaspur" },
-//           { value: "lalpur", label: "Lalpur" },
-//           { value: "singra", label: "Singra" },
-//         ],
-//       },
-//       {
-//         value: "pabna",
-//         label: "Pabna",
-//         children: [
-//           { value: "all", label: "Entire Pabna District" },
-//           { value: "pabna_sadar", label: "Pabna Sadar" },
-//           { value: "ataikula", label: "Ataikula" },
-//           { value: "atgharia", label: "Atgharia" },
-//           { value: "bera", label: "Bera" },
-//           { value: "bhangura", label: "Bhangura" },
-//           { value: "chatmohar", label: "Chatmohar" },
-//           { value: "faridpur", label: "Faridpur" },
-//           { value: "ishwardi", label: "Ishwardi" },
-//           { value: "santhia", label: "Santhia" },
-//           { value: "sujanagar", label: "Sujanagar" },
-//         ],
-//       },
-//       {
-//         value: "sirajganj",
-//         label: "Sirajganj",
-//         children: [
-//           { value: "all", label: "Entire Sirajganj District" },
-//           { value: "sirajganj_sadar", label: "Sirajganj Sadar" },
-//           { value: "belkuchi", label: "Belkuchi" },
-//           { value: "chauhali", label: "Chauhali" },
-//           { value: "kamarkhanda", label: "Kamarkhanda" },
-//           { value: "kazipur", label: "Kazipur" },
-//           { value: "raiganj", label: "Raiganj" },
-//           { value: "shahjadpur", label: "Shahjadpur" },
-//           { value: "tarash", label: "Tarash" },
-//           { value: "ullahpara", label: "Ullahpara" },
-//         ],
-//       },
-//     ],
-//   },
-//   // Rangpur
-//   {
-//     value: "rangpur",
-//     label: "Rangpur",
-//     children: [
-//       {
-//         value: "all",
-//         label: "Entire Rangpur Division",
-//       },
-
-//       {
-//         value: "dinajpur",
-//         label: "Dinajpur",
-//         children: [
-//           { value: "all", label: "Entire Dinajpur District" },
-//           { value: "dinajpur_sadar", label: "Dinajpur Sadar" },
-//           { value: "biral", label: "Biral" },
-//           { value: "birampur", label: "Birampur" },
-//           { value: "birganj", label: "Birganj" },
-//           { value: "bochaganj", label: "Bochaganj" },
-//           { value: "chirirbandar", label: "Chirirbandar" },
-//           { value: "fulbari", label: "Fulbari" },
-//           { value: "ghoraghat", label: "Ghoraghat" },
-//           { value: "hakimpur", label: "Hakimpur" },
-//           { value: "kaharole", label: "Kaharole" },
-//           { value: "khansama", label: "Khansama" },
-//           { value: "nawabganj", label: "Nawabganj" },
-//           { value: "parbatipur", label: "Parbatipur" },
-//         ],
-//       },
-//       {
-//         value: "gaibandha",
-//         label: "Gaibandha",
-//         children: [
-//           { value: "all", label: "Entire Gaibandha District" },
-//           { value: "gaibandha_sadar", label: "Gaibandha Sadar" },
-//           { value: "fulchhari", label: "Fulchhari" },
-//           { value: "gobindaganj", label: "Gobindaganj" },
-//           { value: "palashbari", label: "Palashbari" },
-//           { value: "sadullapur", label: "Sadullapur" },
-//           { value: "sughatta", label: "Sughatta" },
-//           { value: "sundarganj", label: "Sundarganj" },
-//         ],
-//       },
-//       {
-//         value: "rangpur",
-//         label: "Rangpur",
-//         children: [
-//           { value: "all", label: "Entire Rangpur District" },
-//           { value: "rangpur_sadar", label: "Rangpur Sadar" },
-//           { value: "badarganj", label: "Badarganj" },
-//           { value: "gangachhara", label: "Gangachhara" },
-//           { value: "kaunia", label: "Kaunia" },
-//           { value: "mithapukur", label: "Mithapukur" },
-//           { value: "pirgachha", label: "Pirgachha" },
-//           { value: "pirganj", label: "Pirganj" },
-//           { value: "taraganj", label: "Taraganj" },
-//         ],
-//       },
-//       {
-//         value: "kurigram",
-//         label: "Kurigram",
-//         children: [
-//           { value: "all", label: "Entire Kurigram District" },
-//           { value: "kurigram_sadar", label: "Kurigram Sadar" },
-//           { value: "bhurungamari", label: "Bhurungamari" },
-//           { value: "char_rajibpur", label: "Char Rajibpur" },
-//           { value: "chilmari", label: "Chilmari" },
-//           { value: "fulbari", label: "Fulbari" },
-//           { value: "nageshwari", label: "Nageshwari" },
-//           { value: "rajarhat", label: "Rajarhat" },
-//           { value: "raomari", label: "Raomari" },
-//           { value: "ulipur", label: "Ulipur" },
-//         ],
-//       },
-//       {
-//         value: "lalmonirhat",
-//         label: "Lalmonirhat",
-//         children: [
-//           { value: "all", label: "Entire Lalmonirhat District" },
-//           { value: "lalmonirhat_sadar", label: "Lalmonirhat Sadar" },
-//           { value: "aditmari", label: "Aditmari" },
-//           { value: "hatibandha", label: "Hatibandha" },
-//           { value: "kaliganj", label: "Kaliganj" },
-//           { value: "patgram", label: "Patgram" },
-//         ],
-//       },
-//       {
-//         value: "nilphamari",
-//         label: "Nilphamari",
-//         children: [
-//           { value: "all", label: "Entire Nilphamari District" },
-//           { value: "nilphamari_sadar", label: "Nilphamari Sadar" },
-//           { value: "dimla", label: "Dimla" },
-//           { value: "domar", label: "Domar" },
-//           { value: "jaldhaka", label: "Jaldhaka" },
-//           { value: "kishoreganj", label: "Kishoreganj" },
-//           { value: "saidpur", label: "Saidpur" },
-//         ],
-//       },
-//       {
-//         value: "panchagarh",
-//         label: "Panchagarh",
-//         children: [
-//           { value: "all", label: "Entire Panchagarh District" },
-//           { value: "panchagarh_sadar", label: "Panchagarh Sadar" },
-//           { value: "atwari", label: "Atwari" },
-//           { value: "boda", label: "Boda" },
-//           { value: "debiganj", label: "Debiganj" },
-//           { value: "tetulia", label: "Tetulia" },
-//         ],
-//       },
-//       {
-//         value: "thakurgaon",
-//         label: "Thakurgaon",
-//         children: [
-//           { value: "all", label: "Entire Thakurgaon District" },
-//           { value: "thakurgaon_sadar", label: "Thakurgaon Sadar" },
-//           { value: "baliadangi", label: "Baliadangi" },
-//           { value: "haripur", label: "Haripur" },
-//           { value: "pirganj", label: "Pirganj" },
-//           { value: "ranisankail", label: "Ranisankail" },
-//         ],
-//       },
-//     ],
-//   },
-//   // Mymensingh
-//   {
-//     value: "mymensingh",
-//     label: "Mymensingh",
-//     children: [
-//       {
-//         value: "all",
-//         label: "Entire Mymensingh Division",
-//       },
-
-//       {
-//         value: "jamalpur",
-//         label: "Jamalpur",
-//         children: [
-//           { value: "all", label: "Entire Jamalpur District" },
-//           { value: "jamalpur_sadar", label: "Jamalpur Sadar" },
-//           { value: "baksiganj", label: "Baksiganj" },
-//           { value: "dewanganj", label: "Dewanganj" },
-//           { value: "islampur", label: "Islampur" },
-//           { value: "madarganj", label: "Madarganj" },
-//           { value: "melandaha", label: "Melandaha" },
-//           { value: "sarishabari", label: "Sarishabari" },
-//         ],
-//       },
-//       {
-//         value: "netrokona",
-//         label: "Netrokona",
-//         children: [
-//           { value: "all", label: "Entire Netrokona District" },
-//           { value: "netrokona_sadar", label: "Netrokona Sadar" },
-//           { value: "atpara", label: "Atpara" },
-//           { value: "barhatta", label: "Barhatta" },
-//           { value: "durgapur", label: "Durgapur" },
-//           { value: "kalmakanda", label: "Kalmakanda" },
-//           { value: "kendua", label: "Kendua" },
-//           { value: "khaliajuri", label: "Khaliajuri" },
-//           { value: "madan", label: "Madan" },
-//           { value: "mohanganj", label: "Mohanganj" },
-//           { value: "purbadhala", label: "Purbadhala" },
-//         ],
-//       },
-//       {
-//         value: "mymensingh",
-//         label: "Mymensingh",
-//         children: [
-//           { value: "all", label: "Entire Mymensingh District" },
-//           { value: "mymensingh_sadar", label: "Mymensingh Sadar" },
-//           { value: "bhaluka", label: "Bhaluka" },
-//           { value: "dhobaura", label: "Dhobaura" },
-//           { value: "fulbaria", label: "Fulbaria" },
-//           { value: "gaffargaon", label: "Gaffargaon" },
-//           { value: "gauripur", label: "Gauripur" },
-//           { value: "haluaghat", label: "Haluaghat" },
-//           { value: "ishwarganj", label: "Ishwarganj" },
-//           { value: "muktagachha", label: "Muktagachha" },
-//           { value: "nandail", label: "Nandail" },
-//           { value: "phulpur", label: "Phulpur" },
-//           { value: "tarakanda", label: "Tarakanda" },
-//           { value: "trishal", label: "Trishal" },
-//         ],
-//       },
-//       {
-//         value: "sherpur",
-//         label: "Sherpur",
-//         children: [
-//           { value: "all", label: "Entire Sherpur District" },
-//           { value: "sherpur_sadar", label: "Sherpur Sadar" },
-//           { value: "jhenaigati", label: "Jhenaigati" },
-//           { value: "nakla", label: "Nakla" },
-//           { value: "nalitabari", label: "Nalitabari" },
-//           { value: "sreebardi", label: "Sreebardi" },
-//         ],
-//       },
-//     ],
-//   },
-//   // Sylhet
-//   {
-//     value: "sylhet",
-//     label: "Sylhet",
-//     children: [
-//       {
-//         value: "all",
-//         label: "Entire Sylhet Division",
-//       },
-
-//       {
-//         value: "sunamganj",
-//         label: "Sunamganj",
-//         children: [
-//           { value: "all", label: "Entire Sunamganj District" },
-//           { value: "sunamganj_sadar", label: "Sunamganj Sadar" },
-//           { value: "bishwamvarpur", label: "Bishwamvarpur" },
-//           { value: "chhatak", label: "Chhatak" },
-//           { value: "derai", label: "Derai" },
-//           { value: "dharampasha", label: "Dharampasha" },
-//           { value: "dowarabazar", label: "Dowarabazar" },
-//           { value: "jagannathpur", label: "Jagannathpur" },
-//           { value: "jamalganj", label: "Jamalganj" },
-//           { value: "sulla", label: "Sulla" },
-//           { value: "tahirpur", label: "Tahirpur" },
-//           { value: "south_sunamganj", label: "South Sunamganj" },
-//           { value: "madhyanagar", label: "Madhyanagar" },
-//         ],
-//       },
-//       {
-//         value: "habiganj",
-//         label: "Habiganj",
-//         children: [
-//           { value: "all", label: "Entire Habiganj District" },
-//           { value: "habiganj_sadar", label: "Habiganj Sadar" },
-//           { value: "ajmiriganj", label: "Ajmiriganj" },
-//           { value: "bahubal", label: "Bahubal" },
-//           { value: "baniyachong", label: "Baniyachong" },
-//           { value: "chunarughat", label: "Chunarughat" },
-//           { value: "lakhai", label: "Lakhai" },
-//           { value: "madhabpur", label: "Madhabpur" },
-//           { value: "nabiganj", label: "Nabiganj" },
-//           { value: "shaistaganj", label: "Shaistaganj" },
-//         ],
-//       },
-//       {
-//         value: "sylhet",
-//         label: "Sylhet",
-//         children: [
-//           { value: "all", label: "Entire Sylhet District" },
-//           { value: "sylhet_sadar", label: "Sylhet Sadar" },
-//           { value: "balaganj", label: "Balaganj" },
-//           { value: "beanibazar", label: "Beanibazar" },
-//           { value: "bishwanath", label: "Bishwanath" },
-//           { value: "companiganj", label: "Companiganj" },
-//           { value: "dakshin_surma", label: "Dakshin Surma" },
-//           { value: "fenchuganj", label: "Fenchuganj" },
-//           { value: "golapganj", label: "Golapganj" },
-//           { value: "gowainghat", label: "Gowainghat" },
-//           { value: "jaintiapur", label: "Jaintiapur" },
-//           { value: "kanaighat", label: "Kanaighat" },
-//           { value: "osmani_nagar", label: "Osmani Nagar" },
-//           { value: "zakiganj", label: "Zakiganj" },
-//         ],
-//       },
-//       {
-//         value: "moulvibazar",
-//         label: "Moulvibazar",
-//         children: [
-//           { value: "all", label: "Entire Moulvibazar District" },
-//           { value: "moulvibazar_sadar", label: "Moulvibazar Sadar" },
-//           { value: "barlekha", label: "Barlekha" },
-//           { value: "juri", label: "Juri" },
-//           { value: "kamalganj", label: "Kamalganj" },
-//           { value: "kulaura", label: "Kulaura" },
-//           { value: "rajnagar", label: "Rajnagar" },
-//           { value: "sreemangal", label: "Sreemangal" },
-//         ],
-//       },
-//     ],
-//   },
-//   // Barishal
-//   {
-//     value: "barishal",
-//     label: "Barishal",
-//     children: [
-//       {
-//         value: "all",
-//         label: "Entire Barishal Division",
-//       },
-
-//       {
-//         value: "barguna",
-//         label: "Barguna",
-//         children: [
-//           { value: "all", label: "Entire Barguna District" },
-//           { value: "barguna_sadar", label: "Barguna Sadar" },
-//           { value: "amtali", label: "Amtali" },
-//           { value: "betagi", label: "Betagi" },
-//           { value: "bamna", label: "Bamna" },
-//           { value: "pathorghata", label: "Pathorghata" },
-//           { value: "taltoli", label: "Taltoli" },
-//         ],
-//       },
-//       {
-//         value: "bhola",
-//         label: "Bhola",
-//         children: [
-//           { value: "all", label: "Entire Bhola District" },
-//           { value: "bhola_sadar", label: "Bhola Sadar" },
-//           { value: "borhanuddin", label: "Borhanuddin" },
-//           { value: "charfasson", label: "Charfasson" },
-//           { value: "daulatkhan", label: "Daulatkhan" },
-//           { value: "lalmohan", label: "Lalmohan" },
-//           { value: "manpura", label: "Manpura" },
-//           { value: "tazumuddin", label: "Tazumuddin" },
-//         ],
-//       },
-//       {
-//         value: "jhalokati",
-//         label: "Jhalokati",
-//         children: [
-//           { value: "all", label: "Entire Jhalokati District" },
-//           { value: "jhalokati_sadar", label: "Jhalokati Sadar" },
-//           { value: "kathalia", label: "Kathalia" },
-//           { value: "nalchity", label: "Nalchity" },
-//           { value: "rajapur", label: "Rajapur" },
-//         ],
-//       },
-//       {
-//         value: "barishal",
-//         label: "Barishal",
-//         children: [
-//           { value: "all", label: "Entire Barishal District" },
-//           { value: "agailjhara", label: "Agailjhara" },
-//           { value: "babuganj", label: "Babuganj" },
-//           { value: "bakerganj", label: "Bakerganj" },
-//           { value: "banaripara", label: "Banaripara" },
-//           { value: "barishal_sadar", label: "Barishal Sadar" },
-//           { value: "gournadi", label: "Gournadi" },
-//           { value: "hizla", label: "Hizla" },
-//           { value: "mehendiganj", label: "Mehendiganj" },
-//           { value: "muladi", label: "Muladi" },
-//           { value: "wazirpur", label: "Wazirpur" },
-//         ],
-//       },
-//       {
-//         value: "patuakhali",
-//         label: "Patuakhali",
-//         children: [
-//           { value: "all", label: "Entire Patuakhali District" },
-//           { value: "patuakhali_sadar", label: "Patuakhali Sadar" },
-//           { value: "bauphal", label: "Bauphal" },
-//           { value: "dashmina", label: "Dashmina" },
-//           { value: "dumki", label: "Dumki" },
-//           { value: "galachipa", label: "Galachipa" },
-//           { value: "kalapara", label: "Kalapara" },
-//           { value: "mirzaganj", label: "Mirzaganj" },
-//           { value: "rangabali", label: "Rangabali" },
-//         ],
-//       },
-//       {
-//         value: "pirojpur",
-//         label: "Pirojpur",
-//         children: [
-//           { value: "all", label: "Entire Pirojpur District" },
-//           { value: "pirojpur_sadar", label: "Pirojpur Sadar" },
-//           { value: "bhandaria", label: "Bhandaria" },
-//           { value: "kawkhali", label: "Kawkhali" },
-//           { value: "mathbaria", label: "Mathbaria" },
-//           { value: "nazirpur", label: "Nazirpur" },
-//           { value: "nesarabad", label: "Nesarabad" },
-//           { value: "zianagar", label: "Zianagar" },
-//         ],
-//       },
-//     ],
-//   },
-// ];
-
 const getLocationDataInfo = (t: (key: string) => string) => {
   const searchLocation: Option[] = [
     {
-      value: "all",
+      value: "",
       label: t("location.all"),
     },
     // Chittagong Division
@@ -1177,14 +16,14 @@ const getLocationDataInfo = (t: (key: string) => string) => {
       label: t("location.chittagong.label"),
       children: [
         {
-          value: "all",
+          value: "",
           label: t("location.chittagong.all"),
         },
         {
           value: "bandarban",
           label: t("location.chittagong.bandarban.label"),
           children: [
-            { value: "all", label: t("location.chittagong.bandarban.all") },
+            { value: "", label: t("location.chittagong.bandarban.all") },
             {
               value: "bandarban_sadar",
               label: t("location.chittagong.bandarban.bandarban_sadar"),
@@ -1213,7 +52,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "brahmanbaria",
           label: t("location.chittagong.brahmanbaria.label"),
           children: [
-            { value: "all", label: t("location.chittagong.brahmanbaria.all") },
+            { value: "", label: t("location.chittagong.brahmanbaria.all") },
             {
               value: "brahmanbaria_sadar",
               label: t("location.chittagong.brahmanbaria.brahmanbaria_sadar"),
@@ -1256,7 +95,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "chandpur",
           label: t("location.chittagong.chandpur.label"),
           children: [
-            { value: "all", label: t("location.chittagong.chandpur.all") },
+            { value: "", label: t("location.chittagong.chandpur.all") },
             {
               value: "chandpur_sadar",
               label: t("location.chittagong.chandpur.chandpur_sadar"),
@@ -1295,7 +134,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "comilla",
           label: t("location.chittagong.comilla.label"),
           children: [
-            { value: "all", label: t("location.chittagong.comilla.all") },
+            { value: "", label: t("location.chittagong.comilla.all") },
             {
               value: "comilla_sadar",
               label: t("location.chittagong.comilla.comilla_sadar"),
@@ -1355,7 +194,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "coxs_bazar",
           label: t("location.chittagong.coxs_bazar.label"),
           children: [
-            { value: "all", label: t("location.chittagong.coxs_bazar.all") },
+            { value: "", label: t("location.chittagong.coxs_bazar.all") },
             {
               value: "coxs_bazar_sadar",
               label: t("location.chittagong.coxs_bazar.coxs_bazar_sadar"),
@@ -1391,7 +230,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "feni",
           label: t("location.chittagong.feni.label"),
           children: [
-            { value: "all", label: t("location.chittagong.feni.all") },
+            { value: "", label: t("location.chittagong.feni.all") },
             {
               value: "feni_sadar",
               label: t("location.chittagong.feni.feni_sadar"),
@@ -1419,7 +258,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "chittagong",
           label: t("location.chittagong.chittagong.label"),
           children: [
-            { value: "all", label: t("location.chittagong.chittagong.all") },
+            { value: "", label: t("location.chittagong.chittagong.all") },
             {
               value: "anwara",
               label: t("location.chittagong.chittagong.anwara"),
@@ -1486,7 +325,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "khagrachhari",
           label: t("location.chittagong.khagrachhari.label"),
           children: [
-            { value: "all", label: t("location.chittagong.khagrachhari.all") },
+            { value: "", label: t("location.chittagong.khagrachhari.all") },
             {
               value: "khagrachhari_sadar",
               label: t("location.chittagong.khagrachhari.khagrachhari_sadar"),
@@ -1525,7 +364,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "lakshmipur",
           label: t("location.chittagong.lakshmipur.label"),
           children: [
-            { value: "all", label: t("location.chittagong.lakshmipur.all") },
+            { value: "", label: t("location.chittagong.lakshmipur.all") },
             {
               value: "lakshmipur_sadar",
               label: t("location.chittagong.lakshmipur.lakshmipur_sadar"),
@@ -1552,7 +391,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "noakhali",
           label: t("location.chittagong.noakhali.label"),
           children: [
-            { value: "all", label: t("location.chittagong.noakhali.all") },
+            { value: "", label: t("location.chittagong.noakhali.all") },
             {
               value: "noakhali_sadar",
               label: t("location.chittagong.noakhali.noakhali_sadar"),
@@ -1595,7 +434,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "rangamati",
           label: t("location.chittagong.rangamati.label"),
           children: [
-            { value: "all", label: t("location.chittagong.rangamati.all") },
+            { value: "", label: t("location.chittagong.rangamati.all") },
             {
               value: "rangamati_sadar",
               label: t("location.chittagong.rangamati.rangamati_sadar"),
@@ -1646,14 +485,14 @@ const getLocationDataInfo = (t: (key: string) => string) => {
       label: t("location.dhaka.label"),
       children: [
         {
-          value: "all",
+          value: "",
           label: t("location.dhaka.all"),
         },
         {
           value: "faridpur",
           label: t("location.dhaka.faridpur.label"),
           children: [
-            { value: "all", label: t("location.dhaka.faridpur.all") },
+            { value: "", label: t("location.dhaka.faridpur.all") },
             {
               value: "faridpur_sadar",
               label: t("location.dhaka.faridpur.faridpur_sadar"),
@@ -1684,7 +523,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "gazipur",
           label: t("location.dhaka.gazipur.label"),
           children: [
-            { value: "all", label: t("location.dhaka.gazipur.all") },
+            { value: "", label: t("location.dhaka.gazipur.all") },
             {
               value: "gazipur_sadar",
               label: t("location.dhaka.gazipur.gazipur_sadar"),
@@ -1702,7 +541,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "dhaka",
           label: t("location.dhaka.dhaka.label"),
           children: [
-            { value: "all", label: t("location.dhaka.dhaka.all") },
+            { value: "", label: t("location.dhaka.dhaka.all") },
             {
               value: "dhaka_north_city_corporation",
               label: t("location.dhaka.dhaka.dhaka_north_city_corporation"),
@@ -1726,7 +565,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "gopalganj",
           label: t("location.dhaka.gopalganj.label"),
           children: [
-            { value: "all", label: t("location.dhaka.gopalganj.all") },
+            { value: "", label: t("location.dhaka.gopalganj.all") },
             {
               value: "gopalganj_sadar",
               label: t("location.dhaka.gopalganj.gopalganj_sadar"),
@@ -1753,7 +592,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "kishoreganj",
           label: t("location.dhaka.kishoreganj.label"),
           children: [
-            { value: "all", label: t("location.dhaka.kishoreganj.all") },
+            { value: "", label: t("location.dhaka.kishoreganj.all") },
             {
               value: "kishoreganj_sadar",
               label: t("location.dhaka.kishoreganj.kishoreganj_sadar"),
@@ -1803,7 +642,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "madaripur",
           label: t("location.dhaka.madaripur.label"),
           children: [
-            { value: "all", label: t("location.dhaka.madaripur.all") },
+            { value: "", label: t("location.dhaka.madaripur.all") },
             {
               value: "madaripur_sadar",
               label: t("location.dhaka.madaripur.madaripur_sadar"),
@@ -1820,7 +659,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "manikganj",
           label: t("location.dhaka.manikganj.label"),
           children: [
-            { value: "all", label: t("location.dhaka.manikganj.all") },
+            { value: "", label: t("location.dhaka.manikganj.all") },
             {
               value: "manikganj_sadar",
               label: t("location.dhaka.manikganj.manikganj_sadar"),
@@ -1846,7 +685,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "munshiganj",
           label: t("location.dhaka.munshiganj.label"),
           children: [
-            { value: "all", label: t("location.dhaka.munshiganj.all") },
+            { value: "", label: t("location.dhaka.munshiganj.all") },
             {
               value: "munshiganj_sadar",
               label: t("location.dhaka.munshiganj.munshiganj_sadar"),
@@ -1874,7 +713,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "narayanganj",
           label: t("location.dhaka.narayanganj.label"),
           children: [
-            { value: "all", label: t("location.dhaka.narayanganj.all") },
+            { value: "", label: t("location.dhaka.narayanganj.all") },
             {
               value: "narayanganj_sadar",
               label: t("location.dhaka.narayanganj.narayanganj_sadar"),
@@ -1898,7 +737,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "rajbari",
           label: t("location.dhaka.rajbari.label"),
           children: [
-            { value: "all", label: t("location.dhaka.rajbari.all") },
+            { value: "", label: t("location.dhaka.rajbari.all") },
             {
               value: "rajbari_sadar",
               label: t("location.dhaka.rajbari.rajbari_sadar"),
@@ -1922,7 +761,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "shariatpur",
           label: t("location.dhaka.shariatpur.label"),
           children: [
-            { value: "all", label: t("location.dhaka.shariatpur.all") },
+            { value: "", label: t("location.dhaka.shariatpur.all") },
             {
               value: "shariatpur_sadar",
               label: t("location.dhaka.shariatpur.shariatpur_sadar"),
@@ -1944,7 +783,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "tangail",
           label: t("location.dhaka.tangail.label"),
           children: [
-            { value: "all", label: t("location.dhaka.tangail.all") },
+            { value: "", label: t("location.dhaka.tangail.all") },
             {
               value: "tangail_sadar",
               label: t("location.dhaka.tangail.tangail_sadar"),
@@ -1970,14 +809,14 @@ const getLocationDataInfo = (t: (key: string) => string) => {
       label: t("location.khulna.label"),
       children: [
         {
-          value: "all",
+          value:"",
           label: t("location.khulna.all"),
         },
         {
           value: "bagerhat",
           label: t("location.khulna.bagerhat.label"),
           children: [
-            { value: "all", label: t("location.khulna.bagerhat.all") },
+            { value:"", label: t("location.khulna.bagerhat.all") },
             {
               value: "bagerhat_sadar",
               label: t("location.khulna.bagerhat.bagerhat_sadar"),
@@ -2011,7 +850,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "chuadanga",
           label: t("location.khulna.chuadanga.label"),
           children: [
-            { value: "all", label: t("location.khulna.chuadanga.all") },
+            { value:"", label: t("location.khulna.chuadanga.all") },
             {
               value: "chuadanga_sadar",
               label: t("location.khulna.chuadanga.chuadanga_sadar"),
@@ -2034,7 +873,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "jessore",
           label: t("location.khulna.jessore.label"),
           children: [
-            { value: "all", label: t("location.khulna.jessore.all") },
+            { value:"", label: t("location.khulna.jessore.all") },
             {
               value: "jessore_sadar",
               label: t("location.khulna.jessore.jessore_sadar"),
@@ -2070,7 +909,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "khulna",
           label: t("location.khulna.khulna.label"),
           children: [
-            { value: "all", label: t("location.khulna.khulna.all") },
+            { value:"", label: t("location.khulna.khulna.all") },
             {
               value: "khulna_sadar",
               label: t("location.khulna.khulna.khulna_sadar"),
@@ -2099,7 +938,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "jhenaidah",
           label: t("location.khulna.jhenaidah.label"),
           children: [
-            { value: "all", label: t("location.khulna.jhenaidah.all") },
+            { value:"", label: t("location.khulna.jhenaidah.all") },
             {
               value: "jhenaidah_sadar",
               label: t("location.khulna.jhenaidah.jhenaidah_sadar"),
@@ -2130,7 +969,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "kushtia",
           label: t("location.khulna.kushtia.label"),
           children: [
-            { value: "all", label: t("location.khulna.kushtia.all") },
+            { value:"", label: t("location.khulna.kushtia.all") },
             {
               value: "kushtia_sadar",
               label: t("location.khulna.kushtia.kushtia_sadar"),
@@ -2155,7 +994,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "magura",
           label: t("location.khulna.magura.label"),
           children: [
-            { value: "all", label: t("location.khulna.magura.all") },
+            { value:"", label: t("location.khulna.magura.all") },
             {
               value: "magura_sadar",
               label: t("location.khulna.magura.magura_sadar"),
@@ -2172,7 +1011,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "meherpur",
           label: t("location.khulna.meherpur.label"),
           children: [
-            { value: "all", label: t("location.khulna.meherpur.all") },
+            { value:"", label: t("location.khulna.meherpur.all") },
             {
               value: "meherpur_sadar",
               label: t("location.khulna.meherpur.meherpur_sadar"),
@@ -2188,7 +1027,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "narail",
           label: t("location.khulna.narail.label"),
           children: [
-            { value: "all", label: t("location.khulna.narail.all") },
+            { value:"", label: t("location.khulna.narail.all") },
             {
               value: "narail_sadar",
               label: t("location.khulna.narail.narail_sadar"),
@@ -2201,7 +1040,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "satkhira",
           label: t("location.khulna.satkhira.label"),
           children: [
-            { value: "all", label: t("location.khulna.satkhira.all") },
+            { value:"", label: t("location.khulna.satkhira.all") },
             {
               value: "satkhira_sadar",
               label: t("location.khulna.satkhira.satkhira_sadar"),
@@ -2231,14 +1070,14 @@ const getLocationDataInfo = (t: (key: string) => string) => {
       label: t("location.rajshahi.label"),
       children: [
         {
-          value: "all",
+          value:"",
           label: t("location.rajshahi.all"),
         },
         {
           value: "bogura",
           label: t("location.rajshahi.bogura.label"),
           children: [
-            { value: "all", label: t("location.rajshahi.bogura.all") },
+            { value:"", label: t("location.rajshahi.bogura.all") },
             {
               value: "bogura_sadar",
               label: t("location.rajshahi.bogura.bogura_sadar"),
@@ -2281,7 +1120,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "chapainawabganj",
           label: t("location.rajshahi.chapainawabganj.label"),
           children: [
-            { value: "all", label: t("location.rajshahi.chapainawabganj.all") },
+            { value:"", label: t("location.rajshahi.chapainawabganj.all") },
             {
               value: "chapainawabganj_sadar",
               label: t(
@@ -2310,7 +1149,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "joypurhat",
           label: t("location.rajshahi.joypurhat.label"),
           children: [
-            { value: "all", label: t("location.rajshahi.joypurhat.all") },
+            { value:"", label: t("location.rajshahi.joypurhat.all") },
             {
               value: "joypurhat_sadar",
               label: t("location.rajshahi.joypurhat.joypurhat_sadar"),
@@ -2334,7 +1173,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "rajshahi",
           label: t("location.rajshahi.rajshahi.label"),
           children: [
-            { value: "all", label: t("location.rajshahi.rajshahi.all") },
+            { value:"", label: t("location.rajshahi.rajshahi.all") },
             {
               value: "rajshahi_sadar",
               label: t("location.rajshahi.rajshahi.rajshahi_sadar"),
@@ -2369,7 +1208,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "naogaon",
           label: t("location.rajshahi.naogaon.label"),
           children: [
-            { value: "all", label: t("location.rajshahi.naogaon.all") },
+            { value:"", label: t("location.rajshahi.naogaon.all") },
             {
               value: "naogaon_sadar",
               label: t("location.rajshahi.naogaon.naogaon_sadar"),
@@ -2408,7 +1247,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "natore",
           label: t("location.rajshahi.natore.label"),
           children: [
-            { value: "all", label: t("location.rajshahi.natore.all") },
+            { value:"", label: t("location.rajshahi.natore.all") },
             {
               value: "natore_sadar",
               label: t("location.rajshahi.natore.natore_sadar"),
@@ -2433,7 +1272,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "pabna",
           label: t("location.rajshahi.pabna.label"),
           children: [
-            { value: "all", label: t("location.rajshahi.pabna.all") },
+            { value:"", label: t("location.rajshahi.pabna.all") },
             {
               value: "pabna_sadar",
               label: t("location.rajshahi.pabna.pabna_sadar"),
@@ -2459,7 +1298,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "sirajganj",
           label: t("location.rajshahi.sirajganj.label"),
           children: [
-            { value: "all", label: t("location.rajshahi.sirajganj.all") },
+            { value:"", label: t("location.rajshahi.sirajganj.all") },
             {
               value: "sirajganj_sadar",
               label: t("location.rajshahi.sirajganj.sirajganj_sadar"),
@@ -2503,14 +1342,14 @@ const getLocationDataInfo = (t: (key: string) => string) => {
       label: t("location.rangpur.label"),
       children: [
         {
-          value: "all",
+          value:"",
           label: t("location.rangpur.all"),
         },
         {
           value: "dinajpur",
           label: t("location.rangpur.dinajpur.label"),
           children: [
-            { value: "all", label: t("location.rangpur.dinajpur.all") },
+            { value:"", label: t("location.rangpur.dinajpur.all") },
             {
               value: "dinajpur_sadar",
               label: t("location.rangpur.dinajpur.dinajpur_sadar"),
@@ -2560,7 +1399,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "gaibandha",
           label: t("location.rangpur.gaibandha.label"),
           children: [
-            { value: "all", label: t("location.rangpur.gaibandha.all") },
+            { value:"", label: t("location.rangpur.gaibandha.all") },
             {
               value: "gaibandha_sadar",
               label: t("location.rangpur.gaibandha.gaibandha_sadar"),
@@ -2595,7 +1434,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "rangpur",
           label: t("location.rangpur.rangpur.label"),
           children: [
-            { value: "all", label: t("location.rangpur.rangpur.all") },
+            { value:"", label: t("location.rangpur.rangpur.all") },
             {
               value: "rangpur_sadar",
               label: t("location.rangpur.rangpur.rangpur_sadar"),
@@ -2628,7 +1467,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "kurigram",
           label: t("location.rangpur.kurigram.label"),
           children: [
-            { value: "all", label: t("location.rangpur.kurigram.all") },
+            { value:"", label: t("location.rangpur.kurigram.all") },
             {
               value: "kurigram_sadar",
               label: t("location.rangpur.kurigram.kurigram_sadar"),
@@ -2662,7 +1501,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "lalmonirhat",
           label: t("location.rangpur.lalmonirhat.label"),
           children: [
-            { value: "all", label: t("location.rangpur.lalmonirhat.all") },
+            { value:"", label: t("location.rangpur.lalmonirhat.all") },
             {
               value: "lalmonirhat_sadar",
               label: t("location.rangpur.lalmonirhat.lalmonirhat_sadar"),
@@ -2689,7 +1528,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "nilphamari",
           label: t("location.rangpur.nilphamari.label"),
           children: [
-            { value: "all", label: t("location.rangpur.nilphamari.all") },
+            { value:"", label: t("location.rangpur.nilphamari.all") },
             {
               value: "nilphamari_sadar",
               label: t("location.rangpur.nilphamari.nilphamari_sadar"),
@@ -2714,7 +1553,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "panchagarh",
           label: t("location.rangpur.panchagarh.label"),
           children: [
-            { value: "all", label: t("location.rangpur.panchagarh.all") },
+            { value:"", label: t("location.rangpur.panchagarh.all") },
             {
               value: "panchagarh_sadar",
               label: t("location.rangpur.panchagarh.panchagarh_sadar"),
@@ -2735,7 +1574,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "thakurgaon",
           label: t("location.rangpur.thakurgaon.label"),
           children: [
-            { value: "all", label: t("location.rangpur.thakurgaon.all") },
+            { value:"", label: t("location.rangpur.thakurgaon.all") },
             {
               value: "thakurgaon_sadar",
               label: t("location.rangpur.thakurgaon.thakurgaon_sadar"),
@@ -2766,14 +1605,14 @@ const getLocationDataInfo = (t: (key: string) => string) => {
       label: t("location.mymensingh.label"),
       children: [
         {
-          value: "all",
+          value:"",
           label: t("location.mymensingh.all"),
         },
         {
           value: "jamalpur",
           label: t("location.mymensingh.jamalpur.label"),
           children: [
-            { value: "all", label: t("location.mymensingh.jamalpur.all") },
+            { value:"", label: t("location.mymensingh.jamalpur.all") },
             {
               value: "jamalpur_sadar",
               label: t("location.mymensingh.jamalpur.jamalpur_sadar"),
@@ -2808,7 +1647,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "netrokona",
           label: t("location.mymensingh.netrokona.label"),
           children: [
-            { value: "all", label: t("location.mymensingh.netrokona.all") },
+            { value:"", label: t("location.mymensingh.netrokona.all") },
             {
               value: "netrokona_sadar",
               label: t("location.mymensingh.netrokona.netrokona_sadar"),
@@ -2852,7 +1691,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "mymensingh",
           label: t("location.mymensingh.mymensingh.label"),
           children: [
-            { value: "all", label: t("location.mymensingh.mymensingh.all") },
+            { value:"", label: t("location.mymensingh.mymensingh.all") },
             {
               value: "mymensingh_sadar",
               label: t("location.mymensingh.mymensingh.mymensingh_sadar"),
@@ -2911,7 +1750,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "sherpur",
           label: t("location.mymensingh.sherpur.label"),
           children: [
-            { value: "all", label: t("location.mymensingh.sherpur.all") },
+            { value:"", label: t("location.mymensingh.sherpur.all") },
             {
               value: "sherpur_sadar",
               label: t("location.mymensingh.sherpur.sherpur_sadar"),
@@ -2939,14 +1778,14 @@ const getLocationDataInfo = (t: (key: string) => string) => {
       label: t("location.sylhet.label"),
       children: [
         {
-          value: "all",
+          value:"",
           label: t("location.sylhet.all"),
         },
         {
           value: "sunamganj",
           label: t("location.sylhet.sunamganj.label"),
           children: [
-            { value: "all", label: t("location.sylhet.sunamganj.all") },
+            { value:"", label: t("location.sylhet.sunamganj.all") },
             {
               value: "sunamganj_sadar",
               label: t("location.sylhet.sunamganj.sunamganj_sadar"),
@@ -2992,7 +1831,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "habiganj",
           label: t("location.sylhet.habiganj.label"),
           children: [
-            { value: "all", label: t("location.sylhet.habiganj.all") },
+            { value:"", label: t("location.sylhet.habiganj.all") },
             {
               value: "habiganj_sadar",
               label: t("location.sylhet.habiganj.habiganj_sadar"),
@@ -3029,7 +1868,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "sylhet",
           label: t("location.sylhet.sylhet.label"),
           children: [
-            { value: "all", label: t("location.sylhet.sylhet.all") },
+            { value:"", label: t("location.sylhet.sylhet.all") },
             {
               value: "sylhet_sadar",
               label: t("location.sylhet.sylhet.sylhet_sadar"),
@@ -3082,7 +1921,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "moulvibazar",
           label: t("location.sylhet.moulvibazar.label"),
           children: [
-            { value: "all", label: t("location.sylhet.moulvibazar.all") },
+            { value:"", label: t("location.sylhet.moulvibazar.all") },
             {
               value: "moulvibazar_sadar",
               label: t("location.sylhet.moulvibazar.moulvibazar_sadar"),
@@ -3119,14 +1958,14 @@ const getLocationDataInfo = (t: (key: string) => string) => {
       label: t("location.barishal.label"),
       children: [
         {
-          value: "all",
+          value:"",
           label: t("location.barishal.all"),
         },
         {
           value: "barguna",
           label: t("location.barishal.barguna.label"),
           children: [
-            { value: "all", label: t("location.barishal.barguna.all") },
+            { value:"", label: t("location.barishal.barguna.all") },
             {
               value: "barguna_sadar",
               label: t("location.barishal.barguna.barguna_sadar"),
@@ -3145,7 +1984,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "bhola",
           label: t("location.barishal.bhola.label"),
           children: [
-            { value: "all", label: t("location.barishal.bhola.all") },
+            { value:"", label: t("location.barishal.bhola.all") },
             {
               value: "bhola_sadar",
               label: t("location.barishal.bhola.bhola_sadar"),
@@ -3174,7 +2013,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "jhalokati",
           label: t("location.barishal.jhalokati.label"),
           children: [
-            { value: "all", label: t("location.barishal.jhalokati.all") },
+            { value:"", label: t("location.barishal.jhalokati.all") },
             {
               value: "jhalokati_sadar",
               label: t("location.barishal.jhalokati.jhalokati_sadar"),
@@ -3197,7 +2036,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "barishal",
           label: t("location.barishal.barishal.label"),
           children: [
-            { value: "all", label: t("location.barishal.barishal.all") },
+            { value:"", label: t("location.barishal.barishal.all") },
             {
               value: "agailjhara",
               label: t("location.barishal.barishal.agailjhara"),
@@ -3238,7 +2077,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "patuakhali",
           label: t("location.barishal.patuakhali.label"),
           children: [
-            { value: "all", label: t("location.barishal.patuakhali.all") },
+            { value:"", label: t("location.barishal.patuakhali.all") },
             {
               value: "patuakhali_sadar",
               label: t("location.barishal.patuakhali.patuakhali_sadar"),
@@ -3274,7 +2113,7 @@ const getLocationDataInfo = (t: (key: string) => string) => {
           value: "pirojpur",
           label: t("location.barishal.pirojpur.label"),
           children: [
-            { value: "all", label: t("location.barishal.pirojpur.all") },
+            { value:"", label: t("location.barishal.pirojpur.all") },
             {
               value: "pirojpur_sadar",
               label: t("location.barishal.pirojpur.pirojpur_sadar"),
@@ -3310,27 +2149,8 @@ const getLocationDataInfo = (t: (key: string) => string) => {
   ];
   return searchLocation;
 };
-// export const locationData = {
-//   searchLocationData: searchLocation,
-//   filteredLocationData: searchLocation
-//     .filter((item) => item.value !== "all")
-//     .map((item) => ({
-//       ...item,
-//       children: item.children
-//         ?.filter(
-//           (child) => child.value !== "all" && !child.label.includes("Entire")
-//         )
-//         ?.map((child) => ({
-//           ...child,
-//           children: child.children?.filter(
-//             (subChild) =>
-//               subChild.value !== "all" && !subChild.label.includes("Entire")
-//           ),
-//         })),
-//     })),
-// };
 
-export const getLocationData = (t) => {
+export const getLocationData = (t: any) => {
   const filteredLocationData = getLocationDataInfo(t)
     .filter((item) => item.value !== "all")
     .map((item) => ({

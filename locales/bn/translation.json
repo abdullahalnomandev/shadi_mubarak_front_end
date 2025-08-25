@@ -153,9 +153,20 @@
     "marital_status": "বৈবাহিক অবস্থা",
     "select_status": "অবস্থা নির্বাচন করুন",
     "present_address": "বর্তমান ঠিকানা",
-    "select_location": "অবস্থান নির্বাচন করুন",
+    "permanent_address": "স্থায়ী ঠিকানা",
+    "age_range": "বয়স",
+    "general": "প্রাথমিক তথ্য",
+    "address": "ঠিকানা",
+    "apply_filter": "বায়োডাটা খুঁজুন",
+    "filters": "ফিল্টার সমূহ",
+    "filter": "ফিল্টার",
+    "biodatas": "বায়োডাটা সমূহ",
+    "found_biodata": "টি বায়োডাটা পাওয়া গেছে!",
+    "biodata_no": "বায়োডাটা নং",
+    "select_location": "নির্বাচন করুন",
     "find_match_heading": "আপনার নিখুঁত জুটি খুঁজুন",
     "search_partners_button": "সঙ্গী অনুসন্ধান করুন",
+    "clear_all":"Clear All",
     "bioDataType": {
       "all": "সকল",
       "male's_biodata": "পাত্রের বায়োডাটা",
@@ -172,6 +183,14 @@
       "strict": "পরিপূর্ণ দ্বীনদার",
       "flexible": "পরিপূর্ণ না হলেও চলবে"
     }
+  },
+  "profile": {
+    "age": "বয়স",
+    "height": "উচ্চতা",
+    "skin": "গাত্রবর্ণ",
+    "profession": "পেশা",
+    "profile": "বায়োডাটা",
+    "view_profile": "বায়োডাটা দেখুন"
   },
   "create_account_section": {
     "quote": "তোমাদের মধ্যে অবিবাহিত নারী ও পুরুষদের বিয়ে দাও, যারা সৎকর্মশীল। যদি তারা অভাবগ্রস্তও হয়, আল্লাহ নিজ অনুগ্রহে তাদের অভাবমুক্ত করে দেবেন। নিঃসন্দেহে আল্লাহ প্রাচুর্যময়, সর্বজ্ঞ।",

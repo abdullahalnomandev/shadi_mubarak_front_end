@@ -178,6 +178,17 @@
     "marital_status": "Marital Status",
     "select_status": "Select Status",
     "present_address": "Present Address",
+    "permanent_address": "Permanent address",
+    "age_range": "Age Range",
+    "clear_all": "Clear All",
+    "general": "General",
+    "address": "Address",
+    "filters": "Filters",
+    "filter": "Filter",
+    "biodatas": "Biodatas",
+    "found_biodata": "biodatas found!",
+    "biodata_no": "Biodata No",
+    "apply_filter": "Apply Filter",
     "select_location": "Select Location",
     "find_match_heading": "Find Your Perfect Match",
     "search_partners_button": "Search Partners",
@@ -197,6 +208,14 @@
       "strict": "strictly Religious",
       "flexible": "Moderately Religious"
     }
+  },
+  "profile": {
+    "age": "Age",
+    "height": "Height",
+    "skin": "Skin",
+    "profession": "Profession",
+    "profile": "Profile",
+    "view_profile": "View Profile"
   },
   "create_account_section": {
     "quote": "Marry the single people from among you and the righteous slaves and slave-girls. If you are poor, Allah (SwT) will make you rich through His favour; and Allah (SwT) is Bountiful, All-Knowing.",

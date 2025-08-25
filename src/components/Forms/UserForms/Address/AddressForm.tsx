@@ -6,8 +6,8 @@ import { Checkbox, Col, Row } from "antd";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
-import FormCascader from "../../FormCascader";
 import FormInput from "../../FormInput";
+import FromCaseCaderItem from "../../FormCascaderItem";
 
 const AddressForm = () => {
   const t = useTranslations();
@@ -78,8 +78,20 @@ const AddressForm = () => {
     if (type === "select") {
       return (
         <Col xs={24} sm={12} key={name}>
-          <label className='block mb-1 font-semibold'>{label}</label>
-          <FormCascader
+          <label className="block mb-1 font-semibold">{label}</label>
+          <FromCaseCaderItem
+            name={name}
+            options={options}
+            placeholder={placeholder}
+            required={required}
+            showSearch
+            size="large"
+            displayRender={(label: string[]) => {
+              // return label[label.length-1];
+              return label.join(", ");
+            }}
+          />
+          {/* <FormCascader
             name={name}
             options={options}
             placeholder={placeholder}
@@ -87,7 +99,7 @@ const AddressForm = () => {
             showSearch
             size='large'
             className='form-field'
-          />
+          /> */}
         </Col>
       );
     }
@@ -98,7 +110,7 @@ const AddressForm = () => {
           name={name}
           label={label}
           placeholder={placeholder}
-          type='text'
+          type="text"
           required={required}
         />
       </Col>
@@ -107,7 +119,7 @@ const AddressForm = () => {
 
   return (
     <div>
-      <h1 className='text-2xl font-semibold mb-6'>
+      <h1 className="text-2xl font-semibold mb-6">
         {t("edit_biodata.address")}
       </h1>
       <Row gutter={[16, 16]}>
@@ -120,7 +132,8 @@ const AddressForm = () => {
         <Col span={24}>
           <Checkbox
             checked={sameAsPresent}
-            onChange={(e) => setSameAsPresent(e.target.checked)}>
+            onChange={(e) => setSameAsPresent(e.target.checked)}
+          >
             Permanent address same as present
           </Checkbox>
         </Col>
