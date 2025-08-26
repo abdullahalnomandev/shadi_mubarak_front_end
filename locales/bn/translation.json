@@ -62,7 +62,7 @@
     "create_account_title": "অ্যাকাউন্ট তৈরি করুন",
     "choose_registration_method": "আপনি কোনভাবে আপনার অ্যাকাউন্ট তৈরি করতে চান তা নির্বাচন করুন",
     "fill_details": "রেজিস্ট্রেশন সম্পূর্ণ করতে আপনার তথ্য পূরণ করুন",
-    "create_with_google": "Googel দিয়ে তৈরি করুন",
+    "create_with_google": "Google দিয়ে তৈরি করুন",
     "create_with_email": "ইমেইল দিয়ে অ্যাকাউন্ট তৈরি করুন",
     "or": "অথবা",
     "creating": "তৈরি হচ্ছে...",
@@ -102,7 +102,7 @@
     "button_sending": "পাঠানো হচ্ছে...",
     "check_email_title": "আপনার ইমেইল চেক করুন",
     "check_email_message": "আমরা আপনার ইমেইলে পাসওয়ার্ড রিসেট করার লিঙ্ক পাঠিয়েছি।",
-    "hint_email_message": "খুঁজে পাচ্ছেন না? আপনার স্প্যাম বা জাঙ্ক ফোল্ডারে দেখুন।",
+    "hint_email_message": "খুঁজে পাচ্ছেন না? আপনার স্প্যাম ফোল্ডারে দেখুন।",
     "back_to_login": "লগইনে ফিরে যান",
     "remember_password": "পাসওয়ার্ড মনে আছে?",
     "error_something_wrong": "কিছু ভুল হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।"
@@ -166,7 +166,7 @@
     "select_location": "নির্বাচন করুন",
     "find_match_heading": "আপনার নিখুঁত জুটি খুঁজুন",
     "search_partners_button": "সঙ্গী অনুসন্ধান করুন",
-    "clear_all":"Clear All",
+    "clear_all": "Clear All",
     "bioDataType": {
       "all": "সকল",
       "male's_biodata": "পাত্রের বায়োডাটা",
@@ -191,6 +191,9 @@
     "profession": "পেশা",
     "profile": "বায়োডাটা",
     "view_profile": "বায়োডাটা দেখুন"
+  },
+  "verify_user": {
+    "verified_successful": "সফলভাবে ভেরিফাইড"
   },
   "create_account_section": {
     "quote": "তোমাদের মধ্যে অবিবাহিত নারী ও পুরুষদের বিয়ে দাও, যারা সৎকর্মশীল। যদি তারা অভাবগ্রস্তও হয়, আল্লাহ নিজ অনুগ্রহে তাদের অভাবমুক্ত করে দেবেন। নিঃসন্দেহে আল্লাহ প্রাচুর্যময়, সর্বজ্ঞ।",

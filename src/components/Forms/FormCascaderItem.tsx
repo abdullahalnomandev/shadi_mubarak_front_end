@@ -47,8 +47,6 @@ const FromCaseCaderItem = ({
   } = useFormContext();
 
   const errorMessage = getErrorMessageBuPropertyName(errors, name);
-  console.log({ fromSelectField: errorMessage });
-
   
   return (
     <div className="w-full">

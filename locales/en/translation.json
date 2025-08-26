@@ -209,6 +209,9 @@
       "flexible": "Moderately Religious"
     }
   },
+  "verify_user": {
+    "verified_successful": "Verified Success"
+  },
   "profile": {
     "age": "Age",
     "height": "Height",

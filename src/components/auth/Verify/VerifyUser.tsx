@@ -5,11 +5,13 @@ import { storeUserInfo } from "@/services/auth.service";
 import { Result, Spin } from "antd";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const VerifyUser = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const token = searchParams.get("token");
+  const { t } = useTranslation();
 
   const [verifyUser, { isLoading }] = useUserVerifyMutation();
   const [messages, setMessages] = useState("");
@@ -21,7 +23,6 @@ const VerifyUser = () => {
     const verify = async () => {
       if (!token) {
         setStatus("error");
-        setMessage("No verification token found.");
         return;
       }
 
@@ -31,7 +32,7 @@ const VerifyUser = () => {
         setStatus("success");
         if (res?.accessToken) {
           storeUserInfo({ accessToken: res.accessToken });
-          setMessages(" Verified successful!");
+          setMessages(t("verify_user.verified_successful"));
           setTimeout(() => {
             router.push("/user/dashboard");
           }, 1000);
@@ -42,12 +43,12 @@ const VerifyUser = () => {
     };
 
     verify();
-  }, [token, router, messages, verifyUser]);
+  }, [token, router, messages, verifyUser, t]);
 
   if (status === "loading" || isLoading) {
     return (
       <div className='flex min-h-screen items-center justify-center'>
-        <Spin tip='Verifying your account...' size='large'>
+        <Spin tip={t("verify_user.verifying_account")} size='large'>
           <div className='min-h-[100px] w-[200px]' />
         </Spin>
       </div>
@@ -60,8 +61,8 @@ const VerifyUser = () => {
         status={status}
         title={
           status === "success"
-            ? "Verification Successful"
-            : "Verification Failed"
+            ? t("verify_user.verification_successful")
+            : t("verify_user.verification_failed")
         }
         subTitle={messages}
       />

@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import Login from "@/components/auth/Login";
 
 export const metadata: Metadata = {
-  title: "Login | Shadi Mubarak",
-  description: "Login to your Shadi Mubarak account",
+  title: "Login | Biyer Thikana",
+  description: "Login to your Biyer Thikana account",
 };
 
 const LoginPage = () => {

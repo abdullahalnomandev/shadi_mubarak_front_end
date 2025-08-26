@@ -32,9 +32,10 @@ const Header = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
-    const systemPrefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
+    const systemPrefersDark = null;
+    // const systemPrefersDark = window.matchMedia(
+    //   "(prefers-color-scheme: dark)"
+    // ).matches;
     const savedTheme = localStorage.getItem("theme");
     const initialTheme = savedTheme || (systemPrefersDark ? "dark" : "light");
     setIsDarkMode(initialTheme === "dark");
