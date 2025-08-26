@@ -24,12 +24,20 @@ const authApi = baseApi.injectEndpoints({
     }),
 
     userRegister: build.mutation({
-      query: (loginData) => ({
+      query: (args: { loginData: any; callbackUrl?: string }) => ({
         url: `${AUTH_URL}/register`,
         method: "POST",
-        data: loginData,
+        data: args.loginData,
       }),
       invalidatesTags: [TagTypes.user],
+      transformResponse: (response, meta, arg) => {
+        if (response?.accessToken) {
+          setAccessTokenToCookie(response.accessToken, {
+            redirect: arg.callbackUrl || "/", // use callbackUrl from arg here
+          });
+        }
+        return response;
+      },
     }),
 
     userForgetPassword: build.mutation({

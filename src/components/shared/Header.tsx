@@ -168,7 +168,7 @@ const Header = () => {
               variant="borderless"
             />
 
-            <Button
+            {/* <Button
               type="text"
               onClick={toggleDarkMode}
               className="flex items-center justify-center !border-none hover:!bg-gray-100 dark:hover:!bg-slate-800"
@@ -179,7 +179,7 @@ const Header = () => {
                   <MoonOutlined className="!text-base !text-slate-700 dark:!text-slate-300" />
                 )
               }
-            />
+            /> */}
 
             <HeaderUserActions />
 

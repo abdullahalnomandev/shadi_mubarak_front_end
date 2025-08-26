@@ -25,6 +25,10 @@ export const genderOptions = [
 ];
 export const getMaritalStatusOptions = (t: (key: string) => string) => [
   {
+    value: "",
+    label: t("search_form.marital_status_options.all"),
+  },
+  {
     value: "single",
     label: t("search_form.marital_status_options.single"),
   },

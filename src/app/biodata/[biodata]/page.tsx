@@ -1,11 +1,9 @@
 import BioData from "@/components/BioData";
 
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ biodata: string }>;
+export default async function Page({ params }: {
+  params: { biodata: string };
 }) {
-  const { biodata } = await params;
+  const { biodata } = params;
 
   return (
     <div className='min-h-screen'>

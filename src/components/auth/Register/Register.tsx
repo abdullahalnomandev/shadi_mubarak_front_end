@@ -14,13 +14,13 @@ import { Col, message, Row } from "antd";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { MdOutlineEmail } from "react-icons/md";
 import BangladeshFlag from "../../../assets/Flag_of_Bangladesh.svg.png";
 import mail from "../../../assets/Mail sent-rafiki.png";
+import { useSearchParams } from "next/navigation";
 
 interface FormValues {
   email: string;
@@ -64,7 +64,10 @@ const getRegisterFields = (t: (key: string) => string) => [
 ];
 
 const Register = () => {
-  const router = useRouter();
+
+    const searchParams = useSearchParams();
+    const callbackUrl = searchParams.get("callbackUrl");
+
   const t = useTranslations("register");
   const [userRegister, { isLoading }] = useUserRegisterMutation();
   const [formValues, setFormValues] = useState<Partial<FormValues>>({});
@@ -77,11 +80,14 @@ const Register = () => {
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     try {
       const userInfo = { ...data, provider: registrationType };
-      const res = await userRegister(userInfo).unwrap();
+      const res = await userRegister({
+        loginData: userInfo,
+        callbackUrl: callbackUrl || undefined,
+      }).unwrap();
 
       if (res?.accessToken && registrationType === "google") {
         storeUserInfo({ accessToken: res.accessToken });
-        router.push("/user/dashboard");
+        // router.push("/user/dashboard");
         message.success(t("account_created"));
       }
 

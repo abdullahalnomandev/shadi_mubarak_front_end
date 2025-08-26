@@ -174,7 +174,7 @@ const Login = () => {
               <p className='mt-4 font-medium text-center dark:text-gray-300 text-gray-600'>
                 {t("dont_have_account")}{" "}
                 <Link
-                  href='/register'
+                  href={`/register${callbackUrl ? `?callbackUrl=${callbackUrl}` : ''}`}
                   className='text-blue-600 hover:text-blue-800 !underline font-medium'>
                   {t("create_account")}
                 </Link>

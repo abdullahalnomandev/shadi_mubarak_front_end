@@ -173,6 +173,7 @@
       "female's_biodata": "পাত্রীর বায়োডাটা"
     },
     "marital_status_options": {
+      "all": "সকল",
       "single": "অবিবাহিত",
       "married": "বিবাহিত",
       "divorced": "ডিভোর্স",

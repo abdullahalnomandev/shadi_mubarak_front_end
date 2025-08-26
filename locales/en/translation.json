@@ -198,6 +198,7 @@
       "female's_biodata": "Female's Biodata"
     },
     "marital_status_options": {
+      "all": "All",
       "single": "Single",
       "married": "Married",
       "divorced": "Divorced",

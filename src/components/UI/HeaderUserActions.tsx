@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import profileImage from "@/assets/girl.jpg";
@@ -18,15 +19,17 @@ import { useEffect, useState } from "react";
 import Button from "./Button";
 import ProfileStatusAction from "./ProfileStatusAction";
 
-const Content = ({ role, hide }: { role: string; hide: () => void }) => {
+const Content = ({ role, hide }: { role: string; hide?: () => void }) => {
   const t = useTranslations();
-  const router = useRouter();
   const pathname = usePathname();
+  const router = useRouter();
+  const [selectedKey, setSelectedKey] = useState(pathname);
+  const [openKeys, setOpenKeys] = useState<string[]>([]);
 
-  const handleMenuClick = ({ key }: { key: string }) => {
-    router.push(key);
-    hide(); // Close popover after navigation
-  };
+  // const handleMenuClick = ({ key }: { key: string }) => {
+  //   router.push(key);
+  //   hide(); // Close popover after navigation
+  // };
 
   const handleLogout = () => {
     logOutUser(router);
@@ -48,16 +51,24 @@ const Content = ({ role, hide }: { role: string; hide: () => void }) => {
     basePercent + stepIncrement * completedCount,
     maxPercent
   );
+
+  useEffect(() => {
+    setSelectedKey(pathname);
+  }, [pathname]);
+
+  const handleOpenChange = (keys: string[]) => {
+    setOpenKeys(keys);
+  };
   return (
     <>
-      <div className='max-w-xs mx-auto mb-1 border-b border-gray-300  p-4 pt-1 bg-white'>
+      <div className="max-w-xs mx-auto mb-1 border-b border-gray-300  p-4 pt-1 bg-white">
         {/* Profile Image */}
-        <div className='flex justify-center mb-4'>
-          <div className='w-20 h-20 rounded-full overflow-hidden border-2 border-purple-600 shadow'>
+        <div className="flex justify-center mb-4">
+          <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-purple-600 shadow">
             <Image
               src={profileImage}
-              alt='Profile'
-              className='object-cover w-full h-full'
+              alt="Profile"
+              className="object-cover w-full h-full"
               width={80}
               height={80}
             />
@@ -65,8 +76,8 @@ const Content = ({ role, hide }: { role: string; hide: () => void }) => {
         </div>
 
         {/* Status */}
-        <div className='flex justify-between items-center mt-4'>
-          <span className='text-sm font-medium text-gray-700'>
+        <div className="flex justify-between items-center mt-4">
+          <span className="text-sm font-medium text-gray-700">
             Biodata Status:
           </span>
           <span
@@ -82,16 +93,17 @@ const Content = ({ role, hide }: { role: string; hide: () => void }) => {
                 : profileStatus === BioDataStatus.REJECTED
                 ? "text-red-800 bg-red-100 border-red-300"
                 : "text-green-800 bg-green-100 border-green-300" // for verified status
-            }`}>
+            }`}
+          >
             {getBioDataStatusLabel(profileStatus)}
           </span>
         </div>
         {/* Progress & Tip */}
-        <div className='mb-2'>
-          <Tooltip title='Biodata completion: 50%' placement='bottomRight'>
+        <div className="mb-2">
+          <Tooltip title="Biodata completion: 50%" placement="bottomRight">
             <Progress
               percent={percent}
-              status='active'
+              status="active"
               strokeColor={{
                 from: "#06b6d4",
                 to: "#3b82f6",
@@ -103,7 +115,7 @@ const Content = ({ role, hide }: { role: string; hide: () => void }) => {
               showInfo={true}
             />
           </Tooltip>
-          <p className='text-sm text-gray-500 mt-1'>Complete your profile</p>
+          <p className="text-sm text-gray-500 mt-1">Complete your profile</p>
         </div>
 
         {/* Edit Button */}
@@ -112,10 +124,11 @@ const Content = ({ role, hide }: { role: string; hide: () => void }) => {
 
       {/* Sidebar Menu */}
       <Menu
-        onClick={handleMenuClick}
-        theme='light'
-        mode='inline'
-        selectedKeys={[pathname]}
+        theme="light"
+        mode="inline"
+        selectedKeys={[selectedKey]}
+        openKeys={openKeys}
+        onOpenChange={handleOpenChange}
         items={sidebarItems(role, handleLogout, t)}
       />
     </>
@@ -161,18 +174,20 @@ const HeaderUserActions = () => {
 
   if (isLoading || !isLoggedIn) {
     return (
-      <div className='hidden md:flex items-center gap-3'>
-        <Link href='/login'>
+      <div className="hidden md:flex items-center gap-3">
+        <Link href="/login">
           <Button
-            variant='outline'
-            className='flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition duration-300 shadow-sm w-full sm:w-auto min-w-[120px] cursor-pointer hover:scale-105 border-pink-500 text-pink-500 hover:border-pink-500 hover:text-pink-500 focus:ring-pink-500'>
+            variant="outline"
+            className="flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 text-sm font-medium  bg-white border rounded-md hover:bg-gray-50 transition duration-300 shadow-sm w-full sm:w-auto min-w-[120px] cursor-pointer hover:scale-105 border-pink-500 text-pink-500 hover:border-pink-500 hover:text-pink-500 focus:ring-pink-500"
+          >
             {t("header.login")}
           </Button>
         </Link>
-        <Link href='/register'>
+        <Link href="/register">
           <Button
-            variant='cta'
-            className='flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 text-sm font-medium text-white rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 transition duration-300 shadow-sm w-full sm:w-auto min-w-[120px] cursor-pointer hover:scale-105 focus:ring-pink-500'>
+            variant="cta"
+            className="flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 text-sm font-medium text-white rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 transition duration-300 shadow-sm w-full sm:w-auto min-w-[120px] cursor-pointer hover:scale-105 focus:ring-pink-500"
+          >
             {t("header.register")}
           </Button>
         </Link>
@@ -181,18 +196,19 @@ const HeaderUserActions = () => {
   }
 
   return (
-    <div className='flex items-center'>
+    <div className="flex items-center">
       <Popover
-        placement='bottom'
+        placement="bottom"
         open={open}
         onOpenChange={handleOpenChange}
         content={<Content role={role} hide={hide} />}
-        trigger='hover'>
+        trigger="hover"
+      >
         <Avatar
-          size='large'
+          size="large"
           icon={<UserOutlined />}
           style={{ backgroundColor: "#3051F2" }}
-          className='cursor-pointer'
+          className="cursor-pointer"
         />
       </Popover>
     </div>

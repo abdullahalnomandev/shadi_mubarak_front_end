@@ -60,7 +60,7 @@ const Sidebar = () => {
     filtersRef.current = {
       bioDataNo: searchParams.get("bioDataNo") || "",
       biodataType: searchParams.get("biodataType") || "",
-      maritalStatus: searchParams.get("maritalStatus") || "single",
+      maritalStatus: searchParams.get("maritalStatus") || "",
       minAge: parseInt(searchParams.get("minAge") || "18"),
       maxAge: parseInt(searchParams.get("maxAge") || "60"),
       presentAddress: searchParams.get("presentAddress")?.split(",") || [],

@@ -129,7 +129,7 @@ const BioData = ({ bioDataNo, className = "" }: IProps) => {
                 bioDataInfo={bioDataInfo}
                 usrInfo={usrInfo}
                 bioDataNo={bioDataNo}
-                filterLength={!!filteredSections?.length}
+                filterLength={filteredSections?.length || 0}
               />
             )}
           </div>

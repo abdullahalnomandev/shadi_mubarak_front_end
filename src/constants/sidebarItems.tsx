@@ -122,7 +122,7 @@ export const sidebarItems = (
           {t("sidebar.logout")}
         </Button>
       ),
-      key: `/`,
+      key: "",
       icon: <CiLogout className='!text-red-500' />,
     },
   ];
