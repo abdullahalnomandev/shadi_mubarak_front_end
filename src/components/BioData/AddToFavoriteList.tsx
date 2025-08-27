@@ -3,13 +3,17 @@ import {
   useDeleteFavoriteListMutation,
   useGetFavoriteOneByIdQuery,
 } from "@/redux/api/favoriteList";
+import { isUserLoggedIn } from "@/services/auth.service";
 import { message } from "antd";
 import { useTranslations } from "next-intl";
+import { usePathname, useRouter } from "next/navigation";
 import { AiOutlineHeart } from "react-icons/ai";
 
 const AddToFavoriteList = ({ bioDataNo }: { bioDataNo: string }) => {
   const t = useTranslations();
-
+  const isLoggedIn = isUserLoggedIn() as any;
+  const router = useRouter();
+  const searchParams = usePathname();
   const [addFavoriteList, { isLoading: isAdding }] =
     useAddFavoriteListMutation();
   const [deleteFavoriteList, { isLoading: isRemoving }] =
@@ -19,6 +23,7 @@ const AddToFavoriteList = ({ bioDataNo }: { bioDataNo: string }) => {
   });
 
   const isFavorite = !!data?.favorite;
+
 
   const handleToggleFavorite = async () => {
     try {
@@ -30,7 +35,7 @@ const AddToFavoriteList = ({ bioDataNo }: { bioDataNo: string }) => {
         message.success("Added to favorites list");
       }
       refetch();
-    } catch (err) {
+    } catch (err:any) {
       message.error(err?.data || "Something went wrong");
     }
   };
@@ -49,7 +54,7 @@ const AddToFavoriteList = ({ bioDataNo }: { bioDataNo: string }) => {
     justify-center
   `}
       disabled={isAdding || isRemoving}
-      onClick={handleToggleFavorite}
+      onClick={() => isLoggedIn ? handleToggleFavorite() : router.push(`/login?callbackUrl=${searchParams}`)}
     >
       <AiOutlineHeart
         className={`w-4 h-4 ${isFavorite ? "text-rose-500" : "text-pink-500"}`}

@@ -7,7 +7,7 @@ interface Option {
 const getLocationDataInfo = (t: (key: string) => string) => {
   const searchLocation: Option[] = [
     {
-      value: "",
+      value: "all",
       label: t("location.all"),
     },
     // Chittagong Division

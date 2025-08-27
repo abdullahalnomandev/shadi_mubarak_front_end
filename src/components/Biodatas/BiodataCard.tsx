@@ -123,7 +123,8 @@ const BioDataCard = ({ biodata }: BiodataProps) => {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <span className="text-xs text-gray-500">
-                    {biodata?.general_information?.biodataType === "male's_biodata"
+                    {biodata?.general_information?.biodataType ===
+                    "male's_biodata"
                       ? t("profile.profession")
                       : t("profile.skin")}
                   </span>
@@ -131,7 +132,8 @@ const BioDataCard = ({ biodata }: BiodataProps) => {
                 <span
                   className="font-medium text-sm text-gray-800 text-right max-w-[120px] truncate"
                   title={
-                    biodata?.general_information?.biodataType === "male's_biodata"
+                    biodata?.general_information?.biodataType ===
+                    "male's_biodata"
                       ? t("profile.profession")
                       : t("profile.skin")
                   }
@@ -151,7 +153,10 @@ const BioDataCard = ({ biodata }: BiodataProps) => {
                   <span>{staticBiodata.views} views</span>
                 </div>
 
-                <Link href={`/biodata/${staticBiodata.bioDataNo}`}>
+                <Link
+                  href={`/biodata/${staticBiodata.bioDataNo}`}
+                  // target="_blank"
+                >
                   <Button
                     variant="secondary"
                     size="sm"

@@ -44,8 +44,11 @@ const BioDatas = () => {
   }, [searchParams]);
 
   // ✅ Use query as dependency (memoized so stable)
-  const { data, isLoading, error } = useGetALlBiodatasQuery(query);
-
+  const { data, isLoading, error } = useGetALlBiodatasQuery({
+    ...query,
+    presentAddress: query.presentAddress === 'all' ? '' : query.presentAddress,
+    permanentAddress: query.permanentAddress === 'all' ? '' : query.permanentAddress
+  });
   // ✅ Memoize active filters
   const activeFilters = useMemo(() => {
     const bioDataNo = query["bioDataNo"];

@@ -11,14 +11,15 @@ import PriviewBioDataHeader from "./PriviewBioDataHeader";
 import ViewContact from "./ViewContact";
 import renderValue from "./renderValue";
 import { useBiodataSections } from "./useBiodataSections";
+import Breadcrumb from "../UI/Breadcrumb";
 interface IProps {
   bioDataNo: string;
   className?: string;
-  bioDataInfo?:any;
+  bioDataInfo?: any;
 }
 
-const BioData = ({bioDataInfo, bioDataNo, className = "" }: IProps) => {
-  console.log('this-is',bioDataInfo)
+const BioData = ({ bioDataInfo, bioDataNo, className = "" }: IProps) => {
+  console.log("this-is", bioDataInfo);
   // const router = useRouter();
   const usrInfo = getUserInfo() as IUser;
   const t = useTranslations();
@@ -31,7 +32,11 @@ const BioData = ({bioDataInfo, bioDataNo, className = "" }: IProps) => {
   // });
 
   const bioData = bioDataInfo || {};
-  const sections = useBiodataSections({ bioData, bioDataNo:usrInfo?.bioDataNo, t });
+  const sections = useBiodataSections({
+    bioData,
+    bioDataNo: usrInfo?.bioDataNo,
+    t,
+  });
   const profileStatus = bioDataInfo?.profileStatus;
   // if (isLoading) {
   //   return <div>Loading...</div>;
@@ -48,14 +53,15 @@ const BioData = ({bioDataInfo, bioDataNo, className = "" }: IProps) => {
     }
 
     return (
-      <div className='relative mb-8' key={key}>
-        <div className='absolute inset-0 z-0' />
-        <table className='w-full border-t-3 border-gray-300 border-separate border-spacing-x-0 border-spacing-0.5 border rounded-sm border-t-gray-800 border-b-0 relative z-10'>
+      <div className="relative mb-8" key={key}>
+        <div className="absolute inset-0 z-0" />
+        <table className="w-full border-t-3 border-gray-300 border-separate border-spacing-x-0 border-spacing-0.5 border rounded-sm border-t-gray-800 border-b-0 relative z-10">
           <thead>
             <tr>
               <th
-                className='w-full border-gray-300 dark:border-gray-600 py-2 text-center text-2xl '
-                colSpan={2}>
+                className="w-full border-gray-300 dark:border-gray-600 py-2 text-center text-2xl "
+                colSpan={2}
+              >
                 {title}
               </th>
             </tr>
@@ -65,11 +71,11 @@ const BioData = ({bioDataInfo, bioDataNo, className = "" }: IProps) => {
               .filter(([key]) => key !== "_id")
               .filter(([key, value]) => value !== null && value !== undefined)
               .map(([key, value]) => (
-                <tr key={key} className='not-odd:bg-gray-100'>
-                  <td className='w-1/2 border-x-0 border  border-gray-300 p-2 align-top dark:border-gray-600 '>
+                <tr key={key} className="not-odd:bg-gray-100">
+                  <td className="w-1/2 border-x-0 border  border-gray-300 p-2 align-top dark:border-gray-600 ">
                     {key}
                   </td>
-                  <td className='w-1/2 border align-top border-gray-300 border-r-0 p-2'>
+                  <td className="w-1/2 border align-top border-gray-300 border-r-0 p-2">
                     {renderValue(value)}
                   </td>
                 </tr>
@@ -108,41 +114,53 @@ const BioData = ({bioDataInfo, bioDataNo, className = "" }: IProps) => {
 
   console.log({ filteredSections });
   return (
-    <div className={`m-auto mt-16 mb-8  ${className}  px-1`}>
-      <div className='sm:flex sm:flex-wrap sm:gap-4 relative'>
-        {usrInfo?.bioDataNo === bioDataNo && (
-          <PriviewBioDataHeader profileStatus={profileStatus} />
-        )}
-        <div className='sm:w-[350px] md:sticky md:top-[100px]   h-fit'>
-          <GeneralInfoProfile
-            general_information={bioData?.general_information}
-            profileStatus={profileStatus}
-            bioDataNo={bioData?.bioDataNo}
-            usrInfo={usrInfo}
-          />
-        </div>
-        <div className='sm:flex-1 min-w-0 '>
-          {filteredSections.map((section, index) =>
-            renderTable(section.title, section.data, index)
+    <>
+      <div className="pl-6">
+        <Breadcrumb
+          items={[
+            { label: "Biodatas", href: "/biodatas" },
+            { label: "Biodata" }, // Current page (no href)
+          ]}
+          showHome
+        />
+      </div>
+
+      <div className={`m-auto mt-16 mb-8  ${className}  px-1`}>
+        <div className="sm:flex sm:flex-wrap sm:gap-4 relative">
+          {usrInfo?.bioDataNo === bioDataNo && (
+            <PriviewBioDataHeader profileStatus={profileStatus} />
           )}
-          <div className='text-center'>
-            {profileStatus !== BioDataStatus.VERIFIED && (
-              <FooterStatus
-                bioDataInfo={bioDataInfo}
-                usrInfo={usrInfo}
-                bioDataNo={bioDataNo}
-                filterLength={filteredSections?.length || 0}
-              />
+          <div className="sm:w-[350px] md:sticky md:top-[100px]   h-fit">
+            <GeneralInfoProfile
+              general_information={bioData?.general_information}
+              profileStatus={profileStatus}
+              bioDataNo={bioData?.bioDataNo}
+              usrInfo={usrInfo}
+            />
+          </div>
+          <div className="sm:flex-1 min-w-0 ">
+            {filteredSections.map((section, index) =>
+              renderTable(section.title, section.data, index)
+            )}
+            <div className="text-center">
+              {profileStatus !== BioDataStatus.VERIFIED && (
+                <FooterStatus
+                  bioDataInfo={bioDataInfo}
+                  usrInfo={usrInfo}
+                  bioDataNo={bioDataNo}
+                  filterLength={filteredSections?.length || 0}
+                />
+              )}
+            </div>
+
+            {/* Conditionally Render  */}
+            {!bioData?.contact && BioDataStatus.VERIFIED === profileStatus && (
+              <ViewContact bioDataNo={bioDataNo} />
             )}
           </div>
-
-          {/* Conditionally Render  */}
-          {!bioData?.contact && BioDataStatus.VERIFIED === profileStatus && (
-            <ViewContact bioDataNo={bioDataNo} />
-          )}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
