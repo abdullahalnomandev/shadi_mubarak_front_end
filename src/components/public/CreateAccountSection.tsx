@@ -1,3 +1,4 @@
+"use client";
 import profileMan from "@/assets/boy-create-1.jpg";
 import niqab from "@/assets/girl.jpg";
 import Image from "next/image";
@@ -94,7 +95,6 @@ const CreateAccountSection = () => {
             <VideoPlayerButton
               title={t("video_button_title")}
               videoId='RHuVlgjwOHA'
-              variant='outline'
             />
           </div>
 

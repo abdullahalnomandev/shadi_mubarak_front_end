@@ -15,6 +15,7 @@ export const getUserInfo = () => {
   }
 };
 
+
 export const isUserLoggedIn = () => {
   return !!getFromLocalStorage(authKey);
 };

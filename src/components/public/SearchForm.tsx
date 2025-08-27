@@ -112,7 +112,7 @@ const SearchForm = () => {
                           name={field.name}
                           options={field.options}
                           placeholder={field.placeholder}
-                          showSearch
+                          showSearch={false}
                           size="large"
                           required
                           displayRender={(label: string[]) => {

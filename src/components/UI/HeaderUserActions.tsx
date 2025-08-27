@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import profileImage from "@/assets/girl.jpg";
@@ -130,6 +129,9 @@ const Content = ({ role, hide }: { role: string; hide?: () => void }) => {
         openKeys={openKeys}
         onOpenChange={handleOpenChange}
         items={sidebarItems(role, handleLogout, t)}
+        onClick={() => {
+          hide?.();
+        }}
       />
     </>
   );
@@ -137,42 +139,20 @@ const Content = ({ role, hide }: { role: string; hide?: () => void }) => {
 
 const HeaderUserActions = () => {
   const t = useTranslations();
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
   const [open, setOpen] = useState(false);
-  const pathname = usePathname();
 
   const hide = () => {
     setOpen(false);
   };
-
   const handleOpenChange = (newOpen: boolean) => {
     setOpen(newOpen);
   };
-
-  useEffect(() => {
-    const checkAuth = () => {
-      try {
-        const loggedIn = isUserLoggedIn();
-        setIsAuthenticated(loggedIn);
-      } catch (error) {
-        console.error("Auth check failed:", error);
-        setIsAuthenticated(false);
-      } finally {
-        // Add a small delay to prevent flash of loading state
-        setTimeout(() => setIsLoading(false), 100);
-      }
-    };
-
-    checkAuth();
-  }, [pathname]);
+  const isAuthenticated = isUserLoggedIn();
 
   // Only get user info if authenticated
   const userInfo = isAuthenticated ? (getUserInfo() as IUserPayload) : null;
   const role = userInfo?.role || "user"; // Provide a default role
-  const isLoggedIn = isUserLoggedIn();
-
-  if (isLoading || !isLoggedIn) {
+  if (!isAuthenticated) {
     return (
       <div className="hidden md:flex items-center gap-3">
         <Link href="/login">

@@ -14,31 +14,33 @@ import { useBiodataSections } from "./useBiodataSections";
 interface IProps {
   bioDataNo: string;
   className?: string;
+  bioDataInfo?:any;
 }
 
-const BioData = ({ bioDataNo, className = "" }: IProps) => {
+const BioData = ({bioDataInfo, bioDataNo, className = "" }: IProps) => {
+  console.log('this-is',bioDataInfo)
   // const router = useRouter();
   const usrInfo = getUserInfo() as IUser;
   const t = useTranslations();
-  const {
-    data: bioDataInfo,
-    isLoading,
-    error,
-  } = useGetBioDataByNoQuery({
-    bioDataNo,
-  });
+  // const {
+  //   data: bioDataInfo,
+  //   isLoading,
+  //   error,
+  // } = useGetBioDataByNoQuery({
+  //   bioDataNo,
+  // });
 
-  const bioData = bioDataInfo?.biodata || {};
+  const bioData = bioDataInfo || {};
   const sections = useBiodataSections({ bioData, bioDataNo:usrInfo?.bioDataNo, t });
-  const profileStatus = bioDataInfo?.biodata?.profileStatus;
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-  console.log("biodataInfo", bioDataInfo?.biodata);
+  const profileStatus = bioDataInfo?.profileStatus;
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
+  // console.log("biodataInfo", bioDataInfo?.biodata);
 
-  if (error) {
-    return <div>Error: {(error as any)?.message}</div>;
-  }
+  // if (error) {
+  //   return <div>Error: {(error as any)?.message}</div>;
+  // }
 
   const renderTable = (title: string, data: any, key: number) => {
     if (!data || Object.keys(data).length === 0) {

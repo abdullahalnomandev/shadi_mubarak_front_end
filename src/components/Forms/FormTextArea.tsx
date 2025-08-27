@@ -13,6 +13,7 @@ interface ITextArea {
   value?: string | string[] | undefined;
   placeholder?: string;
   validation?: object;
+  required?:boolean;
 }
 const FormTextArea = ({
   name,

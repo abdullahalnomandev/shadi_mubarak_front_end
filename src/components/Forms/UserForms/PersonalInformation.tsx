@@ -112,7 +112,6 @@ const PersonalInformation = () => {
             <Col key={name} xs={24} sm={12}>
               {type === "text" && (
                 <FormInput
-                  id={name}
                   name={name}
                   label={label}
                   type={type}
@@ -122,7 +121,6 @@ const PersonalInformation = () => {
               )}
               {type === "number" && (
                 <FormInput
-                  id={name}
                   name={name}
                   label={label}
                   type={type}

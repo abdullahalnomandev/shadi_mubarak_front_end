@@ -1,5 +1,4 @@
 import banner from "@/assets/main3.jpg";
-import SearchForm from "./SearchForm";
 import { useTranslations } from "next-intl";
 
 const Banner = () => {
@@ -34,7 +33,7 @@ const Banner = () => {
 
         {/* Main Content */}
         <div className='relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex flex-col'>
-          <div className='flex-1 flex flex-col justify-center items-center pt-16 '>
+          <div className='flex-1 flex flex-col justify-center items-center '>
             {/* Trust Badge */}
             <div className='mb-6 md:mb-8'>
               <div className='inline-flex items-center px-6 py-3 bg-white/15 backdrop-blur-md rounded-full border border-white/25 shadow-lg'>
@@ -96,12 +95,9 @@ const Banner = () => {
           </div>
 
           {/* Search Form */}
-          {/* <div className='relative -mb-16 md:-mb-20'>
-            <div className='w-full max-w-6xl mx-auto'> */}
-          <SearchForm />
+       
+          {/* <SearchForm /> */}
 
-          {/* </div>
-          </div> */}
         </div>
       </div>
     </div>

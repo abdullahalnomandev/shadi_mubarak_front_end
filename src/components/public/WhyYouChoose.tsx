@@ -1,3 +1,4 @@
+"use client";
 import { Card, Col, Row, Typography } from "antd";
 import { useTranslations } from "next-intl";
 import React from "react";
@@ -11,48 +12,6 @@ import {
 } from "react-icons/fa";
 
 const { Title, Paragraph } = Typography;
-
-// const features = [
-//   {
-//     title: "Verified Profiles",
-//     description:
-//       "All profiles undergo thorough verification process to ensure authenticity and security for our users.",
-//     icon: <FaUserShield className='w-8 h-8' />,
-//     gradient: "from-blue-500 to-indigo-600",
-//     bgGradient:
-//       "from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20",
-//     stats: "100% Verified",
-//     color: "text-blue-600 dark:text-blue-400",
-//   },
-//   {
-//     title: "Privacy First",
-//     description:
-//       "We prioritize your privacy with advanced security measures and strict data protection protocols.",
-//     icon: <FaLock className='w-8 h-8' />,
-//     gradient: "from-rose-500 to-pink-600",
-//     bgGradient:
-//       "from-rose-50 to-pink-50 dark:from-rose-900/20 dark:to-pink-900/20",
-//     stats: "Bank-level Security",
-//     color: "text-rose-600 dark:text-rose-400",
-//   },
-//   {
-//     title: "Success Stories",
-//     description:
-//       "Join thousands of successful marriages. Our platform has helped countless couples find their perfect match.",
-//     icon: <FaHeart className='w-8 h-8' />,
-//     gradient: "from-purple-500 to-violet-600",
-//     bgGradient:
-//       "from-purple-50 to-violet-50 dark:from-purple-900/20 dark:to-violet-900/20",
-//     stats: "10,000+ Matches",
-//     color: "text-purple-600 dark:text-purple-400",
-//   },
-// ];
-
-// const additionalFeatures = [
-//   { icon: <FaCheckCircle />, text: "24/7 Customer Support" },
-//   { icon: <FaUsers />, text: "Active Community" },
-//   { icon: <FaStar />, text: "Premium Matching Algorithm" },
-// ];
 
 const WhyYouChoose: React.FC = () => {
   const t = useTranslations("why_you_choose");

@@ -242,7 +242,7 @@ const Header = () => {
               <Link href="/login" onClick={() => setDrawerVisible(false)}>
                 <CustomButton
                   variant="outline"
-                  className="flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition duration-300 shadow-sm w-full sm:w-auto min-w-[120px] cursor-pointer hover:scale-105 border-pink-500 text-pink-500 hover:border-pink-500 hover:text-pink-500 !w-full !focus:ring-pink-500"
+                  className="flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 text-sm font-medium text-gray-700 bg-white border  rounded-md hover:bg-gray-50 transition duration-300 shadow-sm w-full sm:w-auto min-w-[120px] cursor-pointer hover:scale-105 border-pink-500 hover:border-pink-500 hover:text-pink-500  !focus:ring-pink-500"
                 >
                   {t("header.login")}
                 </CustomButton>
@@ -250,7 +250,7 @@ const Header = () => {
               <Link href="/register" onClick={() => setDrawerVisible(false)}>
                 <CustomButton
                   variant="cta"
-                  className="flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 text-sm font-medium text-white rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 transition duration-300 shadow-sm w-full sm:w-auto min-w-[120px] cursor-pointer hover:scale-105 !w-full !focus:ring-pink-500"
+                  className="flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 text-sm font-medium text-white rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 transition duration-300 shadow-sml sm:w-auto min-w-[120px] cursor-pointer hover:scale-105 !w-full !focus:ring-pink-500"
                 >
                   {t("header.register")}
                 </CustomButton>
