@@ -19,8 +19,6 @@ const Contact = () => {
     return true;
   });
 
-  console.log("contact", contact);
-
   return (
     <div>
       <h1 className='text-2xl font-semibold mb-6'>

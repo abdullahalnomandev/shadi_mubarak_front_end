@@ -144,7 +144,6 @@ const FormCascader = ({
       }
     }
 
-    console.log({ stringValue });
     if (onChange) onChange(stringValue);
     if (customOnChange) customOnChange(stringValue);
   };

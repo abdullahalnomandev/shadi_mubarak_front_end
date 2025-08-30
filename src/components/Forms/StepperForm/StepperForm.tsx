@@ -84,7 +84,6 @@ const StepperForm = ({ steps }: IStepsProps) => {
   });
 
   const { handleSubmit, reset, watch } = methods;
-  console.log("watch", watch());
 
   const [updateBiodata, { isLoading: isFetching }] = useUpdateBiodataMutation();
   const [updateProfile] = useUpdateProfileMutation();
@@ -99,7 +98,6 @@ const StepperForm = ({ steps }: IStepsProps) => {
     if (bioDataInfo?.biodata) {
       reset(bioDataInfo.biodata);
       const stepsFromAPI = bioDataInfo.biodata.completedSteps ?? [];
-      console.log({ stepsFromAPI });
       setCompletedSteps([0, ...stepsFromAPI]);
 
       if (stepsFromAPI.length === 10) {
@@ -126,7 +124,6 @@ const StepperForm = ({ steps }: IStepsProps) => {
       setCurrent(stepNumber);
     }
   };
-  console.log({ bioDataInfo });
 
   const handleSubmitBioData = async (type: "priview" | "submit") => {
     const stepKey = biodataSteps[current + 1];
@@ -212,8 +209,7 @@ const StepperForm = ({ steps }: IStepsProps) => {
   if (bioDataInfo?.biodata?.profileStatus === BioDataStatus.NOT_STARTED) {
     return null;
   }
-  console.log("bi", bioDataInfo?.biodata?.profileStatus);
-  console.log({ current });
+
   return (
     <div className='p-4 sm:p-6'>
       <AntModal

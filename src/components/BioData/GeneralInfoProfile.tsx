@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
+"use client";
 import profileImage from "@/assets/boy.jpg";
 import { IUser } from "@/types";
 import { message } from "antd";
@@ -55,7 +54,7 @@ const GeneralInfoProfile = ({
         <div className="w-full">
           {Object.entries(general_information)
             .filter(([key]) => key !== "_id")
-            .map(([key, value], index, array) => (
+            .map(([key, value], index) => (
               <div
                 key={key}
                 className={`flex ${

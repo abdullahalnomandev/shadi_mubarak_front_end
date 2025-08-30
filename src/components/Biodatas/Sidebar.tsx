@@ -36,7 +36,6 @@ const Sidebar = ({ query }: { query: Partial<FilterState> }) => {
   const t = useTranslations();
   const pathname = usePathname();
   const router = useRouter();
-  console.log({ohQuery:query})
 
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);

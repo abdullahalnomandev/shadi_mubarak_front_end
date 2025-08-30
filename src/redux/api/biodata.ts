@@ -51,8 +51,6 @@ const biodataApi = baseApi.injectEndpoints({
     }),
     updateBiodata: build.mutation({
       query: ({ stepNumber, biodataStepInfo }) => {
-        // console.log("🚀 Sending PATCH to:", `${BIO_DATA_API}/${stepNumber}`);
-        // console.log("📦 Payload data:", biodataStepInfo);
         return {
           url: `${BIO_DATA_API}/step/${stepNumber}`,
           method: "PATCH",

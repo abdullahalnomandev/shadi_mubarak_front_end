@@ -11,7 +11,6 @@ const SidebarProfile = () => {
   const { data: userData } = useGetUserQuery({});
 
   const completedSteps = (userData?.user as any)?.bioData?.completedSteps;
-  console.log({ completedSteps });
 
   const totalSteps = 10;
   const basePercent = 15;

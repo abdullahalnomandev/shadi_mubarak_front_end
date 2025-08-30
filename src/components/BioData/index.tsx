@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-"use client";
 import { BioDataStatus } from "@/constants/bioData";
-import { useGetBioDataByNoQuery } from "@/redux/api/biodata";
 import { getUserInfo } from "@/services/auth.service";
 import { IUser } from "@/types";
 import { useTranslations } from "next-intl";
@@ -19,18 +17,8 @@ interface IProps {
 }
 
 const BioData = ({ bioDataInfo, bioDataNo, className = "" }: IProps) => {
-  console.log("this-is", bioDataInfo);
-  // const router = useRouter();
   const usrInfo = getUserInfo() as IUser;
   const t = useTranslations();
-  // const {
-  //   data: bioDataInfo,
-  //   isLoading,
-  //   error,
-  // } = useGetBioDataByNoQuery({
-  //   bioDataNo,
-  // });
-
   const bioData = bioDataInfo || {};
   const sections = useBiodataSections({
     bioData,
@@ -38,15 +26,6 @@ const BioData = ({ bioDataInfo, bioDataNo, className = "" }: IProps) => {
     t,
   });
   const profileStatus = bioDataInfo?.profileStatus;
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
-  // console.log("biodataInfo", bioDataInfo?.biodata);
-
-  // if (error) {
-  //   return <div>Error: {(error as any)?.message}</div>;
-  // }
-
   const renderTable = (title: string, data: any, key: number) => {
     if (!data || Object.keys(data).length === 0) {
       return null;
@@ -112,7 +91,6 @@ const BioData = ({ bioDataInfo, bioDataNo, className = "" }: IProps) => {
       return true;
     });
 
-  console.log({ filteredSections });
   return (
     <>
       <div className="pl-6">
