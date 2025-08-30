@@ -3,7 +3,6 @@ import female from "@/assets/girl.jpg";
 import { Col } from "antd";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 import { FaEye, FaHeart } from "react-icons/fa";
 import Button from "../UI/Button";
 import { formatPreciseAgeFromDOB } from "./util/formateDob";
@@ -23,13 +22,13 @@ interface BiodataProps {
 const BioDataCard = ({ biodata }: BiodataProps) => {
   const t = useTranslations();
 
-  const [isShortlisted, setIsShortlisted] = useState(false);
+  // const [isShortlisted, setIsShortlisted] = useState(false);
 
-  const handleShortlist = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsShortlisted(!isShortlisted);
-  };
+  // const handleShortlist = (e: React.MouseEvent) => {
+  //   e.preventDefault();
+  //   e.stopPropagation();
+  //   setIsShortlisted(!isShortlisted);
+  // };
 
   // Static values for demonstration
   const staticBiodata = {
@@ -76,7 +75,7 @@ const BioDataCard = ({ biodata }: BiodataProps) => {
                     </p>
                   </div>
                 </div>
-
+{/* 
                 <button
                   onClick={handleShortlist}
                   className={`p-2 rounded-full transition-all duration-200 ${
@@ -89,7 +88,7 @@ const BioDataCard = ({ biodata }: BiodataProps) => {
                   }
                 >
                   <FaHeart className="text-xs" />
-                </button>
+                </button> */}
               </div>
             </div>
           </div>

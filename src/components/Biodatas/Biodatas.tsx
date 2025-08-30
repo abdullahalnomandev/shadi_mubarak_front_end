@@ -1,4 +1,3 @@
-"use client";
 import { Row } from "antd";
 import BioDataCard from "./BiodataCard";
 import Sidebar from "./Sidebar";
