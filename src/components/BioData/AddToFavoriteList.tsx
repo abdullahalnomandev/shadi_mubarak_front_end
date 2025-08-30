@@ -9,6 +9,7 @@ import { message } from "antd";
 import { useTranslations } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
 import { AiOutlineHeart } from "react-icons/ai";
+import { FiMinus } from "react-icons/fi";
 
 const AddToFavoriteList = ({ bioDataNo }: { bioDataNo: string }) => {
   const t = useTranslations();
@@ -25,7 +26,6 @@ const AddToFavoriteList = ({ bioDataNo }: { bioDataNo: string }) => {
 
   const isFavorite = !!data?.favorite;
 
-
   const handleToggleFavorite = async () => {
     try {
       if (isFavorite) {
@@ -36,7 +36,7 @@ const AddToFavoriteList = ({ bioDataNo }: { bioDataNo: string }) => {
         message.success("Added to favorites list");
       }
       refetch();
-    } catch (err:any) {
+    } catch (err: any) {
       message.error(err?.data || "Something went wrong");
     }
   };
@@ -55,11 +55,21 @@ const AddToFavoriteList = ({ bioDataNo }: { bioDataNo: string }) => {
     justify-center
   `}
       disabled={isAdding || isRemoving}
-      onClick={() => isLoggedIn ? handleToggleFavorite() : router.push(`/login?callbackUrl=${searchParams}`)}
+      onClick={() =>
+        isLoggedIn
+          ? handleToggleFavorite()
+          : router.push(`/login?callbackUrl=${searchParams}`)
+      }
     >
-      <AiOutlineHeart
-        className={`w-4 h-4 ${isFavorite ? "text-rose-500" : "text-pink-500"}`}
-      />
+      {isFavorite ? (
+        <FiMinus />
+      ) : (
+        <AiOutlineHeart
+          className={`w-4 h-4 ${
+            isFavorite ? "text-rose-500" : "text-pink-500"
+          }`}
+        />
+      )}
       {isFavorite
         ? t("biodata.actions.remove_from_shortList")
         : t("biodata.actions.add_to_shortlist")}
