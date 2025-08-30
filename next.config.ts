@@ -4,7 +4,7 @@ import createNextIntlPlugin from "next-intl/plugin";
 const nextConfig: NextConfig = {
   experimental:{
     staleTimes:{
-      dynamic:30
+      dynamic:100
     }
   },
   staticPageGenerationTimeout: 300,
