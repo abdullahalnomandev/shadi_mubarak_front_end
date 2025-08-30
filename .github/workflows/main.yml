@@ -23,7 +23,7 @@ jobs:
 
       # 3. Install dependencies
       - name: Install dependencies
-        run: yarn install --frozen-lockfile          # or `yarn install` if using yarn
+        run: yarn install          # or `yarn install` if using yarn
 
       # 4. Run tests
       # - name: Run tests
