@@ -1,5 +1,5 @@
 import BioData from "@/components/BioData";
-import { getBioData } from "@/lib/fetchers/biodata";
+import { getBaseUrl } from "@/helpers/config/envConfig";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,7 +9,13 @@ export const metadata: Metadata = {
 
 export default async function Page({ params }: { params: { biodata: string } }) {
   const { biodata } = params;
-  const {data: bioDataInfo} = await getBioData(biodata);
+  // const {data: bioDataInfo} = await getBioData(biodata);
+    const data = await fetch(`${getBaseUrl()}/biodata/${biodata}`,{
+      next: {revalidate:1800}
+    });
+    const {data:bioDataInfo} = await data.json();
+
+    // console.log({bioDataInfo})
 
   return (
     <div className="min-h-screen">
