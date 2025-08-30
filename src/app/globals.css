@@ -16,19 +16,25 @@
 }
 
 /* Scroll style */
+html {
+  scroll-behavior: smooth;
+}
+
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
   background: #f9f9f9;
   border-radius: 10px;
+  margin: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: #c1c1c1;
   border-radius: 10px;
-  transition: background-color 0.3s ease;
+  border: 2px solid #f9f9f9;
+  transition: all 0.3s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {

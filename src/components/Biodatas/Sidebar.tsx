@@ -5,7 +5,7 @@ import { DownOutlined, FilterOutlined, CloseOutlined } from "@ant-design/icons";
 import { Button, Input, Select, Slider, Drawer, Cascader } from "antd";
 import Sider from "antd/es/layout/Sider";
 import { useTranslations } from "next-intl";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import CustomButton from "../UI/Button";
 import { getGenderOption, getMaritalStatusOptions } from "@/constants/global";
@@ -17,8 +17,8 @@ interface FilterState {
   maritalStatus: string;
   minAge: number;
   maxAge: number;
-  presentAddress: (string | number)[];
-  permanentAddress: (string | number)[];
+  presentAddress: string;
+  permanentAddress: string;
 }
 
 const DEFAULT_FILTERS: FilterState = {
@@ -27,27 +27,31 @@ const DEFAULT_FILTERS: FilterState = {
   maritalStatus: "",
   minAge: 18,
   maxAge: 60,
-  presentAddress: [],
-  permanentAddress: [],
+  presentAddress: "",
+  permanentAddress: "",
 };
 
-const Sidebar = () => {
+const Sidebar = ({ query }: { query: Partial<FilterState> }) => {
+
   const t = useTranslations();
   const pathname = usePathname();
   const router = useRouter();
-  const searchParams = useSearchParams();
+  console.log({ohQuery:query})
 
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [collapsedSections, setCollapsedSections] = useState({
     general: false,
-    address: !searchParams.get("presentAddress"),
+    address: !(query.presentAddress && query.presentAddress.length > 0),
   });
 
-  // Use ref to store filters locally without rerendering
-  const filtersRef = useRef<FilterState>({ ...DEFAULT_FILTERS });
+  // ✅ Initialize filters from props.query
+  const filtersRef = useRef<FilterState>({
+    ...DEFAULT_FILTERS,
+    ...query,
+  });
 
-  // Screen size detection
+  // Detect screen size
   useEffect(() => {
     const checkScreenSize = () => setIsMobile(window.innerWidth < 768);
     checkScreenSize();
@@ -55,31 +59,14 @@ const Sidebar = () => {
     return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
-  // Sync from URL once on mount
-  useEffect(() => {
-    filtersRef.current = {
-      bioDataNo: searchParams.get("bioDataNo") || "",
-      biodataType: searchParams.get("biodataType") || "",
-      maritalStatus: searchParams.get("maritalStatus") || "",
-      minAge: parseInt(searchParams.get("minAge") || "18"),
-      maxAge: parseInt(searchParams.get("maxAge") || "60"),
-      presentAddress: searchParams.get("presentAddress")?.split(",") || [],
-      permanentAddress: searchParams.get("permanentAddress")?.split(",") || [],
-    };
-  }, [searchParams]);
-
+  // Build query string for router push
   const buildQueryParams = (newFilters: FilterState) => {
     const params = new URLSearchParams();
     Object.entries(newFilters).forEach(([key, val]) => {
       if (!val || val === "all") return;
       if ((key === "minAge" && val === 18) || (key === "maxAge" && val === 60))
         return;
-      if (Array.isArray(val)) {
-        if (val?.length === 0) return;
-        params.set(key, val.join(","));
-      } else {
-        params.set(key, String(val));
-      }
+      params.set(key, String(val));
     });
     return params.toString();
   };
@@ -101,7 +88,7 @@ const Sidebar = () => {
   };
 
   const FilterContent = () => {
-    const f = filtersRef.current; // current filter snapshot
+    const f = filtersRef.current;
 
     return (
       <div className="p-2 pb-1 bg-white w-full h-full overflow-y-auto">
@@ -145,7 +132,7 @@ const Sidebar = () => {
           />
         </div>
 
-        {/* Sections */}
+        {/* General Section */}
         <AccordionSection
           title={t("search_form.general")}
           collapsed={collapsedSections.general}
@@ -155,7 +142,9 @@ const Sidebar = () => {
             <SelectField
               label={t("search_form.looking_for")}
               defaultValue={f.biodataType}
-              onChange={(val: string) => (filtersRef.current.biodataType = val)}
+              onChange={(val: string) =>
+                (filtersRef.current.biodataType = val)
+              }
               options={getGenderOption(t)}
               isMobile={isMobile}
             />
@@ -191,36 +180,34 @@ const Sidebar = () => {
           </div>
         </AccordionSection>
 
+        {/* Address Section */}
         <AccordionSection
           title={t("search_form.address")}
           collapsed={collapsedSections.address}
           toggle={() => toggleSection("address")}
         >
-          {!collapsedSections.address && (
-            <div className="space-y-4 pl-2">
-              <CascaderField
-                label={t("search_form.present_address")}
-                defaultValue={f.presentAddress}
-                placeholder={t("search_form.select_location")}
-                onChange={(val: (string | number)[]) =>
-                  (filtersRef.current.presentAddress = val)
-                }
-                isMobile={isMobile}
-                t={t}
-              />
-              <CascaderField
-                // label="Permanent Address"
-                label={t("search_form.permanent_address")}
-                defaultValue={f.permanentAddress}
-                placeholder={t("search_form.select_location")}
-                onChange={(val: (string | number)[]) =>
-                  (filtersRef.current.permanentAddress = val)
-                }
-                isMobile={isMobile}
-                t={t}
-              />
-            </div>
-          )}
+          <div className="space-y-4 pl-2">
+            <CascaderField
+              label={t("search_form.present_address")}
+              defaultValue={f.presentAddress ? f.presentAddress.split(",") : []}
+              placeholder={t("search_form.select_location")}
+              onChange={(val: (string | number)[]) =>
+                (filtersRef.current.presentAddress = val?.join(","))
+              }
+              isMobile={isMobile}
+              t={t}
+            />
+            <CascaderField
+              label={t("search_form.permanent_address")}
+              defaultValue={f.permanentAddress ? f.permanentAddress.split(",") : []}
+              placeholder={t("search_form.select_location")}
+              onChange={(val: (string | number)[]) =>
+                (filtersRef.current.permanentAddress = val?.join(","))
+              }
+              isMobile={isMobile}
+              t={t}
+            />
+          </div>
         </AccordionSection>
 
         {/* Apply Button */}
@@ -331,7 +318,7 @@ const CascaderField = ({
     <p className="text-gray-600 mb-2">{label}</p>
     <Cascader
       options={getLocationData(t).searchLocationData}
-      defaultValue={defaultValue?.length > 0 ? defaultValue : undefined}
+      defaultValue={defaultValue}
       placeholder={placeholder}
       onChange={onChange}
       showSearch
