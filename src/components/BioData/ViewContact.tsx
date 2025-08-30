@@ -18,8 +18,8 @@ const ViewContact = ({ bioDataNo }: { bioDataNo: string }) => {
   const t  = useTranslations();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [purchaseBiodata, { isLoading }] = usePurchaseBiodataMutation();
-  const { data } = useGetConnectionQuery({});
   const isUserLoggedIn = getUserInfo();
+  const { data } = useGetConnectionQuery({},{skip:!isUserLoggedIn});
 
   const handlePurchase = async () => {
     try {

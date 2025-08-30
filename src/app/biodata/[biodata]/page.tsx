@@ -11,8 +11,11 @@ export default async function Page({ params }: { params: { biodata: string } }) 
   const { biodata } = params;
   // const {data: bioDataInfo} = await getBioData(biodata);
     const data = await fetch(`${getBaseUrl()}/biodata/${biodata}`,{
+      cache:"force-cache",
       next: {revalidate:1800}
     });
+    console.log("x-vercel-cache", data.headers.get("x-vercel-cache"));
+
     const {data:bioDataInfo} = await data.json();
 
     // console.log({bioDataInfo})

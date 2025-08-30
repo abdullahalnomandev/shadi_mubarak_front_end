@@ -22,7 +22,11 @@ const AddToFavoriteList = ({ bioDataNo }: { bioDataNo: string }) => {
     useDeleteFavoriteListMutation();
   const { data, refetch } = useGetFavoriteOneByIdQuery({
     likedPersonId: bioDataNo,
-  });
+  },
+  {
+    skip:!isLoggedIn
+  }
+);
 
   const isFavorite = !!data?.favorite;
 
