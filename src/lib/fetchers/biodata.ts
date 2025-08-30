@@ -3,7 +3,7 @@ import { getBaseUrl } from "@/helpers/config/envConfig";
 export async function getBioData(biodata: string) {
   const res = await fetch(`${getBaseUrl()}/biodata/${biodata}`, {
     cache: "force-cache",         // always cache first
-    next: { revalidate: 1800 },   // revalidate every 30 min (1800 sec)
+    // next: { revalidate: 1800 },   // revalidate every 30 min (1800 sec)
   });
 
   if (!res.ok) {
