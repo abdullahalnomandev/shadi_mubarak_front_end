@@ -8,9 +8,6 @@ const nextConfig: NextConfig = {
     }
   },
   staticPageGenerationTimeout: 300,
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   typescript: {
     ignoreBuildErrors: true,
   },

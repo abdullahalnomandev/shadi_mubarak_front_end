@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Page({ params }: { params: { biodata: string } }) {
-  const { biodata } = params;
+  const { biodata } = await params;
   // const {data: bioDataInfo} = await getBioData(biodata);
     const data = await fetch(`${getBaseUrl()}/biodata/${biodata}`,{
       cache:"force-cache",
@@ -22,7 +22,7 @@ export default async function Page({ params }: { params: { biodata: string } }) 
 
   return (
     <div className="min-h-screen">
-      <BioData bioDataInfo={bioDataInfo} bioDataNo={biodata} className="sm:px-14" />
+      <BioData bioDataInfo={bioDataInfo} bioDataNo={biodata} className="max-w-7xl mx-auto" />
     </div>
   );
 }

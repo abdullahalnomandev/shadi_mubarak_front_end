@@ -29,7 +29,7 @@ const FormInput = ({
   prefixSelector,
   disabled = false,
   required = false,
-  className = "!py-2",
+  className = "py-2!",
 }: IInput) => {
   const {
     control,
@@ -55,12 +55,11 @@ const FormInput = ({
               value={value ? value : field.value}
               className={`
                 ${className}
-                dark:!bg-slate-800 
-                dark:!text-white 
-                dark:!placeholder-slate-500 
-                dark:!border-slate-700
-                dark:focus:!border-blue-500 
-                dark:!focus:border-blue-900
+                dark:bg-slate-800! 
+                dark:text-white! 
+                dark:placeholder-slate-500! 
+                dark:border-slate-700!
+                dark:focus:border-blue-900!
               `}
             />
           ) : (
@@ -74,19 +73,18 @@ const FormInput = ({
               autoComplete='off'
               className={`
                 ${className}
-                dark:!bg-slate-800 
-                dark:!text-white 
-                dark:!placeholder-slate-500 
-                dark:!border-slate-700
-                dark:focus:!border-blue-500 
-                dark:!focus:border-blue-900
+                dark:bg-slate-800! 
+                dark:text-white! 
+                dark:!placeholder-slate-500! 
+                dark:border-slate-700!
+                dark:focus:border-blue-900!
               `}
               disabled={disabled}
             />
           )
         }
       />
-      <small className='text-red-500 dark:!text-amber-600'>
+      <small className='text-red-500 dark:text-amber-600!'>
         {typeof errorMessage === "string"
           ? errorMessage
           : typeof errors[name]?.message === "string"

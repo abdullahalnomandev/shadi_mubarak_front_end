@@ -37,14 +37,14 @@ const PriviewBioDataHeader = ({ profileStatus }: { profileStatus: string }) => {
         </div>
         <div className='flex flex-col sm:flex-row gap-4 w-full sm:w-auto'>
           <Link href='/user/edit-biodata'>
-            <button className='flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition duration-300 shadow-sm w-full sm:w-auto min-w-[120px] cursor-pointer hover:scale-105'>
+            <button className='flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition duration-300 shadow-sm w-full sm:w-auto min-w-30 cursor-pointer hover:scale-105'>
               <FiEdit className='text-lg' />
               Edit More
             </button>
           </Link>
           {profileStatus === BioDataStatus.NOT_SUBMITTED && (
             <button
-              className='flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 text-sm font-medium text-white rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 transition duration-300 shadow-sm w-full sm:w-auto min-w-[120px] cursor-pointer hover:scale-105'
+              className='flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 text-sm font-medium text-white rounded-md bg-linear-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 transition duration-300 shadow-sm w-full sm:w-auto min-w-30 cursor-pointer hover:scale-105'
               onClick={handleUpdateProfile}>
               <FiSend className='text-lg' />
               Submit

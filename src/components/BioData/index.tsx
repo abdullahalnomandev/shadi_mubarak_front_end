@@ -93,7 +93,7 @@ const BioData = ({ bioDataInfo, bioDataNo, className = "" }: IProps) => {
 
   return (
     <>
-      <div className="pl-6">
+      <div className="max-w-7xl mx-auto">
         <Breadcrumb
           items={[
             { label: "Biodatas", href: "/biodatas" },
@@ -108,7 +108,7 @@ const BioData = ({ bioDataInfo, bioDataNo, className = "" }: IProps) => {
           {usrInfo?.bioDataNo === bioDataNo && (
             <PriviewBioDataHeader profileStatus={profileStatus} />
           )}
-          <div className="sm:w-[350px] md:sticky md:top-[100px]   h-fit">
+          <div className="sm:w-87.5 md:sticky md:top-25   h-fit">
             <GeneralInfoProfile
               general_information={bioData?.general_information}
               profileStatus={profileStatus}
