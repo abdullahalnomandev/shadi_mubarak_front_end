@@ -76,14 +76,14 @@ const SearchForm = () => {
   return (
     <div className="w-full relative z-30">
       <div className="bg-white/98 backdrop-blur-lg rounded-lg shadow-2xl border border-white/30 overflow-hidden max-w-6xl mx-auto">
-        <div className="h-1.5 bg-gradient-to-r from-rose-400 via-pink-500 to-rose-400" />
+        <div className="h-1.5 bg-linear-to-r from-rose-400 via-pink-500 to-rose-400" />
 
-        <div className="bg-gradient-to-br from-gray-50/95 to-white/95 backdrop-blur-sm p-4 md:p-8 border-b border-gray-100/50">
+        <div className="bg-linear-to-br from-gray-50/95 to-white/95 backdrop-blur-sm p-4 md:p-8 border-b border-gray-100/50">
           <div className="text-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-rose-500 to-pink-600 rounded-2xl mb-4 shadow-xl transform hover:scale-105 transition-transform duration-300">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-linear-to-br from-rose-500 to-pink-600 rounded-2xl mb-4 shadow-xl transform hover:scale-105 transition-transform duration-300">
               <span className="text-white text-2xl">💕</span>
             </div>
-            <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 bg-clip-text text-transparent">
+            <h3 className="text-2xl md:text-3xl font-bold bg-linear-to-r from-gray-800 via-gray-700 to-gray-800 bg-clip-text text-transparent">
               {t("search_form.find_match_heading")}
             </h3>
           </div>
@@ -131,7 +131,7 @@ const SearchForm = () => {
               <Col xs={24}>
                 <div className="flex justify-center mt-8 md:mt-10">
                   <button
-                    className="px-8 py-3 text-lg font-semibold bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 text-white rounded-lg w-full sm:w-auto cursor-pointer flex items-center justify-center gap-2"
+                    className="px-8 py-3 text-lg font-semibold bg-linear-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 text-white rounded-lg w-full sm:w-auto cursor-pointer flex items-center justify-center gap-2"
                     type="submit"
                   >
                     <SearchOutlined className="text-lg" />

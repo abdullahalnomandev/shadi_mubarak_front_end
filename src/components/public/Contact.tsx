@@ -85,14 +85,15 @@ const Contact = () => {
     <>
       {/* ───────────────────────── Contact Section ───────────────────────── */}
       <section
-        className='pb-8 flex flex-col md:flex-row gap-12 sm:p-8 md:p-16
+        className='pb-8 max-w-7xl mx-auto flex flex-col px-0 md:flex-row gap-12 sm:p-8 mx:px-0
+         md:py-16
                     font-sans text-gray-900 dark:text-slate-100 dark:bg-[#0f172a] sm:pt-0 pt-8 '>
         {/* Left Form Panel */}
         <div
           className='flex-1 bg-[#e8efff] dark:bg-slate-800 rounded-xl p-10 max-w-lg relative pb-40'
           data-aos='fade-right'>
           <div className='text-center lg:text-left mb-8'>
-            <h2 className='text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent'>
+            <h2 className='text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 bg-linear-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent'>
               {t('header.title')}
             </h2>
             <p className='text-gray-600 dark:text-gray-300 text-sm sm:text-base'>
@@ -197,7 +198,7 @@ const Contact = () => {
       </section>
 
       {/* ───────────────────────── Google Map ───────────────────────── */}
-      <div className='w-full h-[300px] md:h-[400px] mpb-10'>
+      <div className='w-full h-75 md:h-100 mpb-10'>
         <iframe
           title={t('map.title')}
           src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.578356451677!2d90.35655181540004!3d23.810332284573265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c754d5ebd69b%3A0x2d79608d9a16429f!2sMirpur-1%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1698866563220!5m2!1sen!2sbd'

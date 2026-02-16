@@ -56,27 +56,27 @@ const WhyYouChoose: React.FC = () => {
   ];
 
   return (
-    <section className='relative py-24 bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden'>
+    <section className='relative py-24 bg-linear-to-br from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden'>
       {/* Background decorative elements */}
       <div className='absolute inset-0 overflow-hidden pointer-events-none'>
-        <div className='absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-blue-200/30 to-purple-200/30 dark:from-blue-800/20 dark:to-purple-800/20 rounded-full blur-3xl'></div>
-        <div className='absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-br from-rose-200/30 to-pink-200/30 dark:from-rose-800/20 dark:to-pink-800/20 rounded-full blur-3xl'></div>
-        <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-indigo-200/20 to-cyan-200/20 dark:from-indigo-800/10 dark:to-cyan-800/10 rounded-full blur-3xl'></div>
+        <div className='absolute top-20 left-10 w-72 h-72 bg-linear-to-br from-blue-200/30 to-purple-200/30 dark:from-blue-800/20 dark:to-purple-800/20 rounded-full blur-3xl'></div>
+        <div className='absolute bottom-20 right-10 w-96 h-96 bg-linear-to-br from-rose-200/30 to-pink-200/30 dark:from-rose-800/20 dark:to-pink-800/20 rounded-full blur-3xl'></div>
+        <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-linear-to-br from-indigo-200/20 to-cyan-200/20 dark:from-indigo-800/10 dark:to-cyan-800/10 rounded-full blur-3xl'></div>
       </div>
 
-      <div className='container mx-auto px-4 relative z-10'>
+      <div className='container max-w-7xl m-auto relative z-10'>
         {/* Header Section */}
         <div className='text-center mb-20'>
           {/* Badge */}
-          <div className='inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 rounded-full text-sm font-semibold text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 mb-6'>
+          <div className='inline-flex items-center px-4 py-2 bg-linear-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 rounded-full text-sm font-semibold text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 mb-6'>
             <FaStar className='w-4 h-4 mr-2' />
             {t("trusted_badge")}
           </div>
 
           {/* Main Heading */}
-          <h2 className='text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent leading-tight'>
+          <h2 className='text-5xl md:text-6xl font-bold mb-6 bg-linear-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent leading-tight'>
             {t("main_heading_part1")}
-            <span className='block bg-gradient-to-r from-blue-600 via-purple-600 to-rose-600 bg-clip-text text-transparent'>
+            <span className='block bg-linear-to-r from-blue-600 via-purple-600 to-rose-600 bg-clip-text text-transparent'>
               {t("main_heading_part2")}
             </span>
           </h2>
@@ -95,13 +95,13 @@ const WhyYouChoose: React.FC = () => {
                 style={{ borderRadius: "24px" }}>
                 {/* Gradient Background */}
                 <div
-                  className={`absolute inset-0 bg-gradient-to-br ${feature.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+                  className={`absolute inset-0 bg-linear-to-br ${feature.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
 
                 <div className='relative z-10 p-8'>
                   {/* Icon with gradient background */}
                   <div className='relative mb-6'>
                     <div
-                      className={`w-16 h-16 bg-gradient-to-br ${feature.gradient} rounded-2xl flex items-center justify-center mb-4 mx-auto shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                      className={`w-16 h-16 bg-linear-to-br ${feature.gradient} rounded-2xl flex items-center justify-center mb-4 mx-auto shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                       <div className='text-white'>{feature.icon}</div>
                     </div>
 
@@ -117,17 +117,17 @@ const WhyYouChoose: React.FC = () => {
                   <div className='text-center'>
                     <Title
                       level={3}
-                      className='!mb-4 !text-2xl font-bold text-gray-900 dark:text-white group-hover:text-gray-800 dark:group-hover:text-gray-100 transition-colors duration-300'>
+                      className='mb-4! text-2xl! font-bold text-gray-900 dark:text-white group-hover:text-gray-800 dark:group-hover:text-gray-100 transition-colors duration-300'>
                       {feature.title}
                     </Title>
 
-                    <Paragraph className='!mb-0 text-gray-600 dark:text-gray-300 text-base leading-relaxed group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300'>
+                    <Paragraph className='mb-0! text-gray-600 dark:text-gray-300 text-base leading-relaxed group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300'>
                       {feature.description}
                     </Paragraph>
                   </div>
 
                   {/* Hover effect indicator */}
-                  <div className='absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500'></div>
+                  <div className='absolute bottom-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-blue-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500'></div>
                 </div>
               </Card>
             </Col>
@@ -153,7 +153,7 @@ const WhyYouChoose: React.FC = () => {
                 {additionalFeatures.map((item, index) => (
                   <div
                     key={index}
-                    className='flex items-center space-x-3 p-4 bg-gradient-to-r from-gray-50 to-white dark:from-gray-700 dark:to-gray-800 rounded-xl hover:shadow-md transition-all duration-300 group cursor-pointer'>
+                    className='flex items-center space-x-3 p-4 bg-linear-to-r from-gray-50 to-white dark:from-gray-700 dark:to-gray-800 rounded-xl hover:shadow-md transition-all duration-300 group cursor-pointer'>
                     <div className='text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform duration-300'>
                       {item.icon}
                     </div>
@@ -169,7 +169,7 @@ const WhyYouChoose: React.FC = () => {
 
         {/* Bottom CTA */}
         <div className='text-center mt-16'>
-          <div className='inline-flex items-center space-x-8 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group'>
+          <div className='inline-flex items-center space-x-8 bg-linear-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group'>
             <div className='flex items-center space-x-2'>
               <FaHeart className='w-5 h-5 text-red-300 group-hover:animate-pulse' />
               <span className='font-semibold'>{t("cta_marriages")}</span>

@@ -126,14 +126,14 @@ const Header = () => {
   return (
     <>
       <AntHeader
-        className={`!bg-white dark:!bg-slate-900 dark:!text-slate-300 sticky top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`bg-white! dark:bg-slate-900! dark:text-slate-300! sticky top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled ? "shadow-md" : ""
         }`}
       >
-        <div className="flex justify-between items-center  sm:px-8 h-full max-w-7xl m-auto">
+        <div className="flex justify-between items-center  h-full max-w-7xl m-auto">
           <div>
             <Link href="/">
-              <h2 className="text-xl font-bold tracking-tight bg-gradient-to-r from-pink-600 to-blue-600 bg-clip-text text-transparent">
+              <h2 className="text-xl font-bold tracking-tight bg-linear-to-r from-pink-600 to-blue-600 bg-clip-text text-transparent">
                 বিয়ের ঠিকানা
               </h2>
             </Link>
@@ -145,7 +145,7 @@ const Header = () => {
               items={navItems}
               selectedKeys={selectedKeys}
               disabledOverflow
-              className="!bg-transparent !border-none"
+              className="bg-transparent! border-none!"
               theme={isDarkMode ? "dark" : "light"}
           
             />
@@ -158,7 +158,7 @@ const Header = () => {
               options={languageOptions}
               size="middle"
               prefix={
-                <GlobalOutlined className="!text-gray-500 dark:!text-gray-400" />
+                <GlobalOutlined className="text-gray-500! dark:text-gray-400!" />
               }
               classNames={{
                 popup: {
@@ -186,9 +186,9 @@ const Header = () => {
             <div className="md:hidden">
               <Button
                 type="text"
-                icon={<MenuOutlined className="dark:!text-slate-50" />}
+                icon={<MenuOutlined className="dark:text-slate-50!" />}
                 onClick={() => setDrawerVisible(true)}
-                className="!border-none hover:!bg-gray-100 dark:hover:!bg-slate-800"
+                className="border-none! hover:bg-gray-100! dark:hover:bg-slate-800!"
               />
             </div>
           </div>
@@ -205,19 +205,19 @@ const Header = () => {
                     className="language-select-mobile"
                     style={{ width: 100 }}
                     size="small"
-                    suffixIcon={<GlobalOutlined className="!text-gray-500" />}
+                    suffixIcon={<GlobalOutlined className="text-gray-500!" />}
                     variant="borderless"
                   />
                   <Button
                     type="text"
                     size="small"
                     onClick={toggleDarkMode}
-                    className="!border-none"
+                    className="border-none!"
                     icon={
                       isDarkMode ? (
-                        <SunOutlined className="!text-sm !text-yellow-400" />
+                        <SunOutlined className="text-sm! text-yellow-400!" />
                       ) : (
-                        <MoonOutlined className="!text-sm" />
+                        <MoonOutlined className="text-sm!" />
                       )
                     }
                   />
@@ -227,7 +227,7 @@ const Header = () => {
             placement="right"
             onClose={() => setDrawerVisible(false)}
             open={drawerVisible}
-            className="dark:!bg-gray-900"
+            className="dark:bg-gray-900!"
           >
             <Menu
               mode="vertical"
@@ -242,7 +242,7 @@ const Header = () => {
               <Link href="/login" onClick={() => setDrawerVisible(false)}>
                 <CustomButton
                   variant="outline"
-                  className="flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 text-sm font-medium text-gray-700 bg-white border  rounded-md hover:bg-gray-50 transition duration-300 shadow-sm w-full sm:w-auto min-w-[120px] cursor-pointer hover:scale-105 border-pink-500 hover:border-pink-500 hover:text-pink-500  !focus:ring-pink-500"
+                  className="flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 text-sm font-medium text-gray-700 bg-white border  rounded-md hover:bg-gray-50 transition duration-300 shadow-sm w-full sm:w-auto min-w-30 cursor-pointer hover:scale-105 border-pink-500 hover:border-pink-500 hover:text-pink-500  !focus:ring-pink-500"
                 >
                   {t("header.login")}
                 </CustomButton>
@@ -250,7 +250,7 @@ const Header = () => {
               <Link href="/register" onClick={() => setDrawerVisible(false)}>
                 <CustomButton
                   variant="cta"
-                  className="flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 text-sm font-medium text-white rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 transition duration-300 shadow-sml sm:w-auto min-w-[120px] cursor-pointer hover:scale-105 !w-full !focus:ring-pink-500"
+                  className="flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 text-sm font-medium text-white rounded-md bg-linear-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 transition duration-300 shadow-sml sm:w-auto min-w-30 cursor-pointer hover:scale-105 w-full! !focus:ring-pink-500"
                 >
                   {t("header.register")}
                 </CustomButton>

@@ -11,7 +11,7 @@ type BioDatasProps = {
 const BioDatas = ({ data, query }: BioDatasProps) => {
   const t = useTranslations();
   return (
-    <div className="flex flex-col md:flex-row min-h-screen">
+    <div className="flex flex-col max-w-7xl mx-auto md:flex-row min-h-screen">
       <Sidebar query={query} />
 
       <div className="flex-1 p-2 md:p-4">

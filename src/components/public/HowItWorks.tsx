@@ -34,15 +34,15 @@ const HowItWorks = () => {
   ];
 
   return (
-    <div className='container mx-auto px-4 sm:px-8 lg:px-20 py-16'>
+    <div className=' px-4 sm:px-8 max-w-7xl m-auto py-16'>
       <div className='text-center pb-16'>
-        <h2 className='text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent leading-tight'>
+        <h2 className='text-5xl md:text-6xl font-bold mb-6 bg-linear-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent leading-tight'>
           <span className='text-gray-700 dark:text-white'>{t("heading_part1")}</span>
-          <span className='block bg-gradient-to-r from-blue-600 via-purple-600 to-rose-600 bg-clip-text text-transparent'>
+          <span className='block bg-linear-to-r from-blue-600 via-purple-600 to-rose-600 bg-clip-text text-transparent'>
             {t("heading_part2")}
           </span>
         </h2>
-        <p className='text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed'>
+        <p className='text-xl text-gray-600 dark:text-gray-300  mx-auto leading-relaxed'>
           {t("description")}
         </p>
       </div>
@@ -98,7 +98,7 @@ const StepCard = ({
   return (
     <div className='flex items-start gap-4'>
       <div
-        className={`flex-shrink-0 ${bgColor} text-white rounded-full w-8 h-8 flex items-center justify-center font-semibold`}>
+        className={`shrink-0 ${bgColor} text-white rounded-full w-8 h-8 flex items-center justify-center font-semibold`}>
         {id}
       </div>
       <div>

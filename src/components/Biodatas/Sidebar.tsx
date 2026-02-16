@@ -90,7 +90,7 @@ const Sidebar = ({ query }: { query: Partial<FilterState> }) => {
     const f = filtersRef.current;
 
     return (
-      <div className="p-2 pb-1 bg-white w-full h-full overflow-y-auto">
+      <div className="p-2 pb-1 bg-white w-full  h-full overflow-y-auto">
         {/* Header */}
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-pink-500 font-medium text-lg flex items-center gap-1">
@@ -102,7 +102,7 @@ const Sidebar = ({ query }: { query: Partial<FilterState> }) => {
               type="link"
               size="small"
               onClick={clearAllFilters}
-              className="!text-red-500 p-0"
+              className="text-red-500! p-0"
             >
               {t("search_form.clear_all")}
             </Button>
@@ -226,7 +226,7 @@ const Sidebar = ({ query }: { query: Partial<FilterState> }) => {
           type="link"
           icon={<FilterOutlined />}
           onClick={() => setDrawerOpen(true)}
-          className="!fixed !top-16 !right-4 !text-white !z-50 shadow-lg !bg-pink-600 !hover:bg-pink-700 !border-pink-600"
+          className="fixed! top-16! right-4! text-white! z-50! shadow-lg bg-pink-600! !hover:bg-pink-700 border-pink-600!"
           size="large"
           shape="round"
         >
@@ -263,12 +263,12 @@ const Sidebar = ({ query }: { query: Partial<FilterState> }) => {
 
 // ---- Accordion Section ----
 const AccordionSection = ({ title, collapsed, toggle, children }: any) => (
-  <div className="mb-3 p-1 rounded-md bg-gradient-to-r from-blue-50 to-purple-50">
+  <div className="mb-3 p-1 rounded-md bg-linear-to-r from-blue-50 to-purple-50">
     <div
       className="flex items-center justify-between cursor-pointer p-2 transition-colors"
       onClick={toggle}
     >
-      <h3 className="text-pink-400 !font-semibold">{title}</h3>
+      <h3 className="text-pink-400 font-semibold!">{title}</h3>
       <div
         className={`transition-transform duration-300 ${
           collapsed ? "" : "rotate-180"

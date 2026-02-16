@@ -32,8 +32,8 @@ const FAQ = () => {
   };
 
   return (
-    <section className='w-full pb-16 lg:pb-24 pt-12 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800'>
-      <div className='max-w-6xl mx-auto px-4 sm:px-6 lg:px-8'>
+    <section className='w-full pb-16 lg:pb-24 pt-12 bg-linear-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800'>
+      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         {/* Header Section */}
         <div className='text-center mb-16'>
           <div className='inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-4 py-2 rounded-full text-sm font-medium mb-6'>
@@ -64,7 +64,7 @@ const FAQ = () => {
                     {faq.question}
                   </h3>
                   <div
-                    className='flex-shrink-0 ml-4 transition-transform duration-300'
+                    className='shrink-0 ml-4 transition-transform duration-300'
                     style={{
                       transform: openItems.includes(faq.id)
                         ? "rotate(180deg)"
@@ -98,7 +98,7 @@ const FAQ = () => {
         </div>
         {/* Call to Action */}
         <div className='mt-16 text-center'>
-          <div className='bg-gradient-to-r from-blue-600 to-cyan-600 rounded-3xl p-8 sm:p-12 text-white'>
+          <div className='bg-linear-to-r from-blue-600 to-cyan-600 rounded-3xl p-8 sm:p-12 text-white'>
             <h3 className='text-2xl sm:text-3xl font-bold mb-4'>
               {t('cta.title')}
             </h3>

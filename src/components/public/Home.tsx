@@ -6,13 +6,15 @@ import SearchForm from "./SearchForm";
 
 const Home = () => {
   return (
-    <div className='min-h-screen flex flex-col'>
-      <Banner />
+    <>
+    <Banner />
+    <div className='min-h-screen flex flex-col max-w-7xl m-auto'>
       <SearchForm />
       <CreateAccountSection />
       <HowItWorks />
-      <WhyYouChoose />
     </div>
+    <WhyYouChoose />
+    </>
   );
 };
 

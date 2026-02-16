@@ -7,7 +7,7 @@ const Banner = () => {
     <div className='relative w-full'>
       {/* Background Image Container */}
       <div
-        className='relative sm:mx-2 md:mx-8 mt-2 md:mt-5  md:rounded-2xl overflow-hidden shadow-2xl'
+        className='relative mt-2 md:mt-5 overflow-hidden shadow-2xl'
         style={{ minHeight: "100vh" }}>
         {/* Background Image */}
         <div
@@ -19,9 +19,9 @@ const Banner = () => {
         />
 
         {/* Enhanced Overlay Gradients */}
-        <div className='absolute inset-0 bg-gradient-to-br from-black/70 via-gray-900/50 to-black/60' />
-        <div className='absolute inset-0 bg-gradient-to-t from-rose-900/50 via-transparent to-purple-900/30 mix-blend-overlay' />
-        <div className='absolute inset-0 bg-gradient-to-r from-rose-500/10 via-pink-500/5 to-purple-500/10 mix-blend-soft-light' />
+        <div className='absolute inset-0 bg-linear-to-br from-black/70 via-gray-900/50 to-black/60' />
+        <div className='absolute inset-0 bg-linear-to-t from-rose-900/50 via-transparent to-purple-900/30 mix-blend-overlay' />
+        <div className='absolute inset-0 bg-linear-to-r from-rose-500/10 via-pink-500/5 to-purple-500/10 mix-blend-soft-light' />
 
         {/* Optional noise texture for softness */}
         {/* <div className='absolute inset-0 bg-[url("/noise.svg")] opacity-5 mix-blend-overlay' /> */}
@@ -45,19 +45,19 @@ const Banner = () => {
             </div>
 
             {/* Heading */}
-            <div className='text-center max-w-5xl mb-8 md:mb-12'>
+            <div className='text-center max-w-7xl mx-auto mb-8 md:mb-12'>
               <h1 className='text-white font-extrabold mb-6 md:mb-8 py-4 leading-tight'>
                 <span className='block text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-3'>
-                  <span className='bg-gradient-to-r from-rose-300 via-pink-200 to-rose-300 bg-clip-text text-transparent font-extrabold drop-shadow-lg'>
+                  <span className='bg-linear-to-r from-rose-300 via-pink-200 to-rose-300 bg-clip-text text-transparent font-extrabold drop-shadow-lg'>
                     {t("heading_part1")}
                   </span>
                 </span>
                 <span className='block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold'>
                   <span className='relative inline-block group'>
-                    <span className='bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent drop-shadow-lg'>
+                    <span className='bg-linear-to-r from-white via-gray-100 to-white bg-clip-text text-transparent drop-shadow-lg'>
                       {t("heading_part2")}
                     </span>
-                    <span className='absolute -bottom-2 md:-bottom-3 left-0 right-0 h-1 md:h-2 bg-gradient-to-r from-rose-400 to-pink-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out rounded-full shadow-lg' />
+                    <span className='absolute -bottom-2 md:-bottom-3 left-0 right-0 h-1 md:h-2 bg-linear-to-r from-rose-400 to-pink-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out rounded-full shadow-lg' />
                   </span>
                 </span>
               </h1>
