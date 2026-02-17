@@ -88,8 +88,8 @@ const FormInput = ({
         {typeof errorMessage === "string"
           ? errorMessage
           : typeof errors[name]?.message === "string"
-          ? errors[name]?.message
-          : ""}
+            ? errors[name]?.message
+            : ""}
       </small>
     </>
   );

@@ -175,7 +175,7 @@ const Login = () => {
                 {t("dont_have_account")}{" "}
                 <Link
                   href={`/register${callbackUrl ? `?callbackUrl=${callbackUrl}` : ''}`}
-                  className='text-blue-600 hover:text-blue-800 !underline font-medium'>
+                  className='text-blue-600 hover:text-blue-800 !underline '>
                   {t("create_account")}
                 </Link>
               </p>
