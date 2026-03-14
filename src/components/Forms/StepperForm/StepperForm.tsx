@@ -83,7 +83,7 @@ const StepperForm = ({ steps }: IStepsProps) => {
     mode: "onChange",
   });
 
-  const { handleSubmit, reset, watch } = methods;
+  const { handleSubmit, reset } = methods;
 
   const [updateBiodata, { isLoading: isFetching }] = useUpdateBiodataMutation();
   const [updateProfile] = useUpdateProfileMutation();

@@ -10,6 +10,7 @@ import ViewContact from "./ViewContact";
 import renderValue from "./renderValue";
 import { useBiodataSections } from "./useBiodataSections";
 import Breadcrumb from "../UI/Breadcrumb";
+import { userInfo } from "os";
 interface IProps {
   bioDataNo: string;
   className?: string;
@@ -30,6 +31,8 @@ const BioData = ({ bioDataInfo, bioDataNo, className = "" }: IProps) => {
     if (!data || Object.keys(data).length === 0) {
       return null;
     }
+
+    // console.log("data", bioDataInfo?.bioDataNo === usrInfo);
 
     return (
       <div className="relative mb-8" key={key}>
@@ -105,7 +108,7 @@ const BioData = ({ bioDataInfo, bioDataNo, className = "" }: IProps) => {
 
       <div className={`m-auto mt-16 mb-8  ${className}  px-1`}>
         <div className="sm:flex sm:flex-wrap sm:gap-4 relative">
-          {usrInfo?.bioDataNo === bioDataNo && (
+          {bioDataInfo?.bioDataNo === bioDataNo && (
             <PriviewBioDataHeader profileStatus={profileStatus} />
           )}
           <div className="sm:w-87.5 md:sticky md:top-25   h-fit">
@@ -114,6 +117,7 @@ const BioData = ({ bioDataInfo, bioDataNo, className = "" }: IProps) => {
               profileStatus={profileStatus}
               bioDataNo={bioData?.bioDataNo}
               usrInfo={usrInfo}
+              isOwner={bioDataInfo?.bioDataNo === bioDataNo}
             />
           </div>
           <div className="sm:flex-1 min-w-0 ">
@@ -124,9 +128,7 @@ const BioData = ({ bioDataInfo, bioDataNo, className = "" }: IProps) => {
               {profileStatus !== BioDataStatus.VERIFIED && (
                 <FooterStatus
                   bioDataInfo={bioDataInfo}
-                  usrInfo={usrInfo}
-                  bioDataNo={bioDataNo}
-                  filterLength={filteredSections?.length || 0}
+                  owner={bioDataInfo?.bioDataNo === bioDataNo}
                 />
               )}
             </div>

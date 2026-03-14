@@ -3,7 +3,7 @@ import female from "@/assets/girl.jpg";
 import { Col } from "antd";
 import Image from "next/image";
 import Link from "next/link";
-import { FaEye, FaHeart } from "react-icons/fa";
+import { FaEye } from "react-icons/fa";
 import Button from "../UI/Button";
 import { formatPreciseAgeFromDOB } from "./util/formateDob";
 import { useTranslations } from "next-intl";

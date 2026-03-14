@@ -4,7 +4,6 @@ import { IUser } from "@/types";
 import { message } from "antd";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import { useState } from "react";
 import { FiCopy } from "react-icons/fi";
 import AddToFavoriteList from "./AddToFavoriteList";
 import renderValue from "./renderValue";
@@ -14,19 +13,57 @@ interface IProps {
   bioDataNo: string;
   usrInfo: IUser;
   profileStatus: string;
+  isOwner: boolean;
 }
 
 const GeneralInfoProfile = ({
   general_information,
   bioDataNo,
-  usrInfo,
-  profileStatus,
+  isOwner,
 }: IProps) => {
   const t = useTranslations();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const data = {}; // Replace with actual data context if needed
 
   if (!general_information) return null;
+
+  const bioDataGeneralInfo = { ...general_information };
+
+  /** Fields that need translation */
+  const translateFields: Record<string, string> = {
+    biodataType: "bio_data_form.general_information.biodataType.values",
+    skin: "bio_data_form.general_information.skin.options",
+    maritalStatus: "bio_data_form.general_information.maritalStatus.options",
+    weight: "bio_data_form.general_information.weight.options",
+    height: "bio_data_form.general_information.height.options",
+  };
+
+  Object.entries(translateFields).forEach(([field, path]) => {
+    const value = bioDataGeneralInfo[field];
+
+    if (value) {
+      bioDataGeneralInfo[field] = t(`${path}.${value}`);
+    }
+  });
+
+  const handleCopyBioLink = async () => {
+    const url = `${window.location.origin}/biodata/${bioDataNo}`;
+
+    try {
+      if (navigator?.clipboard?.writeText) {
+        await navigator.clipboard.writeText(url);
+      } else {
+        const textarea = document.createElement("textarea");
+        textarea.value = url;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+      }
+
+      message.success("Biodata link copied!");
+    } catch (err) {
+      message.error((err as Error).message || "Failed to copy link");
+    }
+  };
 
   return (
     <div className="w-full mx-auto mb-8">
@@ -36,7 +73,7 @@ const GeneralInfoProfile = ({
           <div className="rounded-full border-4 border-blue-100 dark:border-blue-800 bg-blue-100 dark:bg-blue-900 w-26 h-26 shadow-lg">
             <Image
               src={profileImage}
-              alt="Shadi Mubarak"
+              alt="Profile"
               className="object-cover w-full h-full rounded-full"
               width={100}
               height={100}
@@ -46,13 +83,13 @@ const GeneralInfoProfile = ({
         </div>
 
         {/* Biodata No */}
-        <div className="text-center text-slate-700 dark:text-white text-lg  my-3">
+        <div className="text-center text-slate-700 dark:text-white text-lg my-3">
           {t("biodata.general.biodata_no")} : {bioDataNo}
         </div>
 
         {/* Info Rows */}
         <div className="w-full">
-          {Object.entries(general_information)
+          {Object.entries(bioDataGeneralInfo)
             .filter(([key]) => key !== "_id")
             .map(([key, value], index) => (
               <div
@@ -65,9 +102,10 @@ const GeneralInfoProfile = ({
                     : "bg-white dark:bg-blue-950/40"
                 }`}
               >
-                <div className="w-1/2 p-3 text-slate-700 dark:text-white  capitalize border-r border-blue-100 dark:border-blue-800 text-sm ">
+                <div className="w-1/2 p-3 text-slate-700 dark:text-white capitalize border-r border-blue-100 dark:border-blue-800 text-sm">
                   {t(`biodata.general.${key}`)}
                 </div>
+
                 <div className="w-1/2 p-3 text-slate-600 dark:text-slate-300 capitalize text-sm">
                   {renderValue(value)}
                 </div>
@@ -77,23 +115,16 @@ const GeneralInfoProfile = ({
       </div>
 
       {/* Action Buttons */}
-      <div className="flex justify-center gap-4 py-3  border-blue-100 dark:border-blue-800">
+      <div className="flex justify-center gap-4 py-3 border-blue-100 dark:border-blue-800">
         <button
           className="flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 transition duration-300 shadow-sm min-w-[120px] cursor-pointer hover:scale-105"
-          onClick={async () => {
-            await navigator.clipboard.writeText(
-              `${window.location.origin}/biodata/${bioDataNo}`
-            );
-            message.success("Biodata link copied!");
-          }}
+          onClick={handleCopyBioLink}
         >
           <FiCopy className="h-4 w-4" />
           {t("biodata.actions.copy_bio_link")}
         </button>
 
-        {usrInfo?.bioDataNo === bioDataNo ? null : (
-          <AddToFavoriteList bioDataNo={bioDataNo} />
-        )}
+        {isOwner ? null : <AddToFavoriteList bioDataNo={bioDataNo} />}
       </div>
     </div>
   );

@@ -57,6 +57,7 @@ const Login = () => {
         message.success(t("login_successful"));
       }
     } catch (error) {
+      console.log('banlga',error);
       message.error((error as any)?.data || t("something_went_wrong"));
     }
   };

@@ -1,25 +1,20 @@
 import { BioDataStatus } from "@/constants/bioData";
-import { IUser } from "@/types";
 import { getBioDataStatusLabel } from "@/utils/biodata-status";
 import Link from "next/link";
 
 const FooterStatus = ({
   bioDataInfo,
-  usrInfo,
-  bioDataNo,
-  filterLength,
+  owner,
 }: {
   bioDataInfo: any;
-  usrInfo: IUser;
-  bioDataNo: string;
-  filterLength: number;
+  owner: boolean;
 }) => {
-  const profileStatus = bioDataInfo?.biodata?.profileStatus;
+  const profileStatus = bioDataInfo?.profileStatus;
 
   return (
     <>
-      {usrInfo?.bioDataNo === bioDataNo && filterLength ? (
-        <p className='text-sm text-red-600'>
+      {owner ? (
+        <p className="text-sm text-red-600">
           Your biodata is{" "}
           <span
             className={`text-xs font-medium px-3 py-0.5 rounded-full border ${
@@ -34,16 +29,18 @@ const FooterStatus = ({
                 : profileStatus === BioDataStatus.REJECTED
                 ? "text-red-800 bg-red-100 border-red-300"
                 : "text-green-800 bg-green-100 border-green-300"
-            }`}>
+            }`}
+          >
             {getBioDataStatusLabel(profileStatus)}
           </span>
           <br />
           {profileStatus !== BioDataStatus.PENDING && (
-            <span className='text-red-600'>
+            <span className="text-red-600">
               Please{" "}
               <Link
-                href='/user/edit-biodata'
-                className='text-blue-600 underline'>
+                href="/user/edit-biodata"
+                className="text-blue-600 underline"
+              >
                 complete your biodata
               </Link>{" "}
               to proceed.
@@ -51,7 +48,7 @@ const FooterStatus = ({
           )}
         </p>
       ) : (
-        <p className='text-md text-red-700 mt-2'>
+        <p className="text-md text-red-700 mt-2">
           This biodata is currently{" "}
           <span
             className={`text-xs font-medium px-3 py-0.5 rounded-full border ${
@@ -66,7 +63,8 @@ const FooterStatus = ({
                 : profileStatus === BioDataStatus.REJECTED
                 ? "text-red-800 bg-red-100 border-red-300"
                 : "text-green-800 bg-green-100 border-green-300"
-            }`}>
+            }`}
+          >
             {getBioDataStatusLabel(profileStatus)}
           </span>
           <br />

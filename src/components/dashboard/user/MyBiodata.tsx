@@ -1,9 +1,6 @@
-import { BioDataStatus } from "@/constants/bioData";
-import { useGetUserQuery, useGetUsersQuery } from "@/redux/api/user";
 import { getUserInfo } from "@/services/auth.service";
 import { IUser } from "@/types";
 import BioData from "../../BioData";
-import CreateBiodataCTA from "./CreateBiodataCTA";
 import { getBioData } from "@/lib/fetchers/biodata";
 
 const MyBiodata = async () => {

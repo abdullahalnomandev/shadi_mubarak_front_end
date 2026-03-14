@@ -1,3 +1,4 @@
+
 import { getBaseUrl } from "@/helpers/config/envConfig";
 
 export async function getBioData(biodata: string) {

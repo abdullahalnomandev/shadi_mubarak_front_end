@@ -61,7 +61,7 @@ const steps = [
 ];
 
 const EditBioDataPage = () => {
-  const { data: userData } = useGetUserQuery();
+  const { data: userData } = useGetUserQuery({});
 
   if (userData?.user?.bioData?.profileStatus === BioDataStatus.NOT_STARTED) {
     return (
