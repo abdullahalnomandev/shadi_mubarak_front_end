@@ -1458,7 +1458,7 @@
         "label": "ওজন",
         "placeholder": "আপনার ওজন নির্বাচন করুন",
         "helperText": "দয়া করে আপনার ওজন নির্বাচন করুন",
-           "options": {
+        "options": {
           "35_kg": "৩৫ কেজি",
           "36_kg": "৩৬ কেজি",
           "37_kg": "৩৭ কেজি",
@@ -1549,6 +1549,133 @@
           "widow": "বিধবা",
           "widower": "বিপত্নীক"
         }
+      }
+    },
+    "family_information": {
+      "isParentAlive": {
+        "label": "পিতা-মাতা জীবিত আছেন কি?",
+        "placeholder": "পিতা-মাতা জীবিত আছেন কিনা নির্বাচন করুন",
+        "options": {
+          "yes": "হ্যাঁ",
+          "no": "না"
+        },
+        "values": {
+          "yes": "হ্যাঁ",
+          "no": "না"
+        }
+      },
+
+      "fatherProfession": {
+        "label": "পিতার পেশা",
+        "placeholder": "পিতার পেশা লিখুন"
+      },
+
+      "isMotherAlive": {
+        "label": "মাতা জীবিত আছেন কি?",
+        "placeholder": "মাতা জীবিত আছেন কিনা নির্বাচন করুন",
+        "options": {
+          "yes": "হ্যাঁ",
+          "no": "না"
+        },
+        "values": {
+          "yes": "হ্যাঁ",
+          "no": "না"
+        }
+      },
+
+      "motherProfession": {
+        "label": "মাতার পেশা",
+        "placeholder": "মাতার পেশা লিখুন"
+      },
+
+      "howManyBrothers": {
+        "label": "কয়জন ভাই",
+        "placeholder": "ভাইয়ের সংখ্যা নির্বাচন করুন",
+        "options": {
+          "no_brothers": "কোন ভাই নেই",
+          "1": "১",
+          "2": "২",
+          "3": "৩",
+          "4": "৪",
+          "5": "৫",
+          "more_than_5": "৫ এর বেশি"
+        },
+        "values": {
+          "no_brothers": "কোন ভাই নেই",
+          "1": "১",
+          "2": "২",
+          "3": "৩",
+          "4": "৪",
+          "5": "৫",
+          "more_than_5": "৫ এর বেশি"
+        }
+      },
+
+      "brothersInformation": {
+        "label": "ভাইদের তথ্য",
+        "placeholder": "ভাইদের পেশা ও অবস্থা বিস্তারিত লিখুন"
+      },
+
+      "howManySisters": {
+        "label": "কয়জন বোন",
+        "placeholder": "বোনের সংখ্যা নির্বাচন করুন",
+        "options": {
+          "no_sisters": "কোন বোন নেই",
+          "1": "১",
+          "2": "২",
+          "3": "৩",
+          "4": "৪",
+          "5": "৫",
+          "more_than_6": "৫ এর বেশি"
+        },
+        "values": {
+          "no_sisters": "কোন বোন নেই",
+          "1": "১",
+          "2": "২",
+          "3": "৩",
+          "4": "৪",
+          "5": "৫",
+          "more_than_6": "৫ এর বেশি"
+        }
+      },
+
+      "sistersInformation": {
+        "label": "বোনদের তথ্য",
+        "placeholder": "বোনদের পেশা ও অবস্থা বিস্তারিত লিখুন"
+      },
+
+      "familyFinancialStatus": {
+        "label": "পারিবারিক আর্থিক অবস্থা",
+        "placeholder": "পারিবারিক আর্থিক অবস্থা নির্বাচন করুন",
+        "options": {
+          "upper_class": "উচ্চবিত্ত",
+          "middle_class": "মধ্যবিত্ত",
+          "lower_class": "নিম্নবিত্ত",
+          "upper_middle_class": "উচ্চ মধ্যবিত্ত",
+          "lower_middle_class": "নিম্ন মধ্যবিত্ত"
+        },
+        "values": {
+          "upper_class": "উচ্চবিত্ত",
+          "middle_class": "মধ্যবিত্ত",
+          "lower_class": "নিম্নবিত্ত",
+          "upper_middle_class": "উচ্চ মধ্যবিত্ত",
+          "lower_middle_class": "নিম্ন মধ্যবিত্ত"
+        }
+      },
+
+      "descriptionOfFinancialCondition": {
+        "label": "পারিবারিক আর্থিক অবস্থার বর্ণনা",
+        "placeholder": "আপনার পরিবারের আর্থিক অবস্থা বিস্তারিত লিখুন"
+      },
+
+      "professionOfUncles": {
+        "label": "চাচা/মামাদের পেশা",
+        "placeholder": "চাচা বা মামাদের পেশা সম্পর্কে লিখুন"
+      },
+
+      "familyReligiousCondition": {
+        "label": "পারিবারিক ধর্মীয় অবস্থা",
+        "placeholder": "পরিবারের ধর্মীয় অনুশীলন ও পরিবেশ সম্পর্কে লিখুন"
       }
     }
   }

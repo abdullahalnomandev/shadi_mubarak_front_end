@@ -34,17 +34,23 @@ export default function VerifyPage() {
 
         if (res?.accessToken) {
           setToLocalStorage(authKey, res.accessToken);
+          router.push("/user/dashboard");
         }
       } catch (err: any) {
         console.log(err);
         setError(err?.data || t("verification_failed"));
       } finally {
-        setLoading(false);
+        // setLoading(false);
+      }
+      
+      // If no error occurred and we're not loading, redirect to dashboard
+      if (!error && !loading) {
+        router.push("/user/dashboard");
       }
     };
 
     verifyUser();
-  }, [token, userVerify, router, t]);
+  }, [token, userVerify, router, t, error, loading]);
 
   if (loading) {
     return (
