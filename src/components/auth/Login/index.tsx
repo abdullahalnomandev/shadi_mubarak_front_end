@@ -23,7 +23,6 @@ interface FormValues {
   password: string;
 }
 
-// login fields now use translations for placeholders
 const getLoginFields = (t: (key: string) => string) => [
   {
     name: "email",
@@ -37,8 +36,9 @@ const getLoginFields = (t: (key: string) => string) => [
   },
 ];
 
+
 const Login = () => {
-  const t = useTranslations("login");
+  const t = useTranslations("login"); // UDPATWED
 
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl");
@@ -171,16 +171,6 @@ const Login = () => {
                   {t("log_in_with_google")}
                 </button>
               </Form>
-
-              {/* <p className='mt-4 font-medium text-center dark:text-gray-300 text-gray-600'>
-                {t("dont_have_account")}{" "}
-                <Link
-                  href={`/register${callbackUrl ? `?callbackUrl=${callbackUrl}` : ''}`}
-                  className='text-blue-600 hover:text-blue-800 !underline '>
-                  {t("create_account")}
-                </Link>
-              </p> */}
-
               <Link href="/register" className="w-full block text-center mt-8 bg-blue-600 text-white px-4 py-3 rounded-lg border border-blue-600 hover:bg-blue-700 hover:border-blue-700 transition-colors duration-300 font-medium">
                 {t("create_account")}
               </Link>
