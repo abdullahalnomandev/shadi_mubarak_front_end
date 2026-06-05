@@ -10,7 +10,7 @@ const ROLE_ROUTES = {
   [USER_ROLE.SUPER_ADMIN]: "/super_admin",
 } as const;
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const token = request.cookies.get(authKey)?.value;
 
