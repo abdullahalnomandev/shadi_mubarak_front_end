@@ -295,5 +295,6 @@ const Register = () => {
     </div>
   );
 };
+// udpated
 
 export default Register;
