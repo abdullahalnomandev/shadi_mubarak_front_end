@@ -193,10 +193,3 @@ const Login = () => {
 };
 
 export default Login;
-
-// Image from: https://storyset.com/
-// client id 53110587046-akdbq4aoh9f2bqud18mj3gjfvkmpcri2.apps.googleusercontent.com
-// secreat : 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
-
-// https: https://www.googleapis.com/oauth2/v3/userinfo
-// Bearer token
