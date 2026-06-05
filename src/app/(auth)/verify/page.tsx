@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Spin } from "antd";
 import { useTranslations } from "next-intl";
+import { useUserVerifyMutation } from "@/redux/api/auth";
 import { setToLocalStorage } from "@/utils/logal-storage";
 import { authKey } from "@/constants/storageKey";
-import { useUserVerifyMutation } from "@/redux/api/auth";
 
 export default function VerifyPage() {
   const router = useRouter();
@@ -33,14 +33,15 @@ export default function VerifyPage() {
         }).unwrap();
 
         if (res?.accessToken) {
+          // await setAccessTokenToCookie(res.accessToken, {
+          //   redirect: "/user/dashboard",
+          // });
           setToLocalStorage(authKey, res.accessToken);
-          router.push("/user/dashboard");
         }
       } catch (err: any) {
         console.log(err);
         setError(err?.data || t("verification_failed"));
-      } finally {
-        // setLoading(false);
+        setLoading(false);
       }
       
       // If no error occurred and we're not loading, redirect to dashboard

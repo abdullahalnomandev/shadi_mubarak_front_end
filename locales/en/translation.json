@@ -1,5 +1,12 @@
 {
   "Welcome to React": "Bangladesh is the International Cricket Council",
+  "complete_your_profile":"Complete your biodata",
+  "biodata_status":"Biodata Status",
+  "create_biodata":"Create Your Biodata",
+  "complete_biodata":"Complete BioData",
+  "update_biodata":"Update BioData",
+  "submit_biodata":"Submit BioData",
+  "edits_biodata":"Edit BioData",
   "header": {
     "home": "Home",
     "about": "About",
@@ -8,7 +15,7 @@
     "faq": "FAQ",
     "contact": "Contact",
     "login": "Login",
-    "register": "Create Account"
+    "register": "Create Biodata"
   },
   "view_contact": {
     "title": "Contact",
@@ -1549,5 +1556,15 @@
         }
       }
     }
+  },
+  "footerStatus": {
+    "yourBiodataIs": "Your biodata is",
+    "thisBiodataIs": "This biodata is currently",
+    "pleaseComplete": "Please",
+    "completeYourBiodata": "complete your biodata",
+    "toProceed": "to proceed.",
+    "cannotViewContact": "So you can’t view the contact details.",
+    "canViewContact": "So you can view the contact details.",
+    "onlyCanViewContactByVerify": "Once the account is verified, you can view the contact details. Thanks"
   }
 }

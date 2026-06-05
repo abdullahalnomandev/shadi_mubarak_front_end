@@ -16,13 +16,12 @@ export function middleware(request: NextRequest) {
 
   const isAuthPage = pathname === "/login" || pathname === "/register";
 
-  // ❌ No token → block protected routes
+  console.log('token', token);
   if (!token) {
     if (isAuthPage) return NextResponse.next();
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  // 🔑 Decode token
   let role: string;
 
   try {
@@ -32,20 +31,16 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  console.log("ROLE-", role);
-
   const baseRoute = ROLE_ROUTES[role as keyof typeof ROLE_ROUTES];
 
   if (!baseRoute) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  // logged user trying to open login/register
   if (isAuthPage) {
     return NextResponse.redirect(new URL(`${baseRoute}/dashboard`, request.url));
   }
 
-  // prevent accessing other role routes
   if (!pathname.startsWith(baseRoute)) {
     return NextResponse.redirect(new URL(`${baseRoute}/dashboard`, request.url));
   }

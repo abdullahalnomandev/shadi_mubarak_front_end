@@ -57,3 +57,7 @@ input.ant-input-password {
 input::placeholder {
    font-family: "Adorsho Lipi", "Arial", cursive, sans-serif;
 }
+/* 
+:where(.css-dev-only-do-not-override-1vjf2v5).ant-layout{
+  background: white !important;
+} */

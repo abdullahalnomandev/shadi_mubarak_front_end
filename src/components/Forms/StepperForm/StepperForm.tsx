@@ -21,6 +21,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import * as yup from "yup";
 import { getValidationSchema } from "./getValidationSchema";
+import { revalidateTags } from "@/utils/revalidateTags";
 interface ISteps {
   title: string;
   content: React.ReactElement | React.ReactNode;
@@ -154,6 +155,7 @@ const StepperForm = ({ steps }: IStepsProps) => {
     }
     setIsLastStep(false);
   };
+
   const onHandleSubmit = async (data: any) => {
     try {
       const isAlreadyCompleted = completedSteps.includes(current);
@@ -173,6 +175,7 @@ const StepperForm = ({ steps }: IStepsProps) => {
         if (bioDataInfo?.biodata?.profileStatus === BioDataStatus.PENDING) {
           updateProfile({ profileStatus: BioDataStatus.NOT_SUBMITTED });
         }
+        revalidateTags([`biodata-${bioDataNo}`]);
       }
 
       // // Only move to the next step if it’s not the last and it's not a re-edit

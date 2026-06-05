@@ -10,7 +10,6 @@ import ViewContact from "./ViewContact";
 import renderValue from "./renderValue";
 import { useBiodataSections } from "./useBiodataSections";
 import Breadcrumb from "../UI/Breadcrumb";
-import { userInfo } from "os";
 interface IProps {
   bioDataNo: string;
   className?: string;
@@ -97,13 +96,17 @@ const BioData = ({ bioDataInfo, bioDataNo, className = "" }: IProps) => {
   return (
     <>
       <div className="max-w-7xl mx-auto">
-        <Breadcrumb
-          items={[
-            { label: "Biodatas", href: "/biodatas" },
-            { label: "Biodata" }, // Current page (no href)
-          ]}
-          showHome
-        />
+        {
+          bioDataInfo?.bioDataNo !== bioDataNo && (
+            <Breadcrumb
+              items={[
+                { label: "Biodatas", href: "/biodatas" },
+                { label: "Biodata" }, // Current page (no href)
+              ]}
+              showHome
+            />
+          )
+        }
       </div>
 
       <div className={`m-auto mt-16 mb-8  ${className}  px-1`}>
@@ -124,7 +127,7 @@ const BioData = ({ bioDataInfo, bioDataNo, className = "" }: IProps) => {
             {filteredSections.map((section, index) =>
               renderTable(section.title, section.data, index)
             )}
-            <div className="text-center">
+            <div className="text-center w-full">
               {profileStatus !== BioDataStatus.VERIFIED && (
                 <FooterStatus
                   bioDataInfo={bioDataInfo}

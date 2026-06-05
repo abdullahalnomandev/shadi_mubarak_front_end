@@ -8,7 +8,7 @@ import Sidebar from "@/components/UI/Sidebar";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <Layout>
+    <Layout style={{background:"none"}}>
       <Layout hasSider className="container" >
         <Sidebar />
         <Layout>

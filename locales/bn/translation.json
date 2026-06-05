@@ -1,5 +1,12 @@
 {
   "Welcome to React": "বাংলাদেশ আন্তর্জাতিক ক্রিকেট কাউন্সিল",
+  "complete_your_profile": "বায়োডাটা সম্পূর্ণ করুন",
+  "biodata_status": "বায়োডাটা স্ট্যাটাস",
+  "create_biodata":" বায়োডাটা তৈরি করুন",
+  "complete_biodata":"বায়োডাটা সম্পূর্ণ করুন",
+  "update_biodata":"বায়োডাটা আপডেট করুন",
+  "submit_biodata":"বায়োডাটা সাবমিট করুন",
+  "edits_biodata":"বায়োডাটা আপডেট   করুন",
   "header": {
     "home": "হোম",
     "about": "আমাদের সম্পর্কে",
@@ -43,7 +50,7 @@
     "or": "অথবা",
     "log_in_with_google": "গুগল দিয়ে লগইন করুন",
     "dont_have_account": "অ্যাকাউন্ট নেই?",
-    "create_account": "অ্যাকাউন্ট তৈরি করুন",
+    "create_account": " নতুন অ্যাকাউন্ট তৈরি করুন",
     "email_placeholder": "ইমেইল",
     "password_placeholder": "পাসওয়ার্ড"
   },
@@ -1678,5 +1685,14 @@
         "placeholder": "পরিবারের ধর্মীয় অনুশীলন ও পরিবেশ সম্পর্কে লিখুন"
       }
     }
+  },
+  "footerStatus": {
+    "yourBiodataIs": "আপনার বায়োডেটা",
+    "thisBiodataIs": "এই বায়োডেটা এখনও",
+    "pleaseComplete": "অনুগ্রহ করে",
+    "completeYourBiodata": "আপনার বায়োডেটা সম্পূর্ণ করুন",
+    "toProceed": "পরবর্তী পদক্ষেপের জন্য।",
+    "cannotViewContact": "আপনি যোগাযোগের তথ্য দেখতে পারবেন না।",
+    "onlyCanViewContactByVerify": "অ্যাকাউন্ট ভেরিফিকেশন সম্পন্ন হলে যোগাযোগের তথ্য দেখতে পারবেন। ধন্যবাদ"
   }
 }
