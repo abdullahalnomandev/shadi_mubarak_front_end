@@ -6,10 +6,11 @@ import { getBioDataStatusLabel } from "@/utils/biodata-status";
 import { Progress, Tooltip } from "antd";
 import Image from "next/image";
 import ProfileStatusAction from "./ProfileStatusAction";
+import { useTranslations } from "next-intl";
 
 const SidebarProfile = () => {
   const { data: userData } = useGetUserQuery({});
-
+  const t = useTranslations();
   const completedSteps = (userData?.user as any)?.bioData?.completedSteps;
 
   const totalSteps = 10;
@@ -43,7 +44,7 @@ const SidebarProfile = () => {
         {/* Status */}
         <div className='flex justify-between items-center mt-4'>
           <span className='text-sm font-medium text-gray-700'>
-            Biodata Status:
+            {t("biodata_status")}:
           </span>
           <span
             className={`text-xs font-semibold px-3 py-0.5 rounded-full border ${
@@ -79,7 +80,7 @@ const SidebarProfile = () => {
               showInfo={true}
             />
           </Tooltip>
-          <p className='text-sm text-gray-500 mt-1'>Complete your profile</p>
+          <p className='text-sm text-gray-500 mt-1'>{t("complete_your_profile")}</p>
         </div>
 
         {/* Edit Button */}

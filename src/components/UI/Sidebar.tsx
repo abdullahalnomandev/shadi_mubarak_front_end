@@ -85,11 +85,11 @@ const Sidebar = () => {
           variant='primary'
           onClick={() => setMobileDrawerOpen(true)}
           aria-label='Open menu'
-          className='rounded-xs !px-1'
+          className='rounded-xs !px-1 rounded-tr-full rounded-br-full'
           style={{
             position: "fixed",
             top: 60,
-            left: 0,
+            left: -10,
             zIndex: 1100,
             width: 40,
             height: 40,
@@ -100,7 +100,7 @@ const Sidebar = () => {
             boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
             color: "white",
           }}>
-          <FaChevronRight />
+          <FaChevronRight className="ml-2" />
         </CustomButton>
       )}
 

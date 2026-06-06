@@ -80,7 +80,7 @@ const UserDashboard = () => {
   ];
 
   return (
-    <div className='min-h-screen px-4 py-6 bg-gray-50 dark:bg-slate-900'>
+    <div className=' px-4 py-6 bg-gray-50 dark:bg-slate-900'>
       {/* Create Biodata Button */}
       <CreateBiodataCTA />
       {/* Stats Grid */}

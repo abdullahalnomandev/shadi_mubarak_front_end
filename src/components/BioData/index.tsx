@@ -31,6 +31,8 @@ const BioData = ({ bioDataInfo, bioDataNo, className = "" }: IProps) => {
       return null;
     }
 
+    // console.log("data", bioDataInfo?.bioDataNo === usrInfo);
+
     return (
       <div className="relative mb-8" key={key}>
         <div className="absolute inset-0 z-0" />
@@ -93,40 +95,43 @@ const BioData = ({ bioDataInfo, bioDataNo, className = "" }: IProps) => {
 
   return (
     <>
-      <div className="pl-6">
-        <Breadcrumb
-          items={[
-            { label: "Biodatas", href: "/biodatas" },
-            { label: "Biodata" }, // Current page (no href)
-          ]}
-          showHome
-        />
+      <div className="max-w-7xl mx-auto">
+        {
+          bioDataInfo?.bioDataNo !== bioDataNo && (
+            <Breadcrumb
+              items={[
+                { label: "Biodatas", href: "/biodatas" },
+                { label: "Biodata" }, // Current page (no href)
+              ]}
+              showHome
+            />
+          )
+        }
       </div>
 
       <div className={`m-auto mt-16 mb-8  ${className}  px-1`}>
         <div className="sm:flex sm:flex-wrap sm:gap-4 relative">
-          {usrInfo?.bioDataNo === bioDataNo && (
+          {bioDataInfo?.bioDataNo === bioDataNo && (
             <PriviewBioDataHeader profileStatus={profileStatus} />
           )}
-          <div className="sm:w-[350px] md:sticky md:top-[100px]   h-fit">
+          <div className="sm:w-87.5 md:sticky md:top-25   h-fit">
             <GeneralInfoProfile
               general_information={bioData?.general_information}
               profileStatus={profileStatus}
               bioDataNo={bioData?.bioDataNo}
               usrInfo={usrInfo}
+              isOwner={bioDataInfo?.bioDataNo === bioDataNo}
             />
           </div>
           <div className="sm:flex-1 min-w-0 ">
             {filteredSections.map((section, index) =>
               renderTable(section.title, section.data, index)
             )}
-            <div className="text-center">
+            <div className="text-center w-full">
               {profileStatus !== BioDataStatus.VERIFIED && (
                 <FooterStatus
                   bioDataInfo={bioDataInfo}
-                  usrInfo={usrInfo}
-                  bioDataNo={bioDataNo}
-                  filterLength={filteredSections?.length || 0}
+                  owner={bioDataInfo?.bioDataNo === bioDataNo}
                 />
               )}
             </div>

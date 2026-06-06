@@ -20,7 +20,7 @@ import { FcGoogle } from "react-icons/fc";
 import { MdOutlineEmail } from "react-icons/md";
 import BangladeshFlag from "../../../assets/Flag_of_Bangladesh.svg.png";
 import mail from "../../../assets/Mail sent-rafiki.png";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 interface FormValues {
   email: string;
@@ -64,9 +64,8 @@ const getRegisterFields = (t: (key: string) => string) => [
 ];
 
 const Register = () => {
-
-    const searchParams = useSearchParams();
-    const callbackUrl = searchParams.get("callbackUrl");
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl");
 
   const t = useTranslations("register");
   const [userRegister, { isLoading }] = useUserRegisterMutation();
@@ -77,6 +76,7 @@ const Register = () => {
     "email" | "google" | null
   >(null);
 
+  const router = useRouter();
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     try {
       const userInfo = { ...data, provider: registrationType };
@@ -87,7 +87,7 @@ const Register = () => {
 
       if (res?.accessToken && registrationType === "google") {
         storeUserInfo({ accessToken: res.accessToken });
-        // router.push("/user/dashboard");
+        router.push("/user/dashboard");
         message.success(t("account_created"));
       }
 
@@ -260,35 +260,11 @@ const Register = () => {
                     type="submit"
                     disabled={isLoading}
                     variant="cta"
+                    loading={isLoading}
+                    loadingText={t("creating")}
                     className="py-3"
                   >
-                    {isLoading ? (
-                      <>
-                        <svg
-                          className="animate-spin h-5 w-5 text-white"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                        >
-                          <circle
-                            className="opacity-25"
-                            cx="12"
-                            cy="12"
-                            r="10"
-                            stroke="currentColor"
-                            strokeWidth="4"
-                          />
-                          <path
-                            className="opacity-75"
-                            fill="currentColor"
-                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                          />
-                        </svg>
-                        <span>{t("creating")}</span>
-                      </>
-                    ) : (
-                      t("create_account_button")
-                    )}
+                    {t("create_account_button")}
                   </Button>
 
                   <p className="mt-4 font-medium text-center text-gray-600">
@@ -319,5 +295,6 @@ const Register = () => {
     </div>
   );
 };
+// udpated
 
 export default Register;

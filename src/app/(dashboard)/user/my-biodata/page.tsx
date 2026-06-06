@@ -6,6 +6,7 @@ import { IUser } from "@/types";
 const MyBioDatapage = async () => {
   const { bioDataNo } = (await getUserInfoFromCookie()) as IUser;
   const { data: bioDataInfo } = await getBioData(bioDataNo);
+
   return (
     <BioData
       bioDataInfo={bioDataInfo}

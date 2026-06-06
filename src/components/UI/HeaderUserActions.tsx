@@ -10,16 +10,15 @@ import { IUserPayload } from "@/types";
 import { getBioDataStatusLabel } from "@/utils/biodata-status";
 import { UserOutlined } from "@ant-design/icons";
 import { Avatar, Menu, Popover, Progress, Tooltip } from "antd";
-import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Button from "./Button";
 import ProfileStatusAction from "./ProfileStatusAction";
+import { useTranslations } from "next-intl";
 
 const Content = ({ role, hide }: { role: string; hide?: () => void }) => {
-  const t = useTranslations();
   const pathname = usePathname();
   const router = useRouter();
   const [selectedKey, setSelectedKey] = useState(pathname);
@@ -29,7 +28,7 @@ const Content = ({ role, hide }: { role: string; hide?: () => void }) => {
   //   router.push(key);
   //   hide(); // Close popover after navigation
   // };
-
+  const t = useTranslations();
   const handleLogout = () => {
     logOutUser(router);
   };
@@ -75,7 +74,7 @@ const Content = ({ role, hide }: { role: string; hide?: () => void }) => {
         {/* Status */}
         <div className="flex justify-between items-center mt-4">
           <span className="text-sm font-medium text-gray-700">
-            Biodata Status:
+            {t("biodata_status")}:
           </span>
           <span
             className={`text-xs font-semibold px-3 py-0.5 rounded-full border ${
@@ -112,7 +111,7 @@ const Content = ({ role, hide }: { role: string; hide?: () => void }) => {
               showInfo={true}
             />
           </Tooltip>
-          <p className="text-sm text-gray-500 mt-1">Complete your profile</p>
+          <p className="text-sm text-gray-500 mt-1">{t("complete_your_profile")}</p>
         </div>
 
         {/* Edit Button */}
@@ -156,7 +155,7 @@ const HeaderUserActions = () => {
         <Link href="/login">
           <Button
             variant="outline"
-            className="flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 text-sm font-medium  bg-white border rounded-md hover:bg-gray-50 transition duration-300 shadow-sm w-full sm:w-auto min-w-[120px] cursor-pointer hover:scale-105 border-pink-500 text-pink-500 hover:border-pink-500 hover:text-pink-500 focus:ring-pink-500"
+            className="flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 text-sm font-medium  bg-white border rounded-md hover:bg-gray-50 transition duration-300 shadow-sm w-full sm:w-auto min-w-30 cursor-pointer hover:scale-105 border-pink-500 text-pink-500 hover:border-pink-500 hover:text-pink-500 focus:ring-pink-500"
           >
             {t("header.login")}
           </Button>
@@ -164,7 +163,7 @@ const HeaderUserActions = () => {
         <Link href="/register">
           <Button
             variant="cta"
-            className="flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 text-sm font-medium text-white rounded-md bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 transition duration-300 shadow-sm w-full sm:w-auto min-w-[120px] cursor-pointer hover:scale-105 focus:ring-pink-500"
+            className="flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 text-sm font-medium text-white rounded-md bg-linear-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 transition duration-300 shadow-sm w-full sm:w-auto min-w-30 cursor-pointer hover:scale-105 focus:ring-pink-500"
           >
             {t("header.register")}
           </Button>

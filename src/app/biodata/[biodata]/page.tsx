@@ -1,28 +1,55 @@
 import BioData from "@/components/BioData";
-import { getBaseUrl } from "@/helpers/config/envConfig";
+import { getBioData } from "@/lib/fetchers/biodata";
+import { getUserInfoFromCookie } from "@/services/auth.cookieService";
+import { IUser } from "@/types";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Biodata | Biyer Thikana",
   description: "Login to your Biyer Thikana account",
 };
 
-export default async function Page({ params }: { params: { biodata: string } }) {
+// async function getBioData(biodata: string) {
+//   const res = await fetch(`${getBaseUrl()}/biodata/${biodata}`, {
+//     cache: "force-cache",
+//     // next: { revalidate: 1800 },// 30 minutes
+//   });
+
+//   if (!res.ok) {
+//     return null;
+//   }
+
+//   const json = await res.json();
+//   return json?.data;
+// }
+
+interface PageProps {
+  params: {
+    biodata: string;
+  };
+}
+
+export default async function Page({ params }: PageProps) {
   const { biodata } = params;
-  // const {data: bioDataInfo} = await getBioData(biodata);
-    const data = await fetch(`${getBaseUrl()}/biodata/${biodata}`,{
-      cache:"force-cache",
-      next: {revalidate:1800}
-    });
-    console.log("x-vercel-cache", data.headers.get("x-vercel-cache"));
 
-    const {data:bioDataInfo} = await data.json();
+  const [bioDataInfo, userInfo] = await Promise.all([
+    getBioData(biodata),
+    getUserInfoFromCookie() as Promise<Partial<IUser>>,
+  ]);
 
-    // console.log({bioDataInfo})
+  if (!bioDataInfo) {
+    notFound();
+  }
+  console.log("biodataStepInfo",bioDataInfo)
 
   return (
     <div className="min-h-screen">
-      <BioData bioDataInfo={bioDataInfo} bioDataNo={biodata} className="sm:px-14" />
+      <BioData
+        bioDataInfo={bioDataInfo?.data}
+        bioDataNo={userInfo?.bioDataNo}
+        className="max-w-7xl mx-auto"
+      />
     </div>
   );
 }

@@ -168,19 +168,6 @@ const Header = () => {
               variant="borderless"
             />
 
-            {/* <Button
-              type="text"
-              onClick={toggleDarkMode}
-              className="flex items-center justify-center !border-none hover:!bg-gray-100 dark:hover:!bg-slate-800"
-              icon={
-                isDarkMode ? (
-                  <SunOutlined className="!text-base !text-yellow-400" />
-                ) : (
-                  <MoonOutlined className="!text-base !text-slate-700 dark:!text-slate-300" />
-                )
-              }
-            /> */}
-
             <HeaderUserActions />
 
             <div className="md:hidden">

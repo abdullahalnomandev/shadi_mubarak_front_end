@@ -1,5 +1,12 @@
 {
   "Welcome to React": "Bangladesh is the International Cricket Council",
+  "complete_your_profile":"Complete your biodata",
+  "biodata_status":"Biodata Status",
+  "create_biodata":"Create Your Biodata",
+  "complete_biodata":"Complete BioData",
+  "update_biodata":"Update BioData",
+  "submit_biodata":"Submit BioData",
+  "edits_biodata":"Edit BioData",
   "header": {
     "home": "Home",
     "about": "About",
@@ -8,7 +15,7 @@
     "faq": "FAQ",
     "contact": "Contact",
     "login": "Login",
-    "register": "Create Account"
+    "register": "Create Biodata"
   },
   "view_contact": {
     "title": "Contact",
@@ -211,7 +218,9 @@
     }
   },
   "verify_user": {
-    "verified_successful": "Verified Success"
+    "verifying_account": "Verifying Account...",
+    "verified_successful": "Verified Success",
+    "verification_failed": "Verification Failed"
   },
   "profile": {
     "age": "Age",
@@ -1396,5 +1405,166 @@
   },
   "loading": {
     "load": "Loading Shadi Mubarak..."
+  },
+  "bio_data_form": {
+    "general_information": {
+      "biodataType": {
+        "label": "Biodata Type",
+        "placeholder": "Select biodata type",
+        "helperText": "Please select the appropriate biodata type",
+        "options": {
+          "male_biodata": "Groom's Biodata",
+          "female_biodata": "Bride's Biodata"
+        },
+        "values": {
+          "male's_biodata": "Groom's Biodata",
+          "female's_biodata": "Bride's Biodata"
+        }
+      },
+      "dateOfBirth": {
+        "label": "Date of Birth",
+        "placeholder": "Select your date of birth"
+      },
+      "height": {
+        "label": "Height",
+        "placeholder": "Select your height",
+        "helperText": "Select your height in feet and inches",
+        "options": {
+          "below_4": "Below 4 feet",
+          "4": "4 feet",
+          "4_1": "4 feet 1 inch",
+          "4_2": "4 feet 2 inches",
+          "4_3": "4 feet 3 inches",
+          "4_4": "4 feet 4 inches",
+          "4_5": "4 feet 5 inches",
+          "4_6": "4 feet 6 inches",
+          "4_7": "4 feet 7 inches",
+          "4_8": "4 feet 8 inches",
+          "4_9": "4 feet 9 inches",
+          "4_10": "4 feet 10 inches",
+          "4_11": "4 feet 11 inches",
+          "5_0": "5 feet",
+          "5_1": "5 feet 1 inch",
+          "5_2": "5 feet 2 inches",
+          "5_3": "5 feet 3 inches",
+          "5_4": "5 feet 4 inches",
+          "5_5": "5 feet 5 inches",
+          "5_6": "5 feet 6 inches",
+          "5_7": "5 feet 7 inches",
+          "5_8": "5 feet 8 inches",
+          "5_9": "5 feet 9 inches",
+          "5_10": "5 feet 10 inches",
+          "5_11": "5 feet 11 inches",
+          "6_0": "6 feet",
+          "above_6": "Above 6 feet"
+        }
+      },
+      "weight": {
+        "label": "Weight",
+        "placeholder": "Select your weight",
+        "helperText": "Please select your weight",
+        "options": {
+          "35_kg": "35 kg",
+          "36_kg": "36 kg",
+          "37_kg": "37 kg",
+          "38_kg": "38 kg",
+          "39_kg": "39 kg",
+          "40_kg": "40 kg",
+          "41_kg": "41 kg",
+          "42_kg": "42 kg",
+          "43_kg": "43 kg",
+          "44_kg": "44 kg",
+          "45_kg": "45 kg",
+          "46_kg": "46 kg",
+          "47_kg": "47 kg",
+          "48_kg": "48 kg",
+          "49_kg": "49 kg",
+          "50_kg": "50 kg",
+          "51_kg": "51 kg",
+          "52_kg": "52 kg",
+          "53_kg": "53 kg",
+          "54_kg": "54 kg",
+          "55_kg": "55 kg",
+          "56_kg": "56 kg",
+          "57_kg": "57 kg",
+          "58_kg": "58 kg",
+          "59_kg": "59 kg",
+          "60_kg": "60 kg",
+          "61_kg": "61 kg",
+          "62_kg": "62 kg",
+          "63_kg": "63 kg",
+          "64_kg": "64 kg",
+          "65_kg": "65 kg",
+          "66_kg": "66 kg",
+          "67_kg": "67 kg",
+          "68_kg": "68 kg",
+          "69_kg": "69 kg",
+          "70_kg": "70 kg",
+          "71_kg": "71 kg",
+          "72_kg": "72 kg",
+          "73_kg": "73 kg",
+          "74_kg": "74 kg",
+          "75_kg": "75 kg",
+          "76_kg": "76 kg",
+          "77_kg": "77 kg",
+          "78_kg": "78 kg",
+          "79_kg": "79 kg",
+          "80_kg": "80 kg",
+          "81_kg": "81 kg",
+          "82_kg": "82 kg",
+          "83_kg": "83 kg",
+          "84_kg": "84 kg",
+          "85_kg": "85 kg",
+          "86_kg": "86 kg",
+          "87_kg": "87 kg",
+          "88_kg": "88 kg",
+          "89_kg": "89 kg",
+          "90_kg": "90 kg",
+          "91_kg": "91 kg",
+          "92_kg": "92 kg",
+          "93_kg": "93 kg",
+          "94_kg": "94 kg",
+          "95_kg": "95 kg",
+          "96_kg": "96 kg",
+          "97_kg": "97 kg",
+          "98_kg": "98 kg",
+          "99_kg": "99 kg",
+          "100_kg": "100 kg",
+          "above_100": "Above 100 kg"
+        }
+      },
+      "skin": {
+        "label": "Skin Tone",
+        "placeholder": "Select your skin tone",
+        "options": {
+          "fair": "Fair",
+          "brown": "Brown",
+          "light_brown": "Light Brown",
+          "black": "Black",
+          "very_fair": "Very Fair"
+        }
+      },
+      "maritalStatus": {
+        "label": "Marital Status",
+        "placeholder": "Select your marital status",
+        "options": {
+          "single": "Single",
+          "married": "Married",
+          "divorced": "Divorced",
+          "widow": "Widow",
+          "widower": "Widower"
+        }
+      }
+    }
+  },
+  "footerStatus": {
+    "yourBiodataIs": "Your biodata is",
+    "thisBiodataIs": "This biodata is currently",
+    "pleaseComplete": "Please",
+    "completeYourBiodata": "complete your biodata",
+    "toProceed": "to proceed.",
+    "cannotViewContact": "So you can’t view the contact details.",
+    "canViewContact": "So you can view the contact details.",
+    "onlyCanViewContactByVerify": "Once the account is verified, you can view the contact details. Thanks"
   }
 }

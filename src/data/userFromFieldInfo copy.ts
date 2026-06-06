@@ -637,144 +637,188 @@ const agreement = [
 const family_information = [
   {
     name: "family_information.isParentAlive",
-    label: "isParentAlive.label",
+    label: "Are Parents Alive",
     type: "select",
     options: [
-      { value: "yes", label: "isParentAlive.options.yes" },
-      { value: "no", label: "isParentAlive.options.no" },
+      {
+        value: "yes",
+        label: "Yes",
+      },
+      {
+        value: "no",
+        label: "No",
+      },
     ],
-    placeholder: "isParentAlive.placeholder",
+    placeholder: "Please confirm if parents are alive",
     required: true,
   },
-
   {
     name: "family_information.fatherProfession",
-    label: "fatherProfession.label",
+    label: "Father's Profession",
     type: "textArea",
-    placeholder: "fatherProfession.placeholder",
+    placeholder: "Enter father's profession",
     required: true,
   },
-
   {
     name: "family_information.isMotherAlive",
-    label: "isMotherAlive.label",
+    label: "Is Mother Alive",
     type: "select",
     options: [
-      { value: "yes", label: "isMotherAlive.options.yes" },
-      { value: "no", label: "isMotherAlive.options.no" },
+      {
+        value: "yes",
+        label: "Yes",
+      },
+      {
+        value: "no",
+        label: "No",
+      },
     ],
-    placeholder: "isMotherAlive.placeholder",
+    placeholder: "Enter mother's living status",
     required: true,
   },
-
   {
     name: "family_information.motherProfession",
-    label: "motherProfession.label",
+    label: "Mother's Profession",
     type: "text",
-    placeholder: "motherProfession.placeholder",
+    placeholder: "Enter mother's profession",
     required: true,
   },
-
   {
     name: "family_information.howManyBrothers",
-    label: "howManyBrothers.label",
+    label: "Number of Brothers",
     type: "select",
     options: [
-      { value: "no_brothers", label: "howManyBrothers.options.no_brothers" },
-      { value: "1", label: "howManyBrothers.options.1" },
-      { value: "2", label: "howManyBrothers.options.2" },
-      { value: "3", label: "howManyBrothers.options.3" },
-      { value: "4", label: "howManyBrothers.options.4" },
-      { value: "5", label: "howManyBrothers.options.5" },
-      { value: "more_than_5", label: "howManyBrothers.options.more_than_5" },
+      {
+        value: "no_brothers",
+        label: "no brothers",
+      },
+      {
+        value: "1",
+        label: "1",
+      },
+      {
+        value: "2",
+        label: "2",
+      },
+      {
+        value: "3",
+        label: "3",
+      },
+      {
+        value: "4",
+        label: "4",
+      },
+      {
+        value: "5",
+        label: "5",
+      },
+      {
+        value: "more_than_5",
+        label: "More than 5",
+      },
     ],
-    placeholder: "howManyBrothers.placeholder",
+    placeholder: "Select number of brothers",
     required: true,
   },
-
   {
     name: "family_information.brothersInformation",
-    label: "brothersInformation.label",
+    label: "Brothers' Information",
     type: "textArea",
-    placeholder: "brothersInformation.placeholder",
+    placeholder: "Describe your brothers' occupations and status",
     required: true,
   },
-
   {
     name: "family_information.howManySisters",
-    label: "howManySisters.label",
+    label: "Number of Sisters",
     type: "select",
     options: [
-      { value: "no_sisters", label: "howManySisters.options.no_sisters" },
-      { value: "1", label: "howManySisters.options.1" },
-      { value: "2", label: "howManySisters.options.2" },
-      { value: "3", label: "howManySisters.options.3" },
-      { value: "4", label: "howManySisters.options.4" },
-      { value: "5", label: "howManySisters.options.5" },
-      { value: "more_than_6", label: "howManySisters.options.more_than_6" },
+      {
+        value: "no_sisters",
+        label: "no sisters",
+      },
+      {
+        value: "1",
+        label: "1",
+      },
+      {
+        value: "2",
+        label: "2",
+      },
+      {
+        value: "3",
+        label: "3",
+      },
+      {
+        value: "4",
+        label: "4",
+      },
+      {
+        value: "5",
+        label: "5",
+      },
+      {
+        value: "more_than_6",
+        label: "More than 5",
+      },
     ],
-    placeholder: "howManySisters.placeholder",
+    placeholder: "Select number of sisters",
     required: true,
   },
-
   {
     name: "family_information.sistersInformation",
-    label: "sistersInformation.label",
+    label: "Sisters' Information",
     type: "textArea",
-    placeholder: "sistersInformation.placeholder",
+    placeholder: "Describe your sisters' occupations and status",
     required: true,
   },
   {
     name: "family_information.familyFinancialStatus",
-    label: "familyFinancialStatus.label",
+    label: "Family Financial Status",
     type: "select",
-    placeholder: "familyFinancialStatus.placeholder",
+    placeholder: "Select family financial status",
     options: [
       {
         value: "upper_class",
-        label: "familyFinancialStatus.options.upper_class",
+        label: "Upper Class",
       },
       {
         value: "middle_class",
-        label: "familyFinancialStatus.options.middle_class",
+        label: "Middle Class",
       },
       {
         value: "lower_class",
-        label: "familyFinancialStatus.options.lower_class",
+        label: "Lower Class",
       },
       {
         value: "upper_middle_class",
-        label: "familyFinancialStatus.options.upper_middle_class",
+        label: "Upper Middle Class",
       },
       {
         value: "lower_middle_class",
-        label: "familyFinancialStatus.options.lower_middle_class",
+        label: "Lower Middle Class",
       },
     ],
     required: true,
   },
-
   {
     name: "family_information.descriptionOfFinancialCondition",
-    label: "descriptionOfFinancialCondition.label",
+    label: "Description of Financial Condition",
     type: "textArea",
-    placeholder: "descriptionOfFinancialCondition.placeholder",
+    placeholder: "Describe your family's financial condition in detail",
     required: true,
   },
-
   {
     name: "family_information.professionOfUncles",
-    label: "professionOfUncles.label",
+    label: "Uncles' Professions",
     type: "textArea",
-    placeholder: "professionOfUncles.placeholder",
+    placeholder: "Describe your uncles' professions",
     required: true,
   },
-
   {
     name: "family_information.familyReligiousCondition",
-    label: "familyReligiousCondition.label",
+    label: "Family Religious Condition",
     type: "textArea",
-    placeholder: "familyReligiousCondition.placeholder",
+    placeholder: "Describe your family's religious practices and values",
     required: true,
   },
 ];

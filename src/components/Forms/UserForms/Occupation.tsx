@@ -20,7 +20,6 @@ const Occupation = () => {
           <Col key={name} xs={24} sm={12}>
             {(type === "text" && (
               <FormInput
-                id={name}
                 name={name}
                 label={label}
                 type={type}
@@ -29,7 +28,6 @@ const Occupation = () => {
             )) ||
               (type === "number" && (
                 <FormInput
-                  id={name}
                   name={name}
                   label={label}
                   type={type}
@@ -51,7 +49,7 @@ const Occupation = () => {
                 label={label}
                 placeholder={placeholder}
                 options={options}
-                mode={mode as "multiple" | "tags"}
+                mode={mode}
               />
             )}
           </Col>

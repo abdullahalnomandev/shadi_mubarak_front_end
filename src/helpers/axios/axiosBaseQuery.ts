@@ -37,10 +37,11 @@ export const axiosBaseQuery =
     } catch (axiosError) {
       const err = axiosError as AxiosError;
 
+      console.log('banlga999',err);
       return {
         error: {
-          status: err.response?.status,
-          data: err.response?.data || err?.message,
+          status: err.status,
+          data: (err.response?.data as any)?.message || err?.message,
         },
       };
     }

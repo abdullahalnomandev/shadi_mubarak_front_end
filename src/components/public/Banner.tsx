@@ -7,7 +7,7 @@ const Banner = () => {
     <div className='relative w-full'>
       {/* Background Image Container */}
       <div
-        className='relative mt-2 md:mt-5 overflow-hidden shadow-2xl'
+        className='relative overflow-hidden shadow-2xl'
         style={{ minHeight: "100vh" }}>
         {/* Background Image */}
         <div

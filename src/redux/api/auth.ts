@@ -11,10 +11,12 @@ const authApi = baseApi.injectEndpoints({
         url: `${AUTH_URL}/login`,
         method: "POST",
         data: args.loginData, // use loginData from args
+        credentials: "include",
       }),
       invalidatesTags: [TagTypes.user],
       transformResponse: (response, meta, arg) => {
         if (response?.accessToken) {
+          console.log("userLogin", response.accessToken);
           setAccessTokenToCookie(response.accessToken, {
             redirect: arg.callbackUrl || "/", // use callbackUrl from arg here
           });
@@ -59,12 +61,20 @@ const authApi = baseApi.injectEndpoints({
     }),
 
     userVerify: build.mutation({
-      query: (loginData) => ({
+      query: (args: { verifyData: any; callbackUrl?: string }) => ({
         url: `${AUTH_URL}/verify`,
         method: "POST",
-        data: loginData,
+        data: args.verifyData,
       }),
       invalidatesTags: [TagTypes.user],
+      transformResponse: (response, meta, arg) => {
+        if (response?.accessToken) {
+          setAccessTokenToCookie(response.accessToken, {
+            redirect: arg.callbackUrl || "/user/dashboard", // use callbackUrl from arg here
+          });
+        }
+        return response;
+      },
     }),
 
     userUpdatePassword: build.mutation({

@@ -10,7 +10,8 @@ import FormTextArea from "../FormTextArea";
 
 const FamilyInformation = () => {
   const t = useTranslations();
-
+  const translate = useTranslations("bio_data_form.family_information");
+  
   const { family_information } = useGetUserFromField();
   const { watch } = useFormContext();
 
@@ -44,17 +45,17 @@ const FamilyInformation = () => {
               {(type === "text" && (
                 <FormInput
                   name={name}
-                  label={label}
+                  label={translate(label)}
                   type={type}
                   required={required}
-                  placeholder={placeholder}
+                  placeholder={translate(placeholder)}
                 />
               )) ||
                 (type === "select" && (
                   <FormSelectField
                     name={name}
-                    label={label}
-                    placeholder={placeholder}
+                    label={translate(label)}
+                    placeholder={translate(placeholder)}
                     required={required}
                     options={options}
                   />
@@ -62,10 +63,10 @@ const FamilyInformation = () => {
                 (type === "number" && (
                   <FormInput
                     name={name}
-                    label={label}
+                    label={translate(label)}
                     type={type}
                     required={required}
-                    placeholder={placeholder}
+                    placeholder={translate(placeholder)}
                   />
                 )) ||
                 (type === "textArea" && (
@@ -73,8 +74,8 @@ const FamilyInformation = () => {
                     required={required}
                     id={name}
                     name={name}
-                    label={label}
-                    placeholder={placeholder}
+                    label={translate(label)}
+                    placeholder={translate(placeholder)}
                   />
                 ))}
             </Col>

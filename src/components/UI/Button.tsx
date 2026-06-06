@@ -175,9 +175,9 @@ const Button: React.FC<ButtonProps> = ({
         </>
       ) : (
         <>
-          {leftIcon && <span className='flex-shrink-0'>{leftIcon}</span>}
+          {leftIcon && <span className='shrink-0'>{leftIcon}</span>}
           <span>{children}</span>
-          {rightIcon && <span className='flex-shrink-0'>{rightIcon}</span>}
+          {rightIcon && <span className='shrink-0'>{rightIcon}</span>}
         </>
       )}
     </button>
