@@ -201,8 +201,8 @@
     "search_partners_button": "Search Partners",
     "bioDataType": {
       "all": "All",
-      "male's_biodata": "Male's Biodata",
-      "female's_biodata": "Female's Biodata"
+      "male_s_biodata": "Groom's Biodata",
+      "female_s_biodata": "Bride's Biodata"
     },
     "marital_status_options": {
       "all": "All",
@@ -1417,8 +1417,8 @@
           "female_biodata": "Bride's Biodata"
         },
         "values": {
-          "male's_biodata": "Groom's Biodata",
-          "female's_biodata": "Bride's Biodata"
+          "male_s_biodata": "Groom's Biodata",
+          "female_s_biodata": "Bride's Biodata"
         }
       },
       "dateOfBirth": {

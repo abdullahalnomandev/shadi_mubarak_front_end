@@ -2,11 +2,11 @@ export const getGenderOption = (t: (key: string) => string) => [
   { value: "", label: t("search_form.bioDataType.all") },
   {
     value: "male's_biodata",
-    label: t("search_form.bioDataType.male's_biodata"),
+    label: t("search_form.bioDataType.male_s_biodata"),
   },
   {
     value: "female's_biodata",
-    label: t("search_form.bioDataType.female's_biodata"),
+    label: t("search_form.bioDataType.female_s_biodata"),
   },
 ];
 export const genderOptions = [

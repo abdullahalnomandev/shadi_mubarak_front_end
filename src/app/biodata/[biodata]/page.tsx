@@ -25,13 +25,13 @@ export const metadata: Metadata = {
 // }
 
 interface PageProps {
-  params: {
+  params: Promise<{
     biodata: string;
-  };
+  }>;
 }
 
 export default async function Page({ params }: PageProps) {
-  const { biodata } = params;
+  const { biodata } = await params;
 
   const [bioDataInfo, userInfo] = await Promise.all([
     getBioData(biodata),

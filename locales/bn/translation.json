@@ -176,8 +176,8 @@
     "clear_all": "Clear All",
     "bioDataType": {
       "all": "সকল",
-      "male's_biodata": "পাত্রের বায়োডাটা",
-      "female's_biodata": "পাত্রীর বায়োডাটা"
+      "male_s_biodata": "পাত্রের বায়োডাটা",
+      "female_s_biodata": "পাত্রীর বায়োডাটা"
     },
     "marital_status_options": {
       "all": "সকল",
@@ -1419,8 +1419,8 @@
           "female_biodata": "পাত্রীর বায়োডাটা"
         },
         "values": {
-          "male's_biodata": "পাত্রের বায়োডাটা",
-          "female's_biodata": "পাত্রীর বায়োডাটা"
+          "male_s_biodata": "পাত্রের বায়োডাটা",
+          "female_s_biodata": "পাত্রীর বায়োডাটা"
         }
       },
       "dateOfBirth": {

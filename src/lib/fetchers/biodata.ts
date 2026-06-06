@@ -28,7 +28,7 @@ export async function getAllBioData(query?: Record<string, any>) {
   }
 
   const res = await fetch(`${getBaseUrl()}/biodata?${queryParams.toString()}`, {
-    next: { revalidate: 1800 },
+    cache:"force-cache"
   });
 
   if (!res.ok) {

@@ -89,27 +89,27 @@ const GeneralInfo = () => {
               {type === "text" || type === "number" ? (
                 <FormInput
                   name={name}
-                  label={t(translation(label))}
+                  label={translation(label)}
                   type={type}
-                  placeholder={t(placeholder)}
+                  placeholder={translation(placeholder)}
                   required={required}
-                  helperText={helperText ? t(helperText) : undefined}
+                  helperText={helperText ? translation(helperText) : undefined}
                 />
               ) : type === "select" ? (
                 <FormSelectField
                   name={name}
-                  label={t(translation(label))}
-                  placeholder={t(translation(placeholder))}
+                  label={translation(label)}
+                  placeholder={translation(placeholder)}
                   options={options?.map((opt) => ({
                     value: opt.value,
-                    label: t(translation(opt.label)),
+                    label: translation(opt.label),
                   }))}
                   required={required}
                 />
               ) : type === "date" ? (
                 <FormDatePicker
                   name={name}
-                  label={t(translation(label))}
+                  label={translation(label)}
                 />
               ) : null}
             </Col>

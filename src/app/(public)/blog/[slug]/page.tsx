@@ -1,7 +1,8 @@
 import { blogPosts } from "@/data/blogPost";
 
-const BlogContentPage = ({ params }: { params: { slug: string } }) => {
-  const blog = blogPosts.find(({ id }) => id === params.slug);
+const BlogContentPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
+  const resolvedParams = await params;
+  const blog = blogPosts.find(({ id }) => id === resolvedParams.slug);
 
   return (
     <article className='prose prose-pink dark:prose-invert max-w-none mx-auto px-4 py-8'>
@@ -19,7 +20,7 @@ const BlogContentPage = ({ params }: { params: { slug: string } }) => {
           </div>
           <span className='text-gray-300'>•</span>
           <time className='text-gray-600'>
-            {new Date(blog?.createdAt).toLocaleDateString("en-US", {
+            {new Date((blog as any)?.createdAt).toLocaleDateString("en-US", {
               day: "numeric",
               month: "short",
               year: "numeric",

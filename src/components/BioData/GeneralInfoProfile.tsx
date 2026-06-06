@@ -40,7 +40,9 @@ const GeneralInfoProfile = ({
     const value = bioDataGeneralInfo[field];
 
     if (value) {
-      bioDataGeneralInfo[field] = t(`${path}.${value}`);
+      const sanitizedValue =
+        typeof value === "string" ? value.replace(/'/g, "_").replace(/"/g, "") : value;
+      bioDataGeneralInfo[field] = t(`${path}.${sanitizedValue}`);
     }
   });
 

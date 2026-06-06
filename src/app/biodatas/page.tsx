@@ -2,7 +2,7 @@ import BioDatas from "@/components/Biodatas/Biodatas";
 import { getAllBioData } from "@/lib/fetchers/biodata";
 
 type SearchParams = {
-  searchParams?: {
+  searchParams: Promise<{
     bioDataNo?: string;
     biodataType?: string;
     maritalStatus?: string;
@@ -10,18 +10,19 @@ type SearchParams = {
     permanentAddress?: string;
     minAge?: string;
     maxAge?: string;
-  };
+  }>;
 };
 
 const BioDataPage = async ({ searchParams }: SearchParams) => {
+  const resolvedSearchParams = await searchParams;
   // ✅ Extract params with defaults
-  const bioDataNo = searchParams?.bioDataNo || "";
-  const biodataType = searchParams?.biodataType || "";
-  const maritalStatus = searchParams?.maritalStatus || "";
-  const presentAddress = searchParams?.presentAddress || "";
-  const permanentAddress = searchParams?.permanentAddress || "";
-  const minAge = parseInt(searchParams?.minAge || "18");
-  const maxAge = parseInt(searchParams?.maxAge || "40");
+  const bioDataNo = resolvedSearchParams?.bioDataNo || "";
+  const biodataType = resolvedSearchParams?.biodataType || "";
+  const maritalStatus = resolvedSearchParams?.maritalStatus || "";
+  const presentAddress = resolvedSearchParams?.presentAddress || "";
+  const permanentAddress = resolvedSearchParams?.permanentAddress || "";
+  const minAge = parseInt(resolvedSearchParams?.minAge || "18");
+  const maxAge = parseInt(resolvedSearchParams?.maxAge || "40");
 
   // ✅ Build query for backend
   const query: Record<string, any> = {

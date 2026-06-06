@@ -57,7 +57,10 @@ const FamilyInformation = () => {
                     label={translate(label)}
                     placeholder={translate(placeholder)}
                     required={required}
-                    options={options}
+                    options={options?.map((opt: any) => ({
+                      value: opt.value,
+                      label: translate(opt.label),
+                    }))}
                   />
                 )) ||
                 (type === "number" && (
