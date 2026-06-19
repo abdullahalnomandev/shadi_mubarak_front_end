@@ -3,7 +3,7 @@
  * @param dobString - ISO date string like "1999-12-31T00:00:00.000Z"
  * @returns Formatted age like "25 years, 7 months, 5 days"
  */
-export const formatPreciseAgeFromDOB = (dobString?: string): string => {
+export const formatPreciseAgeFromDOB = (dobString?: string, t? : any): string => {
   if (!dobString) return "Not available";
 
   const birthDate = new Date(dobString);
@@ -29,9 +29,9 @@ export const formatPreciseAgeFromDOB = (dobString?: string): string => {
   }
   // Build array of meaningful age parts with abbreviated month format
   const parts = [
-    years > 0 ? `${years} ${years === 1 ? "year" : "years"}` : null,
-    months > 0 ? `${months} ${months === 1 ? "month" : "months"}` : null,
+    years > 0 ? `${years} ${years === 1 ? t("biodata.date.year") : t("biodata.date.year")}` : null,
+    months > 0 ? `${months} ${months === 1 ? t("biodata.date.month") : t("biodata.date.month")}` : null,
   ].filter(Boolean);
 
-  return parts.length ? parts.join(", ") : "Less than a month";
+  return parts.length ? parts.join(" ") : "Less than a month";
 };

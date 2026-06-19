@@ -77,9 +77,7 @@ const BioData = ({ bioDataInfo, bioDataNo, className = "" }: IProps) => {
 
   // Filter out sections with no data
   const filteredSections = sections.filter((section) => {
-    if (
-      section.title === t("biodata.sections.general_information")
-    ) {
+    if (section.title === t("biodata.sections.general_information")) {
       return false;
     }
 
@@ -120,9 +118,7 @@ const BioData = ({ bioDataInfo, bioDataNo, className = "" }: IProps) => {
 
       <div className={`m-auto mt-16 mb-8 ${className} px-1`}>
         <div className="sm:flex sm:flex-wrap sm:gap-4 relative">
-          {isOwner && (
-            <PriviewBioDataHeader profileStatus={profileStatus} />
-          )}
+          {isOwner && <PriviewBioDataHeader profileStatus={profileStatus} />}
 
           <div className="sm:w-87.5 md:sticky md:top-25 h-fit">
             <GeneralInfoProfile
@@ -136,22 +132,18 @@ const BioData = ({ bioDataInfo, bioDataNo, className = "" }: IProps) => {
 
           <div className="sm:flex-1 min-w-0">
             {filteredSections.map((section, index) =>
-              renderTable(section.title, section.data, index)
+              renderTable(section.title, section.data, index),
             )}
 
             <div className="text-center w-full">
               {profileStatus !== BioDataStatus.VERIFIED && (
-                <FooterStatus
-                  bioDataInfo={bioDataInfo}
-                  owner={isOwner}
-                />
+                <FooterStatus bioDataInfo={bioDataInfo} owner={isOwner} />
               )}
             </div>
 
-            {!bioData?.contact &&
-              profileStatus === BioDataStatus.VERIFIED && (
-                <ViewContact bioDataNo={bioDataNo} />
-              )}
+            {!bioData?.contact && profileStatus === BioDataStatus.VERIFIED && (
+              <ViewContact bioDataNo={bioDataNo} />
+            )}
           </div>
         </div>
       </div>

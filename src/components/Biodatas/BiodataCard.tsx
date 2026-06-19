@@ -8,18 +8,7 @@ import Button from "../UI/Button";
 import { formatPreciseAgeFromDOB } from "./util/formateDob";
 import { useTranslations } from "next-intl";
 
-interface BiodataProps {
-  biodata: {
-    bioDataNo: string;
-    biodataType: "male's_biodata" | "female's_biodata";
-    age: number;
-    height: string;
-    occupation: string;
-    views?: number;
-  };
-}
-
-const BioDataCard = ({ biodata }: BiodataProps) => {
+const BioDataCard = ({ biodata }: { biodata: any }) => {
   const t = useTranslations();
 
   // const [isShortlisted, setIsShortlisted] = useState(false);
@@ -34,7 +23,7 @@ const BioDataCard = ({ biodata }: BiodataProps) => {
   const staticBiodata = {
     bioDataNo: biodata?.bioDataNo,
     biodataType: biodata?.general_information?.biodataType,
-    age: formatPreciseAgeFromDOB(biodata?.general_information?.dateOfBirth),
+    age: formatPreciseAgeFromDOB(biodata?.general_information?.dateOfBirth, t),
     skin: biodata?.general_information?.skin,
     height: biodata?.general_information?.height,
     occupation: biodata.occupation?.occupation || "-",
@@ -67,7 +56,7 @@ const BioDataCard = ({ biodata }: BiodataProps) => {
                     </div>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-800 text-sm">
+                    <h3 className="font-semibold text-gray-800 text-md">
                       {t("profile.profile")}
                     </h3>
                     <p className="text-xs text-gray-500 font-medium">
@@ -98,7 +87,7 @@ const BioDataCard = ({ biodata }: BiodataProps) => {
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <span className="text-xs text-gray-500">
+                  <span className="text-md text-gray-500">
                     {t("profile.age")}
                   </span>
                 </div>
@@ -109,19 +98,19 @@ const BioDataCard = ({ biodata }: BiodataProps) => {
 
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <span className="text-xs text-gray-500">
+                  <span className="text-md text-gray-500">
                     {" "}
                     {t("profile.height")}
                   </span>
                 </div>
                 <span className="font-medium text-sm text-gray-800">
-                  {staticBiodata.height}
+                  {t(`bio_data_form.general_information.height.options.${staticBiodata.height}`)}
                 </span>
               </div>
 
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <span className="text-xs text-gray-500">
+                  <span className="text-md text-gray-500">
                     {biodata?.general_information?.biodataType ===
                     "male's_biodata"
                       ? t("profile.profession")
@@ -147,7 +136,7 @@ const BioDataCard = ({ biodata }: BiodataProps) => {
             {/* Action Buttons */}
             <div className="mt-4 pt-3 border-t border-gray-100">
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-1 text-xs text-gray-400">
+                <div className="flex items-center gap-1 text-sm text-gray-400">
                   <FaEye className="text-xs" />
                   <span>{staticBiodata.views} views</span>
                 </div>

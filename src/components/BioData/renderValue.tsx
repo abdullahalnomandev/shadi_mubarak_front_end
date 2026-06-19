@@ -5,6 +5,9 @@ const renderValue = (value: any): string | React.ReactNode => {
   // Email check
   const isEmail = (str: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(str);
 
+  // Check if string contains HTML tags
+  const hasHTMLTags = (str: string) => /<[^>]+>/.test(str);
+
   // Special replacements (always uppercase)
   const keywordMap: Record<string, string> = {
     hsc: "HSC",
@@ -63,7 +66,9 @@ const renderValue = (value: any): string | React.ReactNode => {
   }
 
   // String
-  if (typeof value === "string") return formatString(value);
+  if (typeof value === "string") {
+    return formatString(value);
+  }
 
   // Fallback
   return value?.toString?.() ?? "";

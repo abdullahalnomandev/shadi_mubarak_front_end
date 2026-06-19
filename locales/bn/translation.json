@@ -598,6 +598,10 @@
       "relationWithGuardian": "অভিভাবকের সাথে আপনার সম্পর্ক",
       "emailUsedForRegistration": "নিবন্ধনের জন্য ব্যবহৃত ইমেইল ঠিকানা",
       "groomName": "বরের নাম"
+    },
+    "date":{
+      "month": "মাস",
+      "year":  "বছর "
     }
   },
   "location": {

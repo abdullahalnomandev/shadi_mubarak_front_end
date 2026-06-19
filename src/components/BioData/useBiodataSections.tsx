@@ -7,6 +7,36 @@ interface UseBiodataSectionsProps {
   t: (key: string) => string;
 }
 
+const getTranslatedAddress = (addressValue: string, t: (key: string) => string): string => {
+  if (!addressValue) return "";
+  
+  // Split the comma-separated value into parts
+  const parts = addressValue.split(",");
+  
+  if (parts.length === 0) return "";
+  
+  // Collect all translated parts
+  const translatedParts: string[] = [];
+  
+  // Translate division (always first part)
+  if (parts.length >= 1 && parts[0]) {
+    translatedParts.push(t(`location.${parts[0]}.label`));
+  }
+  
+  // Translate district (second part)
+  if (parts.length >= 2 && parts[1]) {
+    translatedParts.push(t(`location.${parts[0]}.${parts[1]}.label`));
+  }
+  
+  // Translate upazila (third part)
+  if (parts.length >= 3 && parts[2]) {
+    translatedParts.push(t(`location.${parts[0]}.${parts[1]}.${parts[2]}`));
+  }
+  
+  // Join all translated parts with commas
+  return translatedParts.join(", ");
+};
+
 export const useBiodataSections = ({
   bioData,
   bioDataNo,
@@ -24,11 +54,11 @@ export const useBiodataSections = ({
           ? {
               [t("biodata.address.present_address")]: bioData.address
                 .present_address
-                ? `${bioData.address.present_address.full}\n${bioData.address.present_address.area}`
+                ? `${getTranslatedAddress(bioData.address.present_address.full, t)} ${bioData.address.present_address.area ? `- ${bioData.address.present_address.area}` : ""}`
                 : "",
               [t("biodata.address.permanent_address")]: bioData.address
                 .permanent_address
-                ? `${bioData.address.permanent_address.full}\n${bioData.address.permanent_address.area}`
+                ? `${getTranslatedAddress(bioData.address.permanent_address.full, t)} ${bioData.address.permanent_address.area ? `- ${bioData.address.permanent_address.area}` : ""}`
                 : "",
               [t("biodata.address.grow_up")]: bioData.address.grow_up || "",
             }
