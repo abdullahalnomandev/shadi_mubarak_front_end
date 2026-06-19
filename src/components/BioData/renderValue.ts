@@ -15,15 +15,16 @@ const renderValue = (value: any): string | React.ReactNode => {
   const formatString = (str: string) => {
     if (isEmail(str)) return str.toLowerCase();
 
-    return str
-      .replace(/[_\s]+/g, " ") // Normalize underscores and spaces
-      .split(" ")
-      .map((word) => {
-        const lower = word.toLowerCase();
-        if (keywordMap[lower]) return keywordMap[lower]; // Use special casing
-        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-      })
-      .join(" ");
+    // return str
+    //   .replace(/[_\s]+/g, " ") // Normalize underscores and spaces
+    //   .split(" ")
+    //   .map((word) => {
+    //     const lower = word.toLowerCase();
+    //     if (keywordMap[lower]) return keywordMap[lower]; // Use special casing
+    //     return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase().charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    //   })
+    //   .join(" ");
+    return str;
   };
 
   // Handle array

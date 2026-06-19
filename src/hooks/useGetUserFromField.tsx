@@ -2,11 +2,11 @@ import userFormFields from "@/data/userFromFieldInfo";
 const useGetUserFromField = () => {
 
   const {
-    general_information,
+    // general_information,
     address,
     occupation,
     agreement,
-    family_information,
+    // family_information,
     personal_information,
     expected_partner,
     contact,
@@ -15,11 +15,11 @@ const useGetUserFromField = () => {
   } = userFormFields;
 
   return {
-    general_information,
+    // general_information,
     address,
     occupation,
     agreement,
-    family_information,
+    // family_information,
     personal_information,
     expected_partner,
     contact,

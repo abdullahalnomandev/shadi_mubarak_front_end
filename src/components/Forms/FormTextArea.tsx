@@ -44,6 +44,9 @@ const FormTextArea = ({
             value={value ? value : field.value}
             placeholder={placeholder}
             allowClear
+            style={{
+              fontFamily: '"Adorsho Lipi", "Arial", cursive, sans-serif',
+            }}
             className={`
               dark:!bg-slate-800 
               dark:!text-white 

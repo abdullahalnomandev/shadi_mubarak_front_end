@@ -50,11 +50,13 @@ html {
 
 input.ant-input,
 input.ant-input-lg,
-input.ant-input-password {
+input.ant-input-password,
+textarea.ant-input {
     font-family: "Adorsho Lipi", "Arial", cursive, sans-serif;
 }
 
-input::placeholder {
+input::placeholder,
+textarea::placeholder {
    font-family: "Adorsho Lipi", "Arial", cursive, sans-serif;
 }
 /* 

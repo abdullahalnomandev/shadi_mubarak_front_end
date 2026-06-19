@@ -7,13 +7,20 @@ export const useCleanHiddenFields = ({
 }: {
   conditionMap: Record<string, boolean>;
 }) => {
-  const { resetField } = useFormContext();
+  const { setValue, getValues } = useFormContext();
 
   useEffect(() => {
     Object.entries(conditionMap).forEach(([fieldName, shouldKeep]) => {
       if (!shouldKeep) {
-        resetField(fieldName as any);
+        const currentValue = getValues(fieldName as any);
+        if (currentValue !== null && currentValue !== undefined) {
+          setValue(fieldName as any, null, {
+            shouldDirty: false,
+            shouldTouch: false,
+            shouldValidate: false,
+          });
+        }
       }
     });
-  }, [JSON.stringify(conditionMap)]); // triggers if any condition changes
+  }, [conditionMap, setValue, getValues]);
 };

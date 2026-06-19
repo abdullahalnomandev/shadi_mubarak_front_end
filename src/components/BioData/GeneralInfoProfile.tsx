@@ -121,7 +121,7 @@ const GeneralInfoProfile = ({
         <button
           className="flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 transition duration-300 shadow-sm min-w-[120px] cursor-pointer hover:scale-105"
           onClick={handleCopyBioLink}
-        >
+        >  
           <FiCopy className="h-4 w-4" />
           {t("biodata.actions.copy_bio_link")}
         </button>

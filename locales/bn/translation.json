@@ -2,11 +2,11 @@
   "Welcome to React": "বাংলাদেশ আন্তর্জাতিক ক্রিকেট কাউন্সিল",
   "complete_your_profile": "বায়োডাটা সম্পূর্ণ করুন",
   "biodata_status": "বায়োডাটা স্ট্যাটাস",
-  "create_biodata":" বায়োডাটা তৈরি করুন",
-  "complete_biodata":"বায়োডাটা সম্পূর্ণ করুন",
-  "update_biodata":"বায়োডাটা আপডেট করুন",
-  "submit_biodata":"বায়োডাটা সাবমিট করুন",
-  "edits_biodata":"বায়োডাটা আপডেট   করুন",
+  "create_biodata": " বায়োডাটা তৈরি করুন",
+  "complete_biodata": "বায়োডাটা সম্পূর্ণ করুন",
+  "update_biodata": "বায়োডাটা আপডেট করুন",
+  "submit_biodata": "বায়োডাটা সাবমিট করুন",
+  "edits_biodata": "বায়োডাটা আপডেট   করুন",
   "header": {
     "home": "হোম",
     "about": "আমাদের সম্পর্কে",
@@ -1411,7 +1411,7 @@
   "bio_data_form": {
     "general_information": {
       "biodataType": {
-        "label": "বায়োডাটার টাইপ",
+        "label": "বায়োডাটার ধরন",
         "placeholder": "বায়োডাটা টাইপ নির্বাচন করুন",
         "helperText": "দয়া করে উপযুক্ত বায়োডাটা টাইপ নির্বাচন করুন",
         "options": {
@@ -1683,6 +1683,35 @@
       "familyReligiousCondition": {
         "label": "পারিবারিক ধর্মীয় অবস্থা",
         "placeholder": "পরিবারের ধর্মীয় অনুশীলন ও পরিবেশ সম্পর্কে লিখুন"
+      }
+    },
+    "address": {
+      "present_address": {
+        "label": "বর্তমান ঠিকানা",
+        "placeholder": "বর্তমান ঠিকানা নির্বাচন করুন"
+      },
+
+      "area": {
+        "label": "এলাকা",
+        "placeholder": "এলাকার নাম লিখুন "
+      },
+
+      "isSameAsPresent": {
+        "label": "স্থায়ী ও বর্তমান ঠিকানা একই ?",
+        "placeholder": "স্থায়ী ও বর্তমান ঠিকানা একই হলে নির্বাচন করুন"
+      },
+      "permanent_address": {
+        "label": "স্থায়ী ঠিকানা",
+        "placeholder": "স্থায়ী ঠিকানা নির্বাচন করুন"
+      },
+
+      "permanent_address_same_as_present": {
+        "label": "স্থায়ী ঠিকানা বর্তমান ঠিকানার মতো"
+      },
+
+      "grow_up": {
+        "label": "কোথায় বড় হয়েছেন?",
+        "placeholder": "কোথায় বড় হয়েছেন তা লিখুন"
       }
     }
   },

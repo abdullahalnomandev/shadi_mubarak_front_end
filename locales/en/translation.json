@@ -1,12 +1,12 @@
 {
   "Welcome to React": "Bangladesh is the International Cricket Council",
-  "complete_your_profile":"Complete your biodata",
-  "biodata_status":"Biodata Status",
-  "create_biodata":"Create Your Biodata",
-  "complete_biodata":"Complete BioData",
-  "update_biodata":"Update BioData",
-  "submit_biodata":"Submit BioData",
-  "edits_biodata":"Edit BioData",
+  "complete_your_profile": "Complete your biodata",
+  "biodata_status": "Biodata Status",
+  "create_biodata": "Create Your Biodata",
+  "complete_biodata": "Complete BioData",
+  "update_biodata": "Update BioData",
+  "submit_biodata": "Submit BioData",
+  "edits_biodata": "Edit BioData",
   "header": {
     "home": "Home",
     "about": "About",
@@ -1554,6 +1554,162 @@
           "widow": "Widow",
           "widower": "Widower"
         }
+      }
+    },
+    "family_information": {
+      "isParentAlive": {
+        "label": "Is Parent Alive?",
+        "placeholder": "Select if the parent is alive",
+        "options": {
+          "yes": "Yes",
+          "no": "No"
+        },
+        "values": {
+          "yes": "Yes",
+          "no": "No"
+        }
+      },
+
+      "fatherProfession": {
+        "label": "Father's Profession",
+        "placeholder": "Father's Profession"
+      },
+
+      "isMotherAlive": {
+        "label": "Is Mother Alive?",
+        "placeholder": "Is Mother Alive?",
+        "options": {
+          "yes": "Yes",
+          "no": "No"
+        },
+        "values": {
+          "yes": "Yes",
+          "no": "No"
+        }
+      },
+
+      "motherProfession": {
+        "label": "Mother's Profession",
+        "placeholder": "Mother's Profession"
+      },
+
+      "howManyBrothers": {
+        "label": "How Many Brothers?",
+        "placeholder": "How Many Brothers?",
+        "options": {
+          "no_brothers": "No Brothers",
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5"
+        },
+        "values": {
+          "no_brothers": "No Brothers",
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "more_than_5": "More than 5"
+        }
+      },
+
+      "brothersInformation": {
+        "label": "Brothers Information",
+        "placeholder": "Brothers Information"
+      },
+
+      "howManySisters": {
+        "label": "How Many Sisters?",
+        "placeholder": "How Many Sisters?",
+        "options": {
+          "no_sisters": "No Sisters",
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "more_than_6": "More than 6"
+        },
+        "values": {
+          "no_sisters": "No Sisters",
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "more_than_6": "More than 6"
+        }
+      },
+
+      "sistersInformation": {
+        "label": "Sisters Information",
+        "placeholder": "Sisters Information"
+      },
+
+      "familyFinancialStatus": {
+        "label": "Family Financial Status",
+        "placeholder": "Family Financial Status",
+        "options": {
+          "upper_class": "Upper Class",
+          "middle_class": "Middle Class",
+          "lower_class": "Lower Class",
+          "upper_middle_class": "Upper Middle Class",
+          "lower_middle_class": "Lower Middle Class"
+        },
+        "values": {
+          "upper_class": "Upper Class",
+          "middle_class": "Middle Class",
+          "lower_class": "Lower Class",
+          "upper_middle_class": "Upper Middle Class",
+          "lower_middle_class": "Lower Middle Class"
+        }
+      },
+
+      "descriptionOfFinancialCondition": {
+        "label": "Description of Financial Condition",
+        "placeholder": "Description of Financial Condition"
+      },
+
+      "professionOfUncles": {
+        "label": "Profession of Uncleles",
+        "placeholder": "Profession of Uncleles"
+      },
+
+      "familyReligiousCondition": {
+        "label": "Family Religious Condition",
+        "placeholder": "Family Religious Condition"
+      }
+    },
+    "address": {
+      "present_address": {
+        "label": "Present Address",
+        "placeholder": "Select your present address"
+      },
+
+      "area": {
+        "label": "Area / Locality",
+        "placeholder": "Enter your area or locality"
+      },
+
+      "isSameAsPresent": {
+        "label": "Is your permanent address the same as your present address?",
+        "placeholder": "Select if your permanent and present addresses are the same"
+      },
+
+      "permanent_address": {
+        "label": "Permanent Address",
+        "placeholder": "Select your permanent address"
+      },
+
+      "permanent_address_same_as_present": {
+        "label": "Permanent address is the same as present address"
+      },
+
+      "grow_up": {
+        "label": "Where did you grow up?",
+        "placeholder": "Enter the place where you grew up"
       }
     }
   },

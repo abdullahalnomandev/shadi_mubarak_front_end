@@ -108,25 +108,30 @@ export const useBiodataSections = ({
         data: bioData.family_information
           ? {
               [t("biodata.family_information.isParentAlive")]:
-                bioData.family_information.isParentAlive,
+                [t(`bio_data_form.family_information.isParentAlive.values.${bioData.family_information.isParentAlive}`)],
+                // bioData.family_information.isParentAlive,
               [t("biodata.family_information.fatherProfession")]:
                 bioData.family_information.fatherProfession,
               [t("biodata.family_information.isMotherAlive")]:
-                bioData.family_information.isMotherAlive,
+                // bioData.family_information.isMotherAlive,
+                [t(`bio_data_form.family_information.isMotherAlive.values.${bioData.family_information.isMotherAlive}`)],
               [t("biodata.family_information.motherProfession")]:
                 bioData.family_information.motherProfession,
               [t("biodata.family_information.howManyBrothers")]:
-                bioData.family_information.howManyBrothers,
+                // bioData.family_information.howManyBrothers,
+                [t(`bio_data_form.family_information.howManyBrothers.values.${bioData.family_information.howManyBrothers}`)],
               [t("biodata.family_information.brothersInformation")]:
                 bioData.family_information.brothersInformation,
               [t("biodata.family_information.howManySisters")]:
-                bioData.family_information.howManySisters,
+                // bioData.family_information.howManySisters,
+                [t(`bio_data_form.family_information.howManySisters.values.${bioData.family_information.howManySisters}`)],
               [t("biodata.family_information.sistersInformation")]:
                 bioData.family_information.sistersInformation,
               [t("biodata.family_information.professionOfUncles")]:
                 bioData.family_information.professionOfUncles,
               [t("biodata.family_information.familyFinancialStatus")]:
-                bioData.family_information.familyFinancialStatus,
+                // bioData.family_information.familyFinancialStatus,
+                [t(`bio_data_form.family_information.familyFinancialStatus.values.${bioData.family_information.familyFinancialStatus}`)], 
               [t("biodata.family_information.descriptionOfFinancialCondition")]:
                 bioData.family_information.descriptionOfFinancialCondition,
               [t("biodata.family_information.familyReligiousCondition")]:

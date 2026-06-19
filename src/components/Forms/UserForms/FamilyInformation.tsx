@@ -1,18 +1,17 @@
 "use client";
 import { useCleanHiddenFields } from "@/hooks/useCleanHiddenFields";
-import useGetUserFromField from "@/hooks/useGetUserFromField";
 import { Col, Row } from "antd";
 import { useTranslations } from "next-intl";
 import { useFormContext } from "react-hook-form";
 import FormInput from "../FormInput";
 import FormSelectField from "../FormSelectField";
 import FormTextArea from "../FormTextArea";
+import { family_information } from "@/data/familyInformationField";
 
 const FamilyInformation = () => {
   const t = useTranslations();
   const translate = useTranslations("bio_data_form.family_information");
   
-  const { family_information } = useGetUserFromField();
   const { watch } = useFormContext();
 
   const isFatherAlive = watch("family_information.isParentAlive");
@@ -30,7 +29,7 @@ const FamilyInformation = () => {
   useCleanHiddenFields({ conditionMap });
 
   const filteredFamilyInformation = family_information.filter(
-    ({ name }) => conditionMap[name] !== false
+    ({ name }) => (conditionMap as Record<string, boolean>)[name] !== false
   );
 
   return (

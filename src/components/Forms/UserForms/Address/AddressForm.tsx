@@ -36,7 +36,7 @@ const AddressForm = () => {
   const addressFields = [
     {
       name: "address.present_address.full",
-      label: "Present Address",
+      label: t("bio_data_form.address.present_address.label"),
       type: "select",
       placeholder: "Enter full present address",
       options: getLocationData(t).filteredLocationData,
@@ -44,31 +44,31 @@ const AddressForm = () => {
     },
     {
       name: "address.present_address.area",
-      label: "Area",
+      label: t("bio_data_form.address.area.label"),
       type: "text",
-      placeholder: "Enter area",
+      placeholder: t("bio_data_form.address.area.placeholder"),
       required: false,
     },
     {
       name: "address.permanent_address.full",
-      label: "Permanent Address",
+      label: t("bio_data_form.address.permanent_address.label"),
       type: "select",
-      placeholder: "Enter full permanent address",
+      placeholder: t("bio_data_form.address.permanent_address.placeholder"),
       options: getLocationData(t).filteredLocationData,
       required: true,
     },
     {
       name: "address.permanent_address.area",
-      label: "Area",
+      label: t("bio_data_form.address.area.label"),
       type: "text",
-      placeholder: "Enter area",
+      placeholder: t("bio_data_form.address.area.placeholder"),
       required: false,
     },
     {
       name: "address.grow_up",
-      label: "Grow Up",
+      label: t("bio_data_form.address.grow_up.label"),
       type: "text",
-      placeholder: "Where did you grow up?",
+      placeholder: t("bio_data_form.address.grow_up.placeholder"),
       required: true,
     },
   ];
@@ -87,19 +87,9 @@ const AddressForm = () => {
             showSearch
             size="large"
             displayRender={(label: string[]) => {
-              // return label[label.length-1];
               return label.join(", ");
             }}
           />
-          {/* <FormCascader
-            name={name}
-            options={options}
-            placeholder={placeholder}
-            required={required}
-            showSearch
-            size='large'
-            className='form-field'
-          /> */}
         </Col>
       );
     }
@@ -134,7 +124,7 @@ const AddressForm = () => {
             checked={sameAsPresent}
             onChange={(e) => setSameAsPresent(e.target.checked)}
           >
-            Permanent address same as present
+            {t("bio_data_form.address.isSameAsPresent.label")}
           </Checkbox>
         </Col>
 
