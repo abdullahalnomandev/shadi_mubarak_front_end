@@ -179,21 +179,14 @@ export const userBiodataSchema = {
     const isFemale = biodataType === "female's_biodata";
 
     const wearsNiqab = parent?.personal_information?.wearsNiqab;
-    const beardAccordingToSunnah =
-      parent?.personal_information?.beardAccordingToSunnah;
-    const clothingAboveAnkles =
-      parent?.personal_information?.clothingAboveAnkles;
+    const beardAccordingToSunnah = parent?.personal_information?.beardAccordingToSunnah;
+    const clothingAboveAnkles = parent?.personal_information?.clothingAboveAnkles;
     const dailyPrayerRoutine = parent?.personal_information?.dailyPrayerRoutine;
 
-    const yesCount = [
-      isMale && beardAccordingToSunnah === "yes",
-      isMale && clothingAboveAnkles === "yes",
-      dailyPrayerRoutine === "yes",
-      isFemale && wearsNiqab === "yes",
-    ].filter(Boolean).length;
-
-    const showAdvancedFields = yesCount >= 2;
-    console.log(beardAccordingToSunnah === "yes", clothingAboveAnkles === "yes",dailyPrayerRoutine === "yes",yesCount,isMale);
+    const maleYesCount = [beardAccordingToSunnah, clothingAboveAnkles, dailyPrayerRoutine].filter((v) => v === "yes").length;
+    const femaleYesCount = [wearsNiqab, dailyPrayerRoutine].filter((v) => v === "yes").length;
+    const hideAdvancedFields = (isMale && maleYesCount < 2) || (!isMale && femaleYesCount < 2);
+    const showAdvancedFields = !hideAdvancedFields;
 
     return yup.object({
       usualOutdoorClothing: yup
@@ -208,17 +201,19 @@ export const userBiodataSchema = {
       beardAccordingToSunnah: isMale
         ? yup
             .string()
+            .oneOf(["yes", "no"])
             .required("Please indicate if you have beard according to sunnah")
         : yup.string().notRequired(),
 
       clothingAboveAnkles: isMale
         ? yup
             .string()
+            .oneOf(["yes", "no"])
             .required("Please indicate if your clothing is above the ankles")
         : yup.string().notRequired(),
 
       wearsNiqab: isFemale
-        ? yup.string().required("Please specify if you wear niqab")
+        ? yup.string().oneOf(["yes", "no"]).required("Please specify if you wear niqab")
         : yup.string().notRequired(),
 
       wearingNiqabSince:
@@ -275,18 +270,23 @@ export const userBiodataSchema = {
         .string()
         .required("Please list at least one Islamic book"),
 
-      islamicScholarsPreferred: yup
-        .string()
-        .required(
-          "Please write the names of at least 3 Islamic scholars of your choice",
-        ),
+      islamicScholarsPreferred: showAdvancedFields
+        ? yup
+            .string()
+            .required(
+              "Please write the names of at least 3 Islamic scholars of your choice",
+            )
+        : yup.string().notRequired(),
+      
       hobbiesAndInterests: yup
         .string()
         .required("Please specify your hobbies and interests"),
 
       groomMobileNumber: yup.string().required("Mobile Number is required"),
 
-      previousRelationship: yup.string().required("Previous relationship is required"),
+      previousRelationship: hideAdvancedFields
+        ? yup.string().required("Previous relationship is required")
+        : yup.string().notRequired(),
     });
   }),
 
