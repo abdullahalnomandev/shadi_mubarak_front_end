@@ -67,7 +67,7 @@ export const userBiodataSchema = {
     weight: yup
       .string()
       .transform((value, originalValue) =>
-        String(originalValue).trim() === "" ? undefined : value
+        String(originalValue).trim() === "" ? undefined : value,
       )
       .typeError("Weight must be a number")
       .required("Please select a weight"),
@@ -163,7 +163,7 @@ export const userBiodataSchema = {
     descriptionOfFinancialCondition: yup
       .string()
       .required(
-        "Please provide a description of your family's financial condition"
+        "Please provide a description of your family's financial condition",
       ),
     professionOfUncles: yup
       .string()
@@ -175,8 +175,8 @@ export const userBiodataSchema = {
 
   personal_information: yup.lazy((_, { parent }) => {
     const biodataType = parent?.general_information?.biodataType;
-    const isMale = biodataType === "male_biodata";
-    const isFemale = biodataType === "female_biodata";
+    const isMale = biodataType === "male's_biodata";
+    const isFemale = biodataType === "female's_biodata";
 
     const wearsNiqab = parent?.personal_information?.wearsNiqab;
     const beardAccordingToSunnah =
@@ -193,6 +193,7 @@ export const userBiodataSchema = {
     ].filter(Boolean).length;
 
     const showAdvancedFields = yesCount >= 2;
+    console.log(beardAccordingToSunnah === "yes", clothingAboveAnkles === "yes",dailyPrayerRoutine === "yes",yesCount,isMale);
 
     return yup.object({
       usualOutdoorClothing: yup
@@ -242,15 +243,13 @@ export const userBiodataSchema = {
 
       quranRecitationAbility: yup
         .string()
-        .oneOf(["yes", "no"])
-        .required("Please indicate if you can recite Quran correctly"),
-
+        .required("Please specify your Quran recitation ability"),
       fiqhFollowed: showAdvancedFields
         ? yup
             .string()
             .oneOf(["hanafi", "shafi", "maliki", "hanbali"])
             .required(
-              "Please select which school of Islamic jurisprudence you follow"
+              "Please select which school of Islamic jurisprudence you follow",
             )
         : yup.string().notRequired(),
 
@@ -276,20 +275,18 @@ export const userBiodataSchema = {
         .string()
         .required("Please list at least one Islamic book"),
 
-      islamicScholarsPreferred: showAdvancedFields
-        ? yup
-            .array()
-            .of(yup.string())
-            .min(1, "Please list your preferred Islamic scholars")
-        : yup.array().of(yup.string()).notRequired(),
-
+      islamicScholarsPreferred: yup
+        .string()
+        .required(
+          "Please write the names of at least 3 Islamic scholars of your choice",
+        ),
       hobbiesAndInterests: yup
         .string()
         .required("Please specify your hobbies and interests"),
 
       groomMobileNumber: yup.string().required("Mobile Number is required"),
 
-      previousRelationship: yup.string().notRequired(),
+      previousRelationship: yup.string().required("Previous relationship is required"),
     });
   }),
 
@@ -673,7 +670,7 @@ export const userBiodataSchema = {
           ? yup
               .string()
               .required(
-                "Please specify if you expect gifts from the bride's family"
+                "Please specify if you expect gifts from the bride's family",
               )
           : yup.string().notRequired(),
 
@@ -682,7 +679,7 @@ export const userBiodataSchema = {
           ? yup
               .string()
               .required(
-                "Please specify your willingness to work after marriage"
+                "Please specify your willingness to work after marriage",
               )
           : yup.string().notRequired(),
 
@@ -691,7 +688,7 @@ export const userBiodataSchema = {
           ? yup
               .string()
               .required(
-                "Please specify if you want to continue studies after marriage"
+                "Please specify if you want to continue studies after marriage",
               )
           : yup.string().notRequired(),
 
@@ -723,7 +720,7 @@ export const userBiodataSchema = {
         .required("Email is required")
         .matches(
           /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-          "Invalid email format"
+          "Invalid email format",
         ),
     });
   }),

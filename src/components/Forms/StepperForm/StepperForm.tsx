@@ -177,17 +177,6 @@ const StepperForm = ({ steps }: IStepsProps) => {
         }
         revalidateTags([`biodata-${bioDataNo}`]);
       }
-
-      // // Only move to the next step if it’s not the last and it's not a re-edit
-      // if (!isLastStep && !isAlreadyCompleted && !isFetching) {
-      //   setCurrent((prev) => prev + 1);
-      // } else {
-      //   if (current === 9) {
-      //     message.success("Biodata submitted successfully");
-      //   } else {
-      //     message.success("Step saved successfully");
-      //   }
-      // }
     } catch (error) {
       message.error(getErrorMessage(error));
     }

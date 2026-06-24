@@ -599,9 +599,9 @@
       "emailUsedForRegistration": "নিবন্ধনের জন্য ব্যবহৃত ইমেইল ঠিকানা",
       "groomName": "বরের নাম"
     },
-    "date":{
+    "date": {
       "month": "মাস",
-      "year":  "বছর "
+      "year": "বছর "
     }
   },
   "location": {
@@ -1716,6 +1716,132 @@
       "grow_up": {
         "label": "কোথায় বড় হয়েছেন?",
         "placeholder": "কোথায় বড় হয়েছেন তা লিখুন"
+      }
+    },
+    "personal_information": {
+      "usualOutdoorClothing": {
+        "label": "সাধারণত বাইরে গেলে কী ধরনের পোশাক পরেন?",
+        "placeholder": "পাত্রীর ক্ষেত্রে এভাবে লিখতে পারেন:নিকাবসহ বোরকা/ হিজাব ও মাস্ক / সালোয়ার-কামিজ ও হিজাব"
+      },
+
+      "beardAccordingToSunnah": {
+        "label": "সুন্নাহ অনুযায়ী দাড়ি রেখেছেন কি?",
+        "placeholder": "নির্বাচন করুন",
+        "options": {
+          "yes": "হ্যাঁ",
+          "no": "না"
+        }
+      },
+
+      "clothingAboveAnkles": {
+        "label": "পোশাক কি টাখনুর উপরে রাখেন?",
+        "placeholder": "নির্বাচন করুন",
+        "options": {
+          "yes": "হ্যাঁ",
+          "no": "না"
+        }
+      },
+
+      "wearsNiqab": {
+        "label": "নিকাব পরেন কি?",
+        "placeholder": "নির্বাচন করুন",
+        "options": {
+          "yes": "হ্যাঁ",
+          "no": "না"
+        }
+      },
+
+      "wearingNiqabSince": {
+        "label": "কত বছর ধরে নিকাব পরছেন?",
+        "placeholder": "সময়কাল লিখুন"
+      },
+
+      "dailyPrayerRoutine": {
+        "label": "পাঁচ ওয়াক্ত সালাত নিয়মিত আদায় করেন কি?",
+        "placeholder": "নির্বাচন করুন",
+        "options": {
+          "yes": "হ্যাঁ",
+          "no": "না"
+        }
+      },
+
+      "skippedPrayersPerWeek": {
+        "label": "সপ্তাহে গড়ে কত ওয়াক্ত সালাত ছুটে যায়?",
+        "placeholder": "সপ্তাহে কত ওয়াক্ত সালাত ছুটে যায় ?"
+      },
+
+      "followsMahramGuidelines": {
+        "label": "মাহরাম-নন মাহরাম বিধান মেনে চলেন কি?",
+        "placeholder": "নির্বাচন করুন",
+        "options": {
+          "yes": "হ্যাঁ",
+          "no": "না"
+        }
+      },
+
+      "quranRecitationAbility": {
+        "label": "শুদ্ধভাবে কুরআন তিলাওয়াত করতে পারেন কি?",
+        "placeholder": "নির্বাচন করুন",
+        "options": {
+          "yes": "হ্যাঁ",
+          "no": "না"
+        }
+      },
+
+      "fiqhFollowed": {
+        "label": "কোন ফিকহ অনুসরণ করেন?",
+        "placeholder": "নির্বাচন করুন",
+        "options": {
+          "hanafi": "হানাফি",
+          "shafi": "শাফেয়ী",
+          "maliki": "মালিকি",
+          "hanbali": "হাম্বলি"
+        }
+      },
+
+      "mediaConsumptionHabits": {
+        "label": "বিনোদন বা মিডিয়া ব্যবহারের অভ্যাস",
+        "placeholder": "বিস্তারিত লিখুন"
+      },
+
+      "mentalOrPhysicalDiseases": {
+        "label": "কোন মানসিক বা শারীরিক রোগ আছে কি?",
+        "placeholder": "থাকলে বিস্তারিত লিখুন, না থাকলে 'নেই' লিখুন"
+      },
+
+      "involvedInSpecialWork": {
+        "label": "দ্বীনি বা বিশেষ কোনো কাজের সাথে যুক্ত আছেন কি?",
+        "placeholder": "বিস্তারিত লিখুন"
+      },
+
+      "beliefsAboutShrine": {
+        "label": "মাজার সম্পর্কে আপনার আকীদা বা বিশ্বাস কী?",
+        "placeholder": "বিস্তারিত লিখুন"
+      },
+
+      "islamicBooksRead": {
+        "label": "পড়া হয়েছে এমন ইসলামিক বইয়ের নাম",
+        "placeholder": "বইগুলোর নাম লিখুন"
+      },
+
+      "islamicScholarsPreferred": {
+        "label": "পছন্দের ইসলামিক আলেম বা বক্তাদের নাম",
+        "placeholder": "নামগুলো লিখুন"
+      },
+      "hobbiesAndInterests": {
+        "label": "আপনার শখ, আগ্রহ সম্পর্কে লিখুন",
+        "placeholder": "আপনার পছন্দের কাজ, শখ, আগ্রহ এবং ভবিষ্যৎ লক্ষ্য সম্পর্কে সংক্ষেপে লিখুন"
+      },
+
+      "groomMobileNumber": {
+        "label": "মোবাইল নম্বর",
+        "placeholder": "মোবাইল নম্বর লিখুন",
+        "helperText": "প্রয়োজনে যোগাযোগের জন্য ব্যবহৃত হবে"
+      },
+
+      "previousRelationship": {
+        "label": "পূর্বে কোনো সম্পর্ক বা বিবাহ ছিল কি?",
+        "placeholder": "বিস্তারিত লিখুন"
       }
     }
   },

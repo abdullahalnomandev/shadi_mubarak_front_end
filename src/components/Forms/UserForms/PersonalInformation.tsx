@@ -1,22 +1,22 @@
 "use client";
 
 import { useCleanHiddenFields } from "@/hooks/useCleanHiddenFields"; // <-- Make sure this exists
-import useGetUserFromField from "@/hooks/useGetUserFromField";
 import { Col, Row } from "antd";
 import { useTranslations } from "next-intl";
 import { useFormContext } from "react-hook-form";
 import FormInput from "../FormInput";
 import FormSelectField from "../FormSelectField";
 import FormTextArea from "../FormTextArea";
+import { personal_information } from "@/data/personalInformationFIeld";
 
 const PersonalInformation = () => {
   const t = useTranslations();
-  const { personal_information } = useGetUserFromField();
+  const translate = useTranslations("bio_data_form.personal_information");
   const { watch } = useFormContext();
 
   const isMaleForm =
-    watch("general_information.biodataType") === "male_biodata";
-
+    watch("general_information.biodataType") === "male's_biodata";
+console.log({isMaleForm:watch("general_information.biodataType") });
   const wearsNiqabValue = watch("personal_information.wearsNiqab");
   const dailyPrayerRoutine = watch("personal_information.dailyPrayerRoutine");
   const beardAccordingToSunnah = watch(
@@ -108,54 +108,61 @@ const PersonalInformation = () => {
       </h1>
       <Row gutter={[16, 16]}>
         {filteredFields.map(
-          ({ name, type, placeholder, label, options, required }) => (
+          ({ name, type, placeholder, label, options, required, helperText }) => (
             <Col key={name} xs={24} sm={12}>
-              {type === "text" && (
+              {(type === "text" && (
                 <FormInput
                   name={name}
-                  label={label}
+                  label={translate(label)}
                   type={type}
                   required={required}
-                  placeholder={placeholder}
+                  placeholder={translate(placeholder)}
+                  helperText={helperText ? translate(helperText) : undefined}
                 />
-              )}
-              {type === "number" && (
-                <FormInput
-                  name={name}
-                  label={label}
-                  type={type}
-                  required={required}
-                  placeholder={placeholder}
-                />
-              )}
-              {type === "textArea" && (
-                <FormTextArea
-                  id={name}
-                  name={name}
-                  label={label}
-                  required={required}
-                  placeholder={placeholder}
-                />
-              )}
-              {type === "multiSelect" && (
-                <FormSelectField
-                  name={name}
-                  label={label}
-                  placeholder={placeholder}
-                  required={required}
-                  options={options}
-                  mode='tags'
-                />
-              )}
-              {type === "select" && (
-                <FormSelectField
-                  name={name}
-                  label={label}
-                  placeholder={placeholder}
-                  required={required}
-                  options={options}
-                />
-              )}
+              )) ||
+                (type === "number" && (
+                  <FormInput
+                    name={name}
+                    label={translate(label)}
+                    type={type}
+                    required={required}
+                    placeholder={translate(placeholder)}
+                  />
+                )) ||
+                (type === "textArea" && (
+                  <FormTextArea
+                    id={name}
+                    name={name}
+                    label={translate(label)}
+                    required={required}
+                    placeholder={translate(placeholder)}
+                  />
+                )) ||
+                (type === "multiSelect" && (
+                  <FormSelectField
+                    name={name}
+                    label={translate(label)}
+                    placeholder={translate(placeholder)}
+                    required={required}
+                    options={options?.map((opt: any) => ({
+                      value: opt.value,
+                      label: translate(opt.label),
+                    }))}
+                    mode='tags'
+                  />
+                )) ||
+                (type === "select" && (
+                  <FormSelectField
+                    name={name}
+                    label={translate(label)}
+                    placeholder={translate(placeholder)}
+                    required={required}
+                    options={options?.map((opt: any) => ({
+                      value: opt.value,
+                      label: translate(opt.label),
+                    }))}
+                  />
+                ))}
             </Col>
           )
         )}

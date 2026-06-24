@@ -624,9 +624,9 @@
       "emailUsedForRegistration": "Email address used for registration",
       "groomName": "Groom's name"
     },
-    "date":{
+    "date": {
       "month": "Month",
-      "year":  "Year"
+      "year": "Year"
     }
   },
   "location": {
@@ -1714,6 +1714,133 @@
       "grow_up": {
         "label": "Where did you grow up?",
         "placeholder": "Enter the place where you grew up"
+      }
+    },
+    "personal_information": {
+      "usualOutdoorClothing": {
+        "label": "What type of clothing do you usually wear outdoors?",
+        "placeholder": "Describe your usual outdoor clothing"
+      },
+
+      "beardAccordingToSunnah": {
+        "label": "Do you keep a beard according to the Sunnah?",
+        "placeholder": "Select an option",
+        "options": {
+          "yes": "Yes",
+          "no": "No"
+        }
+      },
+
+      "clothingAboveAnkles": {
+        "label": "Do you keep your garments above the ankles?",
+        "placeholder": "Select an option",
+        "options": {
+          "yes": "Yes",
+          "no": "No"
+        }
+      },
+
+      "wearsNiqab": {
+        "label": "Do you wear a niqab?",
+        "placeholder": "Select an option",
+        "options": {
+          "yes": "Yes",
+          "no": "No"
+        }
+      },
+
+      "wearingNiqabSince": {
+        "label": "Since when have you been wearing the niqab?",
+        "placeholder": "Enter the duration"
+      },
+
+      "dailyPrayerRoutine": {
+        "label": "Do you perform the five daily prayers regularly?",
+        "placeholder": "Select an option",
+        "options": {
+          "yes": "Yes",
+          "no": "No"
+        }
+      },
+
+      "skippedPrayersPerWeek": {
+        "label": "On average, how many prayers do you miss per week?",
+        "placeholder": "Enter the number"
+      },
+
+      "followsMahramGuidelines": {
+        "label": "Do you observe Mahram and Non-Mahram guidelines?",
+        "placeholder": "Select an option",
+        "options": {
+          "yes": "Yes",
+          "no": "No"
+        }
+      },
+
+      "quranRecitationAbility": {
+        "label": "Can you recite the Quran correctly with proper Tajweed?",
+        "placeholder": "Select an option",
+        "options": {
+          "yes": "Yes",
+          "no": "No"
+        }
+      },
+
+      "fiqhFollowed": {
+        "label": "Which Fiqh do you follow?",
+        "placeholder": "Select a Fiqh",
+        "options": {
+          "hanafi": "Hanafi",
+          "shafi": "Shafi'i",
+          "maliki": "Maliki",
+          "hanbali": "Hanbali"
+        }
+      },
+
+      "mediaConsumptionHabits": {
+        "label": "Entertainment and media consumption habits",
+        "placeholder": "Describe your habits"
+      },
+
+      "mentalOrPhysicalDiseases": {
+        "label": "Do you have any mental or physical health conditions?",
+        "placeholder": "Provide details, or write 'None'"
+      },
+
+      "involvedInSpecialWork": {
+        "label": "Are you involved in any Islamic, social, or special activities?",
+        "placeholder": "Provide details"
+      },
+
+      "beliefsAboutShrine": {
+        "label": "What are your beliefs regarding shrines (Mazars)?",
+        "placeholder": "Describe your beliefs"
+      },
+
+      "islamicBooksRead": {
+        "label": "Islamic books you have read",
+        "placeholder": "Enter book names"
+      },
+
+      "islamicScholarsPreferred": {
+        "label": "Preferred Islamic scholars or speakers",
+        "placeholder": "Enter names"
+      },
+
+      "hobbiesAndInterests": {
+        "label": "Hobbies and interests",
+        "placeholder": "Describe your hobbies and interests"
+      },
+
+      "groomMobileNumber": {
+        "label": "Groom's mobile number",
+        "placeholder": "Enter mobile number",
+        "helperText": "This number may be used for communication purposes"
+      },
+
+      "previousRelationship": {
+        "label": "Have you had any previous relationship or marriage?",
+        "placeholder": "Provide details"
       }
     }
   },

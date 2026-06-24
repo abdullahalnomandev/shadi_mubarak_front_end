@@ -18,6 +18,7 @@ interface IInput {
   prefixSelector?: ReactNode;
   className?: string;
   required?: boolean;
+  helperText?: string;
 }
 const FormInput = ({
   name,
@@ -30,6 +31,7 @@ const FormInput = ({
   disabled = false,
   required = false,
   className = "py-2!",
+  helperText,
 }: IInput) => {
   const {
     control,
@@ -84,6 +86,11 @@ const FormInput = ({
           )
         }
       />
+      {helperText && (
+        <small className='text-gray-500 dark:text-gray-400! block mt-1'>
+          {helperText}
+        </small>
+      )}
       <small className='text-red-500 dark:text-amber-600!'>
         {typeof errorMessage === "string"
           ? errorMessage
