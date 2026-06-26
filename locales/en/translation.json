@@ -7,6 +7,17 @@
   "update_biodata": "Update BioData",
   "submit_biodata": "Submit BioData",
   "edits_biodata": "Edit BioData",
+  "stepper": {
+    "modal_title": "Complete Your Biodata Submission",
+    "submit_heading": "Submit Your Biodata",
+    "ready_message": "Ready to submit your biodata? Click 'Submit Now' to proceed, or choose 'Submit Later' if you'd like to review it again.",
+    "submit_later": "Submit Later",
+    "submit_now": "Submit Now",
+    "previous": "Previous",
+    "saving": "Saving...",
+    "save_and_submit": "Save & Submit",
+    "save_and_next": "Save & Next"
+  },
   "header": {
     "home": "Home",
     "about": "About",
