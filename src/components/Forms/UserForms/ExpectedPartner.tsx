@@ -1,15 +1,15 @@
 "use client";
-import useGetUserFromField from "@/hooks/useGetUserFromField";
 import { Col, Row } from "antd";
 import { useTranslations } from "next-intl";
 import FormInput from "../FormInput";
 import FormSelectField from "../FormSelectField";
 import FormSlider from "../FormSlider";
 import FormTextArea from "../FormTextArea";
+import { expected_partner } from "@/data/expectedPartnerField";
 
 const ExpectedPartner = () => {
-  const { expected_partner } = useGetUserFromField();
   const t = useTranslations();
+  const translate = useTranslations("bio_data_form.expected_partner");
   return (
     <div>
       <h1 className='text-2xl font-semibold mb-6'>
@@ -27,22 +27,25 @@ const ExpectedPartner = () => {
             min,
             max,
             mode,
+            required,
           }) => (
             <Col key={name} xs={24} sm={12}>
               {(type === "text" && (
                 <FormInput
                   name={name}
-                  label={label}
+                  label={translate(label)}
                   type={type}
-                  placeholder={placeholder}
+                  required={required}
+                  placeholder={placeholder ? translate(placeholder) : ""}
                 />
               )) ||
                 (type === "number" && (
                   <FormInput
                     name={name}
-                    label={label}
+                    label={translate(label)}
                     type={type}
-                    placeholder={placeholder}
+                    required={required}
+                    placeholder={placeholder ? translate(placeholder) : ""}
                   />
                 )) ||
                 (type === "slider" && (
@@ -51,7 +54,7 @@ const ExpectedPartner = () => {
                     min={min}
                     max={max}
                     name={name}
-                    label={label}
+                    label={translate(label)}
                     formatter={tipFormatter}
                     // defaultValue={defaultValue}
                   />
@@ -60,17 +63,21 @@ const ExpectedPartner = () => {
                   <FormTextArea
                     id={name}
                     name={name}
-                    label={label}
-                    placeholder={placeholder}
+                    label={translate(label)}
+                    required={required}
+                    placeholder={placeholder ? translate(placeholder) : ""}
                   />
                 )) ||
                 ((type === "multiSelect" || type === "select") && (
                   <FormSelectField
                     name={name}
-                    {...(type === "multiSelect" ? { mode: "tags" } : {})}
-                    label={label}
-                    placeholder={placeholder}
-                    options={options}
+                    label={translate(label)}
+                    placeholder={placeholder ? translate(placeholder) : ""}
+                    required={required}
+                    options={options?.map((opt: any) => ({
+                      value: opt.value,
+                      label: translate(opt.label),
+                    }))}
                     mode={mode as "multiple" | "tags"}
                   />
                 ))}

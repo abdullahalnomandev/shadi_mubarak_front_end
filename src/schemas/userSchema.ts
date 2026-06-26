@@ -604,6 +604,7 @@ export const userBiodataSchema = {
   marriage_related_information: yup.lazy((_, { parent }) => {
     const biodataType = parent?.general_information?.biodataType;
     const maritalStatus = parent?.general_information?.maritalStatus;
+    console.log(biodataType, maritalStatus);
 
     return yup.object().shape({
       widower:
@@ -636,37 +637,35 @@ export const userBiodataSchema = {
         .required("Please specify if your guardians agree to your marriage"),
 
       canKeepWifeInVeil:
-        biodataType === "male_biodata"
+        biodataType === "male's_biodata"
           ? yup
               .string()
               .required("Please specify if you can keep your wife in veil")
           : yup.string().notRequired(),
 
       allowWifeToStudy:
-        biodataType === "male_biodata"
+        biodataType === "male's_biodata"
           ? yup
               .string()
-              .oneOf(["yes", "no"], "Please select yes or no")
               .required("Please specify if you allow your wife to study")
           : yup.string().notRequired(),
 
       allowWifeToWork:
-        biodataType === "male_biodata"
+        biodataType === "male's_biodata"
           ? yup
               .string()
-              .oneOf(["yes", "no"], "Please select yes or no")
               .required("Please specify if you allow your wife to work")
           : yup.string().notRequired(),
 
       residenceAfterMarriage:
-        biodataType === "male_biodata"
+        biodataType === "male's_biodata"
           ? yup
               .string()
               .required("Please specify where you will live after marriage")
           : yup.string().notRequired(),
 
       expectGiftsFromBrideFamily:
-        biodataType === "male_biodata"
+        biodataType === "male's_biodata"
           ? yup
               .string()
               .required(
@@ -675,7 +674,7 @@ export const userBiodataSchema = {
           : yup.string().notRequired(),
 
       willingToWorkAfterMarriage:
-        biodataType === "female_biodata"
+        biodataType === "female's_biodata"
           ? yup
               .string()
               .required(
@@ -684,7 +683,7 @@ export const userBiodataSchema = {
           : yup.string().notRequired(),
 
       continueStudiesAfterMarriage:
-        biodataType === "female_biodata"
+        biodataType === "female's_biodata"
           ? yup
               .string()
               .required(
@@ -699,7 +698,7 @@ export const userBiodataSchema = {
   }),
   contact: yup.lazy((_, { parent }) => {
     const biodataType = parent?.general_information?.biodataType;
-    const isMale = biodataType === "male_biodata";
+    const isMale = biodataType === "male's_biodata";
 
     return yup.object().shape({
       brideName: isMale

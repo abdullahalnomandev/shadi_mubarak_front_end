@@ -5,15 +5,6 @@ const renderValue = (value: any): string | React.ReactNode => {
   // Email check
   const isEmail = (str: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(str);
 
-  // Check if string contains HTML tags
-  const hasHTMLTags = (str: string) => /<[^>]+>/.test(str);
-
-  // Special replacements (always uppercase)
-  const keywordMap: Record<string, string> = {
-    hsc: "HSC",
-    ssc: "SSC",
-  };
-
   // Capitalize each word with special handling
   const formatString = (str: string) => {
     if (isEmail(str)) return str.toLowerCase();
@@ -55,7 +46,7 @@ const renderValue = (value: any): string | React.ReactNode => {
   // ISO Date
   if (
     typeof value === "string" &&
-    dayjs(value, dayjs.ISO_8601, true).isValid() &&
+    dayjs(value, (dayjs as any).formatISO_8601, true).isValid() &&
     !isNaN(Date.parse(value)) &&
     !/^[a-zA-Z\s]+$/.test(value) &&
     !/^\d+$/.test(value) &&

@@ -499,141 +499,141 @@ const address = [
     readonly: true,
   },
 ];
-const occupation = [
-  {
-    name: "occupation.occupation",
-    label: "Occupation",
-    type: "select",
-    options: [
-      {
-        value: "imam",
-        label: "Imam",
-      },
-      {
-        value: "madrasa_teacher",
-        label: "Madrasa Teacher",
-      },
-      {
-        value: "teacher",
-        label: "Teacher",
-      },
-      {
-        value: "engineer",
-        label: "Engineer",
-      },
-      {
-        value: "businessman",
-        label: "Businessman",
-      },
-      {
-        value: "government_job",
-        label: "Government Job",
-      },
-      {
-        value: "private_job",
-        label: "Private Job",
-      },
-      {
-        value: "student",
-        label: "Student",
-      },
-      {
-        value: "freelancer",
-        label: "Freelancer",
-      },
-      {
-        value: "doctor",
-        label: "Doctor",
-      },
-      {
-        value: "medical_student",
-        label: "MBBS/BDS Student",
-      },
-      {
-        value: "expatriate",
-        label: "Expatriate",
-      },
-      {
-        value: "others",
-        label: "Others",
-      },
-      {
-        value: "no_profession",
-        label: "No Profession",
-      },
-    ],
-    placeholder: "Select your occupation ",
-    required: true,
-  },
-  {
-    name: "occupation.descriptionOfProfession",
-    label: "Description of Profession",
-    type: "textArea",
-    placeholder: "Describe your professional responsibilities",
-    required: true,
-  },
-  {
-    name: "occupation.monthlyIncome",
-    label: "Monthly Income",
-    type: "text",
-    placeholder: "Enter your monthly income",
-    required: true,
-  },
-];
-const agreement = [
-  {
-    name: "agreement.parentsAwareOfRegistration",
-    label: "Are your parents aware of your biodata submission?",
-    type: "select",
-    options: [
-      {
-        value: "yes",
-        label: "Yes",
-      },
-      {
-        value: "no",
-        label: "No",
-      },
-    ],
-    placeholder: "Please confirm ",
-    required: true,
-  },
-  {
-    name: "agreement.confirmTruthOfProvidedInformation",
-    label: "By Allah, testify that all the information given is true ?",
-    type: "select",
-    options: [
-      {
-        value: "yes",
-        label: "Yes",
-      },
-      {
-        value: "no",
-        label: "No",
-      },
-    ],
-    placeholder: "Please confirm ",
-    required: true,
-  },
-  {
-    name: "agreement.agreeToLegalResponsibilityForFalseInfo",
-    label:
-      "Do you agree to take legal responsibility for any false information?",
-    type: "select",
-    options: [
-      {
-        value: "yes",
-        label: "Yes",
-      },
-      {
-        value: "no",
-        label: "No",
-      },
-    ],
-    placeholder: "Y/N - Legal responsibility agreement",
-    required: true,
-  },
-];
+// const occupation = [
+//   {
+//     name: "occupation.occupation",
+//     label: "Occupation",
+//     type: "select",
+//     options: [
+//       {
+//         value: "imam",
+//         label: "Imam",
+//       },
+//       {
+//         value: "madrasa_teacher",
+//         label: "Madrasa Teacher",
+//       },
+//       {
+//         value: "teacher",
+//         label: "Teacher",
+//       },
+//       {
+//         value: "engineer",
+//         label: "Engineer",
+//       },
+//       {
+//         value: "businessman",
+//         label: "Businessman",
+//       },
+//       {
+//         value: "government_job",
+//         label: "Government Job",
+//       },
+//       {
+//         value: "private_job",
+//         label: "Private Job",
+//       },
+//       {
+//         value: "student",
+//         label: "Student",
+//       },
+//       {
+//         value: "freelancer",
+//         label: "Freelancer",
+//       },
+//       {
+//         value: "doctor",
+//         label: "Doctor",
+//       },
+//       {
+//         value: "medical_student",
+//         label: "MBBS/BDS Student",
+//       },
+//       {
+//         value: "expatriate",
+//         label: "Expatriate",
+//       },
+//       {
+//         value: "others",
+//         label: "Others",
+//       },
+//       {
+//         value: "no_profession",
+//         label: "No Profession",
+//       },
+//     ],
+//     placeholder: "Select your occupation ",
+//     required: true,
+//   },
+//   {
+//     name: "occupation.descriptionOfProfession",
+//     label: "Description of Profession",
+//     type: "textArea",
+//     placeholder: "Describe your professional responsibilities",
+//     required: true,
+//   },
+//   {
+//     name: "occupation.monthlyIncome",
+//     label: "Monthly Income",
+//     type: "text",
+//     placeholder: "Enter your monthly income",
+//     required: true,
+//   },
+// ];
+// const agreement = [
+//   {
+//     name: "agreement.parentsAwareOfRegistration",
+//     label: "Are your parents aware of your biodata submission?",
+//     type: "select",
+//     options: [
+//       {
+//         value: "yes",
+//         label: "Yes",
+//       },
+//       {
+//         value: "no",
+//         label: "No",
+//       },
+//     ],
+//     placeholder: "Please confirm ",
+//     required: true,
+//   },
+//   {
+//     name: "agreement.confirmTruthOfProvidedInformation",
+//     label: "By Allah, testify that all the information given is true ?",
+//     type: "select",
+//     options: [
+//       {
+//         value: "yes",
+//         label: "Yes",
+//       },
+//       {
+//         value: "no",
+//         label: "No",
+//       },
+//     ],
+//     placeholder: "Please confirm ",
+//     required: true,
+//   },
+//   {
+//     name: "agreement.agreeToLegalResponsibilityForFalseInfo",
+//     label:
+//       "Do you agree to take legal responsibility for any false information?",
+//     type: "select",
+//     options: [
+//       {
+//         value: "yes",
+//         label: "Yes",
+//       },
+//       {
+//         value: "no",
+//         label: "No",
+//       },
+//     ],
+//     placeholder: "Y/N - Legal responsibility agreement",
+//     required: true,
+//   },
+// ];
 const family_information = [
   {
     name: "family_information.isParentAlive",
@@ -963,270 +963,270 @@ const personal_information = [
   },
 ];
 
-const expected_partner = [
-  {
-    name: "expected_partner.age",
-    label: "Age",
-    type: "slider",
-    tipFormatter: "years",
-    defaultValue: [18, 45],
-    min: 18,
-    max: 50,
-    require: false,
-  },
-  {
-    name: "expected_partner.complexion",
-    label: "Complexion",
-    type: "multiSelect",
-    mode: "tags",
-    options: [
-      { value: "fair", label: "Fair " },
-      { value: "brown", label: "Brown" },
-      { value: "light_brown", label: "Light Brown" },
-      { value: "black", label: "Black" },
-      { value: "very_fair", label: "Vary Fair" },
-    ],
-    placeholder: "Select preferred complexion",
-    required: true,
-  },
-  {
-    name: "expected_partner.height",
-    label: "Height ",
-    type: "text",
-    placeholder: "5'1\" - 5'10\"",
-    required: true,
-  },
-  {
-    name: "expected_partner.educationalQualification",
-    label: "Educational Qualification",
-    type: "text",
-    placeholder: "Enter minimum educational qualification",
-    required: true,
-  },
-  {
-    name: "expected_partner.district",
-    label: "Preferred District",
-    type: "text",
-    placeholder: "Enter preferred district",
-    required: true,
-  },
-  {
-    name: "expected_partner.maritalStatus",
-    label: "Acceptable Marital Status",
-    type: "multiSelect",
-    mode: "multiple",
-    options: [
-      {
-        value: "single",
-        label: "Single",
-      },
-      {
-        value: "divorced",
-        label: "Divorced",
-      },
-      {
-        value: "widowed",
-        label: "Widowed",
-      },
-    ],
-    placeholder: "Select acceptable marital status",
-    required: true,
-  },
-  {
-    name: "expected_partner.profession",
-    label: "Preferred Profession",
-    type: "text",
-    placeholder: "Enter preferred profession",
-    required: true,
-  },
-  {
-    name: "expected_partner.financialCondition",
-    label: "Expected Financial Condition",
-    type: "text",
-    placeholder: "Select expected financial condition",
-    required: true,
-  },
-  {
-    name: "expected_partner.specialExpectationsOrRequests",
-    label: "Expected Characteristics and Qualities of Life Partner",
-    type: "textArea",
-    placeholder:
-      "What qualities or characteristics do you expect in your life partner?",
-    required: true,
-  },
-];
-const contact = [
-  {
-    name: "contact.brideName",
-    label: "Bride Name",
-    type: "text",
-    placeholder: "Enter bride's full name",
-    required: true,
-    isFemale: true,
-  },
-  {
-    name: "contact.groomName",
-    label: "Groom Name",
-    type: "text",
-    placeholder: "Enter groom's full name",
-    required: true,
-    isMale: true,
-  },
-  {
-    name: "contact.guardianPhoneNumber",
-    label: "Guardian Phone Number",
-    type: "text",
-    placeholder: "+8801****",
-    required: true,
-  },
-  {
-    name: "contact.relationWithGuardian",
-    label: "Relation with Guardian",
-    type: "text",
-    placeholder: "Tell relation with the guardian",
-    required: true,
-  },
-  {
-    name: "contact.emailUsedForRegistration",
-    label: "Email Address",
-    type: "text",
-    placeholder: "Enter your email address",
-    required: true,
-    validation: {
-      pattern: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
-    },
-  },
-];
-const marriage_related_information = [
-  {
-    name: "marriage_related_information.widower",
-    label: "When and how did your wife die? ",
-    type: "textArea",
-    placeholder:
-      "Please provide details about when and how your wife passed away",
-    required: true,
-  },
-  {
-    name: "marriage_related_information.widow",
-    label: "When and how did your husband die? ",
-    type: "textArea",
-    placeholder:
-      "Please provide details about when and how your husband passed away",
-    required: true,
-  },
-  {
-    name: "marriage_related_information.reasonForSecondMarriage",
-    label: "Why do you want to get married again when you are married?",
-    type: "textArea",
-    placeholder: "Reason for second marriage",
-    required: true,
-  },
-  {
-    name: "marriage_related_information.currentFamilyStatus",
-    label: "How many wives and children do you have at present?",
-    type: "textArea",
-    placeholder: "Current family status",
-    required: true,
-  },
-  {
-    name: "marriage_related_information.reasonForDivorce",
-    label:
-      "Write down the reasons for divorce mentioning the date of your previous marriage and divorce ",
-    type: "textArea",
-    placeholder: "Reson for devorce",
-    helperText: "This information helps us better understand your situation",
-    required: true,
-    validation: {
-      minLength: 50,
-      maxLength: 1000,
-    },
-  },
-  {
-    name: "marriage_related_information.doParentsAgree",
-    label: "Do your guardians agree to your marriage?",
-    type: "select",
-    options: [
-      { value: "yes", label: "Yes" },
-      { value: "no", label: "No" },
-    ],
-    placeholder: "Select an option",
-    required: true,
-  },
-  {
-    name: "marriage_related_information.canKeepWifeInVeil",
-    label: "Will you be able to keep your wife in the veil after marriage?",
-    type: "text",
-    isMale: true,
-    placeholder: "Type your answer",
-    required: true,
-  },
-  {
-    name: "marriage_related_information.allowWifeToStudy",
-    label: "Would you like to allow your wife to study after marriage?",
-    type: "select",
-    options: [
-      { value: "yes", label: "Yes" },
-      { value: "no", label: "No" },
-    ],
-    isMale: true,
-    placeholder: "Select an option",
-    required: true,
-  },
-  {
-    name: "marriage_related_information.allowWifeToWork",
-    label: "Would you like to allow your wife to do any job after marriage?",
-    type: "select",
-    options: [
-      { value: "yes", label: "Yes" },
-      { value: "no", label: "No" },
-    ],
-    isMale: true,
-    placeholder: "Select an option",
-    required: true,
-  },
-  {
-    name: "marriage_related_information.residenceAfterMarriage",
-    label: "Where will you live with your wife after marriage?",
-    type: "text",
-    isMale: true,
-    placeholder: "Enter location",
-    required: true,
-  },
-  {
-    name: "marriage_related_information.expectGiftsFromBrideFamily",
-    label: "Would you or your family expect any gift from the bride's family?",
-    type: "text",
-    isMale: true,
-    placeholder: "Type your answer",
-    required: true,
-  },
+// const expected_partner = [
+//   {
+//     name: "expected_partner.age",
+//     label: "Age",
+//     type: "slider",
+//     tipFormatter: "years",
+//     defaultValue: [18, 45],
+//     min: 18,
+//     max: 50,
+//     require: false,
+//   },
+//   {
+//     name: "expected_partner.complexion",
+//     label: "Complexion",
+//     type: "multiSelect",
+//     mode: "tags",
+//     options: [
+//       { value: "fair", label: "Fair " },
+//       { value: "brown", label: "Brown" },
+//       { value: "light_brown", label: "Light Brown" },
+//       { value: "black", label: "Black" },
+//       { value: "very_fair", label: "Vary Fair" },
+//     ],
+//     placeholder: "Select preferred complexion",
+//     required: true,
+//   },
+//   {
+//     name: "expected_partner.height",
+//     label: "Height ",
+//     type: "text",
+//     placeholder: "5'1\" - 5'10\"",
+//     required: true,
+//   },
+//   {
+//     name: "expected_partner.educationalQualification",
+//     label: "Educational Qualification",
+//     type: "text",
+//     placeholder: "Enter minimum educational qualification",
+//     required: true,
+//   },
+//   {
+//     name: "expected_partner.district",
+//     label: "Preferred District",
+//     type: "text",
+//     placeholder: "Enter preferred district",
+//     required: true,
+//   },
+//   {
+//     name: "expected_partner.maritalStatus",
+//     label: "Acceptable Marital Status",
+//     type: "multiSelect",
+//     mode: "multiple",
+//     options: [
+//       {
+//         value: "single",
+//         label: "Single",
+//       },
+//       {
+//         value: "divorced",
+//         label: "Divorced",
+//       },
+//       {
+//         value: "widowed",
+//         label: "Widowed",
+//       },
+//     ],
+//     placeholder: "Select acceptable marital status",
+//     required: true,
+//   },
+//   {
+//     name: "expected_partner.profession",
+//     label: "Preferred Profession",
+//     type: "text",
+//     placeholder: "Enter preferred profession",
+//     required: true,
+//   },
+//   {
+//     name: "expected_partner.financialCondition",
+//     label: "Expected Financial Condition",
+//     type: "text",
+//     placeholder: "Select expected financial condition",
+//     required: true,
+//   },
+//   {
+//     name: "expected_partner.specialExpectationsOrRequests",
+//     label: "Expected Characteristics and Qualities of Life Partner",
+//     type: "textArea",
+//     placeholder:
+//       "What qualities or characteristics do you expect in your life partner?",
+//     required: true,
+//   },
+// ];
+// const contact = [
+//   {
+//     name: "contact.brideName",
+//     label: "Bride Name",
+//     type: "text",
+//     placeholder: "Enter bride's full name",
+//     required: true,
+//     isFemale: true,
+//   },
+//   {
+//     name: "contact.groomName",
+//     label: "Groom Name",
+//     type: "text",
+//     placeholder: "Enter groom's full name",
+//     required: true,
+//     isMale: true,
+//   },
+//   {
+//     name: "contact.guardianPhoneNumber",
+//     label: "Guardian Phone Number",
+//     type: "text",
+//     placeholder: "+8801****",
+//     required: true,
+//   },
+//   {
+//     name: "contact.relationWithGuardian",
+//     label: "Relation with Guardian",
+//     type: "text",
+//     placeholder: "Tell relation with the guardian",
+//     required: true,
+//   },
+//   {
+//     name: "contact.emailUsedForRegistration",
+//     label: "Email Address",
+//     type: "text",
+//     placeholder: "Enter your email address",
+//     required: true,
+//     validation: {
+//       pattern: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+//     },
+//   },
+// ];
+// const marriage_related_information = [
+//   {
+//     name: "marriage_related_information.widower",
+//     label: "When and how did your wife die? ",
+//     type: "textArea",
+//     placeholder:
+//       "Please provide details about when and how your wife passed away",
+//     required: true,
+//   },
+//   {
+//     name: "marriage_related_information.widow",
+//     label: "When and how did your husband die? ",
+//     type: "textArea",
+//     placeholder:
+//       "Please provide details about when and how your husband passed away",
+//     required: true,
+//   },
+//   {
+//     name: "marriage_related_information.reasonForSecondMarriage",
+//     label: "Why do you want to get married again when you are married?",
+//     type: "textArea",
+//     placeholder: "Reason for second marriage",
+//     required: true,
+//   },
+//   {
+//     name: "marriage_related_information.currentFamilyStatus",
+//     label: "How many wives and children do you have at present?",
+//     type: "textArea",
+//     placeholder: "Current family status",
+//     required: true,
+//   },
+//   {
+//     name: "marriage_related_information.reasonForDivorce",
+//     label:
+//       "Write down the reasons for divorce mentioning the date of your previous marriage and divorce ",
+//     type: "textArea",
+//     placeholder: "Reson for devorce",
+//     helperText: "This information helps us better understand your situation",
+//     required: true,
+//     validation: {
+//       minLength: 50,
+//       maxLength: 1000,
+//     },
+//   },
+//   {
+//     name: "marriage_related_information.doParentsAgree",
+//     label: "Do your guardians agree to your marriage?",
+//     type: "select",
+//     options: [
+//       { value: "yes", label: "Yes" },
+//       { value: "no", label: "No" },
+//     ],
+//     placeholder: "Select an option",
+//     required: true,
+//   },
+//   {
+//     name: "marriage_related_information.canKeepWifeInVeil",
+//     label: "Will you be able to keep your wife in the veil after marriage?",
+//     type: "text",
+//     isMale: true,
+//     placeholder: "Type your answer",
+//     required: true,
+//   },
+//   {
+//     name: "marriage_related_information.allowWifeToStudy",
+//     label: "Would you like to allow your wife to study after marriage?",
+//     type: "select",
+//     options: [
+//       { value: "yes", label: "Yes" },
+//       { value: "no", label: "No" },
+//     ],
+//     isMale: true,
+//     placeholder: "Select an option",
+//     required: true,
+//   },
+//   {
+//     name: "marriage_related_information.allowWifeToWork",
+//     label: "Would you like to allow your wife to do any job after marriage?",
+//     type: "select",
+//     options: [
+//       { value: "yes", label: "Yes" },
+//       { value: "no", label: "No" },
+//     ],
+//     isMale: true,
+//     placeholder: "Select an option",
+//     required: true,
+//   },
+//   {
+//     name: "marriage_related_information.residenceAfterMarriage",
+//     label: "Where will you live with your wife after marriage?",
+//     type: "text",
+//     isMale: true,
+//     placeholder: "Enter location",
+//     required: true,
+//   },
+//   {
+//     name: "marriage_related_information.expectGiftsFromBrideFamily",
+//     label: "Would you or your family expect any gift from the bride's family?",
+//     type: "text",
+//     isMale: true,
+//     placeholder: "Type your answer",
+//     required: true,
+//   },
 
-  //
-  {
-    name: "marriage_related_information.willingToWorkAfterMarriage",
-    label: "Are you willing to do any job after marriage?",
-    type: "text",
-    isMale: false,
-    placeholder: "Type your thoughts",
-    required: true,
-  },
-  {
-    name: "marriage_related_information.continueStudiesAfterMarriage",
-    label: "Would you like to continue your studies after marriage?",
-    type: "text",
-    isMale: false,
-    placeholder: "Type your thoughts",
-    required: true,
-  },
+//   //
+//   {
+//     name: "marriage_related_information.willingToWorkAfterMarriage",
+//     label: "Are you willing to do any job after marriage?",
+//     type: "text",
+//     isMale: false,
+//     placeholder: "Type your thoughts",
+//     required: true,
+//   },
+//   {
+//     name: "marriage_related_information.continueStudiesAfterMarriage",
+//     label: "Would you like to continue your studies after marriage?",
+//     type: "text",
+//     isMale: false,
+//     placeholder: "Type your thoughts",
+//     required: true,
+//   },
 
-  {
-    name: "marriage_related_information.reasonForMarriage",
-    label: "Why are you getting married? What are your thoughts on marriage?",
-    type: "textArea",
-    placeholder: "Type your thoughts",
-    required: true,
-  },
-];
+//   {
+//     name: "marriage_related_information.reasonForMarriage",
+//     label: "Why are you getting married? What are your thoughts on marriage?",
+//     type: "textArea",
+//     placeholder: "Type your thoughts",
+//     required: true,
+//   },
+// ];
 
 const education = [
   {
@@ -1346,13 +1346,13 @@ const education = [
 const userFormFields = {
   // general_information,
   address,
-  occupation,
-  agreement,
+  // occupation,
+  // agreement,
   family_information,
   personal_information,
-  expected_partner,
-  contact,
-  marriage_related_information,
+  // expected_partner,
+  // contact,
+  // marriage_related_information,
   education,
 };
 

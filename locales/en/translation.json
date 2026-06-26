@@ -1842,6 +1842,212 @@
         "label": "Have you had any previous relationship or marriage?",
         "placeholder": "Provide details"
       }
+    },
+    "expected_partner": {
+      "age": {
+        "label": "Preferred Age Range",
+        "placeholder": "Select your preferred age range"
+      },
+
+      "complexion": {
+        "label": "Preferred Complexion",
+        "placeholder": "Select one or more options",
+        "options": {
+          "fair": "Fair",
+          "brown": "Brown",
+          "light_brown": "Light Brown",
+          "black": "Black",
+          "very_fair": "Very Fair"
+        }
+      },
+
+      "height": {
+        "label": "Preferred Height",
+        "placeholder": "For example: 5'4\" or above"
+      },
+
+      "educationalQualification": {
+        "label": "Preferred Educational Qualification",
+        "placeholder": "For example: High School, Bachelor's Degree, Master's Degree, Hifz, Alim, etc."
+      },
+
+      "district": {
+        "label": "Preferred District or Location",
+        "placeholder": "Enter the preferred district, city, or region"
+      },
+
+      "maritalStatus": {
+        "label": "Preferred Marital Status",
+        "placeholder": "Select one or more options",
+        "options": {
+          "single": "Single",
+          "divorced": "Divorced",
+          "widowed": "Widowed"
+        }
+      },
+
+      "profession": {
+        "label": "Preferred Profession",
+        "placeholder": "For example: Teacher, Business Owner, Engineer, Doctor, Homemaker, etc."
+      },
+
+      "financialCondition": {
+        "label": "Preferred Financial Condition",
+        "placeholder": "For example: Middle Class, Financially Stable, Well-Established, etc."
+      },
+
+      "specialExpectationsOrRequests": {
+        "label": "Special Expectations or Requirements",
+        "placeholder": "Briefly describe any important expectations regarding religious commitment, character, family values, lifestyle, or other preferences"
+      }
+    },
+    "marriage_related_information": {
+      "widower": {
+        "label": "When and how did your wife die?",
+        "placeholder": "Please provide details about when and how your wife passed away"
+      },
+      "widow": {
+        "label": "When and how did your husband die?",
+        "placeholder": "Please provide details about when and how your husband passed away"
+      },
+      "reasonForSecondMarriage": {
+        "label": "Why do you want to get married again when you are married?",
+        "placeholder": "Reason for second marriage"
+      },
+      "currentFamilyStatus": {
+        "label": "How many wives and children do you have at present?",
+        "placeholder": "Current family status"
+      },
+      "reasonForDivorce": {
+        "label": "Write down the reasons for divorce mentioning the date of your previous marriage and divorce",
+        "placeholder": "Reason for divorce",
+        "helperText": "This information helps us better understand your situation"
+      },
+      "doParentsAgree": {
+        "label": "Do your guardians agree to your marriage?",
+        "placeholder": "Select an option",
+        "options": {
+          "yes": "Yes",
+          "no": "No"
+        }
+      },
+      "canKeepWifeInVeil": {
+        "label": "Will you be able to keep your wife in the veil after marriage?",
+        "placeholder": "Type your answer"
+      },
+      "allowWifeToStudy": {
+        "label": "Would you like to allow your wife to study after marriage?",
+        "placeholder": "Select an option",
+        "options": {
+          "yes": "Yes",
+          "no": "No"
+        }
+      },
+      "allowWifeToWork": {
+        "label": "Would you like to allow your wife to do any job after marriage?",
+        "placeholder": "Select an option",
+        "options": {
+          "yes": "Yes",
+          "no": "No"
+        }
+      },
+      "residenceAfterMarriage": {
+        "label": "Where will you live with your wife after marriage?",
+        "placeholder": "Enter location"
+      },
+      "expectGiftsFromBrideFamily": {
+        "label": "Would you or your family expect any gift from the bride's family?",
+        "placeholder": "Type your answer"
+      },
+      "willingToWorkAfterMarriage": {
+        "label": "Are you willing to do any job after marriage?",
+        "placeholder": "Type your thoughts"
+      },
+      "continueStudiesAfterMarriage": {
+        "label": "Would you like to continue your studies after marriage?",
+        "placeholder": "Type your thoughts"
+      },
+      "reasonForMarriage": {
+        "label": "Why are you getting married? What are your thoughts on marriage?",
+        "placeholder": "Type your thoughts"
+      }
+    },
+    "occupation": {
+      "occupation": {
+        "label": "Occupation",
+        "placeholder": "Select your occupation from the list",
+        "options": {
+          "imam": "Imam",
+          "madrasa_teacher": "Madrasa Teacher",
+          "teacher": "Teacher",
+          "engineer": "Engineer",
+          "businessman": "Businessman",
+          "government_job": "Government Job",
+          "private_job": "Private Job",
+          "freelancer": "Freelancer",
+          "doctor": "Doctor",
+          "medical_student": "Medical Student",
+          "student": "Student",
+          "expatriate": "Expatriate",
+          "others": "Others"
+        }
+      },
+      "descriptionOfProfession": {
+        "label": "Description",
+        "placeholder": "Please describe your profession"
+      },
+      "monthlyIncome": {
+        "label": "Monthly Income",
+        "placeholder": "What is your monthly income ?"
+      }
+    },
+    "agreement": {
+      "parentsAwareOfRegistration": {
+        "label": "Are your parents aware of this registration?",
+        "placeholder": "Select an option",
+        "options": {
+          "yes": "Yes",
+          "no": "No"
+        }
+      },
+      "confirmTruthOfProvidedInformation": {
+        "label": "Do you confirm that all the information provided is true?",
+        "placeholder": "Select an option",
+        "options": {
+          "yes": "Yes",
+          "no": "No"
+        }
+      },
+      "agreeToLegalResponsibilityForFalseInfo": {
+        "label": "Do you agree to accept legal responsibility for providing false information?",
+        "placeholder": "Select an option",
+        "options": {
+          "yes": "Yes",
+          "no": "No"
+        }
+      }
+    },
+    "contact": {
+      "brideName": {
+        "label": "Bride's Name",
+        "placeholder": "Enter the bride's name"
+      },
+      "groomName": {
+        "label": "Groom's Name",
+        "placeholder": "Enter the groom's name"
+      },
+      "guardianPhoneNumber": {
+        "label": "Guardian's Phone Number",
+        "placeholder": "Enter the guardian's phone number"
+      },
+      "relationWithGuardian": {
+        "label": "Relationship with Guardian",
+        "placeholder": "e.g. Father, Mother, Brother, Uncle"
+      },
+      "emailUsedForRegistration": {
+        "label": "Registration Email Address",
+        "placeholder": "Enter the email address used for registration"
+      }
     }
   },
   "footerStatus": {

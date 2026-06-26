@@ -468,7 +468,7 @@
       "family_information": "পারিবারিক তথ্য",
       "personal_information": "ব্যক্তিগত তথ্য",
       "occupation_info": "পেশা",
-      "marriage_related_information": "বিয়ে সংক্রান্ত তথ্য",
+      "marriage_related_information": "বিবাহ সম্পর্কিত তথ্য",
       "expected_partner": "প্রত্যাশিত সঙ্গী",
       "agreement": "সম্মতি",
       "contact": "যোগাযোগ",
@@ -572,15 +572,15 @@
       "allowWifeToWork": "আপনি কি আপনার স্ত্রীকে কাজ করতে দেবেন?",
       "residenceAfterMarriage": "বিয়ের পর আপনি কোথায় থাকবেন?",
       "expectGiftsFromBrideFamily": "আপনি কি কনে পক্ষের কাছ থেকে উপহার প্রত্যাশা করেন?",
-      "willingToWorkAfterMarriage": "বিয়ের পর আপনি কি কাজ করতে ইচ্ছুক?",
+      "willingToWorkAfterMarriage": "বিয়ের পর আপনি কি চাকরি করতে ইচ্ছুক?",
       "continueStudiesAfterMarriage": "বিয়ের পর আপনি কি পড়াশোনা চালিয়ে যাবেন?",
       "reasonForMarriage": "বিয়ে সম্পর্কে আপনার চিন্তাভাবনা"
     },
     "expected_partner": {
       "age": "পছন্দসই বয়সের সীমা",
       "complexion": "পছন্দসই বর্ণ",
-      "height": "পছন্দসই উচ্চতা",
-      "educationalQualification": "প্রয়োজনীয় শিক্ষাগত যোগ্যতা",
+      "height": "কাঙ্ক্ষিত উচ্চতা",
+      "educationalQualification": "কাঙ্ক্ষিত শিক্ষাগত যোগ্যতা",
       "district": "পছন্দের জেলা",
       "maritalStatus": "গ্রহণযোগ্য বৈবাহিক অবস্থা",
       "profession": "পছন্দের পেশা",
@@ -1689,6 +1689,35 @@
         "placeholder": "পরিবারের ধর্মীয় অনুশীলন ও পরিবেশ সম্পর্কে লিখুন"
       }
     },
+    "occupation": {
+      "occupation": {
+        "label": "পেশা",
+        "placeholder": "আপনার পেশা নির্বাচন করুন",
+        "options": {
+          "imam": "ইমাম",
+          "madrasa_teacher": "মাদ্রাসা শিক্ষক",
+          "teacher": "শিক্ষক",
+          "engineer": "ইঞ্জিনিয়ার",
+          "businessman": "ব্যবসায়ী",
+          "government_job": "সরকারি চাকরি",
+          "private_job": "বেসরকারি চাকরি",
+          "freelancer": "ফ্রিল্যান্সার",
+          "doctor": "ডাক্তার",
+          "medical_student": "এমবিবিএস/বিডিএস শিক্ষার্থী",
+          "student": "শিক্ষার্থী",
+          "expatriate": "প্রবাসী",
+          "others": "অন্যান্য"
+        }
+      },
+      "descriptionOfProfession": {
+        "label": "পেশার বিবরণ",
+        "placeholder": "আপনার পেশাগত দায়িত্ব বিবরণ করুন"
+      },
+      "monthlyIncome": {
+        "label": "মাসিক আয়",
+        "placeholder": "আপনার মাসিক আয় ?"
+      }
+    },
     "address": {
       "present_address": {
         "label": "বর্তমান ঠিকানা",
@@ -1842,6 +1871,183 @@
       "previousRelationship": {
         "label": "পূর্বে কোনো সম্পর্ক বা বিবাহ ছিল কি?",
         "placeholder": "বিস্তারিত লিখুন"
+      }
+    },
+    "expected_partner": {
+      "age": {
+        "label": "কাঙ্ক্ষিত বয়সসীমা",
+        "placeholder": "আপনার পছন্দের বয়সসীমা নির্বাচন করুন"
+      },
+
+      "complexion": {
+        "label": "গায়ের রঙ সম্পর্কে আপনার পছন্দ",
+        "placeholder": "এক বা একাধিক নির্বাচন করুন",
+        "options": {
+          "fair": "ফর্সা",
+          "brown": "শ্যামলা",
+          "light_brown": "উজ্জ্বল শ্যামলা",
+          "black": "কালো",
+          "very_fair": "অতি ফর্সা"
+        }
+      },
+
+      "height": {
+        "label": "কাঙ্ক্ষিত উচ্চতা",
+        "placeholder": "যেমন: ৫'৪\"-৭'৪\" বা ৫' এর বেশি"
+      },
+
+      "educationalQualification": {
+        "label": "কাঙ্ক্ষিত শিক্ষাগত যোগ্যতা",
+        "placeholder": "যেমন: এইচএসসি, স্নাতক, মাদরাসা, হাফেজ, আলিম ইত্যাদি"
+      },
+
+      "district": {
+        "label": "পছন্দের জেলা বা অবস্থান",
+        "placeholder": "কোন জেলা বা অঞ্চলের পাত্র/পাত্রী হলে ভালো হবে লিখুন"
+      },
+
+      "maritalStatus": {
+        "label": "বৈবাহিক অবস্থা",
+        "placeholder": "এক বা একাধিক নির্বাচন করুন",
+        "options": {
+          "single": "অবিবাহিত",
+          "divorced": "তালাকপ্রাপ্ত",
+          "widowed": "বিধবা/বিপত্নীক"
+        }
+      },
+
+      "profession": {
+        "label": "কাঙ্ক্ষিত পেশা",
+        "placeholder": "যেমন: শিক্ষক, ব্যবসায়ী, প্রকৌশলী, গৃহিণী, ডাক্তার ইত্যাদি"
+      },
+
+      "financialCondition": {
+        "label": "আর্থিক অবস্থা সম্পর্কে প্রত্যাশা",
+        "placeholder": "যেমন: মধ্যবিত্ত, স্বচ্ছল, দ্বীনদার ও পরিশ্রমী"
+      },
+
+      "specialExpectationsOrRequests": {
+        "label": "বিশেষ প্রত্যাশা বা শর্ত",
+        "placeholder": "দ্বীনদারিতা, পারিবারিক মূল্যবোধ, পর্দা, চরিত্র বা অন্যান্য গুরুত্বপূর্ণ প্রত্যাশা সংক্ষেপে লিখুন"
+      }
+    },
+    "marriage_related_information": {
+      "widower": {
+        "label": "কখন এবং কিভাবে আপনার স্ত্রীর মৃত্যু হয়েছে?",
+        "placeholder": "কখন এবং কিভাবে আপনার স্ত্রীর মৃত্যু হয়েছে তার বিস্তারিত দিন"
+      },
+      "widow": {
+        "label": "কখন এবং কিভাবে আপনার স্বামীর মৃত্যু হয়েছে?",
+        "placeholder": "কখন এবং কিভাবে আপনার স্বামীর মৃত্যু হয়েছে তার বিস্তারিত দিন"
+      },
+      "reasonForSecondMarriage": {
+        "label": "বিবাহিত অবস্থায় আবার কেন বিয়ে করতে চান?",
+        "placeholder": "দ্বিতীয় বিয়ের কারণ"
+      },
+      "currentFamilyStatus": {
+        "label": "বর্তমানে আপনার কতগুলো স্ত্রী এবং সন্তান আছে?",
+        "placeholder": "বর্তমান পারিবারিক অবস্থা"
+      },
+      "reasonForDivorce": {
+        "label": "আপনার পূর্বের বিয়ে এবং তালাকের তারিখ উল্লেখ করে তালাকের কারণগুলো লিখুন",
+        "placeholder": "তালাকের কারণ",
+        "helperText": "এই তথ্যটি আমাদেরকে আপনার পরিস্থিতি আরও ভালোভাবে বুঝতে সাহায্য করে"
+      },
+      "doParentsAgree": {
+        "label": "অভিভাবক আপনার বিয়েতে রাজি কি না?",
+        "placeholder": "একটি  নির্বাচন করুন",
+        "options": {
+          "yes": "হ্যাঁ",
+          "no": "না"
+        }
+      },
+      "canKeepWifeInVeil": {
+        "label": "বিয়ের পর স্ত্রীকে পর্দায় রাখতে পারবেন?",
+        "placeholder": "আপনার উত্তর টাইপ করুন"
+      },
+      "allowWifeToStudy": {
+        "label": "বিয়ের পর আপনি কি আপনার স্ত্রীকে পড়াশোনা করতে অনুমতি দেবেন?",
+        "placeholder": "একটি বিকল্প নির্বাচন করুন",
+        "options": {
+          "yes": "হ্যাঁ",
+          "no": "না"
+        }
+      },
+      "allowWifeToWork": {
+        "label": "বিয়ের পর স্ত্রীকে চাকরী করতে দিতে চান?",
+        "placeholder": "আপনার উত্তর টাইপ করুন",
+        "options": {
+          "yes": "হ্যাঁ",
+          "no": "না"
+        }
+      },
+      "residenceAfterMarriage": {
+        "label": "বিয়ের পর আপনি আপনার স্ত্রীর সাথে কোথায় থাকবেন?",
+        "placeholder": "অবস্থান লিখুন"
+      },
+      "expectGiftsFromBrideFamily": {
+        "label": "কনে পক্ষের কাছ থেকে কোনো দাবি বা উপহার প্রত্যাশা আছে?",
+        "placeholder": "আপনার উত্তর টাইপ করুন"
+      },
+      "willingToWorkAfterMarriage": {
+        "label": "আপনি কি বিয়ের পর চাকরি করতে ইচ্ছুক? ?",
+        "placeholder": "আপনার চিন্তাভাবনা টাইপ করুন"
+      },
+      "continueStudiesAfterMarriage": {
+        "label": "বিয়ের পর আপনি কি পড়াশোনা চালিয়ে যেতে চান?",
+        "placeholder": "আপনার চিন্তাভাবনা টাইপ করুন"
+      },
+      "reasonForMarriage": {
+        "label": "আপনি কেন বিয়ে করছেন? বিয়ে সম্পর্কে আপনার চিন্তাভাবনা কী?",
+        "placeholder": "আপনার চিন্তাভাবনা টাইপ করুন"
+      }
+    },
+    "agreement": {
+      "parentsAwareOfRegistration": {
+        "label": "আপনার অভিভাবক কি এই নিবন্ধনের বিষয়ে অবগত?",
+        "placeholder": "একটি অপশন নির্বাচন করুন",
+        "options": {
+          "yes": "হ্যাঁ",
+          "no": "না"
+        }
+      },
+      "confirmTruthOfProvidedInformation": {
+        "label": "আপনি কি নিশ্চিত করছেন যে প্রদত্ত সকল তথ্য সঠিক ও সত্য?",
+        "placeholder": "একটি অপশন নির্বাচন করুন",
+        "options": {
+          "yes": "হ্যাঁ",
+          "no": "না"
+        }
+      },
+      "agreeToLegalResponsibilityForFalseInfo": {
+        "label": "মিথ্যা তথ্য প্রদান করলে তার আইনগত দায়ভার গ্রহণে আপনি কি সম্মত?",
+        "placeholder": "একটি অপশন নির্বাচন করুন",
+        "options": {
+          "yes": "হ্যাঁ",
+          "no": "না"
+        }
+      }
+    },
+    "contact": {
+      "brideName": {
+        "label": "পাত্রীর নাম",
+        "placeholder": "পাত্রীর নাম লিখুন"
+      },
+      "groomName": {
+        "label": "পাত্রের নাম",
+        "placeholder": "পাত্রের নাম লিখুন"
+      },
+      "guardianPhoneNumber": {
+        "label": "অভিভাবকের মোবাইল নম্বর",
+        "placeholder": "অভিভাবকের মোবাইল নম্বর লিখুন"
+      },
+      "relationWithGuardian": {
+        "label": "অভিভাবকের সাথে সম্পর্ক",
+        "placeholder": "যেমন: বাবা, মা, ভাই, চাচা"
+      },
+      "emailUsedForRegistration": {
+        "label": "বায়োডাটা গ্রহণের ই-মেইল",
+        "placeholder": "ইমেইল ঠিকানা লিখুন"
       }
     }
   },

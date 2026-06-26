@@ -7,35 +7,7 @@ interface UseBiodataSectionsProps {
   t: (key: string) => string;
 }
 
-const getTranslatedAddress = (addressValue: string, t: (key: string) => string): string => {
-  if (!addressValue) return "";
-  
-  // Split the comma-separated value into parts
-  const parts = addressValue.split(",");
-  
-  if (parts.length === 0) return "";
-  
-  // Collect all translated parts
-  const translatedParts: string[] = [];
-  
-  // Translate division (always first part)
-  if (parts.length >= 1 && parts[0]) {
-    translatedParts.push(t(`location.${parts[0]}.label`));
-  }
-  
-  // Translate district (second part)
-  if (parts.length >= 2 && parts[1]) {
-    translatedParts.push(t(`location.${parts[0]}.${parts[1]}.label`));
-  }
-  
-  // Translate upazila (third part)
-  if (parts.length >= 3 && parts[2]) {
-    translatedParts.push(t(`location.${parts[0]}.${parts[1]}.${parts[2]}`));
-  }
-  
-  // Join all translated parts with commas
-  return translatedParts.join(", ");
-};
+
 
 export const useBiodataSections = ({
   bioData,
@@ -139,28 +111,23 @@ export const useBiodataSections = ({
           ? {
               [t("biodata.family_information.isParentAlive")]:
                 [t(`bio_data_form.family_information.isParentAlive.values.${bioData.family_information.isParentAlive}`)],
-                // bioData.family_information.isParentAlive,
               [t("biodata.family_information.fatherProfession")]:
                 bioData.family_information.fatherProfession,
               [t("biodata.family_information.isMotherAlive")]:
-                // bioData.family_information.isMotherAlive,
                 [t(`bio_data_form.family_information.isMotherAlive.values.${bioData.family_information.isMotherAlive}`)],
               [t("biodata.family_information.motherProfession")]:
                 bioData.family_information.motherProfession,
               [t("biodata.family_information.howManyBrothers")]:
-                // bioData.family_information.howManyBrothers,
                 [t(`bio_data_form.family_information.howManyBrothers.values.${bioData.family_information.howManyBrothers}`)],
               [t("biodata.family_information.brothersInformation")]:
                 bioData.family_information.brothersInformation,
               [t("biodata.family_information.howManySisters")]:
-                // bioData.family_information.howManySisters,
                 [t(`bio_data_form.family_information.howManySisters.values.${bioData.family_information.howManySisters}`)],
               [t("biodata.family_information.sistersInformation")]:
                 bioData.family_information.sistersInformation,
               [t("biodata.family_information.professionOfUncles")]:
                 bioData.family_information.professionOfUncles,
               [t("biodata.family_information.familyFinancialStatus")]:
-                // bioData.family_information.familyFinancialStatus,
                 [t(`bio_data_form.family_information.familyFinancialStatus.values.${bioData.family_information.familyFinancialStatus}`)], 
               [t("biodata.family_information.descriptionOfFinancialCondition")]:
                 bioData.family_information.descriptionOfFinancialCondition,
@@ -219,7 +186,7 @@ export const useBiodataSections = ({
         data: bioData.occupation
           ? {
               [t("biodata.occupation.occupation")]:
-                bioData.occupation.occupation,
+                [t(`bio_data_form.occupation.occupation.options.${bioData.occupation.occupation}`)],
               [t("biodata.occupation.monthlyIncome")]:
                 bioData.occupation.monthlyIncome,
               [t("biodata.occupation.descriptionOfProfession")]:
@@ -277,7 +244,7 @@ export const useBiodataSections = ({
           ? {
               [t("biodata.expected_partner.age")]: bioData.expected_partner.age,
               [t("biodata.expected_partner.complexion")]:
-                bioData.expected_partner.complexion,
+                complexionOptions(t, bioData.expected_partner.complexion),
               [t("biodata.expected_partner.height")]:
                 bioData.expected_partner.height,
               [t("biodata.expected_partner.educationalQualification")]:
@@ -285,7 +252,7 @@ export const useBiodataSections = ({
               [t("biodata.expected_partner.district")]:
                 bioData.expected_partner.district,
               [t("biodata.expected_partner.maritalStatus")]:
-                bioData.expected_partner.maritalStatus,
+                maritalStatusOptions(t, bioData.expected_partner.maritalStatus),
               [t("biodata.expected_partner.profession")]:
                 bioData.expected_partner.profession,
               [t("biodata.expected_partner.financialCondition")]:
@@ -300,11 +267,11 @@ export const useBiodataSections = ({
         data: bioData.agreement
           ? {
               [t("biodata.agreement.parentsAwareOfRegistration")]:
-                bioData.agreement.parentsAwareOfRegistration,
+                [t("bio_data_form.agreement.parentsAwareOfRegistration.options." + bioData.agreement.parentsAwareOfRegistration)],
               [t("biodata.agreement.confirmTruthOfProvidedInformation")]:
-                bioData.agreement.confirmTruthOfProvidedInformation,
+                [t("bio_data_form.agreement.confirmTruthOfProvidedInformation.options." + bioData.agreement.confirmTruthOfProvidedInformation)],
               [t("biodata.agreement.agreeToLegalResponsibilityForFalseInfo")]:
-                bioData.agreement.agreeToLegalResponsibilityForFalseInfo,
+                [t("bio_data_form.agreement.agreeToLegalResponsibilityForFalseInfo.options." + bioData.agreement.agreeToLegalResponsibilityForFalseInfo)],
             }
           : {},
       },
@@ -329,4 +296,45 @@ export const useBiodataSections = ({
     ],
     [bioData, bioDataNo, t]
   );
+};
+
+//single,divorced,married ( it can be multiple)
+const maritalStatusOptions = (t: (key: string) => string, maritalStatus: string) => {
+  if (!maritalStatus) return [];
+  return String(maritalStatus).split(",").map((item) => t(`bio_data_form.expected_partner.maritalStatus.options.${item.trim()}`));
+};
+
+const complexionOptions = (t: (key: string) => string, complexion: string) => {
+  if (!complexion) return [];
+  return String(complexion).split(",").map((item) => t(`bio_data_form.expected_partner.complexion.options.${item.trim()}`));
+};
+
+const getTranslatedAddress = (addressValue: string, t: (key: string) => string): string => {
+  if (!addressValue) return "";
+  
+  // Split the comma-separated value into parts
+  const parts = addressValue.split(",");
+  
+  if (parts.length === 0) return "";
+  
+  // Collect all translated parts
+  const translatedParts: string[] = [];
+  
+  // Translate division (always first part)
+  if (parts.length >= 1 && parts[0]) {
+    translatedParts.push(t(`location.${parts[0]}.label`));
+  }
+  
+  // Translate district (second part)
+  if (parts.length >= 2 && parts[1]) {
+    translatedParts.push(t(`location.${parts[0]}.${parts[1]}.label`));
+  }
+  
+  // Translate upazila (third part)
+  if (parts.length >= 3 && parts[2]) {
+    translatedParts.push(t(`location.${parts[0]}.${parts[1]}.${parts[2]}`));
+  }
+  
+  // Join all translated parts with commas
+  return translatedParts.join(", ");
 };

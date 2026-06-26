@@ -1,14 +1,14 @@
 "use client";
-import useGetUserFromField from "@/hooks/useGetUserFromField";
 import { Col, Row } from "antd";
 import { useTranslations } from "next-intl";
 import FormInput from "../FormInput";
 import FormSelectField from "../FormSelectField";
 import FormTextArea from "../FormTextArea";
+import { occupation } from "@/data/occupationField";
 
 const Occupation = () => {
   const t = useTranslations();
-  const { occupation } = useGetUserFromField();
+  const translate = useTranslations("bio_data_form.occupation");
 
   return (
     <div className='p-6'>
@@ -16,40 +16,47 @@ const Occupation = () => {
         {t("edit_biodata.occupation")}
       </h1>
       <Row gutter={[16, 16]}>
-        {occupation.map(({ name, type, placeholder, label, options, mode }) => (
+        {occupation.map(({ name, type, placeholder, label, options, required }) => (
           <Col key={name} xs={24} sm={12}>
             {(type === "text" && (
               <FormInput
                 name={name}
-                label={label}
+                label={translate(label)}
                 type={type}
-                placeholder={placeholder}
+                required={required}
+                placeholder={placeholder ? translate(placeholder) : ""}
               />
             )) ||
               (type === "number" && (
                 <FormInput
                   name={name}
-                  label={label}
+                  label={translate(label)}
                   type={type}
-                  placeholder={placeholder}
+                  required={required}
+                  placeholder={placeholder ? translate(placeholder) : ""}
                 />
               )) ||
               (type === "textArea" && (
                 <FormTextArea
                   id={name}
                   name={name}
-                  label={label}
-                  placeholder={placeholder}
+                  label={translate(label)}
+                  required={required}
+                  placeholder={placeholder ? translate(placeholder) : ""}
                 />
               ))}
             {(type === "multiSelect" || type === "select") && (
               <FormSelectField
                 name={name}
                 {...(type === "multiSelect" ? { mode: "tags" } : {})}
-                label={label}
-                placeholder={placeholder}
-                options={options}
-                mode={mode}
+                label={translate(label)}
+                placeholder={placeholder ? translate(placeholder) : ""}
+                required={required}
+                options={options?.map((opt: any) => ({
+                  value: opt.value,
+                  label: translate(opt.label),
+                }))}
+                // mode={mode || "default"}
               />
             )}
           </Col>

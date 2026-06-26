@@ -1,12 +1,13 @@
 "use client";
-import useGetUserFromField from "@/hooks/useGetUserFromField";
 import { Col, Row } from "antd";
 import { useTranslations } from "next-intl";
 import FormSelectField from "../FormSelectField";
+import { agreement } from "@/data/aggrementField";
 
 const Agreement = () => {
   const t = useTranslations();
-  const { agreement } = useGetUserFromField();
+  const translate = useTranslations("bio_data_form.agreement");
+
   return (
     <div>
       <h1 className='text-2xl font-semibold mb-6'>
@@ -18,10 +19,13 @@ const Agreement = () => {
             {type === "select" && (
               <FormSelectField
                 name={name}
-                label={label}
+                label={translate(label)}
                 value={options[0].value}
-                placeholder={placeholder}
-                options={options}
+                placeholder={translate(placeholder)}
+                options={options.map(opt => ({
+                  ...opt,
+                  label: translate(opt.label)
+                }))}
               />
             )}
           </Col>

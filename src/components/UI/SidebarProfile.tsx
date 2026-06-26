@@ -67,7 +67,7 @@ const SidebarProfile = () => {
         <div className='mb-2'>
           <Tooltip title='Biodata completion: 50%' placement='bottomRight'>
             <Progress
-              percent={percent}
+              percent={parseFloat(percent.toFixed(0))}
               status='active'
               strokeColor={{
                 from: "#06b6d4",

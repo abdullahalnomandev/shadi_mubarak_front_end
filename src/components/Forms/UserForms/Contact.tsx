@@ -1,17 +1,17 @@
 "use client";
-import useGetUserFromField from "@/hooks/useGetUserFromField";
 import { Col, Row } from "antd";
 import { useTranslations } from "next-intl";
 import { useFormContext } from "react-hook-form";
 import FormInput from "../FormInput";
 import FormTextArea from "../FormTextArea";
+import { contact } from "@/data/contactField";
 
 const Contact = () => {
   const t = useTranslations();
+  const translate = useTranslations("bio_data_form.contact");
   const { watch } = useFormContext();
   const isMaleForm =
-    watch("general_information.biodataType") === "male_biodata";
-  const { contact } = useGetUserFromField();
+    watch("general_information.biodataType") === "male's_biodata";
 
   const filteredContact = contact.filter((field) => {
     if (field.isMale && !isMaleForm) return false;
@@ -30,25 +30,25 @@ const Contact = () => {
             {type === "text" && (
               <FormInput
                 name={name}
-                label={label}
+                label={translate(label)}
                 type={type}
-                placeholder={placeholder}
+                placeholder={translate(placeholder)}
               />
             )}
             {type === "number" && (
               <FormInput
                 name={name}
-                label={label}
+                label={translate(label)}
                 type={type}
-                placeholder={placeholder}
+                placeholder={translate(placeholder)}
               />
             )}
             {type === "textArea" && (
               <FormTextArea
                 id={name}
                 name={name}
-                label={label}
-                placeholder={placeholder}
+                label={translate(label)}
+                placeholder={translate(placeholder)}
               />
             )}
           </Col>
