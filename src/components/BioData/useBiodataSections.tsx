@@ -32,6 +32,10 @@ export const useBiodataSections = ({
                 .permanent_address
                 ? `${getTranslatedAddress(bioData.address.permanent_address.full, t)} ${bioData.address.permanent_address.area ? `- ${bioData.address.permanent_address.area}` : ""}`
                 : "",
+              // [t("biodata.address.permanent_address")]: bioData.address
+              //   .permanent_address
+              //   ? `${getTranslatedAddress(bioData.address.permanent_address.full, t)} ${bioData.address.permanent_address.area ? `- ${bioData.address.permanent_address.area}` : ""}`
+              //   : "",
               [t("biodata.address.grow_up")]: bioData.address.grow_up || "",
             }
           : {},

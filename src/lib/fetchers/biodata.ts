@@ -2,7 +2,7 @@ import { getBaseUrl } from "@/helpers/config/envConfig";
 
 export async function getBioData(biodata: string, token: string = "") {
   const res = await fetch(`${getBaseUrl()}/biodata/${biodata}`, {
-    cache: "force-cache", // always cache first
+    cache: "no-store", // always cache first
     next: {
       tags: [`biodata-${biodata}`],
     },
