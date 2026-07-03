@@ -2,6 +2,9 @@
   "Welcome to React": "বাংলাদেশ আন্তর্জাতিক ক্রিকেট কাউন্সিল",
   "complete_your_profile": "বায়োডাটা সম্পূর্ণ করুন",
   "biodata_status": "বায়োডাটা স্ট্যাটাস",
+  "status": "স্ট্যাটাস",
+  "biodata_completion": "বায়োডাটা সম্পূর্ণ হয়েছে ",
+  "biodata_completion_percent": "বায়োডাটা সম্পূর্ণ প্রান্টেন্ট",
   "create_biodata": " বায়োডাটা তৈরি করুন",
   "complete_biodata": "বায়োডাটা সম্পূর্ণ করুন",
   "update_biodata": "বায়োডাটা আপডেট করুন",
@@ -1555,10 +1558,10 @@
         "placeholder": "আপনার গায়ের রং নির্বাচন করুন",
         "options": {
           "fair": "ফর্সা",
+          "very_fair": "উজ্জ্বল ফর্সা",
           "brown": "শ্যামলা",
-          "light_brown": "হালকা শ্যামলা",
-          "black": "কালো",
-          "very_fair": "খুব ফর্সা"
+          "light_brown": "উজ্জ্বল শ্যামলা",
+          "black": "কালো"
         }
       },
       "maritalStatus": {
@@ -1567,7 +1570,7 @@
         "options": {
           "single": "অবিবাহিত",
           "married": "বিবাহিত",
-          "divorced": "তালাকপ্রাপ্ত",
+          "divorced": "ডিভোর্সড",
           "widow": "বিধবা",
           "widower": "বিপত্নীক"
         }

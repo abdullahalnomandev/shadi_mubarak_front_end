@@ -38,7 +38,7 @@ const AddressForm = () => {
       name: "address.present_address.full",
       label: t("bio_data_form.address.present_address.label"),
       type: "select",
-      placeholder: "Enter full present address",
+      placeholder: t("bio_data_form.address.present_address.placeholder"),
       options: getLocationData(t).filteredLocationData,
       required: true,
     },

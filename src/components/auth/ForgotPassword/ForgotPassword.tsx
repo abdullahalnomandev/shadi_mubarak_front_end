@@ -1,7 +1,7 @@
 "use client";
 
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Col, message, Row } from "antd";
+import { Col, Row } from "antd";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -13,6 +13,7 @@ import { useUserForgetPasswordMutation } from "@/redux/api/auth";
 import { useTranslations } from "next-intl";
 import { forgotPasswordSchema } from "../../../schemas/userSchema";
 import { FaRegCheckCircle } from "react-icons/fa";
+import { notification } from "antd";
 
 const forgotPasswordFields = [
   {
@@ -28,6 +29,7 @@ const ForgotPassword = () => {
   const [userForgetPassword, { isLoading }] = useUserForgetPasswordMutation();
   const [submitting, setSubmitting] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
+  const [notificationApi, notificationContext] = notification.useNotification();
 
   const handleSubmit = async (values: { email: string }) => {
     setSubmitting(true);
@@ -35,7 +37,10 @@ const ForgotPassword = () => {
       await userForgetPassword(values).unwrap();
       setEmailSent(true);
     } catch (error: any) {
-      message.error(error?.data || t("error_something_wrong"));
+      notificationApi.error({
+        message: error?.data || t("error_something_wrong"),
+        duration: 3,
+      });
     } finally {
       setSubmitting(false);
     }
@@ -43,6 +48,7 @@ const ForgotPassword = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br dark:bg-blue-950 dark:text-white flex items-center justify-center">
+      {notificationContext}
       <div className="container mx-auto px-4">
         <Row
           justify="center"

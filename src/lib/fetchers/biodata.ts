@@ -1,10 +1,13 @@
 import { getBaseUrl } from "@/helpers/config/envConfig";
 
-export async function getBioData(biodata: string) {
+export async function getBioData(biodata: string, token: string = "") {
   const res = await fetch(`${getBaseUrl()}/biodata/${biodata}`, {
     cache: "force-cache", // always cache first
     next: {
       tags: [`biodata-${biodata}`],
+    },
+    headers: {
+      "Authorization": `Bearer ${token}`,
     },
     // next: { revalidate: 1800 },   // revalidate every 30 min (1800 sec)
   });
@@ -28,7 +31,7 @@ export async function getAllBioData(query?: Record<string, any>) {
   }
 
   const res = await fetch(`${getBaseUrl()}/biodata?${queryParams.toString()}`, {
-    cache:"force-cache"
+    cache:"no-store"
   });
 
   if (!res.ok) {

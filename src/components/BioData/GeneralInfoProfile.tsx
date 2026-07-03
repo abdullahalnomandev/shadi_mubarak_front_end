@@ -1,13 +1,12 @@
 "use client";
 import profileImage from "@/assets/boy.jpg";
 import { IUser } from "@/types";
-import { message } from "antd";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { FiCopy } from "react-icons/fi";
 import AddToFavoriteList from "./AddToFavoriteList";
 import renderValue from "./renderValue";
-
+import { notification } from "antd";
 interface IProps {
   general_information: any;
   bioDataNo: string;
@@ -22,6 +21,7 @@ const GeneralInfoProfile = ({
   isOwner,
 }: IProps) => {
   const t = useTranslations();
+  const [messageApi, contextHolder] = notification.useNotification();
 
   if (!general_information) return null;
 
@@ -61,14 +61,21 @@ const GeneralInfoProfile = ({
         document.body.removeChild(textarea);
       }
 
-      message.success("Biodata link copied!");
+      messageApi.success({
+        message: "Biodata link copied!",
+        duration: 2,
+      });
     } catch (err) {
-      message.error((err as Error).message || "Failed to copy link");
+      messageApi.error({
+        message: (err as Error).message || "Failed to copy link",
+        duration: 2,
+      });
     }
   };
 
   return (
     <div className="w-full mx-auto mb-8">
+      {contextHolder}
       <div className="bg-gradient-to-br from-cyan-200 via-blue-100 to-white dark:from-blue-950 dark:via-blue-900 dark:to-blue-950 rounded-md relative pt-16 shadow-md">
         {/* Profile Image */}
         <div className="absolute -top-9 left-1/2 -translate-x-1/2">

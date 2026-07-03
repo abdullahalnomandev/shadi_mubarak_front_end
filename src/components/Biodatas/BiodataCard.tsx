@@ -59,7 +59,7 @@ const BioDataCard = ({ biodata }: { biodata: any }) => {
                     <h3 className="font-semibold text-gray-800 text-md">
                       {t("profile.profile")}
                     </h3>
-                    <p className="text-xs text-gray-500 font-medium">
+                    <p className="text-2xs text-gray-500 font-medium">
                       # {staticBiodata.bioDataNo}
                     </p>
                   </div>
@@ -127,8 +127,8 @@ const BioDataCard = ({ biodata }: { biodata: any }) => {
                   }
                 >
                   {staticBiodata?.biodataType === "male's_biodata"
-                    ? staticBiodata?.occupation
-                    : staticBiodata?.skin}
+                    ? t(`bio_data_form.occupation.occupation.options.${staticBiodata?.occupation}`)
+                    : t(`bio_data_form.general_information.skin.options.${staticBiodata?.skin}`)}
                 </span>
               </div>
             </div>

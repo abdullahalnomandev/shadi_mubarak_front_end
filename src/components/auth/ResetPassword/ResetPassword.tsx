@@ -2,7 +2,7 @@
 
 import { useUserResetPasswordMutation } from "@/redux/api/auth";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Col, message, Row } from "antd";
+import { Col, Row } from "antd";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -14,6 +14,7 @@ import FormInput from "@/components/Forms/FormInput";
 import Button from "@/components/UI/Button";
 import { resetPasswordSchema } from "@/schemas/userSchema";
 import { useTranslations } from "next-intl";
+import { notification } from "antd";
 
 const resetPasswordFields = [
   {
@@ -37,11 +38,12 @@ const ResetPassword = () => {
 
   const t = useTranslations("reset_password");
   const [resetPassword, { isLoading }] = useUserResetPasswordMutation();
+  const [notificationApi, notificationContext] = notification.useNotification();
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = async (values: { password: string }) => {
     if (!token) {
-      message.error(t("error_missing_token"));
+      notificationApi.error({ message: t("error_missing_token"), duration: 3 });
       return;
     }
 
@@ -52,17 +54,18 @@ const ResetPassword = () => {
       }).unwrap();
 
       setSubmitted(true);
-      message.success(t("message_success_redirect"));
+      notificationApi.success({ message: t("message_success_redirect") });
       setTimeout(() => {
         router.push("/login");
       }, 2000);
     } catch (error: any) {
-      message.error(error?.data || t("error_failed_reset"));
+      notificationApi.error({ message: error?.data || t("error_failed_reset"), duration: 3 });
     }
   };
 
   return (
     <div className='min-h-screen bg-gradient-to-br dark:bg-blue-950 dark:text-white flex items-center justify-center'>
+      {notificationContext}
       <div className='container mx-auto px-4'>
         <Row
           justify='center'

@@ -8,3 +8,7 @@ export const getUserInfoFromCookie = async () => {
 
   return decoded;
 };
+
+export const getToken = async () => {
+  return (await cookies()).get(authKey)?.value;
+}

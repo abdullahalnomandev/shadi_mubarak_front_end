@@ -23,6 +23,7 @@ import * as yup from "yup";
 import { getValidationSchema } from "./getValidationSchema";
 import { revalidateTags } from "@/utils/revalidateTags";
 import { useTranslations } from "next-intl";
+import { notification } from "antd";
 interface ISteps {
   title: string;
   content: React.ReactElement | React.ReactNode;
@@ -71,6 +72,8 @@ const StepperForm = ({ steps }: IStepsProps) => {
   });
 
   const [completedSteps, setCompletedSteps] = useState<number[]>([]);
+  const [notificationApi, notificationContextHolder] =
+    notification.useNotification();
   const [current, setCurrent] = useState<number>(0);
   const [isInitialLoad, setIsInitialLoad] = useState(false);
   const [isLastStep, setIsLastStep] = useState(false);
@@ -135,8 +138,10 @@ const StepperForm = ({ steps }: IStepsProps) => {
     if (!stepData) throw new Error("No data to update");
 
     if (type === "submit") {
-      message.success("Biodata submitted successfully");
-      router.push("/user/dashboard");
+      notificationApi.success({
+        message: "Biodata submitted successfully",
+        duration: 2,
+      });
 
       await updateBiodata({
         stepNumber: current + 1,
@@ -146,7 +151,6 @@ const StepperForm = ({ steps }: IStepsProps) => {
         console.error,
       );
     } else {
-      router.push("/user/my-biodata");
       await updateBiodata({
         stepNumber: current + 1,
         biodataStepInfo: { [stepKey]: stepData },
@@ -155,6 +159,8 @@ const StepperForm = ({ steps }: IStepsProps) => {
         console.error,
       );
     }
+    await revalidateTags([`biodata-${bioDataNo}`]);
+    router.push("/user/my-biodata");
     setIsLastStep(false);
   };
 
@@ -177,6 +183,7 @@ const StepperForm = ({ steps }: IStepsProps) => {
         if (bioDataInfo?.biodata?.profileStatus === BioDataStatus.PENDING) {
           updateProfile({ profileStatus: BioDataStatus.NOT_SUBMITTED });
         }
+        message.success("Successfully saved!");
         revalidateTags([`biodata-${bioDataNo}`]);
       }
     } catch (error) {
@@ -206,6 +213,7 @@ const StepperForm = ({ steps }: IStepsProps) => {
 
   return (
     <div className="p-4 sm:p-6">
+      {notificationContextHolder}
       <AntModal
         isOpen={isLastStep}
         onClose={() => setIsLastStep(false)}

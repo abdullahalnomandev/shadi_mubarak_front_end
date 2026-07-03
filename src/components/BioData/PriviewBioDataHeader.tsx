@@ -2,14 +2,20 @@
 
 import { BioDataStatus } from "@/constants/bioData";
 import { useUpdateProfileMutation } from "@/redux/api/biodata";
-import { message } from "antd";
+import { revalidateTags } from "@/utils/revalidateTags";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FiEdit, FiSend } from "react-icons/fi";
+import { notification } from "antd";
 
-const PriviewBioDataHeader = ({ profileStatus }: { profileStatus: string }) => {
+
+
+const PriviewBioDataHeader = ({ profileStatus, bioDataNo }: { profileStatus: string; bioDataNo: string }) => {
   const pathname = usePathname();
   const [updateProfile] = useUpdateProfileMutation();
+  const [notificationApi, notificationContextHolder] = notification.useNotification();
+
+
 
   if (pathname !== "/user/my-biodata") return null;
 
@@ -18,17 +24,27 @@ const PriviewBioDataHeader = ({ profileStatus }: { profileStatus: string }) => {
       const result = await updateProfile({
         profileStatus: BioDataStatus.PENDING,
       });
+      revalidateTags([`biodata-${bioDataNo}`]);
+
+
 
       if (result) {
-        message.success("Biodata submitted successfully");
+        notificationApi.success({
+          message: "Biodata submitted successfully",
+          duration: 2,
+        });
       }
     } catch (error) {
       console.error("Failed to update profile status:", error);
+      notificationApi.error({
+        message: "Failed to update profile status",
+      });
     }
   };
 
   return (
     <div className='container mx-auto px-4 pb-6'>
+      {notificationContextHolder}
       <div className='flex flex-col md:flex-row justify-between items-center pb-6 gap-4'>
         <div>
           <h1 className='text-2xl md:text-3xl font-bold text-gray-600 text-center md:text-left tracking-tight leading-tight'>

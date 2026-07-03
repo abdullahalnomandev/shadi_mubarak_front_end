@@ -118,7 +118,9 @@ const BioData = ({ bioDataInfo, bioDataNo, className = "" }: IProps) => {
 
       <div className={`m-auto mt-16 mb-8 ${className} px-1`}>
         <div className="sm:flex sm:flex-wrap sm:gap-4 relative">
-          {isOwner && <PriviewBioDataHeader profileStatus={profileStatus} />}
+          {isOwner && (
+            <PriviewBioDataHeader profileStatus={profileStatus} bioDataNo={bioDataNo} />
+          )}
 
           <div className="sm:w-87.5 md:sticky md:top-25 h-fit">
             <GeneralInfoProfile

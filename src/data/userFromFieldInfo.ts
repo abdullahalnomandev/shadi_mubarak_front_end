@@ -469,36 +469,36 @@
 //     required: true,
 //   },
 // ];
-const address = [
-  {
-    name: "address.present_address.full",
-    label: "Present Address",
-    type: "select",
-    placeholder: "Enter full present address",
-    required: true,
-  },
-  {
-    name: "address.present_address.area",
-    label: "Area",
-    type: "text",
-    placeholder: "Area will be shown based on address",
-    readonly: true,
-  },
-  {
-    name: "address.permanent_address.full",
-    label: "Permanent Address",
-    type: "select",
-    placeholder: "Enter full permanent address",
-    required: true,
-  },
-  {
-    name: "address.permanent_address.area",
-    label: "Area",
-    type: "text",
-    placeholder: "Area will be shown based on address",
-    readonly: true,
-  },
-];
+// const address = [
+//   {
+//     name: "address.present_address.full",
+//     label: "Present Address",
+//     type: "select",
+//     placeholder: "Enter full present address",
+//     required: true,
+//   },
+//   {
+//     name: "address.present_address.area",
+//     label: "Area",
+//     type: "text",
+//     placeholder: "Area will be shown based on address",
+//     readonly: true,
+//   },
+//   {
+//     name: "address.permanent_address.full",
+//     label: "Permanent Address",
+//     type: "select",
+//     placeholder: "Enter full permanent address",
+//     required: true,
+//   },
+//   {
+//     name: "address.permanent_address.area",
+//     label: "Area",
+//     type: "text",
+//     placeholder: "Area will be shown based on address",
+//     readonly: true,
+//   },
+// ];
 // const occupation = [
 //   {
 //     name: "occupation.occupation",
@@ -634,334 +634,334 @@ const address = [
 //     required: true,
 //   },
 // ];
-const family_information = [
-  {
-    name: "family_information.isParentAlive",
-    label: "isParentAlive.label",
-    type: "select",
-    options: [
-      { value: "yes", label: "isParentAlive.options.yes" },
-      { value: "no", label: "isParentAlive.options.no" },
-    ],
-    placeholder: "isParentAlive.placeholder",
-    required: true,
-  },
+// const family_information = [
+//   {
+//     name: "family_information.isParentAlive",
+//     label: "isParentAlive.label",
+//     type: "select",
+//     options: [
+//       { value: "yes", label: "isParentAlive.options.yes" },
+//       { value: "no", label: "isParentAlive.options.no" },
+//     ],
+//     placeholder: "isParentAlive.placeholder",
+//     required: true,
+//   },
 
-  {
-    name: "family_information.fatherProfession",
-    label: "fatherProfession.label",
-    type: "textArea",
-    placeholder: "fatherProfession.placeholder",
-    required: true,
-  },
+//   {
+//     name: "family_information.fatherProfession",
+//     label: "fatherProfession.label",
+//     type: "textArea",
+//     placeholder: "fatherProfession.placeholder",
+//     required: true,
+//   },
 
-  {
-    name: "family_information.isMotherAlive",
-    label: "isMotherAlive.label",
-    type: "select",
-    options: [
-      { value: "yes", label: "isMotherAlive.options.yes" },
-      { value: "no", label: "isMotherAlive.options.no" },
-    ],
-    placeholder: "isMotherAlive.placeholder",
-    required: true,
-  },
+//   {
+//     name: "family_information.isMotherAlive",
+//     label: "isMotherAlive.label",
+//     type: "select",
+//     options: [
+//       { value: "yes", label: "isMotherAlive.options.yes" },
+//       { value: "no", label: "isMotherAlive.options.no" },
+//     ],
+//     placeholder: "isMotherAlive.placeholder",
+//     required: true,
+//   },
 
-  {
-    name: "family_information.motherProfession",
-    label: "motherProfession.label",
-    type: "text",
-    placeholder: "motherProfession.placeholder",
-    required: true,
-  },
+//   {
+//     name: "family_information.motherProfession",
+//     label: "motherProfession.label",
+//     type: "text",
+//     placeholder: "motherProfession.placeholder",
+//     required: true,
+//   },
 
-  {
-    name: "family_information.howManyBrothers",
-    label: "howManyBrothers.label",
-    type: "select",
-    options: [
-      { value: "no_brothers", label: "howManyBrothers.options.no_brothers" },
-      { value: "1", label: "howManyBrothers.options.1" },
-      { value: "2", label: "howManyBrothers.options.2" },
-      { value: "3", label: "howManyBrothers.options.3" },
-      { value: "4", label: "howManyBrothers.options.4" },
-      { value: "5", label: "howManyBrothers.options.5" },
-      { value: "more_than_5", label: "howManyBrothers.options.more_than_5" },
-    ],
-    placeholder: "howManyBrothers.placeholder",
-    required: true,
-  },
+//   {
+//     name: "family_information.howManyBrothers",
+//     label: "howManyBrothers.label",
+//     type: "select",
+//     options: [
+//       { value: "no_brothers", label: "howManyBrothers.options.no_brothers" },
+//       { value: "1", label: "howManyBrothers.options.1" },
+//       { value: "2", label: "howManyBrothers.options.2" },
+//       { value: "3", label: "howManyBrothers.options.3" },
+//       { value: "4", label: "howManyBrothers.options.4" },
+//       { value: "5", label: "howManyBrothers.options.5" },
+//       { value: "more_than_5", label: "howManyBrothers.options.more_than_5" },
+//     ],
+//     placeholder: "howManyBrothers.placeholder",
+//     required: true,
+//   },
 
-  {
-    name: "family_information.brothersInformation",
-    label: "brothersInformation.label",
-    type: "textArea",
-    placeholder: "brothersInformation.placeholder",
-    required: true,
-  },
+//   {
+//     name: "family_information.brothersInformation",
+//     label: "brothersInformation.label",
+//     type: "textArea",
+//     placeholder: "brothersInformation.placeholder",
+//     required: true,
+//   },
 
-  {
-    name: "family_information.howManySisters",
-    label: "howManySisters.label",
-    type: "select",
-    options: [
-      { value: "no_sisters", label: "howManySisters.options.no_sisters" },
-      { value: "1", label: "howManySisters.options.1" },
-      { value: "2", label: "howManySisters.options.2" },
-      { value: "3", label: "howManySisters.options.3" },
-      { value: "4", label: "howManySisters.options.4" },
-      { value: "5", label: "howManySisters.options.5" },
-      { value: "more_than_6", label: "howManySisters.options.more_than_6" },
-    ],
-    placeholder: "howManySisters.placeholder",
-    required: true,
-  },
+//   {
+//     name: "family_information.howManySisters",
+//     label: "howManySisters.label",
+//     type: "select",
+//     options: [
+//       { value: "no_sisters", label: "howManySisters.options.no_sisters" },
+//       { value: "1", label: "howManySisters.options.1" },
+//       { value: "2", label: "howManySisters.options.2" },
+//       { value: "3", label: "howManySisters.options.3" },
+//       { value: "4", label: "howManySisters.options.4" },
+//       { value: "5", label: "howManySisters.options.5" },
+//       { value: "more_than_6", label: "howManySisters.options.more_than_6" },
+//     ],
+//     placeholder: "howManySisters.placeholder",
+//     required: true,
+//   },
 
-  {
-    name: "family_information.sistersInformation",
-    label: "sistersInformation.label",
-    type: "textArea",
-    placeholder: "sistersInformation.placeholder",
-    required: true,
-  },
-  {
-    name: "family_information.familyFinancialStatus",
-    label: "familyFinancialStatus.label",
-    type: "select",
-    placeholder: "familyFinancialStatus.placeholder",
-    options: [
-      {
-        value: "upper_class",
-        label: "familyFinancialStatus.options.upper_class",
-      },
-      {
-        value: "middle_class",
-        label: "familyFinancialStatus.options.middle_class",
-      },
-      {
-        value: "lower_class",
-        label: "familyFinancialStatus.options.lower_class",
-      },
-      {
-        value: "upper_middle_class",
-        label: "familyFinancialStatus.options.upper_middle_class",
-      },
-      {
-        value: "lower_middle_class",
-        label: "familyFinancialStatus.options.lower_middle_class",
-      },
-    ],
-    required: true,
-  },
+//   {
+//     name: "family_information.sistersInformation",
+//     label: "sistersInformation.label",
+//     type: "textArea",
+//     placeholder: "sistersInformation.placeholder",
+//     required: true,
+//   },
+//   {
+//     name: "family_information.familyFinancialStatus",
+//     label: "familyFinancialStatus.label",
+//     type: "select",
+//     placeholder: "familyFinancialStatus.placeholder",
+//     options: [
+//       {
+//         value: "upper_class",
+//         label: "familyFinancialStatus.options.upper_class",
+//       },
+//       {
+//         value: "middle_class",
+//         label: "familyFinancialStatus.options.middle_class",
+//       },
+//       {
+//         value: "lower_class",
+//         label: "familyFinancialStatus.options.lower_class",
+//       },
+//       {
+//         value: "upper_middle_class",
+//         label: "familyFinancialStatus.options.upper_middle_class",
+//       },
+//       {
+//         value: "lower_middle_class",
+//         label: "familyFinancialStatus.options.lower_middle_class",
+//       },
+//     ],
+//     required: true,
+//   },
 
-  {
-    name: "family_information.descriptionOfFinancialCondition",
-    label: "descriptionOfFinancialCondition.label",
-    type: "textArea",
-    placeholder: "descriptionOfFinancialCondition.placeholder",
-    required: true,
-  },
+//   {
+//     name: "family_information.descriptionOfFinancialCondition",
+//     label: "descriptionOfFinancialCondition.label",
+//     type: "textArea",
+//     placeholder: "descriptionOfFinancialCondition.placeholder",
+//     required: true,
+//   },
 
-  {
-    name: "family_information.professionOfUncles",
-    label: "professionOfUncles.label",
-    type: "textArea",
-    placeholder: "professionOfUncles.placeholder",
-    required: true,
-  },
+//   {
+//     name: "family_information.professionOfUncles",
+//     label: "professionOfUncles.label",
+//     type: "textArea",
+//     placeholder: "professionOfUncles.placeholder",
+//     required: true,
+//   },
 
-  {
-    name: "family_information.familyReligiousCondition",
-    label: "familyReligiousCondition.label",
-    type: "textArea",
-    placeholder: "familyReligiousCondition.placeholder",
-    required: true,
-  },
-];
-const personal_information = [
-  {
-    name: "personal_information.usualOutdoorClothing",
-    label: "What kind of clothes do you usually wear outside the house?",
-    type: "text",
-    placeholder: "Your outdoor attire",
-    required: true,
-  },
-  {
-    name: "personal_information.beardAccordingToSunnah",
-    label: "Do you have beard according to sunnah?",
-    type: "select",
-    options: [
-      { value: "yes", label: "Yes" },
-      { value: "no", label: "No" },
-    ],
-    placeholder: "Select yes/no",
-    required: true,
-  },
-  {
-    name: "personal_information.clothingAboveAnkles",
-    label: "Do you wear clothes above the ankles?",
-    type: "select",
-    options: [
-      { value: "yes", label: "Yes" },
-      { value: "no", label: "No" },
-    ],
-    placeholder: "Select yes/no",
-    required: true,
-  },
-  {
-    name: "personal_information.wearsNiqab",
-    label: "Do you wear niqab?",
-    type: "select",
-    options: [
-      { value: "yes", label: "Yes" },
-      { value: "no", label: "No" },
-    ],
-    placeholder: "Y/N",
-    required: true,
-  },
-  {
-    name: "personal_information.wearingNiqabSince",
-    label: "Since when have you been wearing a veil with a niqab?",
-    type: "text",
-    placeholder: "Year",
-    required: true,
-  },
-  {
-    name: "personal_information.dailyPrayerRoutine",
-    label: "Do you pray five times a day?",
-    type: "select",
-    options: [
-      { value: "yes", label: "Yes" },
-      { value: "no", label: "No" },
-    ],
-    placeholder: "Y/N",
-    required: true,
-  },
-  {
-    name: "personal_information.skippedPrayersPerWeek",
-    label:
-      "Usually how many times (waqt) a week are your prayers missed (Qaza)?",
-    type: "text",
-    placeholder: "Number per week",
-    required: true,
-  },
-  {
-    name: "personal_information.followsMahramGuidelines",
-    label: "Do you comply with mahram / non-mahram?",
-    type: "select",
-    options: [
-      { value: "yes", label: "Yes" },
-      { value: "no", label: "No" },
-    ],
-    placeholder: "Y/N",
-    required: true,
-  },
-  {
-    name: "personal_information.quranRecitationAbility",
-    label: "Are you able to recite the Quran correctly?",
-    type: "select",
-    options: [
-      { value: "yes", label: "Yes" },
-      { value: "no", label: "No" },
-    ],
-    placeholder: "Y/N",
-    required: true,
-  },
-  {
-    name: "personal_information.fiqhFollowed",
-    label: "Which Fiqh do you follow?",
-    type: "select",
-    options: [
-      { value: "hanafi", label: "Hanafi" },
-      { value: "shafi", label: "Shafi" },
-      { value: "maliki", label: "Maliki" },
-      { value: "hanbali", label: "Hanbali" },
-    ],
-    placeholder: "Select Fiqh",
-    required: true,
-  },
-  {
-    name: "personal_information.mediaConsumptionHabits",
-    label: "Do you watch or listen to dramas / movies / serials / songs?",
-    type: "textArea",
-    placeholder: "Media habits",
-    required: true,
-  },
-  {
-    name: "personal_information.mentalOrPhysicalDiseases",
-    label: "Do you have any mental or physical diseases?",
-    type: "textArea",
-    placeholder: "Health conditions",
-    required: true,
-  },
-  {
-    name: "personal_information.involvedInSpecialWork",
-    label: "Are you involved in any special work of deen?",
-    type: "textArea",
-    placeholder: "Islamic activities",
-    required: true,
-  },
-  {
-    name: "personal_information.beliefsAboutShrine",
-    label: "What are your ideas or beliefs about the shrine (Mazar)?",
-    type: "textArea",
-    placeholder: "Shrine beliefs",
-    required: true,
-  },
-  {
-    name: "personal_information.islamicBooksRead",
-    label: "Write the names of at least 3 books you have read",
-    type: "text",
-    placeholder: "Ex: Riyadus Salihin, Bulughul Maram, Sahih Bukhari",
-    required: true,
-  },
-  {
-    name: "personal_information.islamicScholarsPreferred",
-    label: "Write the names of at least 3 Islamic scholars of your choice",
-    type: "multiSelect",
-    options: [
-      { value: "mizanur_rahman_azhari", label: "Mizanur Rahman Azhari" },
-      { value: "delower_hossain_sayeedi", label: "Delwar Hossain Sayeedi" },
-      { value: "sheikh_ahmadullah", label: "Sheikh Ahmadullah" },
-      { value: "abu_toha_muhammad_adnan", label: "Abu Toha Muhammad Adnan" },
-      { value: "mufti_menk", label: "Mufti Menk" },
-      { value: "nouman_ali_khan", label: "Nouman Ali Khan" },
-      { value: "dr_zakir_naik", label: "Dr. Zakir Naik" },
-      { value: "yasir_qadhi", label: "Dr. Yasir Qadhi" },
-      { value: "omar_suleiman", label: "Sheikh Omar Suleiman" },
-      {
-        value: "khandaker_abdullah_jahangir",
-        label: "Dr. Khandaker Abdullah Jahangir",
-      },
-    ],
-    placeholder: "Select scholars",
-    required: true,
-  },
-  {
-    name: "personal_information.hobbiesAndInterests",
-    label:
-      "Write about your hobbies, likes and dislikes, tastes, dreams, and so on.",
-    type: "textArea",
-    placeholder: "Your interests",
-    required: true,
-  },
-  {
-    name: "personal_information.groomMobileNumber",
-    label: "Mobile Number",
-    type: "text",
-    placeholder: " +8801XXXXXXXXX",
-    required: true,
-    helperText:
-      "We won't share this number with anyone. It's only for verification.",
-  },
-  {
-    name: "personal_information.previousRelationship",
-    label: "Do you have any relationship before? If yes, describe.",
-    type: "textArea",
-    placeholder: "Past relationships",
-    required: true,
-  },
-];
+//   {
+//     name: "family_information.familyReligiousCondition",
+//     label: "familyReligiousCondition.label",
+//     type: "textArea",
+//     placeholder: "familyReligiousCondition.placeholder",
+//     required: true,
+//   },
+// ];
+// const personal_information = [
+//   {
+//     name: "personal_information.usualOutdoorClothing",
+//     label: "What kind of clothes do you usually wear outside the house?",
+//     type: "text",
+//     placeholder: "Your outdoor attire",
+//     required: true,
+//   },
+//   {
+//     name: "personal_information.beardAccordingToSunnah",
+//     label: "Do you have beard according to sunnah?",
+//     type: "select",
+//     options: [
+//       { value: "yes", label: "Yes" },
+//       { value: "no", label: "No" },
+//     ],
+//     placeholder: "Select yes/no",
+//     required: true,
+//   },
+//   {
+//     name: "personal_information.clothingAboveAnkles",
+//     label: "Do you wear clothes above the ankles?",
+//     type: "select",
+//     options: [
+//       { value: "yes", label: "Yes" },
+//       { value: "no", label: "No" },
+//     ],
+//     placeholder: "Select yes/no",
+//     required: true,
+//   },
+//   {
+//     name: "personal_information.wearsNiqab",
+//     label: "Do you wear niqab?",
+//     type: "select",
+//     options: [
+//       { value: "yes", label: "Yes" },
+//       { value: "no", label: "No" },
+//     ],
+//     placeholder: "Y/N",
+//     required: true,
+//   },
+//   {
+//     name: "personal_information.wearingNiqabSince",
+//     label: "Since when have you been wearing a veil with a niqab?",
+//     type: "text",
+//     placeholder: "Year",
+//     required: true,
+//   },
+//   {
+//     name: "personal_information.dailyPrayerRoutine",
+//     label: "Do you pray five times a day?",
+//     type: "select",
+//     options: [
+//       { value: "yes", label: "Yes" },
+//       { value: "no", label: "No" },
+//     ],
+//     placeholder: "Y/N",
+//     required: true,
+//   },
+//   {
+//     name: "personal_information.skippedPrayersPerWeek",
+//     label:
+//       "Usually how many times (waqt) a week are your prayers missed (Qaza)?",
+//     type: "text",
+//     placeholder: "Number per week",
+//     required: true,
+//   },
+//   {
+//     name: "personal_information.followsMahramGuidelines",
+//     label: "Do you comply with mahram / non-mahram?",
+//     type: "select",
+//     options: [
+//       { value: "yes", label: "Yes" },
+//       { value: "no", label: "No" },
+//     ],
+//     placeholder: "Y/N",
+//     required: true,
+//   },
+//   {
+//     name: "personal_information.quranRecitationAbility",
+//     label: "Are you able to recite the Quran correctly?",
+//     type: "select",
+//     options: [
+//       { value: "yes", label: "Yes" },
+//       { value: "no", label: "No" },
+//     ],
+//     placeholder: "Y/N",
+//     required: true,
+//   },
+//   {
+//     name: "personal_information.fiqhFollowed",
+//     label: "Which Fiqh do you follow?",
+//     type: "select",
+//     options: [
+//       { value: "hanafi", label: "Hanafi" },
+//       { value: "shafi", label: "Shafi" },
+//       { value: "maliki", label: "Maliki" },
+//       { value: "hanbali", label: "Hanbali" },
+//     ],
+//     placeholder: "Select Fiqh",
+//     required: true,
+//   },
+//   {
+//     name: "personal_information.mediaConsumptionHabits",
+//     label: "Do you watch or listen to dramas / movies / serials / songs?",
+//     type: "textArea",
+//     placeholder: "Media habits",
+//     required: true,
+//   },
+//   {
+//     name: "personal_information.mentalOrPhysicalDiseases",
+//     label: "Do you have any mental or physical diseases?",
+//     type: "textArea",
+//     placeholder: "Health conditions",
+//     required: true,
+//   },
+//   {
+//     name: "personal_information.involvedInSpecialWork",
+//     label: "Are you involved in any special work of deen?",
+//     type: "textArea",
+//     placeholder: "Islamic activities",
+//     required: true,
+//   },
+//   {
+//     name: "personal_information.beliefsAboutShrine",
+//     label: "What are your ideas or beliefs about the shrine (Mazar)?",
+//     type: "textArea",
+//     placeholder: "Shrine beliefs",
+//     required: true,
+//   },
+//   {
+//     name: "personal_information.islamicBooksRead",
+//     label: "Write the names of at least 3 books you have read",
+//     type: "text",
+//     placeholder: "Ex: Riyadus Salihin, Bulughul Maram, Sahih Bukhari",
+//     required: true,
+//   },
+//   {
+//     name: "personal_information.islamicScholarsPreferred",
+//     label: "Write the names of at least 3 Islamic scholars of your choice",
+//     type: "multiSelect",
+//     options: [
+//       { value: "mizanur_rahman_azhari", label: "Mizanur Rahman Azhari" },
+//       { value: "delower_hossain_sayeedi", label: "Delwar Hossain Sayeedi" },
+//       { value: "sheikh_ahmadullah", label: "Sheikh Ahmadullah" },
+//       { value: "abu_toha_muhammad_adnan", label: "Abu Toha Muhammad Adnan" },
+//       { value: "mufti_menk", label: "Mufti Menk" },
+//       { value: "nouman_ali_khan", label: "Nouman Ali Khan" },
+//       { value: "dr_zakir_naik", label: "Dr. Zakir Naik" },
+//       { value: "yasir_qadhi", label: "Dr. Yasir Qadhi" },
+//       { value: "omar_suleiman", label: "Sheikh Omar Suleiman" },
+//       {
+//         value: "khandaker_abdullah_jahangir",
+//         label: "Dr. Khandaker Abdullah Jahangir",
+//       },
+//     ],
+//     placeholder: "Select scholars",
+//     required: true,
+//   },
+//   {
+//     name: "personal_information.hobbiesAndInterests",
+//     label:
+//       "Write about your hobbies, likes and dislikes, tastes, dreams, and so on.",
+//     type: "textArea",
+//     placeholder: "Your interests",
+//     required: true,
+//   },
+//   {
+//     name: "personal_information.groomMobileNumber",
+//     label: "Mobile Number",
+//     type: "text",
+//     placeholder: " +8801XXXXXXXXX",
+//     required: true,
+//     helperText:
+//       "We won't share this number with anyone. It's only for verification.",
+//   },
+//   {
+//     name: "personal_information.previousRelationship",
+//     label: "Do you have any relationship before? If yes, describe.",
+//     type: "textArea",
+//     placeholder: "Past relationships",
+//     required: true,
+//   },
+// ];
 
 // const expected_partner = [
 //   {
@@ -1345,11 +1345,11 @@ const education = [
 
 const userFormFields = {
   // general_information,
-  address,
+  // address,
   // occupation,
   // agreement,
-  family_information,
-  personal_information,
+  // family_information,
+  // personal_information,
   // expected_partner,
   // contact,
   // marriage_related_information,

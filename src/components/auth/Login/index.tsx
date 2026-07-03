@@ -9,7 +9,7 @@ import { loginSchema } from "@/schemas/userSchema";
 import { storeUserInfo } from "@/services/auth.service";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useGoogleLogin } from "@react-oauth/google";
-import { Checkbox, Col, message, Row } from "antd";
+import { Checkbox, Col, Row } from "antd";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,6 +17,7 @@ import {  useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
+import { notification } from "antd";
 
 interface FormValues {
   email: string;
@@ -45,6 +46,7 @@ const Login = () => {
 
   const [userLogin, { isLoading }] = useUserLoginMutation();
   const [rememberMe, setRememberMe] = useState(false);
+  const [notificationApi,notificationContext] = notification.useNotification();
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     try {
@@ -54,11 +56,17 @@ const Login = () => {
       }).unwrap();
       if (res?.accessToken) {
         storeUserInfo({ accessToken: res.accessToken });
-        message.success(t("login_successful"));
+        notificationApi.success({
+          message: t("login_successful"),
+          duration: 3,
+        });
       }
     } catch (error) {
       console.log('banlga',error);
-      message.error((error as any)?.data || t("something_went_wrong"));
+      notificationApi.error({
+        message: (error as any)?.data || t("something_went_wrong"),
+        duration: 3,
+      });
     }
   };
 
@@ -73,21 +81,31 @@ const Login = () => {
         }).unwrap();
         if (res?.accessToken) {
           storeUserInfo({ accessToken: res.accessToken });
-          message.success(t("login_successful"));
+          notificationApi.success({
+            message: t("login_successful"),
+            duration: 3,
+          });
         }
       } catch (error: any) {
-        message.error(error?.data || t("something_went_wrong"));
+        notificationApi.error({
+          message: error?.data || t("something_went_wrong"),
+          duration: 3,
+        });
       }
     },
     onError: (error) => {
       console.error("Google login error:", error);
-      message.error(t("login_failed"));
+      notificationApi.error({
+        message: t("login_failed"),
+        duration: 3,
+      }); 
     },
     flow: "implicit",
   });
 
   return (
     <div className='min-h-screen bg-gradient-to-br dark:bg-blue-950 dark:text-white flex items-center justify-center'>
+      {notificationContext}
       <div className='container mx-auto px-4'>
         <Row
           justify='center'
@@ -151,7 +169,7 @@ const Login = () => {
                   variant='cta'>
                   {t("log_in_button")}
                 </Button>
-                <div className='relative my-4'>
+                <div className='relative my-2'>
                   <div className='absolute inset-0 flex items-center'>
                     <div className='w-full border-t border-gray-300 dark:border-gray-700'></div>
                   </div>
@@ -171,7 +189,7 @@ const Login = () => {
                   {t("log_in_with_google")}
                 </button>
               </Form>
-              <Link href="/register" className="w-full block text-center mt-8 bg-blue-600 text-white px-4 py-3 rounded-lg border border-blue-600 hover:bg-blue-700 hover:border-blue-700 transition-colors duration-300 font-medium">
+              <Link href="/register" className="w-full block text-center mt-10 bg-blue-600 text-white px-4 py-3 rounded-lg border border-blue-600 hover:bg-blue-700 hover:border-blue-700 transition-colors duration-300 font-medium">
                 {t("create_account")}
               </Link>
             </div>

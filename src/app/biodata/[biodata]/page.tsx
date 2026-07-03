@@ -1,6 +1,6 @@
 import BioData from "@/components/BioData";
 import { getBioData } from "@/lib/fetchers/biodata";
-import { getUserInfoFromCookie } from "@/services/auth.cookieService";
+import { getToken, getUserInfoFromCookie } from "@/services/auth.cookieService";
 import { IUser } from "@/types";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -32,9 +32,10 @@ interface PageProps {
 
 export default async function Page({ params }: PageProps) {
   const { biodata } = await params;
-
+  const token = await getToken();
+  
   const [bioDataInfo, userInfo] = await Promise.all([
-    getBioData(biodata),
+    getBioData(biodata, token),
     getUserInfoFromCookie() as Promise<Partial<IUser>>,
   ]);
 

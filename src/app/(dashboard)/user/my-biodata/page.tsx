@@ -1,11 +1,12 @@
 import BioData from "@/components/BioData";
 import { getBioData } from "@/lib/fetchers/biodata";
-import { getUserInfoFromCookie } from "@/services/auth.cookieService";
+import { getToken, getUserInfoFromCookie } from "@/services/auth.cookieService";
 import { IUser } from "@/types";
 
 const MyBioDatapage = async () => {
+  const token = await getToken();
   const { bioDataNo } = (await getUserInfoFromCookie()) as IUser;
-  const { data: bioDataInfo } = await getBioData(bioDataNo);
+  const { data: bioDataInfo } = await getBioData(bioDataNo, token);
   return (
     <BioData
       bioDataInfo={bioDataInfo}

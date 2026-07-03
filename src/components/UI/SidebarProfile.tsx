@@ -24,7 +24,6 @@ const SidebarProfile = () => {
     basePercent + stepIncrement * completedCount,
     maxPercent
   );
-
   return (
     <>
       <div className='max-w-xs mx-auto mb-1 border-b border-gray-300  p-4 pt-1 bg-white'>
@@ -43,8 +42,9 @@ const SidebarProfile = () => {
 
         {/* Status */}
         <div className='flex justify-between items-center mt-4'>
-          <span className='text-sm font-medium text-gray-700'>
-            {t("biodata_status")}:
+          <span className='text-xs text-gray-700 font-extrabold'>
+            {(profileStatus === BioDataStatus.PENDING) ? t("status") : t("biodata_status")}:
+            {/* {t("biodata_status")}: */}
           </span>
           <span
             className={`text-xs font-semibold px-3 py-0.5 rounded-full border ${
@@ -65,7 +65,7 @@ const SidebarProfile = () => {
         </div>
         {/* Progress & Tip */}
         <div className='mb-2'>
-          <Tooltip title='Biodata completion: 50%' placement='bottomRight'>
+          <Tooltip title={`${t("biodata_completion")} ${percent}%`} placement='bottomRight'>
             <Progress
               percent={parseFloat(percent.toFixed(0))}
               status='active'
@@ -84,7 +84,7 @@ const SidebarProfile = () => {
         </div>
 
         {/* Edit Button */}
-        <ProfileStatusAction profileStatus={profileStatus} />
+        <ProfileStatusAction profileStatus={profileStatus} bioDataNo={(userData?.user as any)?.bioData?.bioDataNo} />
       </div>
     </>
   );

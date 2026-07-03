@@ -10,7 +10,7 @@ import { regiserSchema } from "@/schemas/userSchema";
 import { getUserInfoWithToken, storeUserInfo } from "@/services/auth.service";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useGoogleLogin } from "@react-oauth/google";
-import { Col, message, Row } from "antd";
+import { Col, Row } from "antd";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
@@ -21,6 +21,7 @@ import { MdOutlineEmail } from "react-icons/md";
 import BangladeshFlag from "../../../assets/Flag_of_Bangladesh.svg.png";
 import mail from "../../../assets/Mail sent-rafiki.png";
 import { useRouter, useSearchParams } from "next/navigation";
+import { notification } from "antd";
 
 interface FormValues {
   email: string;
@@ -72,6 +73,7 @@ const Register = () => {
   const [formValues, setFormValues] = useState<Partial<FormValues>>({});
   const [showForm, setShowForm] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
+  const [notificationApi, notificationContext] = notification.useNotification();
   const [registrationType, setRegistrationType] = useState<
     "email" | "google" | null
   >(null);
@@ -88,7 +90,10 @@ const Register = () => {
       if (res?.accessToken && registrationType === "google") {
         storeUserInfo({ accessToken: res.accessToken });
         router.push("/user/dashboard");
-        message.success(t("account_created"));
+        notificationApi.success({
+          message: t("account_created"),
+          duration: 3,
+        });
       }
 
       if (!res?.accessToken && registrationType === "email") {
@@ -96,7 +101,10 @@ const Register = () => {
         setShowForm(false);
       }
     } catch (error) {
-      message.error((error as any)?.data || t("something_went_wrong"));
+      notificationApi.error({
+        message: (error as any)?.data || t("something_went_wrong"),
+        duration: 3,
+      });
     }
   };
 
@@ -111,12 +119,15 @@ const Register = () => {
         setShowForm(true);
         setRegistrationType("google");
       } catch (error: any) {
-        message.error(error?.data || t("google_info_failed"));
+        notificationApi.error({
+          message: error?.data || t("google_info_failed"),
+          duration: 3,
+        });
       }
     },
     onError: (error) => {
       console.error("Google login error:", error);
-      message.error(t("google_failed"));
+      notificationApi.error({ message: t("google_failed"), duration: 3 });
     },
     flow: "implicit",
   });
@@ -128,6 +139,7 @@ const Register = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex items-center justify-center">
+      {notificationContext}
       <div className="container mx-auto px-4">
         <Row
           justify="center"

@@ -96,7 +96,7 @@ const Content = ({ role, hide }: { role: string; hide?: () => void }) => {
         </div>
         {/* Progress & Tip */}
         <div className="mb-2">
-          <Tooltip title="Biodata completion: 50%" placement="bottomRight">
+          <Tooltip title={`${t("biodata_completion")} ${percent}%`} placement="bottomRight">
             <Progress
               percent={percent}
               status="active"
@@ -115,7 +115,7 @@ const Content = ({ role, hide }: { role: string; hide?: () => void }) => {
         </div>
 
         {/* Edit Button */}
-        <ProfileStatusAction profileStatus={profileStatus} />
+        <ProfileStatusAction profileStatus={profileStatus} bioDataNo={(userData?.user as any)?.bioData?.bioDataNo} />
       </div>
 
       {/* Sidebar Menu */}
