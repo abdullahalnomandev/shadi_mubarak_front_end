@@ -115,7 +115,7 @@ const Header = () => {
 
     // Check for sub-pages (but exclude home page from this logic)
     const startsWithMatch = navItems.find(
-      (item) => item.key !== "/" && pathname?.startsWith(item.key)
+      (item) => item.key !== "/" && pathname?.startsWith(item.key),
     );
     return startsWithMatch?.key || null;
   };
@@ -133,9 +133,15 @@ const Header = () => {
         <div className="flex justify-between items-center  h-full max-w-7xl m-auto">
           <div>
             <Link href="/">
-              <h2 className="text-xl font-bold tracking-tight bg-linear-to-r from-pink-600 to-blue-600 bg-clip-text text-transparent">
+              {/* <h2 className="text-xl font-bold tracking-tight bg-linear-to-r from-pink-600 to-blue-600 bg-clip-text text-transparent">
                 বিয়ের ঠিকানা
-              </h2>
+              </h2> */}
+              <Image
+                src="/BiyerThikana.com.png"
+                alt="BiyerThikana Logo"
+                width={200}
+                height={50}
+              />{" "}
             </Link>
           </div>
 
@@ -147,7 +153,6 @@ const Header = () => {
               disabledOverflow
               className="bg-transparent! border-none!"
               theme={isDarkMode ? "dark" : "light"}
-          
             />
           </div>
 
@@ -222,7 +227,7 @@ const Header = () => {
               items={navItems}
               className="border-none dark:text-white"
               onClick={() => {
-                  setDrawerVisible(false);
+                setDrawerVisible(false);
               }}
             />
             <div className="mt-6 flex flex-col gap-3">

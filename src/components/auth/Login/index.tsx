@@ -13,7 +13,7 @@ import { Checkbox, Col, Row } from "antd";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
-import {  useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
@@ -37,7 +37,6 @@ const getLoginFields = (t: (key: string) => string) => [
   },
 ];
 
-
 const Login = () => {
   const t = useTranslations("login"); // UDPATWED
 
@@ -46,7 +45,7 @@ const Login = () => {
 
   const [userLogin, { isLoading }] = useUserLoginMutation();
   const [rememberMe, setRememberMe] = useState(false);
-  const [notificationApi,notificationContext] = notification.useNotification();
+  const [notificationApi, notificationContext] = notification.useNotification();
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     try {
@@ -62,7 +61,7 @@ const Login = () => {
         });
       }
     } catch (error) {
-      console.log('banlga',error);
+      console.log("banlga", error);
       notificationApi.error({
         message: (error as any)?.data || t("something_went_wrong"),
         duration: 3,
@@ -98,31 +97,33 @@ const Login = () => {
       notificationApi.error({
         message: t("login_failed"),
         duration: 3,
-      }); 
+      });
     },
     flow: "implicit",
   });
 
   return (
-    <div className='min-h-screen bg-gradient-to-br dark:bg-blue-950 dark:text-white flex items-center justify-center'>
+    <div className=" bg-gradient-to-br dark:bg-blue-950 dark:text-white flex items-center justify-center">
       {notificationContext}
-      <div className='container mx-auto px-4'>
+      <div className="container mx-auto px-4">
         <Row
-          justify='center'
-          align='middle'
-          className='flex gap-14 flex-col md:flex-row'>
+          justify="center"
+          align="middle"
+          className="flex gap-14 flex-col md:flex-row"
+        >
           {/* Image Section */}
           <Col
             sm={12}
             md={16}
             lg={10}
-            className='justify-center items-center p-8 hidden md:block'>
+            className="justify-center items-center p-8 hidden md:block"
+          >
             <Image
               src={loginImage}
               alt={t("login_illustration_alt")}
               width={500}
               height={500}
-              className='object-contain max-w-full'
+              className="object-contain max-w-full"
               priority
             />
           </Col>
@@ -132,64 +133,80 @@ const Login = () => {
             sm={12}
             md={8}
             lg={8}
-            className='bg-white dark:bg-gray-800 dark:text-white w-full p-6 rounded-xl'>
-            <div className='md:max-w-md mx-auto'>
-              <h2 className='text-3xl font-bold dark:text-white text-gray-800 text-center'>
+            className="bg-white dark:bg-gray-800 dark:text-white w-full p-6 rounded-xl"
+          >
+            <div className="md:max-w-md mx-auto">
+              <h2 className="text-3xl font-bold dark:text-white text-gray-800 text-center">
                 {t("welcome_back")}
               </h2>
-              <p className='text-gray-600 dark:text-gray-300 text-center pt-2 py-4'>
+              <p className="text-gray-600 dark:text-gray-300 text-center pt-2 py-4">
                 {t("please_sign_in")}
               </p>
 
               <Form
                 submitHandler={onSubmit}
-                resolver={yupResolver(loginSchema)}>
+                resolver={yupResolver(loginSchema)}
+              >
                 {getLoginFields(t).map((field) => (
-                  <div key={field.name} className='mb-4'>
+                  <div key={field.name} className="mb-4">
                     <FormInput {...field} />
                   </div>
                 ))}
-                <div className='flex dark:text-white items-center justify-between mb-4'>
+                {/* <div className="flex dark:text-white items-center justify-between mb-6">
                   <Checkbox
                     checked={rememberMe}
                     onChange={(e) => setRememberMe(e.target.checked)}
-                    className='text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800'>
+                    className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800"
+                  >
                     {t("remember_me")}
                   </Checkbox>
                   <Link
-                    href='/forgot-password'
-                    className='text-sm text-blue-600 hover:text-blue-800 !underline'>
+                    href="/forgot-password"
+                    className="text-sm text-blue-600 hover:text-blue-800 !underline"
+                  >
                     {t("forgot_password")}
                   </Link>
-                </div>
+                </div> */}
                 <Button
                   loading={isLoading}
                   loadingText={t("logging_in")}
-                  type='submit'
-                  variant='cta'>
+                  type="submit"
+                  className="!rounded-full"
+                  variant="cta"
+                >
                   {t("log_in_button")}
                 </Button>
-                <div className='relative my-2'>
-                  <div className='absolute inset-0 flex items-center'>
-                    <div className='w-full border-t border-gray-300 dark:border-gray-700'></div>
+                <div className="relative my-2">
+                  <div className="absolute inset-0 flex items-center">
+                    <div className="w-full border-t border-gray-300 dark:border-gray-700"></div>
                   </div>
-                  <div className='relative flex justify-center text-sm'>
-                    <span className='px-4 dark:bg-gray-800 dark:text-gray-300 bg-white text-gray-500'>
+                  <div className="relative flex justify-center text-sm">
+                    <span className="px-4 dark:bg-gray-800 dark:text-gray-300 bg-white text-gray-500">
                       {t("or")}
                     </span>
                   </div>
                 </div>
                 <button
-                  type='button'
-                  className='w-full py-3 px-4 flex items-center justify-center gap-3 bg-white border-2 border-gray-200 
-                    rounded-lg font-medium text-gray-700 hover:bg-gray-50 transition-all duration-300 
-                    focus:outline-none focus:ring-2 cursor-pointer focus:ring-gray-500'
-                  onClick={() => googleLogin()}>
-                  <FcGoogle className='w-5 h-5' />
+                  type="button"
+                  className="flex rounded-full text-pink-500 !w-full shadow-md items-center justify-center gap-2 px-4 md:px-6 py-2.5 text-sm font-medium  bg-white border hover:bg-gray-50 transition duration-300 sm:w-auto cursor-pointer hover:scale-105 border-pink-500 hover:border-pink-500 hover:text-pink-500  !focus:ring-pink-500"
+                  onClick={() => googleLogin()}
+                >
+                  <FcGoogle className="w-5 h-5" />
                   {t("log_in_with_google")}
                 </button>
+                <div className="flex items-center justify-center my-4">
+                  <Link
+                    href="/forgot-password"
+                    className="text-sm text-blue-600 hover:text-blue-800 "
+                  >
+                    {t("forgot_password")}
+                  </Link>
+                </div>
               </Form>
-              <Link href="/register" className="w-full block text-center mt-10 bg-blue-600 text-white px-4 py-3 rounded-lg border border-blue-600 hover:bg-blue-700 hover:border-blue-700 transition-colors duration-300 font-medium">
+              <Link
+                href="/register"
+                className="w-full rounded-full text-primary block mt-8 text-center bg-blue-600 text-white px-4 py-2.5 border border-blue-600 hover:bg-blue-700 hover:border-blue-700 transition-colors duration-300 font-medium"
+              >
                 {t("create_account")}
               </Link>
             </div>

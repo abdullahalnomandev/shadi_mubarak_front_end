@@ -3,57 +3,59 @@ import * as yup from "yup";
 export const loginSchema = yup.object({
   email: yup
     .string()
-    .email("Invalid email address")
-    .required("Email is required"),
+    .email("সঠিক ইমেইল ঠিকানা লিখুন")
+    .required("ইমেইল ঠিকানা আবশ্যক"),
   password: yup
     .string()
-    .min(6, "Password must be at least 6 characters")
-    .required("Password is required"),
+    .min(6, "পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে")
+    .required("পাসওয়ার্ড আবশ্যক"),
 });
+
 export const regiserSchema = yup.object({
   email: yup
     .string()
-    .email("Invalid email address")
-    .required("Email is required"),
+    .email("সঠিক ইমেইল ঠিকানা লিখুন")
+    .required("ইমেইল ঠিকানা আবশ্যক"),
   phone: yup
     .string()
-    .min(10, "Phone number is invalid")
-    .required("Phone number is required"),
+    .min(10, "সঠিক মোবাইল নম্বর লিখুন")
+    .required("মোবাইল নম্বর আবশ্যক"),
   password: yup
     .string()
-    .min(6, "Password must be at least 6 characters")
-    .required("Password is required"),
+    .min(6, "পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে")
+    .required("পাসওয়ার্ড আবশ্যক"),
 });
 export const forgotPasswordSchema = yup.object({
   email: yup
     .string()
-    .email("Invalid email address")
-    .required("Email is required"),
+    .email("সঠিক ইমেইল ঠিকানা লিখুন")
+    .required("ইমেইল ঠিকানা আবশ্যক"),
 });
+
 export const resetPasswordSchema = yup.object({
   password: yup
     .string()
-    .min(6, "Password must be at least 6 characters")
-    .required("Password is required"),
+    .min(6, "পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে")
+    .required("নতুন পাসওয়ার্ড আবশ্যক"),
   confirmPassword: yup
     .string()
-    .oneOf([yup.ref("password")], "Passwords must match")
-    .required("Please confirm your password"),
+    .oneOf([yup.ref("password")], "দুইটি পাসওয়ার্ড এক নয়")
+    .required("পাসওয়ার্ড নিশ্চিত করুন"),
 });
 
 export const changePasswordSchema = yup.object({
   currentPassword: yup
     .string()
-    .min(6, "Password must be at least 6 characters")
-    .required("Old password is required"),
+    .min(6, "পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে")
+    .required("বর্তমান পাসওয়ার্ড আবশ্যক"),
   newPassword: yup
     .string()
-    .min(6, "Password must be at least 6 characters")
-    .required("New password is required"),
+    .min(6, "পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে")
+    .required("নতুন পাসওয়ার্ড আবশ্যক"),
   confirmPassword: yup
     .string()
-    .oneOf([yup.ref("newPassword")], "Passwords must match")
-    .required("Confirm password is required"),
+    .oneOf([yup.ref("newPassword")], "দুইটি পাসওয়ার্ড এক নয়")
+    .required("পাসওয়ার্ড নিশ্চিত করুন"),
 });
 
 export const userBiodataSchema = {
@@ -179,13 +181,22 @@ export const userBiodataSchema = {
     const isFemale = biodataType === "female's_biodata";
 
     const wearsNiqab = parent?.personal_information?.wearsNiqab;
-    const beardAccordingToSunnah = parent?.personal_information?.beardAccordingToSunnah;
-    const clothingAboveAnkles = parent?.personal_information?.clothingAboveAnkles;
+    const beardAccordingToSunnah =
+      parent?.personal_information?.beardAccordingToSunnah;
+    const clothingAboveAnkles =
+      parent?.personal_information?.clothingAboveAnkles;
     const dailyPrayerRoutine = parent?.personal_information?.dailyPrayerRoutine;
 
-    const maleYesCount = [beardAccordingToSunnah, clothingAboveAnkles, dailyPrayerRoutine].filter((v) => v === "yes").length;
-    const femaleYesCount = [wearsNiqab, dailyPrayerRoutine].filter((v) => v === "yes").length;
-    const hideAdvancedFields = (isMale && maleYesCount < 2) || (!isMale && femaleYesCount < 2);
+    const maleYesCount = [
+      beardAccordingToSunnah,
+      clothingAboveAnkles,
+      dailyPrayerRoutine,
+    ].filter((v) => v === "yes").length;
+    const femaleYesCount = [wearsNiqab, dailyPrayerRoutine].filter(
+      (v) => v === "yes",
+    ).length;
+    const hideAdvancedFields =
+      (isMale && maleYesCount < 2) || (!isMale && femaleYesCount < 2);
     const showAdvancedFields = !hideAdvancedFields;
 
     return yup.object({
@@ -213,7 +224,10 @@ export const userBiodataSchema = {
         : yup.string().notRequired(),
 
       wearsNiqab: isFemale
-        ? yup.string().oneOf(["yes", "no"]).required("Please specify if you wear niqab")
+        ? yup
+            .string()
+            .oneOf(["yes", "no"])
+            .required("Please specify if you wear niqab")
         : yup.string().notRequired(),
 
       wearingNiqabSince:
@@ -277,7 +291,7 @@ export const userBiodataSchema = {
               "Please write the names of at least 3 Islamic scholars of your choice",
             )
         : yup.string().notRequired(),
-      
+
       hobbiesAndInterests: yup
         .string()
         .required("Please specify your hobbies and interests"),

@@ -209,10 +209,10 @@ const Register = () => {
                     <FcGoogle className='w-5 h-5' />
                     {t("create_with_google")}
                   </button> */}
-                  <button
+                  {/* <button
                     onClick={() => googleLogin()}
                     className="flex items-center justify-center w-full gap-3 py-3 px-4 
-             border border-gray-300 rounded-lg bg-white shadow-sm 
+             border border-gray-300 rounded-lg text-primary !text-pink-500 bg-white shadow-md 
              hover:shadow-md hover:bg-gray-50 
              focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-300
              transition-all duration-200 cursor-pointer hover:scale-105"
@@ -221,9 +221,18 @@ const Register = () => {
                     <span className="text-gray-800 font-medium text-base">
                       {t("create_with_google")}
                     </span>
+                  </button> */}
+
+                  <button
+                    type="button"
+                    className="flex rounded-full text-pink-500 !w-full shadow-md items-center justify-center gap-2 px-4 md:px-6 py-3 text-sm font-medium  bg-white border hover:bg-gray-50 transition duration-300 sm:w-auto cursor-pointer hover:scale-105 border-pink-500 hover:border-pink-500 hover:text-pink-500  !focus:ring-pink-500"
+                    onClick={() => googleLogin()}
+                  >
+                    <FcGoogle className="w-5 h-5" />
+                    {t("create_with_google")}
                   </button>
 
-                  <div className="relative my-6">
+                  <div className="relative my-2">
                     <div className="absolute inset-0 flex items-center">
                       <div className="w-full border-t border-gray-300"></div>
                     </div>
@@ -238,7 +247,7 @@ const Register = () => {
                     type="button"
                     onClick={handleEmailRegistration}
                     variant="cta"
-                    className="py-3"
+                    className="py-3 !rounded-full"
                   >
                     <div className="flex items-center gap-2">
                       <MdOutlineEmail />
@@ -274,7 +283,7 @@ const Register = () => {
                     variant="cta"
                     loading={isLoading}
                     loadingText={t("creating")}
-                    className="py-3"
+                    className="py-3 !rounded-full mt-4"
                   >
                     {t("create_account_button")}
                   </Button>
